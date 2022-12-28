@@ -9,5 +9,5 @@ public class GamespaceApplication {
     public static void main(String[] args) {
         SpringApplication.run(GamespaceApplication.class, args);
     }
-
+//        테스트
 }
