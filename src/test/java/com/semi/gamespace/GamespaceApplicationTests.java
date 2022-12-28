@@ -9,6 +9,4 @@ class GamespaceApplicationTests {
     @Test
     void contextLoads() {
     }
-
-    //테스트 문구 들어가본다
 }
