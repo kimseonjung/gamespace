@@ -1,0 +1,340 @@
+@charset "UTF-8";
+
+/* light background */
+.light-bg-window{
+    background-color: #FFFFFF;
+    box-shadow: 10px 10px 21px -11px rgba(165, 165, 165, 0.29),
+    1px 4px 8px rgba(0, 0, 0, 0.05);
+}
+.light-bg-screen{
+    background-image: url("../images/login_bg_light.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.light-placeholder{
+    border: 0.5px solid rgba(74, 87, 111, 0.7);
+    border-radius: 24px;
+}
+.light-text{
+    background-color: #FFFFFF;
+    color: #0A0A0D;
+}
+.light-icon-cross{
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background-image: url("../images/icon_light/cross.svg");
+    background-size: 24px 24px;
+}
+.light-icon-gamespace{
+    position: absolute;
+    width: 52px;
+    height: 34px;
+    background-image: url("../images/icon_light/gamespace.svg");
+    background-size: 52px 34px;
+}
+
+/* dark background */
+.dark-bg-window{
+    background-color: #0A0A0D;
+    box-shadow: 10px 10px 21px -11px rgba(8, 4, 2, 0.29),
+    1px 4px 8px rgba(0, 0, 0, 0.05);
+}
+.dark-bg-screen{
+    background-image: url("../images/login_bg_dark.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.dark-placeholder{
+    border: 0.5px solid rgba(114, 120, 136, 0.6);
+    border-radius: 24px;
+}
+.dark-text{
+    background-color: #0A0A0D;
+    color: #FFFFFF;
+}
+.dark-icon-cross{
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background-image: url("../images/icon_dark/cross.svg");
+    background-size: 24px 24px;
+}
+.dark-icon-gamespace{
+    position: absolute;
+    width: 52px;
+    height: 34px;
+    background-image: url("../images/icon_dark/gamespace.svg");
+    background-size: 52px 34px;
+}
+
+/* background */
+.login-main-bg{
+    width: 100%;
+    height: 100vh;
+    left: 0px;
+    top: 0px;
+
+}
+
+/* windows properties */
+.window-title{
+    width: 100%;
+    height: 100px;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+.window-input{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* padding: 32px 64px 48px; */
+    gap: 20px;
+
+    width: 100%;
+    height: 410px;
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+.window-title .btn-cross{
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    left: 24px;
+    top: 38px;
+}
+.window-title .logo-gamespace{
+    position: absolute;
+    width: 52px;
+    height: 34px;
+    left: calc(50% - 52px/2);
+    top: 33px;
+}
+
+/* input placeholder */
+.input-placeholder{
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 16px;
+    gap: 4px;
+
+    width: 320px;
+    height: 48px;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+.input-text{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 4px 0px;
+
+    width: 288px;
+    height: 20px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 20px;
+
+    letter-spacing: -0.009em;
+
+    border: 0px;
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+}
+.input-text:focus{
+    outline: none;
+}
+
+/* div button - text */
+.help-btn-text{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    text-decoration: none;
+
+    color: rgb(74, 87, 111);
+    opacity: 0.8;
+}
+.login-help p{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    text-decoration: none;
+
+    color: rgb(74, 87, 111);
+    opacity: 0.8;
+}
+.login-btn-text{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.014em;
+}
+.login-btn-logo{
+    width: 20px;
+    height: 20px;
+}
+.btn-logo-google{
+    left: 1%;
+    right: -1%;
+    top: 1%;
+    bottom: -1%;
+    background: url("../images/logo_google.png");
+}
+.btn-logo-kakao{
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+    background: url("../images/logo_kakao.png");
+}
+.btn-response{
+    opacity: 1;
+}
+.btn-response:hover{
+    opacity: 0.8;
+}
+.btn-response:active{
+    opacity: 1;
+}
+
+.white-text{
+    color: #ffffff;
+}
+.black-text{
+    color: #22242C;
+}
+
+/* login */
+.login-main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+
+    position: absolute;
+    width: 448px;
+    height: 510px;
+    min-width: 448px;
+    min-height: 510px;
+    max-width: 448px;
+    max-height: 510px;
+    top: 10vh;
+    left: calc(50% - 448px/2);
+    border-radius: 24px;
+}
+
+.login-body{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 0px;
+    gap: 6px;
+
+    width: 320px;
+    height: 134px;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+.login-input{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
+
+    width: 100%;
+    height: 112px;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+.login-help{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 0px 16px 0px 0px;
+    gap: 6px;
+
+    width: 217px;
+    height: 16px;
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+.login-buttons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: 16px;
+
+    width: 320px;
+    height: 176px;
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+.login-btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 0px;
+    gap: 4px;
+
+    width: 100%;
+    height: 48px;
+
+    border-radius: 24px;
+    text-decoration: none;
+}
+.login-default{
+    background: linear-gradient(73.19deg, #DC79FF 0%, #256BFA 95%)
+}
+.login-google{
+    background: #ffffff;
+    border: 1px solid rgba(74, 87, 111, 0.7);
+}
+.login-kakao{
+    background: #FBE300;
+}
+
+/* debug */
+.screen-mode-btn{
+    position: absolute;
+    padding: 20px;
+    width: 20px;
+    height: 20px;
+    left: calc(50% - 10px);
+    top: 800px;
+
+    background-color: #787878;
+    border-radius: 50%;
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="user-scalable=0, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/member.css">
+  <title>gamespace - 로그인</title>
+</head>
+<body>
+  <div class="login-main-bg dark-bg-screen"></div>
+  <form id="loginForm" action="/member/login" method="post">
+    <div class="login-main dark-bg-window">
+      <div class="window-title">
+        <a href="#" class="btn-cross btn-response">
+          <div class="dark-icon-cross"></div>
+        </a>
+        <div class="logo-gamespace">
+          <div class="dark-icon-gamespace"></div>
+        </div>
+      </div>
+      <div class="window-input">
+        <div class="login-body">
+          <div class="login-input">
+            <div class="input-placeholder dark-placeholder">
+              <input class="input-text text-id dark-text" name="login-id" type="text" placeholder="ID">
+            </div>
+            <div class="input-placeholder dark-placeholder">
+              <input class="input-text text-pwd dark-text" name="login-pwd" type="text" placeholder="Password">
+            </div>
+          </div>
+          <div class="login-help">
+            <a href="#" class="btn-response help-btn-text">아이디찾기</a>
+            <p>|</p>
+            <a href="#" class="btn-response help-btn-text">비밀번호찾기</a>
+            <p>|</p>
+            <a href="#" class="btn-response help-btn-text">회원가입</a>
+          </div>
+        </div>
+        <div class="login-buttons">
+          <a href="#" class="login-btn login-default btn-response">
+            <p class="login-btn-text white-text">로그인</p>
+          </a>
+          <a href="#" class="login-btn login-google btn-response">
+            <div class="login-btn-logo btn-logo-google"></div>
+            <p class="login-btn-text black-text">Google</p>
+          </a>
+          <a href="#" class="login-btn login-kakao btn-response">
+            <div class="login-btn-logo btn-logo-kakao"></div>
+            <p class="login-btn-text black-text">Kakao</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </form>
+  <script>
+    (function($) {
+      $.AdjustZoom = function(options) {
+        var option = {
+          zoomRatio : 100
+        };
+        $.extend(option, options);
+
+        // 브라우저 배율이 100% 가 아닌 경우 처리
+        if(screen.logicalXDPI != screen.deviceXDPI) {
+          try {
+//                alert(screen.availWidth+", "+screen.logicalXDPI+", "+screen.deviceXDPI);
+            var ratio = screen.logicalXDPI / screen.deviceXDPI;
+            var ratio_reverse = screen.deviceXDPI / screen.logicalXDPI;
+            $('body').css('zoom', ( ratio * option.zoomRatio)+'%');
+            $('body').width(screen.availWidth * ratio_reverse );
+          }catch (e) {
+            alert("브라우저 배율 보정 중 오류가 발생하였습니다. 창을 닫은 후 다시 열어 주시기 바랍니다.");
+          }
+        }
+      };
+    })(jQuery);
+  </script>
+</body>
+</html>
