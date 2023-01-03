@@ -5,7 +5,7 @@
 
 body {
 	background-color: #fff;
-    background-image: url("../img/Background Gradient.png") ;
+    background-image: url("../image/Background Gradient.png") ;
     background-size: cover;
     
     
@@ -124,7 +124,7 @@ li a {
     position: absolute;
     background-color: #fff;
     min-width: 160px;
-    box-shadow: 0 4px 24 rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
     border-radius: 12px;
     padding: 8px 0;
 }
@@ -302,21 +302,21 @@ flex-grow: 0;
 	box-shadow: 0 4px 12px rgba(0, 79, 255, 0.4);
 }
 .swiper-button-prev {
-	background-image: url(../img/svg/icon-arrow-left.svg);
+	background-image: url(../image/svg/icon-arrow-left.svg);
 	left: 20px;
 }
 
 .swiper-button-prev:hover {
-	background-image: url(../img/svg/icon-arrow-left-w.svg);
+	background-image: url(../image/svg/icon-arrow-left-w.svg);
 }
 
 .swiper-button-next {
-	background-image: url(../img/svg/icon-arrow-right.svg);
+	background-image: url(../image/svg/icon-arrow-right.svg);
 	right: 20px;
 }
 
 .swiper-button-next:hover {
-	background-image: url(../img/svg/icon-arrow-right-w.svg);
+	background-image: url(../image/svg/icon-arrow-right-w.svg);
 
 }
 
