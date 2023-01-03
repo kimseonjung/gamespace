@@ -1,3 +1,6 @@
+server:
+  port: 8095
+
 spring:
   # DB 연결
   datasource:
@@ -9,6 +12,5 @@ spring:
     password: gamespace
 
 
-server:
-  port: 8001
+
 
