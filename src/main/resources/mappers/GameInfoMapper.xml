@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.semi.gamespace.game.model.dao.GameInfoMapper"><!-- 메퍼위치하고  동일하게 네임스페이스 작성-->
+
+    <resultMap type="com.semi.gamespace.game.model.dto.GameInfoDTO" id="gameInfoResultMap">
+        <id property="gameCode" column="GAME_CODE"/>
+        <result property="gameName" column="GAME_NAME"/>
+        <result property="devicesCode" column="DEVICES_CODE"/>
+        <result property="categoryCode" column="CATEGORY_CODE"/>
+        <result property="tagCode" column="TAG_CODE"/>
+        <result property="registrationDate" column="REGISTRATION_DATE"/>
+        <result property="launchDate" column="LAUNCH_DATE"/>
+        <result property="developer" column="DEVELOPER"/>
+        <result property="distributorCode" column="DISTRIBUTOR_CODE"/>
+        <result property="ratingCode" column="RATING_CODE"/>
+        <result property="price" column="PRICE"/>
+        <result property="platformCode" column="PLATFORM_CODE"/>
+        <result property="languageCode" column="LANGUAGE_CODE"/>
+        <result property="specificationCode" column="SPECIFICATION_CODE"/>
+        <result property="gameIntro" column="GAME_INTRO"/>
+        <result property="gameStatus" column="GAME_STATUS"/>
+
+    </resultMap>
+
+
+    <select id="selectAllGameInfo" resultMap="gameInfoResultMap">
+        SELECT
+            A.GAME_CODE
+            , A.GAME_NAME
+            , A.DEVICES_CODE
+            , A.CATEGORY_CODE
+            , A.TAG_CODE
+            , A.REGISTRATION_DATE
+            , A.LAUNCH_DATE
+            , A.DEVELOPER
+            , A.DISTRIBUTOR_CODE
+            , A.RATING_CODE
+            , A.PRICE
+            , A.PLATFORM_CODE
+            , A.LANGUAGE_CODE
+            , A.SPECIFICATION_CODE
+            , A.GAME_INTRO
+            , A.GAME_STATUS
+        FROM GAME_INFO A
+        WHERE A.GAME_STATUS = 'Y'
+        ORDER BY A.GAME_CODE
+    </select>
+
+    <select id="selectOneGameInfoName" resultMap="gameInfoResultMap">
+        SELECT
+            A.GAME_CODE
+            , A.GAME_NAME
+            , A.DEVICES_CODE
+            , A.CATEGORY_CODE
+            , A.TAG_CODE
+            , A.REGISTRATION_DATE
+            , A.LAUNCH_DATE
+            , A.DEVELOPER
+            , A.DISTRIBUTOR_CODE
+            , A.RATING_CODE
+            , A.PRICE
+            , A.PLATFORM_CODE
+            , A.LANGUAGE_CODE
+            , A.SPECIFICATION_CODE
+            , A.GAME_INTRO
+            , A.GAME_STATUS
+        FROM GAME_INFO A
+        WHERE A.GAME_NAME = #{gameName}
+
+
+    </select>
+
+
+
+
+
+
+
+
+</mapper>
