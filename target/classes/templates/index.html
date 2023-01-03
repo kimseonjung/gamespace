@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Swiper cdn-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="reset" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <title>gamespace</title>
+</head>
+<body>
+<header>
+    <div class="container">
+
+        <nav class="main-navigation nav">
+            <div class="nav-left">
+                <div class="logo"><a href="#"><img src="/image/icon_light/gamespace.svg" alt="logo"></a></div>
+
+
+                <ul>
+                    <li><a href="#">game</a></li>
+                    <li class="dropdown">
+                        <div class="dropdown-menu">
+                            gallery
+                            <img src="/image/icon_light/down.svg" alt="down">
+                        </div>
+                        <div class="dropdown-content">
+                            <a href="#">free gallery</a>
+                            <a href="#">game gallery</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="/news/news">news</a>
+                    </li>
+                    <li><a href="#">support</a></li>
+                    <li class="dropdown">
+                        <div class="dropdown-menu">
+                            admin
+                            <img src="/image/icon_light/down.svg" alt="down">
+                        </div>
+                        <div class="dropdown-content">
+                            <a href="#">gallery</a>
+                            <a href="#">member</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <a href="#" class="dark"><img src="/image/icon_light/sun.svg" alt="lite"></a>
+                <a href="#" class="mypage"><img src="/image/icon/mypage.svg" alt="mypage"></a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- 스크롤배너 -->
+<section class="main-swiper">
+
+    <!-- Slider main container -->
+    <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide"><a href="#"><img src="/image/main-img1.png" alt="main-img1"></a></div>
+            <div class="swiper-slide"><a href="#"><img src="/image/main-img1.png" alt="main-img1"></a></div>
+            <div class="swiper-slide"><a href="#"><img src="/image/main-img1.png" alt="main-img1"></a></div>
+
+        </div>
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
+
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+    </div>
+        <script src="/js/custom.js"></script>
+
+
+
+</section>
+<!-- 토글버튼 -->
+<section class="toggles">
+    <div class="toggle">
+        <label for="pc"><input type="radio" name="category" id="pc" class="category" checked><div class="togg pc"><img src="/image/icon_dark/pc.svg" alt=""></div></label>
+        <label for="mobile"><input type="radio" name="category" id="mobile" class="category" ><div class="togg mobile"><img src="/image/icon_dark/mobile.svg" alt=""></div></label>
+        <label for="console"><input type="radio" name="category" id="console" class="category" ><div class="togg console"><img src="/image/icon_dark/console.svg" alt=""></div></label>
+    </div>
+</section>
+<!-- 카테고리 -->
+<section class="categorys">
+    <div class="title">
+        <h3>장르</h3>
+    </div>
+</section>
+
+<!-- 장르컨텐츠 -->
+<section class="main2">
+    <section class="items">
+        <a href="#">
+            <div class="item-wrap">
+                <div class="item-img"><img src="/image/img/Work/image 792.png" alt="mmo"></div>
+                <div class="item-text">MMO</div>
+            </div>
+        </a>
+        <a href="#">
+            <div class="item-wrap">
+                <div class="item-img"><img src="/image/img/Work/3dicons.png" alt="mmo"></div>
+                <div class="item-text">RPG</div>
+            </div>
+        </a>
+        <a href="#">
+            <div class="item-wrap">
+                <div class="item-img"><img src="/image/img/Work/V5.png" alt="mmo"></div>
+                <div class="item-text">레이싱</div>
+            </div>
+        </a>
+    </section>
+
+    <section class="items">
+        <a href="#">
+            <div class="item-wrap">
+                <div class="item-img"><img src="/image/img/Work/uiLogos.png" alt="mmo"></div>
+                <div class="item-text">스포츠</div>
+            </div>
+        </a>
+        <a href="#">
+            <div class="item-wrap">
+                <div class="item-img"><img src="/image/img/Work/uihues.png" alt="mmo"></div>
+                <div class="item-text">시뮬레이션</div>
+            </div>
+        </a>
+        <a href="#">
+            <div class="item-wrap">
+                <div class="item-img"><img src="/image/img/Work/croods.png" alt="mmo"></div>
+                <div class="item-text">액션</div>
+            </div>
+        </a>
+    </section>
+
+    <section class="items">
+        <a href="#">
+            <div class="item-wrap">
+                <div class="item-img"><img src="/image/img/Work/image 792.png" alt="mmo"></div>
+                <div class="item-text">어드벤처</div>
+            </div>
+        </a>
+        <a href="#">
+            <div class="item-wrap">
+                <div class="item-img"><img src="/image/img/Work/3dicons.png" alt="mmo"></div>
+                <div class="item-text">인디</div>
+            </div>
+        </a>
+        <a href="#">
+            <div class="item-wrap">
+                <div class="item-img"><img src="/image/img/Work/V5.png" alt="mmo"></div>
+                <div class="item-text">전략</div>
+            </div>
+        </a>
+    </section>
+
+    <section class="items">
+        <a href="#">
+            <div class="item-wrap">
+                <div class="item-img"><img src="/image/img/Work/uiLogos.png" alt="mmo"></div>
+                <div class="item-text">캐주얼</div>
+            </div>
+        </a>
+        <a href="#">
+            <div class="item-wrap">
+                <div class="item-img"><img src="/image/img/Work/uihues.png" alt="mmo"></div>
+                <div class="item-text">롤플레잉</div>
+            </div>
+        </a>
+        <a href="#">
+            <div class="item-wrap">
+                <div class="item-img"><img src="/image/img/Work/croods.png" alt="mmo"></div>
+                <div class="item-text">아케이드</div>
+            </div>
+        </a>
+    </section>
+</section>
+
+<footer>
+    <div class="foot-logo"><a href="#"><img src="/image/icon_light/gamespace.svg" alt="logo"></a></div>
+    <div class="foot-text">
+        <a href="#">game</a>
+        <a href="#">gallery</a>
+        <a href="news/news">news</a>
+        <a href="#">support</a>
+    </div>
+    <div class="foot-p">
+        <p>2022. gamespace corp. All rights reserved.</p>
+    </div>
+</footer>
+
+
+
+
+
+
+<!-- JQuery 불러오기-->
+<!-- <script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/custom.js"></script> -->
+</body>
+</html>
