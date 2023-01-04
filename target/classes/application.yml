@@ -10,4 +10,4 @@ spring:
     password: gamespace
 
 server:
-  port: 8091
+  port: 8001

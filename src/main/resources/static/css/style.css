@@ -3,12 +3,21 @@
     font-family: 'Inter', sans-serif;
 }
 
+html{
+    background-image: url("../image/icon/Property 1=header-gradient.svg") ;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: top;
+    margin: 0;
+
+}
 body {
-	background-color: #fff;
-    background-image: url("../image/Background Gradient.png") ;
-    background-size: cover;
-    
-    
+    height: 100%;
+    background-image: url("../image/icon/Property 1=footer-gradient.png") ;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: bottom;
+    margin: 0;
 }
 
 header {
@@ -475,6 +484,7 @@ footer{
     position: relative;
     width: 708px;
     margin: auto;
+    padding-bottom: 60px;
    
 }
 
@@ -539,7 +549,7 @@ footer p{
 
 /* 뉴스페이지 ----------------------------------------------------------------------*/
 .head{
-    width: 1440px;
+    width: 708px;
     margin: auto;
     text-align: center;
     margin-top: 142px;
@@ -563,7 +573,10 @@ footer p{
     font-weight: 400;
 }
 .head img{
+    width: 100%;
+    margin: auto;
     margin-top: 12px;
+
 }
 
 /* 뉴스 ----------------------------------------------------------------------*/
