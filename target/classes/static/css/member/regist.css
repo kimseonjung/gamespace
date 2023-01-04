@@ -1,0 +1,81 @@
+@charset "UTF-8";
+
+/* modify */
+.window-input{
+    height: 956px;
+}
+
+.regist-main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+
+    position: absolute;
+    width: 448px;
+    height: 1056px;
+    top: 260px;
+    left: calc(50% - 448px/2);
+    border-radius: 24px;
+}
+
+.regist-body{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 0px;
+    gap: 36px;
+
+    width: 320px;
+    height: 876px;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.regist-input{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
+
+    width: 320px;
+}
+.regist-step-1{
+    height: 176px;
+}
+.regist-step-2{
+    height: 304px;
+}
+.regist-step-3{
+    height: 240px;
+}
+.regist-step-4{
+    height: 48px;
+}
+
+.regist-btn{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 0px;
+    gap: 4px;
+
+    width: 320px;
+    height: 48px;
+
+    border-radius: 24px;
+    text-decoration: none;
+}
+
+.regist-btn-text{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.014em;
+}
