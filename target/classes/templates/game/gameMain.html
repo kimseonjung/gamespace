@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <html lang="ko">
 <th:block th:fragment="setContent(content)">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/common.css">
+    <link rel="reset" href="/css/reset.css">
     <link rel="stylesheet" href="/css/style.css">
-
     <title>Title</title>
 
 
@@ -21,11 +18,9 @@
 </head>
 <body>
 
-
 <div class="header">
     <th:block th:replace="~{common/header :: header}"/>
 </div>
-
 
 
 
@@ -79,12 +74,10 @@
 
 
 
-
 <div class="footer">
     <th:block th:replace="~{common/footer :: footer}"/>
 </div>
 
 </body>
 </th:block>
-
 </html>

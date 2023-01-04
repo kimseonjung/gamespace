@@ -1,6 +1,7 @@
 * {
     box-sizing: border-box;
     font-family: 'Inter', sans-serif;
+    font-size: 16px;
 }
 
 html{
@@ -20,13 +21,26 @@ body {
     margin: 0;
 }
 a {
+    font-family: 'Inter', sans-serif;
     font-size: 16px;
     text-decoration: none;
 }
 
 
 /* 네비게이션 -----------------------------------------------------------------------*/
-
+#game .game-nav a,
+#gallery .gallery-nav .dropdown-menu,
+#news .news-nav a,
+#support .support-nav a,
+#admin .admin-nav .dropdown-menu {
+    background: -webkit-linear-gradient(left,#4AB1F1, #566CEC, #D749AF, #FF7C51);
+    background:    -moz-linear-gradient(left,#4AB1F1, #566CEC, #D749AF, #FF7C51);
+    background:      -o-linear-gradient(left,#4AB1F1, #566CEC, #D749AF, #FF7C51);
+    background:         linear-gradient(left,#4AB1F1, #566CEC, #D749AF, #FF7C51);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
 header {
     position: absolute;
     top: 0;
@@ -67,7 +81,7 @@ header {
 .main-navigation a {
     color: #000;
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 500;
 
 }
 
@@ -105,8 +119,9 @@ li a {
 }
 .dropdown-menu {
     color: #000;
+    font-family: 'Inter', sans-serif;
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 500;
     cursor: pointer;
 
 }
@@ -119,6 +134,8 @@ li a {
     background-clip: text;
     color: transparent;
 }
+
+
 .dropdown-menu img{
     padding-top: 4px;
     width: 16px;
@@ -239,6 +256,7 @@ li a {
     flex-grow: 0;
 
 }
+
 
 /* 푸터 ----------------------------------------------------------------------*/
 footer{
