@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/member/common.css">
+    <link rel="stylesheet" href="/css/member/regist.css">
+    <title>gamespace - 로그인</title>
+</head>
+<body>
+<div class="member-main-bg light-bg-screen"></div>
+<form id="registForm" action="/member/regist" method="post">
+    <div class="regist-main light-bg-window">
+        <div class="window-title">
+            <a href="#" class="btn-cross btn-response">
+                <div class="light-icon-cross"></div>
+            </a>
+            <div class="logo-gamespace">
+                <div class="light-icon-gamespace"></div>
+            </div>
+        </div>
+        <div class="window-input">
+            <div class="regist-body">
+                <div class="regist-input regist-step-1">
+                    <div class="input-placeholder light-placeholder">
+                        <input class="input-text light-text" name="regist-id" type="text" placeholder="ID">
+                    </div>
+                    <div class="input-placeholder light-placeholder">
+                        <input class="input-text light-text" name="regist-pwd" type="password" placeholder="Password">
+                    </div>
+                    <div class="input-placeholder light-placeholder">
+                        <input class="input-text light-text" name="regist-pwd-chk" type="password" placeholder="Password Check">
+                    </div>
+                </div>
+                <div class="regist-input regist-step-2">
+                    <div class="input-placeholder light-placeholder">
+                        <input class="input-text light-text" name="regist-nickname" type="text" placeholder="Nickname">
+                    </div>
+                    <div class="input-placeholder light-placeholder">
+                        <input class="input-text light-text" name="regist-name" type="text" placeholder="Name">
+                    </div>
+                    <div class="input-placeholder light-placeholder">
+                        <input class="input-text light-text" name="regist-birthday" type="text" placeholder="Birthday">
+                    </div>
+                    <div class="input-placeholder light-placeholder">
+                        <input class="input-text light-text" name="regist-phone" type="text" placeholder="Phone">
+                    </div>
+                    <div class="input-placeholder light-placeholder">
+                        <input class="input-text light-text" name="regist-email" type="text" placeholder="Email">
+                    </div>
+                </div>
+                <div class="regist-input regist-step-3">
+                    <div class="input-placeholder light-placeholder">
+                        <input class="input-text light-text" name="regist-zipcode" type="text" placeholder="Nickname" readonly>
+                    </div>
+                    <div class="input-placeholder light-placeholder">
+                        <input class="input-text light-text" name="regist-address1" type="text" placeholder="Address" readonly>
+                    </div>
+                    <div class="input-placeholder light-placeholder">
+                        <input class="input-text light-text" name="regist-address2" type="text" placeholder="Address detail">
+                    </div>
+                    <div class="input-placeholder light-placeholder">
+                        <input class="input-text light-text" name="regist-information" type="text" placeholder="About Me">
+                    </div>
+                </div>
+                <div class="regist-input regist-step-4">
+                    <a href="#" class="regist-btn btn-response">
+                        <p class="regist-btn-text white-text">회원가입</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="screen-mode-btn" onclick="switchScreenMode();"></div>
+<script>
+    // let screenMode = "white";
+    // function switchScreenMode() {
+    //     let target = null;
+    //     if(screenMode == "white") {
+    //         document.getElementsByClassName('light-icon-cross')[0].classList
+    //             .replace('light-icon-cross', 'dark-icon-cross');
+    //         document.getElementsByClassName('light-icon-gamespace')[0].classList
+    //             .replace('light-icon-gamespace', 'dark-icon-gamespace');
+    //         document.getElementsByClassName('light-bg-screen')[0].classList
+    //             .replace('light-bg-screen', 'dark-bg-screen');
+    //         document.getElementsByClassName('light-bg-window')[0].classList
+    //             .replace('light-bg-window', 'dark-bg-window');
+    //         target = document.getElementsByClassName('light-placeholder');
+    //         target[1].classList.replace('light-placeholder', 'dark-placeholder');
+    //         target[0].classList.replace('light-placeholder', 'dark-placeholder');
+    //         target = document.getElementsByClassName('light-text');
+    //         target[1].classList.replace('light-text', 'dark-text');
+    //         target[0].classList.replace('light-text', 'dark-text');
+    //         screenMode = "dark";
+    //     } else {
+    //         document.getElementsByClassName('dark-icon-cross')[0].classList
+    //             .replace('dark-icon-cross', 'light-icon-cross');
+    //         document.getElementsByClassName('dark-icon-gamespace')[0].classList
+    //             .replace('dark-icon-gamespace', 'light-icon-gamespace');
+    //         document.getElementsByClassName('dark-bg-screen')[0].classList
+    //             .replace('dark-bg-screen', 'light-bg-screen');
+    //         document.getElementsByClassName('dark-bg-window')[0].classList
+    //             .replace('dark-bg-window', 'light-bg-window');
+    //         target = document.getElementsByClassName('dark-placeholder');
+    //         target[1].classList.replace('dark-placeholder', 'light-placeholder');
+    //         target[0].classList.replace('dark-placeholder', 'light-placeholder');
+    //         target = document.getElementsByClassName('dark-text');
+    //         target[1].classList.replace('dark-text', 'light-text');
+    //         target[0].classList.replace('dark-text', 'light-text');
+    //         screenMode = "white";
+    //     }
+    // }
+</script>
+</body>
+</html>
