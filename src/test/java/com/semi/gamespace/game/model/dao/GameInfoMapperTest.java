@@ -30,7 +30,33 @@ class GameInfoMapperTest {
 
         assertNotNull(gameInfoList);
 
+    }
+
+    @Test
+    public void 신규_게임정보_추가용_메퍼_테스트(){
+
+        GameInfoDTO game = new GameInfoDTO();
+        game.setGameCode("GAM_2");
+        game.setGameName("더미게임명2");
+        game.setDevicesCode("DEV_2");
+        game.setCategoryCode("CAT_2");
+//        game.setTagCode();
+//        game.setRegistrationDate();
+//        game.setLaunchDate();
+//        game.setDeveloper();
+//        game.setDistributorCode();
+//        game.setRatingCode();
+//        game.setPrice();
+//        game.setPlatformCode();
+//        game.setLanguageCode();
+//        game.setSpecificationCode();
+//        game.setGameIntro();
+//        game.setGameStatus();
 
 
     }
+
+
+
+
 }
