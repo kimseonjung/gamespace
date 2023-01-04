@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Title</title>
+
+
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+
+    <!-- Popper JS-->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+</head>
+<body>
+
+    <section>
+        <div>기기
+
+
+        </div><br>
+        <div>카테고리</div><br>
+        <div>태그</div><br>
+
+
+    </section>
+
+
+
+
+
+    <section>
+
+        <div th:each="game : ${gameInfoList}">
+            <div th:text="${game.gameCode}"></div>
+            <div th:text="${game.gameName}"></div>
+            <div th:text="${game.devicesCode}"></div>
+            <div th:text="${game.categoryCode}"></div>
+            <div th:text="${game.tagCode}"></div>
+            <div th:text="${game.registrationDate}"></div>
+            <div th:text="${game.launchDate}"></div>
+            <div th:text="${game.developer}"></div>
+            <div th:text="${game.distributorCode}"></div>
+            <div th:text="${game.ratingCode}"></div>
+            <div th:text="${game.price}"></div>
+            <div th:text="${game.platformCode}"></div>
+            <div th:text="${game.languageCode}"></div>
+            <div th:text="${game.specificationCode}"></div>
+            <div th:text="${game.gameIntro}"></div>
+            <div th:text="${game.gameStatus}"></div>
+        </div>
+
+
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

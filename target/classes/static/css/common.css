@@ -1,0 +1,309 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+html{
+    background-image: url("../image/icon/Property 1=header-gradient.svg") ;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: top;
+    margin: 0;
+
+}
+body {
+    height: 100%;
+    background-image: url("../image/icon/Property 1=footer-gradient.png") ;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: bottom;
+    margin: 0;
+}
+a {
+    font-size: 16px;
+    text-decoration: none;
+}
+
+
+/* 네비게이션 -----------------------------------------------------------------------*/
+
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 0;
+    z-index: 3;
+}
+
+.nav{
+    /* navbar */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding:16px;
+    gap: 36px;
+
+    margin: auto;
+    width: 708px;
+    height: 56px;
+
+
+    /* Light/Nav BG */
+
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    /* Note: backdrop-filter has minimal browser support */
+
+    border-radius: 12px;
+
+}
+
+.main-navigation a {
+    color: #000;
+    font-size: 16px;
+    font-weight: 700;
+
+}
+
+.nav-left a:hover {
+
+    background: -webkit-linear-gradient(left,#4AB1F1, #566CEC, #D749AF, #FF7C51);
+    background:    -moz-linear-gradient(left,#4AB1F1, #566CEC, #D749AF, #FF7C51);
+    background:      -o-linear-gradient(left,#4AB1F1, #566CEC, #D749AF, #FF7C51);
+    background:         linear-gradient(left,#4AB1F1, #566CEC, #D749AF, #FF7C51);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+
+}
+
+nav ul {
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+}
+
+nav ul li {
+    display: inline-block;
+    margin-left: 14px;
+}
+li a {
+    font-size: 16px;
+    font-weight: 500;
+}
+.dropdown {
+    position: relative;
+}
+.dropdown-menu {
+    color: #000;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+
+}
+.dropdown-menu:hover{
+    background: -webkit-linear-gradient(left,#4AB1F1, #566CEC, #D749AF, #FF7C51);
+    background:    -moz-linear-gradient(left,#4AB1F1, #566CEC, #D749AF, #FF7C51);
+    background:      -o-linear-gradient(left,#4AB1F1, #566CEC, #D749AF, #FF7C51);
+    background:         linear-gradient(left,#4AB1F1, #566CEC, #D749AF, #FF7C51);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.dropdown-menu img{
+    padding-top: 4px;
+    width: 16px;
+    height: 16px;
+}
+.dropdown-content {
+    position: absolute;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    padding: 8px 0;
+}
+.dropdown-content a {
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content {
+    display: none;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.dropdown-content a:hover {
+    background-color: #f1f1f1
+}
+
+
+
+
+
+
+.nav-left{
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 10px;
+
+    width: 480px;
+    height: 24px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+
+.logo{
+    display: inline-block;
+}
+
+.nav-right{
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 12px;
+
+    width: 72px;
+    height: 20px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+
+.nav-right img{
+    width: 20px;
+    height: 20px;
+}
+
+.dark{
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 2px 12px;
+    gap: 24px;
+
+    width: 40px;
+    height: 20px;
+
+    border-right: 1px solid rgba(0, 0, 0, 0.15);
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.mypage{
+
+    width: 20px;
+    height: 20px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+
+}
+
+/* 푸터 ----------------------------------------------------------------------*/
+footer{
+    position: relative;
+    width: 708px;
+    margin: auto;
+    padding-bottom: 60px;
+
+}
+
+.foot-logo{
+    width: 60px;
+    height: 40px;
+    margin: auto;
+    margin-top: 100px;
+    margin-bottom: 16px;
+
+}
+.foot-logo img{
+    width: 60px;
+    height: 40px;
+
+
+}
+
+.foot-text{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
+    isolation: isolate;
+    width: 196px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+
+    margin: auto;
+}
+.foot-text a{
+    margin: auto;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(74, 87, 111, 0.7);
+}
+
+.foot-text a:hover{
+    color: rgba(74, 87, 111);
+}
+
+.foot-p{
+    width: 248px;
+    margin: auto;
+    margin-top:20px;
+
+}
+.foot-p p{
+    text-align: center;
+}
+footer p{
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(74, 87, 111, 0.7);
+}

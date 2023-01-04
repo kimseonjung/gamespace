@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>header</title>
+</head>
+<body>
+<header th:fragment="header">
+  <div class="container">
+    <nav class="main-navigation nav">
+      <div class="nav-left">
+        <div class="logo"><a href="/templates/index.html"><img src="/image/icon_light/gamespace.svg" alt="logo"></a></div>
+        <ul>
+          <li><a href="#">game</a></li>
+          <li class="dropdown">
+            <div class="dropdown-menu">
+              gallery
+              <img src="/image/icon_light/down.svg" alt="down">
+            </div>
+            <div class="dropdown-content">
+              <a href="#">free gallery</a>
+              <a href="#">game gallery</a>
+            </div>
+          </li>
+          <li class="dropdown">
+            <a href="/news/news">news</a>
+          </li>
+          <li><a href="#">support</a></li>
+          <li class="dropdown">
+            <div class="dropdown-menu">
+              admin
+              <img src="/image/icon_light/down.svg" alt="down">
+            </div>
+            <div class="dropdown-content">
+              <a href="#">gallery</a>
+              <a href="#">member</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="nav-right">
+        <a href="#" class="dark"><img src="/image/icon_light/sun.svg" alt="lite"></a>
+        <a href="#" class="mypage"><img src="/image/icon/mypage.svg" alt="mypage"></a>
+      </div>
+    </nav>
+  </div>
+</header>
+</body>
+</html>
