@@ -1,0 +1,121 @@
+.news-lists{
+    margin: auto;
+    margin-top: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    gap: 20px;
+
+    width: 708px;
+    height: 1632px;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+.news-list{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 12px;
+    gap: 10px;
+    isolation: isolate;
+
+    width: 676px;
+    height: 142px;
+    border-radius: 16px;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+.news-list:hover{
+    background: linear-gradient(90deg, rgba(255, 233, 244, 0.3) 0%, rgba(234, 243, 255, 0.5) 100%);
+    border-radius: 16px;
+}
+.news-head{
+    width: 652px;
+    height: 24px;
+
+    /* 18/18 - SemiB */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    /* identical to box height, or 133% */
+
+    letter-spacing: -0.014em;
+
+    /* Light/Primary Text */
+
+    color: #22242C;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+    z-index: 1;
+}
+.news-body{
+    width: 652px;
+    height: 48px;
+
+    /* 16/16 - Reg */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    /* or 150% */
+
+    letter-spacing: -0.011em;
+
+    /* Light/Primary Text */
+
+    color: #22242C;
+
+    opacity: 0.6;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 2;
+    align-self: stretch;
+    flex-grow: 0;
+    z-index: 2;
+}
+.news-foot{
+    width: 200px;
+    height: 18px;
+
+    /* 13 / 13 - Med */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 18px;
+    /* identical to box height, or 138% */
+
+    letter-spacing: -0.08px;
+
+    /* Light/Primary Text */
+
+    color: #22242C;
+
+    opacity: 0.3;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 3;
+    flex-grow: 0;
+    z-index: 3;
+}

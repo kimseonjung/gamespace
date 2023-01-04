@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>newsList</title>
+</head>
+<body>
+<a href="#" th:fragment="newsList">
+    <div class="news-list" th:each="news : ${newsList}">
+        <div class="news-head"><p th:text="${news.newsTitle}"></p></div>
+        <div class="news-body"><p th:text="${news.newsContent}"></p></div>
+        <div class="news-foot"><p th:text="|${news.newsDate} ${news.memberName} ${news.gameName}|"></p></div>
+    </div>
+</a>
+</body>
+</html>

@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="/css/reset.css">
   <link rel="stylesheet" href="/css/common.css">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/news/news.css">
 
   <!-- 캘린더 -->
   <link href='/css/fullcalendar.main.min.css' rel='stylesheet' />
@@ -95,50 +96,21 @@
 <div id='popup' style="width:500px; height:600px; display:none; background-color:white; padding:20px; border-radius:14px; border:2px solid #eeeeee"></div>
 
 <!-- 게임태그 -->
-<section class="gametag-wrap">
-  <!-- <div class="gametag"> -->
-  <div class="gametag-header">
-    <div class="logo"><img src="/image/icon_light/gamespace.svg" alt="gamespace"></div>
-    <div class="down"><img src="/image/icon_light/down.svg" alt="down"></div>
-  </div>
-  <div class="gametag-body">
-    <div class="gametag-body-left">Tag</div>
-    <form class="gametags">
-      <table>
-        <tr>
-          <td>게임이름</td>
-          <td>게임이름</td>
-          <td>게임이름</td>
-          <td>게임이름</td>
-          <td>게임이름</td>
-          <td>게임이름</td>
-        </tr>
-        <tr>
-          <td>게임이름</td>
-          <td>게임이름</td>
-          <td>게임이름</td>
-          <td>게임이름</td>
-          <td>게임이름</td>
-          <td>게임이름</td>
-        </tr>
-        <tr>
-          <td>게임이름</td>
-          <td>게임이름</td>
-          <td>게임이름</td>
-          <td>게임이름</td>
-          <td>게임이름</td>
-          <td>게임이름</td>
-        </tr>
-      </table>
-    </form>
-    <div class="down"><img src="/image/icon_light/down.svg" alt="down"></div>
-  </div>
-  <div class="gametag-foot">
-    <div class="tag"> <p>게임이름</p></div>
-  </div>
-  <!-- </div> -->
-</section>
+<th:block th:replace="~{common/gameTag :: gameTag}"/>
 
+<!-- 뉴스리스트 -->
+<section class="news-lists">
+  <th:block th:replace="~{news/newsList :: newsList}"/>
+  <th:block th:replace="~{news/newsList :: newsList}"/>
+  <th:block th:replace="~{news/newsList :: newsList}"/>
+  <th:block th:replace="~{news/newsList :: newsList}"/>
+  <th:block th:replace="~{news/newsList :: newsList}"/>
+  <th:block th:replace="~{news/newsList :: newsList}"/>
+  <th:block th:replace="~{news/newsList :: newsList}"/>
+  <th:block th:replace="~{news/newsList :: newsList}"/>
+  <th:block th:replace="~{news/newsList :: newsList}"/>
+  <th:block th:replace="~{news/newsList :: newsList}"/>
+</section>
 <!-- 푸터 -->
 <div class="footer">
   <th:block th:replace="~{common/footer :: footer}"/>
