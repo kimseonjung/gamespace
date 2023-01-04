@@ -7,7 +7,7 @@
     1px 4px 8px rgba(0, 0, 0, 0.05);
 }
 .light-bg-screen{
-    background-image: url("../images/login_bg_light.png");
+    background-image: url("../image/login_bg_light.png");
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -23,14 +23,14 @@
     position: absolute;
     width: 24px;
     height: 24px;
-    background-image: url("../images/icon_light/cross.svg");
+    background-image: url("../image/icon_light/cross.svg");
     background-size: 24px 24px;
 }
 .light-icon-gamespace{
     position: absolute;
     width: 52px;
     height: 34px;
-    background-image: url("../images/icon_light/gamespace.svg");
+    background-image: url("../image/icon_light/gamespace.svg");
     background-size: 52px 34px;
 }
 
@@ -41,7 +41,7 @@
     1px 4px 8px rgba(0, 0, 0, 0.05);
 }
 .dark-bg-screen{
-    background-image: url("../images/login_bg_dark.png");
+    background-image: url("../image/login_bg_dark.png");
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -57,14 +57,14 @@
     position: absolute;
     width: 24px;
     height: 24px;
-    background-image: url("../images/icon_dark/cross.svg");
+    background-image: url("../image/icon_dark/cross.svg");
     background-size: 24px 24px;
 }
 .dark-icon-gamespace{
     position: absolute;
     width: 52px;
     height: 34px;
-    background-image: url("../images/icon_dark/gamespace.svg");
+    background-image: url("../image/icon_dark/gamespace.svg");
     background-size: 52px 34px;
 }
 
@@ -199,14 +199,14 @@
     right: -1%;
     top: 1%;
     bottom: -1%;
-    background: url("../images/logo_google.png");
+    background: url("../image/logo_google.png");
 }
 .btn-logo-kakao{
     left: 0%;
     right: 0%;
     top: 0%;
     bottom: 0%;
-    background: url("../images/logo_kakao.png");
+    background: url("../image/logo_kakao.png");
 }
 .btn-response{
     opacity: 1;
