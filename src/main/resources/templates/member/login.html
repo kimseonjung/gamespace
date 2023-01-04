@@ -3,56 +3,97 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="user-scalable=0, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
-  <link rel="stylesheet" href="/css/reset.css">
-  <link rel="stylesheet" href="/css/member.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/mem_common.css">
+  <link rel="stylesheet" href="css/login.css">
   <title>gamespace - 로그인</title>
 </head>
 <body>
-  <div class="login-main-bg dark-bg-screen"></div>
-  <form id="loginForm" action="/member/login" method="post">
-    <div class="login-main dark-bg-window">
-      <div class="window-title">
-        <a href="#" class="btn-cross btn-response">
-          <div class="dark-icon-cross"></div>
-        </a>
-        <div class="logo-gamespace">
-          <div class="dark-icon-gamespace"></div>
-        </div>
-      </div>
-      <div class="window-input">
-        <div class="login-body">
-          <div class="login-input">
-            <div class="input-placeholder dark-placeholder">
-              <input class="input-text text-id dark-text" name="login-id" type="text" placeholder="ID">
-            </div>
-            <div class="input-placeholder dark-placeholder">
-              <input class="input-text text-pwd dark-text" name="login-pwd" type="text" placeholder="Password">
-            </div>
-          </div>
-          <div class="login-help">
-            <a href="#" class="btn-response help-btn-text">아이디찾기</a>
-            <p>|</p>
-            <a href="#" class="btn-response help-btn-text">비밀번호찾기</a>
-            <p>|</p>
-            <a href="#" class="btn-response help-btn-text">회원가입</a>
-          </div>
-        </div>
-        <div class="login-buttons">
-          <a href="#" class="login-btn login-default btn-response">
-            <p class="login-btn-text white-text">로그인</p>
-          </a>
-          <a href="#" class="login-btn login-google btn-response">
-            <div class="login-btn-logo btn-logo-google"></div>
-            <p class="login-btn-text black-text">Google</p>
-          </a>
-          <a href="#" class="login-btn login-kakao btn-response">
-            <div class="login-btn-logo btn-logo-kakao"></div>
-            <p class="login-btn-text black-text">Kakao</p>
-          </a>
-        </div>
+<div class="member-main-bg light-bg-screen"></div>
+<form id="loginForm" action="/member/login" method="post">
+  <div class="login-main light-bg-window">
+    <div class="window-title">
+      <a href="#" class="btn-cross btn-response">
+        <div class="light-icon-cross"></div>
+      </a>
+      <div class="logo-gamespace">
+        <div class="light-icon-gamespace"></div>
       </div>
     </div>
-  </form>
+    <div class="window-input">
+      <div class="regist-body">
+        <div class="login-input">
+          <div class="input-placeholder light-placeholder">
+            <input class="input-text light-text" name="login-id" type="text" placeholder="ID">
+          </div>
+          <div class="input-placeholder light-placeholder">
+            <input class="input-text light-text" name="login-pwd" type="text" placeholder="Password">
+          </div>
+        </div>
+        <div class="login-help">
+          <a href="#" class="btn-response help-btn-text">아이디찾기</a>
+          <p>|</p>
+          <a href="#" class="btn-response help-btn-text">비밀번호찾기</a>
+          <p>|</p>
+          <a href="#" class="btn-response help-btn-text">회원가입</a>
+        </div>
+      </div>
+      <div class="login-buttons">
+        <a href="#" class="login-btn btn-default btn-response">
+          <p class="login-btn-text white-text">로그인</p>
+        </a>
+        <a href="#" class="login-btn btn-google btn-response">
+          <div class="login-btn-logo btn-logo-google"></div>
+          <p class="login-btn-text black-text">Google</p>
+        </a>
+        <a href="#" class="login-btn btn-kakao btn-response">
+          <div class="login-btn-logo btn-logo-kakao"></div>
+          <p class="login-btn-text black-text">Kakao</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</form>
+<div class="screen-mode-btn" onclick="switchScreenMode();"></div>
+<script>
+  let screenMode = "white";
+  function switchScreenMode() {
+    let target = null;
+    if(screenMode == "white") {
+      document.getElementsByClassName('light-icon-cross')[0].classList
+              .replace('light-icon-cross', 'dark-icon-cross');
+      document.getElementsByClassName('light-icon-gamespace')[0].classList
+              .replace('light-icon-gamespace', 'dark-icon-gamespace');
+      document.getElementsByClassName('light-bg-screen')[0].classList
+              .replace('light-bg-screen', 'dark-bg-screen');
+      document.getElementsByClassName('light-bg-window')[0].classList
+              .replace('light-bg-window', 'dark-bg-window');
+      target = document.getElementsByClassName('light-placeholder');
+      target[1].classList.replace('light-placeholder', 'dark-placeholder');
+      target[0].classList.replace('light-placeholder', 'dark-placeholder');
+      target = document.getElementsByClassName('light-text');
+      target[1].classList.replace('light-text', 'dark-text');
+      target[0].classList.replace('light-text', 'dark-text');
+      screenMode = "dark";
+    } else {
+      document.getElementsByClassName('dark-icon-cross')[0].classList
+              .replace('dark-icon-cross', 'light-icon-cross');
+      document.getElementsByClassName('dark-icon-gamespace')[0].classList
+              .replace('dark-icon-gamespace', 'light-icon-gamespace');
+      document.getElementsByClassName('dark-bg-screen')[0].classList
+              .replace('dark-bg-screen', 'light-bg-screen');
+      document.getElementsByClassName('dark-bg-window')[0].classList
+              .replace('dark-bg-window', 'light-bg-window');
+      target = document.getElementsByClassName('dark-placeholder');
+      target[1].classList.replace('dark-placeholder', 'light-placeholder');
+      target[0].classList.replace('dark-placeholder', 'light-placeholder');
+      target = document.getElementsByClassName('dark-text');
+      target[1].classList.replace('dark-text', 'light-text');
+      target[0].classList.replace('dark-text', 'light-text');
+      screenMode = "white";
+    }
+  }
+</script>
 </body>
 </html>
