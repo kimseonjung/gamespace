@@ -9,5 +9,5 @@ import java.util.List;
 public interface GameInfoMapper {
     List<GameInfoDTO> selectAllGameInfo();
 
-
+    int registGameInfo(GameInfoDTO newGameInfo);
 }
