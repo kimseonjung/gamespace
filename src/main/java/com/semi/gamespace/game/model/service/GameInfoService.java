@@ -26,4 +26,17 @@ public class GameInfoService {
 
     }
 
+    public boolean registGameInfo(GameInfoDTO gameInfo) throws Exception{
+
+        int result = gameInfoMapper.registGameInfo(gameInfo);
+
+        if (result <= 0){
+            throw new Exception("신규게임정보추가등록실패");
+
+        }
+        return result > 0 ? true: false;
+    }
+
+
+
 }
