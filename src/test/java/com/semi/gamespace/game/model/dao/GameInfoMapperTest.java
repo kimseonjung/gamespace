@@ -42,7 +42,7 @@ class GameInfoMapperTest {
         game.setDevicesCode("DEV_2");
         game.setCategoryCode("CAT_2");
         game.setTagCode("TAG_2");
-        game.setRegistrationDate(new Date("YYYY-MM--DD"));
+        game.setRegistrationDate(new Date());
         game.setLaunchDate("2023-01-04");
         game.setDeveloper("더비개발자2");
         game.setDistributorCode("DIS_2");

@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
@@ -15,6 +15,7 @@
 </head>
 <body>
 
+<form action="/game/gameInfoInsert" method="post">
     <section>
         <div>기기
 
@@ -28,14 +29,41 @@
 
 
     <section>
-        <div></div>
+        <!-- 대분류 -->
+        <label for="categoryCode">카테고리 : </label><input type="text" name="categoryCode" id="categoryCode">
+        <label for="tagCode">태그 : </label><input type="text" name="tagCode" id="tagCode">
+        <label for="devicesCode">기기 : </label><input type="text" name="devicesCode" id="devicesCode">
 
+        <!-- 게임정보 -->
+        <label for="gameName">게임명 : </label><input type="text" name="gameName" id="gameName">
+        <label for="ratingCode">이용등급 : </label><input type="text" name="ratingCode" id="ratingCode">
+        <label for="launchDate">출시날짜 : </label><input type="text" name="launchDate" id="launchDate">
+        <label for="price">가격 : </label><input type="text" name="price" id="price">
+        <label for="developer">개발자 : </label><input type="text" name="developer" id="developer">
+        <label for="platformCode">플랫폼 : </label><input type="text" name="platformCode" id="platformCode">
+        <label for="distributorCode">배급사 : </label><input type="text" name="distributorCode" id="distributorCode">
+        <label for="languageCode">언어 : </label><input type="text" name="languageCode" id="languageCode">
+        <label for="specificationCode">임의사양코드 : </label><input type="text" name="specificationCode" id="specificationCode">
+        <label for="gameIntro">게임소개 : </label><input type="text" name="gameIntro" id="gameIntro">
+        <label for="gameStatus">게임상태 : </label><input type="text" name="gameStatus" id="gameStatus">
+        <!-- 최소사양 시스템-->
+<!--        <label for="minOS">운영체제 : </label><input type="text" name="minmum" id="minOS">-->
+<!--        <label for="minPro">프로세서 : </label><input type="text" name="minmum" id="minPro">-->
+<!--        <label for="minMemory">메모리 : </label><input type="text" name="minmum" id="minMemory">-->
+<!--        <label for="minStorage">저장공간 : </label><input type="text" name="minmum" id="minStorage">-->
+<!--        <label for="minGraphic">그래픽 : </label><input type="text" name="minmum" id="minGraphic">-->
 
+<!--        &lt;!&ndash; 권장사양 &ndash;&gt;-->
+<!--        <label for="recOS">운영체제 : </label><input type="text" name="recommended" id="recOS">-->
+<!--        <label for="recPro">프로세서 : </label><input type="text" name="recommended" id="recPro">-->
+<!--        <label for="recMemory">메모리 : </label><input type="text" name="recommended" id="recMemory">-->
+<!--        <label for="recStorage">저장공간 : </label><input type="text" name="recommended" id="recStorage">-->
+<!--        <label for="recGraphic">그래픽 : </label><input type="text" name="recommended" id="recGraphic">-->
 
-
-
+        <input type="submit" value="전송">
     </section>
 
+    <script>
 
 
 
@@ -46,7 +74,8 @@
 
 
 
-
+    </script>
+</form>
 
 </body>
 </html>

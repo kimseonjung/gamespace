@@ -73,6 +73,50 @@
 
     </select>
 
+    <insert id="registGameInfo">
+        INSERT
+        INTO GAME_INFO A
+            (
+                A.GAME_CODE
+                , A.GAME_NAME
+                , A.DEVICES_CODE
+                , A.CATEGORY_CODE
+                , A.TAG_CODE
+                , A.REGISTRATION_DATE
+                , A.LAUNCH_DATE
+                , A.DEVELOPER
+                , A.DISTRIBUTOR_CODE
+                , A.RATING_CODE
+                , A.PRICE
+                , A.PLATFORM_CODE
+                , A.LANGUAGE_CODE
+                , A.SPECIFICATION_CODE
+                , A.GAME_INTRO
+                , A.GAME_STATUS
+        )
+        VALUES
+            (
+            GAME_CODE_SEQ.NEXTVAL
+                , #{ gameName }
+                , #{ devicesCode }
+                , #{ categoryCode }
+                , #{ tagCode }
+                , TO_DATE(SYSDATE, 'YYYY-MM-DD HH24:mi:SS')
+                , #{ launchDate }
+                , #{ developer }
+                , #{ distributorCode }
+                , #{ ratingCode }
+                , #{ price }
+                , #{ platformCode }
+                , #{ languageCode }
+                , #{ specificationCode }
+                , #{ gameIntro }
+                , #{ gameStatus }
+            )
+
+
+
+    </insert>
 
 
 

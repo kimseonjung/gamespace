@@ -93,9 +93,27 @@
                 , A.SPECIFICATION_CODE
                 , A.GAME_INTRO
                 , A.GAME_STATUS
-
-
+        )
+        VALUES
+            (
+            GAME_CODE_SEQ.NEXTVAL
+                , #{ gameName }
+                , #{ devicesCode }
+                , #{ categoryCode }
+                , #{ tagCode }
+                , TO_DATE(SYSDATE, 'YYYY-MM-DD HH24:mi:SS')
+                , #{ launchDate }
+                , #{ developer }
+                , #{ distributorCode }
+                , #{ ratingCode }
+                , #{ price }
+                , #{ platformCode }
+                , #{ languageCode }
+                , #{ specificationCode }
+                , #{ gameIntro }
+                , #{ gameStatus }
             )
+
 
 
     </insert>
