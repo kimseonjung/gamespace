@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/news/news.css">
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" defer src="/js/fileInput.js"></script>
     <title>newsInsert</title>
 
@@ -29,19 +31,32 @@
     <!-- 첨부파일 -->
     <div class="att-btn">
 
-        <div class="filebox">
-            <input class="upload-name" value="첨부파일" placeholder="첨부파일" disabled="disabled">
-            <label for="file">파일찾기</label>
-            <input type="file" id="file">
+        <div class="file-upload">
+            <div class="file-select">
+
+                <div class="file-select-name" id="noFile">첨부파일</div>
+                <div class="file-select-button" id="fileName">첨부파일</div>
+                <input type="file" name="chooseFile" id="chooseFile">
+            </div>
         </div>
 
     </div>
+
     <textarea placeholder="본문 내용입니다." class="textarea">
     </textarea>
-    <div class="btn-wrap">
-        <a href="#"><input type="button" value="취소하기" class="btn"></a>
-        <input type="submit" value="작성하기" class="btn-primary">
-    </div>
+
 </section>
+
+<!-- 작성버튼 -->
+<div class="btn-wrap">
+    <a href="#"><input type="button" value="취소하기" class="btn"></a>
+    <input type="submit" value="작성하기" class="btn-primary">
+</div>
+
+<!-- 푸터 -->
+<div class="footer">
+    <th:block th:replace="~{common/footer :: footer}"/>
+</div>
+
 </body>
 </html>

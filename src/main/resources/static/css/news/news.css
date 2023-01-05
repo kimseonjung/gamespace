@@ -233,7 +233,7 @@
     padding: 16px;
     gap: 14px;
     margin: auto;
-
+    margin-top: 18px;
     width: 708px;
     height: 1134px;
 
@@ -295,36 +295,164 @@
 }
 
 /* 첨부파일 */
-/* 인풋 스타일 변경 */
-.filebox .upload-name {
-    display: inline-block;
-    height: 40px;
-    padding: 0 10px;
-    vertical-align: middle;
-    border: 1px solid #dddddd;
-    width: 78%;
-    color: #999999;
+.file-upload{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 8px;
+
+    margin: 0 auto;
+    height: 48px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+
+
 }
-/* label 스타일 변경 */
-.filebox label {
-    display: inline-block;
-    padding: 10px 20px;
-    color: #fff;
-    vertical-align: middle;
-    background-color: #999999;
-    cursor: pointer;
-    height: 40px;
-    margin-left: 10px;
+.file-upload .file-select{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 8px;
+
+    margin: 0 auto;
+    height: 48px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+
+    overflow:hidden;position:relative;cursor:pointer;
 }
-/* 기존 디자인 없애기 */
-.filebox input[type="file"] {
-    position: absolute;
-    width: 0;
-    height: 0;
-    padding: 0;
-    overflow: hidden;
-    border: 0;
+
+.file-upload .file-select .file-select-button{
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 20px;
+    gap: 4px;
+
+    width: 140px;
+    height: 48px;
+
+    /* Basic/Purple */
+
+    border: 1px solid rgba(77, 62, 255, 0.9);
+    border-radius: 24px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+
+    /* 18/18 - Med */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    /* identical to box height, or 133% */
+
+    letter-spacing: -0.014em;
+
+    /* Basic/Purple */
+
+    color: rgba(77, 62, 255, 0.9);
+
 }
+
+.file-upload .file-select .file-select-name{
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 16px;
+    gap: 4px;
+
+    width: 528px;
+    height: 48px;
+
+    /* Basic / White */
+
+    background: #FFFFFF;
+    /* Light/Light Gray */
+
+    border: 0.5px solid rgba(74, 87, 111, 0.7);
+    border-radius: 24px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+
+    /* 15/15 - Med */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 20px;
+    /* identical to box height, or 133% */
+
+    letter-spacing: -0.009em;
+
+    /* Light/Light Gray */
+
+    color: rgba(74, 87, 111, 0.7);
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    float: left;
+
+}
+
+.file-upload .file-select input[type=file]{
+    z-index:100;
+    cursor:pointer;
+    position:absolute;
+    height:100%;
+    width:100%;
+    top:0;
+    left:0;
+    opacity:0;
+    filter:alpha(opacity=0);
+}
+
+.file-upload.active .file-select .file-select-name{
+    border: 1px solid rgba(77, 62, 255, 0.9);
+    border-radius: 24px;
+    transition:all .2s ease-in-out;
+    -moz-transition:all .2s ease-in-out;
+    -webkit-transition:all .2s ease-in-out;
+    -o-transition:all .2s ease-in-out;
+}
+
+
 
 
 
@@ -352,5 +480,7 @@
     flex: none;
     order: 2;
     flex-grow: 0;
+
+    resize: none;
 }
 
