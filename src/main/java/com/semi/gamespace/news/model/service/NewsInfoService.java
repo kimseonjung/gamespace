@@ -21,4 +21,5 @@ public class NewsInfoService {
     public List<NewsDTO> selectAllNewsList() {
         return newsInfoMapper.selectAllNewsList();
     }
+
 }

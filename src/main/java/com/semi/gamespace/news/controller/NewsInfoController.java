@@ -31,4 +31,11 @@ public class NewsInfoController {
 
         return mv;
     }
+    @GetMapping("/news/newsInsert")
+    public ModelAndView addNews(ModelAndView mv){
+        NewsDTO newsDTO = new NewsDTO();
+        mv.addObject("newsDTO", newsDTO);
+        mv.setViewName("/news/newsInsert");
+        return mv;
+    }
 }
