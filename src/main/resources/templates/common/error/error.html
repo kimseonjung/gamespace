@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset=UTF-8">
-  <title>gamespace</title>
-</head>
-<body>
-<div class="errorPage">
-  <span class="errorHead">에러가 발생했어용~</span><br />
-  <p th:text="${'path: ' + path}"></p>
-  <p th:text="${'status: ' + status}"></p>
-  <p th:text="${'timestamp: ' + timestamp}"></p>
-  <p th:text="${'error: ' + error}"></p>
-  <p th:text="${'errors: ' + errors}"></p>
-  <p th:text="${'exception: ' + exception}"></p>
-  <p th:text="${'message: ' + message}"></p>
-  <p th:text="${'trace: ' + trace}"></p>
-</div>
-</body>
+
+<th:block th:fragment="setContent(content)">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>gamespace</title>
+  </head>
+  <body>
+  <div class="header">
+    <th:block th:replace="~{common/header :: header}"/>
+  </div>
+  <div class="main-page" style="margin-top: 200px; margin-bottom: 160px">
+    <h1 align="center" class="errorHead">에러가 발생했어용~ 무슨 일이 일어난거죠?</h1>
+  </div>
+  <div class="footer">
+    <th:block th:replace="~{common/footer :: footer}"/>
+  </div>
+  </body>
+</th:block>
 </html>

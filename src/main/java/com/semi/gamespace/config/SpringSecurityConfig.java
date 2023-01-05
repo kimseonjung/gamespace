@@ -45,14 +45,15 @@ public class SpringSecurityConfig {
 
         http.csrf().disable()
                 .authorizeHttpRequests()
-                .antMatchers(memberPermitList.toArray(new String[memberPermitList.size()])).hasAnyRole("MEMBER", "ADMIN")
                 .antMatchers(adminPermitList.toArray(new String[adminPermitList.size()])).hasRole("ADMIN")
+                .antMatchers(memberPermitList.toArray(new String[memberPermitList.size()])).hasAnyRole("MEMBER", "ADMIN")
                 //antMatchers에 해당하는 path 대상
                 //hasRole("ADMIN") : 관리자 접근 허용
                 .anyRequest().permitAll()
                 //anyRequest() : 그 외의 path는
                 //permitAll() : 모든 유저의 접근을 허용
 
+                /* 로그인 */
                 .and()
                 .formLogin()
                 //form 기반 인증 - 로그인 정보는 기본적으로 HttpSession을 이용
@@ -65,6 +66,7 @@ public class SpringSecurityConfig {
                 .failureUrl(authenticationConfig.getLoginFailureUrl())
                 //로그인 실패 시 URL 처리
 
+                /* 로그아웃 */
                 .and()
                 .logout()
                 //로그아웃을 지원하는 메소드
@@ -76,6 +78,7 @@ public class SpringSecurityConfig {
                 //로그아웃 시 HTTP세션 초기화(만료) 시킴
                 .logoutSuccessUrl("/")
 
+                /* 예외처리 */
                 .and()
                 .exceptionHandling()
                 .accessDeniedPage(authenticationConfig.getAccessDeniedUrl());
