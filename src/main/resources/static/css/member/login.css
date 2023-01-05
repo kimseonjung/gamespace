@@ -33,6 +33,7 @@
     opacity: 0.8;
 }
 .login-btn-text{
+    border: none;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 500;

@@ -18,6 +18,10 @@ public class MemberService {
         this.memberMapper = memberMapper;
     }
 
+    public MemberDTO findMemberById(String userId) {
+        return memberMapper.findMemberById(userId);
+    }
+
     public List<MemberDTO> selectAllMember() {
         return memberMapper.selectAllMember();
     }

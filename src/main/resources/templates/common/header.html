@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>gamespace</title>
@@ -40,7 +41,12 @@
       </div>
       <div class="nav-right">
         <a href="#" class="dark"><img src="/image/icon_light/sun.svg" alt="lite"></a>
-        <a href="/member/login" class="mypage"><img src="/image/icon/mypage.svg" alt="mypage"></a>
+        <th:block sec:authorize="isAnonymous()">
+          <a href="/member/login" class="mypage"><img src="/image/icon/mypage.svg" alt="mypage"></a>
+        </th:block>
+        <th:block sec:authorize="isAuthenticated()">
+          <a href="/member/logout" class="mypage"><img src="/image/icon/mypage.svg" alt="mypage"></a>
+        </th:block>
       </div>
     </nav>
   </div>

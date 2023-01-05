@@ -22,6 +22,25 @@
         <result property="isAdmin" column="ADMIN_YN"/>
     </resultMap>
 
+    <select id="findMemberById" resultMap="memberResultMap" parameterType="string">
+        SELECT M.MEMBER_CODE,
+               M.MEMBER_ID,
+               M.MEMBER_PWD,
+               M.MEMBER_NICKNAME,
+               M.MEMBER_NAME,
+               M.MEMBER_PHONE,
+               M.MEMBER_EMAIL,
+               M.MEMBER_BIRTH,
+               M.MEMBER_GENDER,
+               M.ADDRESS,
+               M.INTRODUCE,
+               M.ENROLL_DATE,
+               M.MEMBER_STATUS,
+               M.BAN_DATE,
+               M.ADMIN_YN
+        FROM MEMBER M
+        WHERE M.MEMBER_ID = #{ userId }
+    </select>
     <select id="selectAllMember" resultMap="memberResultMap">
         SELECT M.MEMBER_CODE,
                M.MEMBER_ID,
@@ -42,6 +61,7 @@
         WHERE M.ADMIN_YN = 'N'
         ORDER BY M.MEMBER_CODE
     </select>
+
     <insert id="registMember">
         INSERT
         INTO MEMBER M (

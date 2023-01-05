@@ -27,7 +27,7 @@ public class MemberController {
     public void memberRegistForm() {}
 
     @GetMapping("/denied")
-    public void memberAccessDenied() {}
+    public String memberAccessDenied() { return "/member/login"; }
 
     @GetMapping("/insert/success")
     public void memberRegistSuccess() {}
