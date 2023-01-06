@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.semi.gamespace.member.model.dao.MemberMapper">
+    <resultMap id="memberResultMap" type="com.semi.gamespace.member.model.dto.MemberDTO">
+        <id property="memberCode" column="MEMBER_CODE"/>
+        <result property="userId" column="MEMBER_ID"/>
+        <result property="userPwd" column="MEMBER_PWD"/>
+        <result property="userNickname" column="MEMBER_NICKNAME"/>
+        <result property="userName" column="MEMBER_NAME"/>
+        <result property="userPhone" column="MEMBER_PHONE"/>
+        <result property="userEmail" column="MEMBER_EMAIL"/>
+        <result property="userBirthday" column="MEMBER_BIRTH"/>
+        <result property="userGender" column="MEMBER_GENDER"/>
+        <result property="userAddress" column="ADDRESS"/>
+        <result property="userIntroduce" column="INTRODUCE"/>
+        <result property="enrollDate" column="ENROLL_DATE"/>
+        <result property="memberStatus" column="MEMBER_STATUS"/>
+        <result property="banDate" column="BAN_DATE"/>
+        <result property="isAdmin" column="ADMIN_YN"/>
+    </resultMap>
+
+    <select id="findMemberById" resultMap="memberResultMap" parameterType="string">
+        SELECT M.MEMBER_CODE,
+               M.MEMBER_ID,
+               M.MEMBER_PWD,
+               M.MEMBER_NICKNAME,
+               M.MEMBER_NAME,
+               M.MEMBER_PHONE,
+               M.MEMBER_EMAIL,
+               M.MEMBER_BIRTH,
+               M.MEMBER_GENDER,
+               M.ADDRESS,
+               M.INTRODUCE,
+               M.ENROLL_DATE,
+               M.MEMBER_STATUS,
+               M.BAN_DATE,
+               M.ADMIN_YN
+        FROM MEMBER M
+        WHERE M.MEMBER_ID = #{ userId }
+    </select>
+    <select id="selectAllMember" resultMap="memberResultMap">
+        SELECT M.MEMBER_CODE,
+               M.MEMBER_ID,
+               M.MEMBER_PWD,
+               M.MEMBER_NICKNAME,
+               M.MEMBER_NAME,
+               M.MEMBER_PHONE,
+               M.MEMBER_EMAIL,
+               M.MEMBER_BIRTH,
+               M.MEMBER_GENDER,
+               M.ADDRESS,
+               M.INTRODUCE,
+               M.ENROLL_DATE,
+               M.MEMBER_STATUS,
+               M.BAN_DATE,
+               M.ADMIN_YN
+        FROM MEMBER M
+        WHERE M.ADMIN_YN = 'N'
+        ORDER BY M.MEMBER_CODE
+    </select>
+
+    <insert id="registMember">
+        INSERT
+        INTO MEMBER M (
+               M.MEMBER_CODE,
+               M.MEMBER_ID,
+               M.MEMBER_PWD,
+               M.MEMBER_NICKNAME,
+               M.MEMBER_NAME,
+               M.MEMBER_PHONE,
+               M.MEMBER_EMAIL,
+               M.MEMBER_BIRTH,
+               M.MEMBER_GENDER,
+               M.ADDRESS,
+               M.INTRODUCE,
+               M.ENROLL_DATE,
+               M.MEMBER_STATUS,
+               M.BAN_DATE,
+               M.ADMIN_YN
+        )
+        VALUES (
+            'MEM_'||MEMBER_CODE_SEQ.NEXTVAL,
+            #{ id },
+            #{ pwd },
+            #{ nickname },
+            #{ name },
+            #{ phone },
+            #{ email },
+            #{ birth },
+            #{ gender },
+            #{ address }, <!-- zipcode & address & detail -->
+            #{ introduce },
+            SYSDATE,
+            'Y',
+            NULL,
+            'N'
+        )
+    </insert>
+</mapper>

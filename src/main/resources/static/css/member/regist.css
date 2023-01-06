@@ -5,6 +5,18 @@
     height: 956px;
 }
 
+.member-main-bg{
+    height: calc(260px*2 + 100px + 956px);
+}
+
+.modify-zipcode{
+    width: 232px;
+}
+.modify-zipcode input{
+    width: 200px;
+}
+
+/* regist */
 .regist-main{
     display: flex;
     flex-direction: column;
@@ -13,7 +25,7 @@
 
     position: absolute;
     width: 448px;
-    height: 1056px;
+    height: 1120px;
     top: 260px;
     left: calc(50% - 448px/2);
     border-radius: 24px;
@@ -47,7 +59,7 @@
     height: 176px;
 }
 .regist-step-2{
-    height: 304px;
+    height: 368px;
 }
 .regist-step-3{
     height: 240px;
@@ -78,4 +90,66 @@
     font-size: 18px;
     line-height: 24px;
     letter-spacing: -0.014em;
+}
+
+.regist-zipcode{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    width: 320px;
+    height: 48px;
+}
+
+.gender-area{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    width: 320px;
+    height: 48px;
+}
+.gender-radio{
+    position: absolute;
+    left: -10000%;
+}
+.gender-btn{
+    appearance: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 20px;
+
+    width: 58px;
+    height: 24px;
+
+    border-radius: 24px;
+    text-decoration: none;
+    color: rgba(77, 62, 255, 0.9);
+}
+
+.zipcode-search-btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 20px;
+
+    width: 80px;
+    height: 24px;
+
+    border-radius: 24px;
+    text-decoration: none;
+    color: rgba(77, 62, 255, 0.9);
+}
+.zipcode-search-text{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
 }

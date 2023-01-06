@@ -7,9 +7,9 @@
     1px 4px 8px rgba(0, 0, 0, 0.05);
 }
 .light-bg-screen{
-    background-image: url("/static/image/login_bg_light.png");
-    background-size: 1440px 1024px;
-    background-repeat: repeat;
+    background-image: url("../../image/login_bg_light.png");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .light-placeholder{
     border: 0.5px solid rgba(74, 87, 111, 0.7);
@@ -23,14 +23,14 @@
     position: absolute;
     width: 24px;
     height: 24px;
-    background-image: url("/static/image/icon_light/cross.svg");
+    background-image: url("../../image/icon_light/cross.svg");
     background-size: 24px 24px;
 }
 .light-icon-gamespace{
     position: absolute;
     width: 52px;
     height: 34px;
-    background-image: url("/static/image/icon_light/gamespace.svg");
+    background-image: url("../../image/icon_light/gamespace.svg");
     background-size: 52px 34px;
 }
 
@@ -41,9 +41,9 @@
     1px 4px 8px rgba(0, 0, 0, 0.05);
 }
 .dark-bg-screen{
-    background-image: url("/static/image/login_bg_dark.png");
-    background-size: 1440px 1024px;
-    background-repeat: repeat;
+    background-image: url("../../image/login_bg_dark.png");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .dark-placeholder{
     border: 0.5px solid rgba(114, 120, 136, 0.6);
@@ -57,21 +57,20 @@
     position: absolute;
     width: 24px;
     height: 24px;
-    background-image: url("/static/image/icon_dark/cross.svg");
+    background-image: url("../../image/icon_dark/cross.svg");
     background-size: 24px 24px;
 }
 .dark-icon-gamespace{
     position: absolute;
     width: 52px;
     height: 34px;
-    background-image: url("/static/image/icon_dark/gamespace.svg");
+    background-image: url("../../image/icon_dark/gamespace.svg");
     background-size: 52px 34px;
 }
 
 /* background */
 .member-main-bg{
     width: 100%;
-    height: 2048px;
     left: 0px;
     top: 0px;
 }
@@ -129,9 +128,9 @@
     width: 320px;
     height: 48px;
 
-    flex: none;
-    order: 0;
-    flex-grow: 0;
+    /*flex: none;*/
+    /*order: 0;*/
+    /*flex-grow: 0;*/
 }
 .input-text{
     display: flex;
@@ -176,8 +175,12 @@
     opacity: 1;
 }
 
-.btn-default{
+.btn-blue-default{
     background: linear-gradient(73.19deg, #DC79FF 0%, #256BFA 95%)
+
+}
+.btn-white-default{
+    border: 1px solid rgba(77, 62, 255, 0.9);
 }
 
 /* common */
@@ -188,7 +191,7 @@
     width: 20px;
     height: 20px;
     left: calc(50% - 10px);
-    top: 1600px;
+    top: 100px;
 
     background-color: #787878;
     border-radius: 50%;

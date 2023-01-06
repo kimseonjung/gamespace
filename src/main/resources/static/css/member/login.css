@@ -5,6 +5,10 @@
     height: 410px;
 }
 
+.member-main-bg{
+    height: calc(260px*2 + 100px + 410px);
+}
+
 /* div button - text */
 .help-btn-text{
     font-family: 'Inter';
@@ -29,6 +33,7 @@
     opacity: 0.8;
 }
 .login-btn-text{
+    border: none;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
@@ -53,14 +58,14 @@
     right: -1%;
     top: 1%;
     bottom: -1%;
-    background: url("/static/image/logo_google.png");
+    background: url("../../image/logo_google.png");
 }
 .btn-logo-kakao{
     left: 0%;
     right: 0%;
     top: 0%;
     bottom: 0%;
-    background: url("/static/image/logo_kakao.png");
+    background: url("../../image/logo_kakao.png");
 }
 
 /* login */
@@ -120,6 +125,9 @@
     flex: none;
     order: 1;
     flex-grow: 0;
+}
+.login-help a{
+    text-align: right;
 }
 .login-buttons{
     display: flex;
