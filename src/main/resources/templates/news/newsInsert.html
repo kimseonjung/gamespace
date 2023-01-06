@@ -2,9 +2,61 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/news/news.css">
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" defer src="/js/fileInput.js"></script>
     <title>newsInsert</title>
+
 </head>
 <body>
-  <h1>뉴스작성하는 페이지 입니다.</h1>
+
+<!-- 헤더 네비게이션바 -->
+<div id="news">
+    <th:block th:replace="~{common/header :: header}"/>
+</div>
+
+<!-- 게임태그 -->
+<div class="gametag-nav">
+    <th:block th:replace="~{common/gameTag :: gameTag}"/>
+</div>
+<!-- 작성창 -->
+<section class="news-insert">
+    <input type="text" name="title" id="title" placeholder="뉴스제목을 입력하세요." class="input-title">
+
+    <!-- 첨부파일 -->
+    <div class="att-btn">
+
+        <div class="file-upload">
+            <div class="file-select">
+
+                <div class="file-select-name" id="noFile">첨부파일</div>
+                <div class="file-select-button" id="fileName">첨부파일</div>
+                <input type="file" name="chooseFile" id="chooseFile">
+            </div>
+        </div>
+
+    </div>
+
+    <textarea placeholder="본문 내용입니다." class="textarea">
+    </textarea>
+
+</section>
+
+<!-- 작성버튼 -->
+<div class="btn-wrap">
+    <a href="#"><input type="button" value="취소하기" class="btn"></a>
+    <input type="submit" value="작성하기" class="btn-primary">
+</div>
+
+<!-- 푸터 -->
+<div class="footer">
+    <th:block th:replace="~{common/footer :: footer}"/>
+</div>
+
 </body>
 </html>
