@@ -9,3 +9,23 @@ $('#chooseFile').bind('change', function () {
         $("#noFile").text(filename.replace("C:\\fakepath\\", ""));
     }
 });
+
+$('#title').on("change", function () {
+    var title = $("#title").val();
+    if (/^\s*$/.test(title)) {
+        $(".news-insert").removeClass('active');
+    }
+    else {
+        $(".news-insert").addClass('active');
+    }
+});
+
+$('#textarea').on("change", function () {
+    var title = $("#textarea").val();
+    if (/^\s*$/.test(title)) {
+        $(".textarea-wrap").removeClass('active');
+    }
+    else {
+        $(".textarea-wrap").addClass('active');
+    }
+});

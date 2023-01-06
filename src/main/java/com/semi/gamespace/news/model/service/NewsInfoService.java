@@ -22,4 +22,14 @@ public class NewsInfoService {
         return newsInfoMapper.selectAllNewsList();
     }
 
+    public boolean registNewsInfo(NewsDTO newsDto) throws Exception{
+        int result = newsInfoMapper.registNewsInfo(newsDto);
+
+        if (result <= 0){
+            throw new Exception("신규게임정보추가등록실패");
+
+        }
+        return result > 0 ? true: false;
+    }
+
 }

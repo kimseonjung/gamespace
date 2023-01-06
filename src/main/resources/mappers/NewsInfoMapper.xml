@@ -28,17 +28,29 @@
                  JOIN MEMBER C ON (A.MEMBER_CODE = C.MEMBER_CODE)
     </select>
 
-<!--    <select id="selectMemberName" resultType="string" parameterType="string">-->
-<!--        SELECT-->
-<!--            A.MEMBER_NAME-->
-<!--        FROM MEMBER A-->
-<!--        WHERE A.MEMBER_CODE = ${ code }-->
-<!--    </select>-->
+    <insert id="registNewsInfo">
+        INSERT
+        INTO NEWS A
+        (
+            A.NEWS_CODE,
+            A.NEWS_TITLE,
+            A.NEWS_VIEW,
+            A.NEWS_DATE,
+            A.NEWS_CONTENT,
+            A.GAME_CODE,
+            A.MEMBER_CODE
+        )
+        VALUES
+            (
+            'NEW_'||NEWS_CODE_SEQ.NEXTVAL,
+            #{newsTitle},
+            '0',
+            TO_DATE(SYSDATE, 'YYYY-MM-DD HH24:mi:SS'),
+            #{newsContent},
+            'GAM_1',
+            'MEM_1'
+            )
+    </insert>
 
-<!--    <select id="selectGameName" resultType="string" parameterType="string">-->
-<!--        SELECT-->
-<!--            A.GAME_NAME-->
-<!--        FROM GAME_INFO A-->
-<!--        WHERE A.GAME_CODE = ${ code }-->
-<!--    </select>-->
+
 </mapper>

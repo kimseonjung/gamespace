@@ -24,16 +24,19 @@
 <div class="gametag-nav">
     <th:block th:replace="~{common/gameTag :: gameTag}"/>
 </div>
+
 <!-- 작성창 -->
+<form action="/news/newsInsert" method="post">
 <section class="news-insert">
-    <input type="text" name="title" id="title" placeholder="뉴스제목을 입력하세요." class="input-title">
+
+    <!-- 뉴스제목 -->
+    <input type="text" name="newsTitle" id="title" placeholder="뉴스제목을 입력하세요." class="input-title">
 
     <!-- 첨부파일 -->
     <div class="att-btn">
 
         <div class="file-upload">
             <div class="file-select">
-
                 <div class="file-select-name" id="noFile">첨부파일</div>
                 <div class="file-select-button" id="fileName">첨부파일</div>
                 <input type="file" name="chooseFile" id="chooseFile">
@@ -42,17 +45,18 @@
 
     </div>
 
-    <textarea placeholder="본문 내용입니다." class="textarea">
-    </textarea>
+    <div class="textarea-wrap">
+        <textarea placeholder="본문 내용입니다." class="textarea" id="textarea" name="newsContent"></textarea>
+    </div>
 
 </section>
 
 <!-- 작성버튼 -->
 <div class="btn-wrap">
-    <a href="#"><input type="button" value="취소하기" class="btn"></a>
+    <a href="/news/news"><input type="button" value="취소하기" class="btn"></a>
     <input type="submit" value="작성하기" class="btn-primary">
 </div>
-
+</form>
 <!-- 푸터 -->
 <div class="footer">
     <th:block th:replace="~{common/footer :: footer}"/>
