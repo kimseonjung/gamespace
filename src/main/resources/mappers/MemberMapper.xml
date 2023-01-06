@@ -62,7 +62,7 @@
         ORDER BY M.MEMBER_CODE
     </select>
 
-    <insert id="registMember">
+    <insert id="registMember" parameterType="com.semi.gamespace.member.model.dto.MemberDTO">
         INSERT
         INTO MEMBER M (
                M.MEMBER_CODE,
@@ -83,17 +83,17 @@
         )
         VALUES (
             'MEM_'||MEMBER_CODE_SEQ.NEXTVAL,
-            #{ id },
-            #{ pwd },
-            #{ nickname },
-            #{ name },
-            #{ phone },
-            #{ email },
-            #{ birth },
-            #{ gender },
-            #{ address }, <!-- zipcode & address & detail -->
-            #{ introduce },
-            SYSDATE,
+            #{ userId },
+            #{ userPwd },
+            #{ userNickname },
+            #{ userName },
+            #{ userPhone },
+            #{ userEmail },
+            TO_DATE(#{ userBirthday }, 'YYYY-MM-DD'),
+            #{ userGender },
+            #{ userAddress },
+            #{ userIntroduce },
+            TO_DATE(SYSDATE, 'YYYY-MM-DD'),
             'Y',
             NULL,
             'N'

@@ -1,6 +1,10 @@
 package com.semi.gamespace.config;
 
+import com.semi.gamespace.authentication.model.dto.SpaceUser;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,5 +40,13 @@ public class AuthenticationConfig {
     }
     public String getAccessDeniedUrl() {
         return "/common/error/denied";
+    }
+
+    public SpaceUser getAuthenticationUser() {
+        SpaceUser member = (SpaceUser) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
+        return member;
     }
 }

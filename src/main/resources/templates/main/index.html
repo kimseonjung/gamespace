@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<th:block th:fragment="setContent(content)">
+<th:block th:fragment="fragment-user">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,7 +21,7 @@
 </head>
 <body>
 <!-- 헤더 네비게이션바 -->
-    <th:block th:replace="~{common/header :: header}"/>
+<th:block th:replace="~{common/header :: header}"/>
 
 <!-- 스크롤배너 -->
 <section class="main-swiper">

@@ -1,10 +1,9 @@
 package com.semi.gamespace.authentication;
 
-import com.semi.gamespace.authentication.model.dto.spaceUser;
+import com.semi.gamespace.authentication.model.dto.SpaceUser;
 import com.semi.gamespace.config.AuthenticationConfig;
 import com.semi.gamespace.member.model.dao.MemberMapper;
 import com.semi.gamespace.member.model.dto.MemberDTO;
-import com.semi.gamespace.member.model.dto.MemberRoleDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -40,7 +39,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 member.getIsAdmin().equals("Y") ? "ROLE_ADMIN" : "ROLE_MEMBER")
         );
 
-        return new spaceUser(member, authorities);
+        return new SpaceUser(member, authorities);
     }
 
     @Override
