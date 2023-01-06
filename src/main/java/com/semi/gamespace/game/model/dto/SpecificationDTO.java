@@ -3,15 +3,16 @@ package com.semi.gamespace.game.model.dto;
 public class SpecificationDTO {
 
     private String specificationCode;
-    private String minimum;
-    private String recommended;
+    private String minSystemCode;
+    private String recSystemCode;
 
-    public SpecificationDTO(){}
+    public SpecificationDTO() {}
 
-    public SpecificationDTO(String specificationCode, String minimum, String recommended) {
+
+    public SpecificationDTO(String specificationCode, String minSystemCode, String recSystemCode) {
         this.specificationCode = specificationCode;
-        this.minimum = minimum;
-        this.recommended = recommended;
+        this.minSystemCode = minSystemCode;
+        this.recSystemCode = recSystemCode;
     }
 
     public String getSpecificationCode() {
@@ -22,28 +23,28 @@ public class SpecificationDTO {
         this.specificationCode = specificationCode;
     }
 
-    public String getMinimum() {
-        return minimum;
+    public String getMinSystemCode() {
+        return minSystemCode;
     }
 
-    public void setMinimum(String minimum) {
-        this.minimum = minimum;
+    public void setMinSystemCode(String minSystemCode) {
+        this.minSystemCode = minSystemCode;
     }
 
-    public String getRecommended() {
-        return recommended;
+    public String getRecSystemCode() {
+        return recSystemCode;
     }
 
-    public void setRecommended(String recommended) {
-        this.recommended = recommended;
+    public void setRecSystemCode(String recSystemCode) {
+        this.recSystemCode = recSystemCode;
     }
 
     @Override
     public String toString() {
         return "SpecificationDTO{" +
                 "specificationCode='" + specificationCode + '\'' +
-                ", minimum='" + minimum + '\'' +
-                ", recommended='" + recommended + '\'' +
+                ", minSystemCode='" + minSystemCode + '\'' +
+                ", recSystemCode='" + recSystemCode + '\'' +
                 '}';
     }
 }

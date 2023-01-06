@@ -25,6 +25,24 @@
 
     </resultMap>
 
+    <resultMap type="com.semi.gamespace.game.model.dto.MinimumSystemDTO" id="minimumSystemResultMap">
+        <id property="minSystemCode" column="MIN_SYSTEM_CODE"/>
+        <result property="minOperatingSystem" column="MIN_OPERATING_SYSTEM"/>
+        <result property="minProcessor" column="MIN_PROCESSOR"/>
+        <result property="minMemory" column="MIN_MEMORY"/>
+        <result property="minStorageSpace" column="MIN_STORAGE_SPACE"/>
+        <result property="minGraphic" column="MIN_GRAPHIC"/>
+    </resultMap>
+
+    <resultMap type="com.semi.gamespace.game.model.dto.RecommendedSystemDTO" id="recommendedSystemResultMap">
+        <id property="recSystemCode" column="REC_SYSTEM_CODE"/>
+        <result property="recOperatingSystem" column="REC_OPERATING_SYSTEM"/>
+        <result property="recProcessor" column="REC_PROCESSOR"/>
+        <result property="recMemory" column="REC_MEMORY"/>
+        <result property="recStorageSpace" column="REC_STORAGE_SPACE"/>
+        <result property="recGraphic" column="REC_GRAPHIC"/>
+    </resultMap>
+
 
     <select id="selectAllGameInfo" resultMap="gameInfoResultMap">
         SELECT
@@ -73,6 +91,31 @@
 
     </select>
 
+    <select id="selectAllMinimumSystem" resultMap="minimumSystemResultMap">
+
+        SELECT
+            MIN_SYSTEM_CODE
+            , A.MIN_OPERATING_SYSTEM
+            , A.MIN_PROCESSOR
+            , A.MIN_MEMORY
+            , A.MIN_STORAGE_SPACE
+            , A.MIN_GRAPHIC
+        FROM MINIMUM_SYSTEM A
+    </select>
+
+
+    <select id="selectAllRecommendedSystem" resultMap="recommendedSystemResultMap">
+
+        SELECT
+            REC_SYSTEM_CODE
+            , A.REC_OPERATING_SYSTEM
+            , A.REC_PROCESSOR
+            , A.REC_MEMORY
+            , A.REC_STORAGE_SPACE
+            , A.REC_GRAPHIC
+        FROM RECOMMENDED_SYSTEM A
+    </select>
+
     <insert id="registGameInfo">
         INSERT
         INTO GAME_INFO A
@@ -109,7 +152,7 @@
                 , #{ price }
                 , #{ platformCode }
                 , #{ languageCode }
-                , #{ specificationCode }
+                , 'SPE_'|| SPECIFICATION_CODE_SEQ.NEXTVAL
                 , #{ gameIntro }
                 , #{ gameStatus }
             )
@@ -118,7 +161,75 @@
 
     </insert>
 
+    <insert id="registMinimumSystem">
+        INSERT
+        INTO MINIMUM_SYSTEM A
+            (
+               A.MIN_SYSTEM_CODE
+               , A.MIN_OPERATING_SYSTEM
+               , A.MIN_PROCESSOR
+               , A.MIN_MEMORY
+               , A.MIN_STORAGE_SPACE
+               , A.MIN_GRAPHIC
 
+            )
+        VALUES
+            (
+            'MSYS_'|| MIN_SYSTEM_CODE_SEQ.NEXTVAL
+                , #{ minOperatingSystem }
+                , #{ minProcessor }
+                , #{ minMemory }
+                , #{ minStorageSpace }
+                , #{ minGraphic }
+            )
+
+
+    </insert>
+
+    <insert id="registRecommendedSystem">
+        INSERT
+        INTO RECOMMENDED_SYSTEM A
+            (
+                A.REC_SYSTEM_CODE
+                , A.REC_OPERATING_SYSTEM
+                , A.REC_PROCESSOR
+                , A.REC_MEMORY
+                , A.REC_STORAGE_SPACE
+                , A.REC_GRAPHIC
+
+            )
+        VALUES
+            (
+            'RSYS_'|| REC_SYSTEM_CODE_SEQ.NEXTVAL
+                , #{ recOperatingSystem }
+                , #{ recProcessor }
+                , #{ recMemory }
+                , #{ recStorageSpace }
+                , #{ recGraphic }
+            )
+
+
+    </insert>
+
+    <insert id="registSpecification">
+        INSERT
+        INTO SPECIFICATION A
+            (
+            A.SPECIFICATION_CODE
+            ,A.MIN_SYSTEM_CODE
+            ,A.REC_SYSTEM_CODE
+
+            )
+        VALUES
+            (
+            'SPE_'|| SPECIFICATION_CODE_SEQ.CURRVAL
+            , 'MSYS_'|| MIN_SYSTEM_CODE_SEQ.CURRVAL
+            , 'RSYS_'|| REC_SYSTEM_CODE_SEQ.CURRVAL
+            )
+
+
+
+    </insert>
 
 
 

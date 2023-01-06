@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <title>gamespace</title>
+</head>
+<body>
+
+<div id="game">
+  <th:block th:replace="~{common/header :: header}"/>
+</div>
+
+
+
+<section>
+
+  <div th:each="mini : ${minimumSystemList}">
+    <div th:text="${mini.minSystemCode}"></div>
+    <div th:text="${mini.minOperatingSystem}"></div>
+    <div th:text="${mini.minProcessor}"></div>
+    <div th:text="${mini.minMemory}"></div>
+    <div th:text="${mini.minStorageSpace}"></div>
+    <div th:text="${mini.minGraphic}"></div>
+
+
+  </div>
+
+  <div th:each="rec : ${recommendedSystemList}">
+    <div th:text="${rec.recSystemCode}"></div>
+    <div th:text="${rec.recOperatingSystem}"></div>
+    <div th:text="${rec.recProcessor}"></div>
+    <div th:text="${rec.recMemory}"></div>
+    <div th:text="${rec.recStorageSpace}"></div>
+    <div th:text="${rec.recGraphic}"></div>
+
+
+
+  </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="footer">
+  <th:block th:replace="~{common/footer :: footer}"/>
+</div>
+
+
+</body>
+</html>

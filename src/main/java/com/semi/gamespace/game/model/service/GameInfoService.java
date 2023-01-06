@@ -1,8 +1,7 @@
 package com.semi.gamespace.game.model.service;
 
 import com.semi.gamespace.game.model.dao.GameInfoMapper;
-import com.semi.gamespace.game.model.dto.DevicesDTO;
-import com.semi.gamespace.game.model.dto.GameInfoDTO;
+import com.semi.gamespace.game.model.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,5 +37,51 @@ public class GameInfoService {
     }
 
 
+    public List<MinimumSystemDTO> selectAllMinimumSystem() {
 
+
+        return gameInfoMapper.selectAllMinimumSystem();
+    }
+
+    public List<RecommendedSystemDTO> selectAllRecommendedSystem() {
+
+        return gameInfoMapper.selectAllRecommendedSystem();
+
+    }
+
+    public boolean registMinimumSystem(MinimumSystemDTO newMinimumSystem) throws Exception{
+
+        int result = gameInfoMapper.registMinimumSystem(newMinimumSystem);
+
+        if (result <= 0){
+            throw new Exception("신규최소시스템추가등록실패");
+
+        }
+        return result > 0 ? true: false;
+
+    }
+
+    public boolean registRecommendedSystem(RecommendedSystemDTO newRecommendedSystem)throws Exception{
+
+        int result = gameInfoMapper.registRecommendedSystem(newRecommendedSystem);
+
+        if (result <= 0){
+            throw new Exception("신규권장시스템추가등록실패");
+
+        }
+        return result > 0 ? true: false;
+
+    }
+
+    public boolean registSpecification(SpecificationDTO newSpecification) throws Exception{
+
+        int result = gameInfoMapper.registSpecification(newSpecification);
+
+        if (result <= 0){
+            throw new Exception("신규사양추가등록실패");
+
+        }
+        return result > 0 ? true: false;
+
+    }
 }
