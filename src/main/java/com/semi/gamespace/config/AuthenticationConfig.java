@@ -9,18 +9,18 @@ import java.util.List;
 public class AuthenticationConfig {
     public List<String> getAdminPermitList() {
         List<String> adminPermitList = new ArrayList<>();
-        //관리자만 접근 가능
+        /* 관리자만 접근 가능한 url */
         adminPermitList.add("/admin/dashboard"); //ex
-        adminPermitList.add("/game/game");
+//        adminPermitList.add("/game/game");
 
         return adminPermitList;
     }
 
     public List<String> getMemberPermitList() {
-        //관리자와 회원만 접근 가능
+        /* 관리자와 회원만 접근 가능한 url */
         List<String> memberPermitList = new ArrayList<>();
         memberPermitList.add("/member/dashboard"); //ex
-        //memberPermitList.add("/game/game");
+//        memberPermitList.add("/game/game");
 
         return memberPermitList;
     }
