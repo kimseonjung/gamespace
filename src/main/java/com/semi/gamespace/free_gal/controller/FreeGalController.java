@@ -31,4 +31,15 @@ public class FreeGalController {
         return mv;
     }
 
+    @GetMapping("/view")
+    public ModelAndView freeGalView(ModelAndView mv, String freeGalCode){
+
+        FreeGalDTO freeGalView = freeGalService.getBoard(freeGalCode);
+
+        mv.addObject("halo", freeGalView);
+        mv.setViewName("freeGal/view");
+
+        return mv;
+    }
+
 }

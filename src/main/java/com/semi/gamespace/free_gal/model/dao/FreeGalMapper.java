@@ -12,4 +12,6 @@ public interface FreeGalMapper {
 
     List<FreeGalDTO> getList();
 
+    FreeGalDTO getBoard(String freeGalCode);
+
 }
