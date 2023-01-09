@@ -8,4 +8,7 @@ import java.util.List;
 @Mapper
 public interface NewsInfoMapper {
     List<NewsDTO> selectAllNewsList();
+
+    int registNewsInfo(NewsDTO newsDto);
+
 }
