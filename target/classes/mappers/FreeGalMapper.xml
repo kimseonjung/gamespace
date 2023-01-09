@@ -23,4 +23,13 @@
             F.FREE_GAL_NOTICE
         FROM FREE_GAL F
     </select>
+    <select id="getBoard" parameterType="String" resultMap="freeGalResultMap">
+        SELECT
+            *
+        FROM
+            FREE_GAL
+        WHERE
+            FREE_GAL_CODE = #{FREE_GAL_CODE}
+
+    </select>
 </mapper>
