@@ -1,3 +1,36 @@
+/* 뉴스페이지 ----------------------------------------------------------------------*/
+.head{
+    width: 708px;
+    margin: auto;
+    text-align: center;
+    margin-top: 24px;
+}
+.head h1{
+    margin: 0 0 12px 0;
+    font-size: 40px;
+    font-weight: 700;
+    background: -webkit-linear-gradient(left,#4AB1F1, #566CEC, #D749AF, #FF7C51);
+    background:    -moz-linear-gradient(left,#4AB1F1, #566CEC, #D749AF, #FF7C51);
+    background:      -o-linear-gradient(left,#4AB1F1, #566CEC, #D749AF, #FF7C51);
+    background:         linear-gradient(left,#4AB1F1, #566CEC, #D749AF, #FF7C51);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+}
+.head h3{
+    margin: 0;
+    font-size: 18px;
+    font-weight: 400;
+}
+.head img{
+    width: 100%;
+    margin: auto;
+    margin-top: 12px;
+
+}
+
+/* 뉴스 ----------------------------------------------------------------------*/
 .news-lists{
     margin: auto;
     margin-top: 18px;
@@ -225,7 +258,7 @@
     margin: 0 auto;
 }
 
-/* newsInsert ----------------------------------*/
+/* newsInsert ----------------------------------------------------------------------------------------------------*/
 .news-insert{
     display: flex;
     flex-direction: column;
@@ -243,10 +276,7 @@
     background: rgba(255, 255, 255, 0.2);
     border-radius: 20px;
 }
-.gametag-nav{
-    margin: auto;
-    margin-top: 120px;
-}
+
 
 .input-title{
     box-sizing: border-box;
@@ -276,6 +306,15 @@
     order: 0;
     flex-grow: 0;
 }
+
+.active input{
+    border: 1px solid rgba(77, 62, 255, 0.9);
+
+}
+.textarea-wrap.active textarea{
+    border: 1px solid rgba(77, 62, 255, 0.9);
+}
+
 .att-btn{
     display: flex;
     flex-direction: row;
@@ -290,7 +329,6 @@
     /* Inside auto layout */
 
     flex: none;
-    order: 1;
     flex-grow: 0;
 }
 
@@ -471,8 +509,7 @@
 
     background: #FFFFFF;
     /* Basic/Purple */
-
-    border: 1px solid rgba(77, 62, 255, 0.9);
+    border: 0.5px solid rgba(74, 87, 111, 0.7);
     border-radius: 24px;
 
     /* Inside auto layout */
