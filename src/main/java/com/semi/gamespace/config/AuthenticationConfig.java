@@ -15,7 +15,7 @@ public class AuthenticationConfig {
         List<String> adminPermitList = new ArrayList<>();
         /* 관리자만 접근 가능한 url */
         adminPermitList.add("/admin/dashboard"); //ex
-//        adminPermitList.add("/game/game");
+//        adminPermitList.add("/game/game"); //debug
 
         return adminPermitList;
     }
@@ -24,7 +24,7 @@ public class AuthenticationConfig {
         /* 관리자와 회원만 접근 가능한 url */
         List<String> memberPermitList = new ArrayList<>();
         memberPermitList.add("/member/dashboard"); //ex
-//        memberPermitList.add("/game/game");
+//        adminPermitList.add("/game/game"); //debug
 
         return memberPermitList;
     }
