@@ -1,6 +1,9 @@
 package com.semi.gamespace.game.controller;
 
 import com.semi.gamespace.game.model.dto.GameInfoDTO;
+import com.semi.gamespace.game.model.dto.MinimumSystemDTO;
+import com.semi.gamespace.game.model.dto.RecommendedSystemDTO;
+import com.semi.gamespace.game.model.dto.SpecificationDTO;
 import com.semi.gamespace.game.model.service.GameInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -40,6 +43,22 @@ public class GameInfoController {
 
     }
 
+    @GetMapping("/gameInfoDetail")
+    public ModelAndView selectAllSystemList(ModelAndView mv){
+        List<MinimumSystemDTO> minimumSystemList = gameInfoService.selectAllMinimumSystem();
+        List<RecommendedSystemDTO> recommendedSystemList = gameInfoService.selectAllRecommendedSystem();
+        minimumSystemList.stream().forEach(mini ->System.out.println("mini =" + mini));
+        recommendedSystemList.stream().forEach(rec ->System.out.println("rec =" + rec));
+
+        mv.addObject("minimumSystemList", minimumSystemList);
+        mv.addObject("recommendedSystemList", recommendedSystemList);
+        mv.setViewName("game/gameInfoDetail");
+
+        return mv;
+
+    }
+
+
 
     @GetMapping("gameInfoInsert")
     public void registPage(){}
@@ -48,8 +67,13 @@ public class GameInfoController {
 
 
     @PostMapping("gameInfoInsert")
-    public ModelAndView registGameInfo(ModelAndView mv, GameInfoDTO newGameInfo, RedirectAttributes rttr, Locale locale) throws Exception{
+    public ModelAndView registGameInfo(ModelAndView mv, GameInfoDTO newGameInfo, SpecificationDTO newSpecification, MinimumSystemDTO newMinimumSystem, RecommendedSystemDTO newRecommendedSystem , RedirectAttributes rttr, Locale locale) throws Exception{
         gameInfoService.registGameInfo(newGameInfo);
+
+        gameInfoService.registMinimumSystem(newMinimumSystem);
+        gameInfoService.registRecommendedSystem(newRecommendedSystem);
+        gameInfoService.registSpecification(newSpecification);
+
         mv.setViewName("redirect:/game/game");
         rttr.addFlashAttribute("successMessage", messageSource.getMessage("registGameInfo", null, locale));
 
