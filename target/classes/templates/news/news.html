@@ -15,6 +15,10 @@
   <script src='/js/ko.js'></script>
   <script src='/js/fullcalendar.main.min.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bPopup/0.11.0/jquery.bpopup.min.js"></script>
+
+  <!-- pagination -->
+
+
   <title>gamespace</title>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -98,20 +102,26 @@
 <th:block th:replace="~{common/gameTag :: gameTag}"/>
 
 <!-- 뉴스리스트 -->
-<section class="news-lists">
-  <th:block th:replace="~{news/newsList :: newsList}"/>
-</section>
-
+  <section id="news-table">
+    <div class="news-lists">
+        <th:block th:replace="~{news/newsList :: newsList}"/>
+    </div>
+  </section>
 <!-- 다음 리스트 페이지 -->
-<!--  <div class="sc_page">-->
-<!--    <a href = "#"><img src="/image/icon_light/left.svg" alt="left"></a>-->
-<!--    <div class="sc_page_inner"></div>-->
-<!--    <a href = "#"><img src="/image/icon_light/right.svg" alt="right"></a>-->
-<!--  </div>-->
+<div class="pagination">
+    <div class="pagination-wrap">
+        <i class="left-icon"><img src="/image/svg/icon-arrow-left.svg" alt="left"></i>
+        <ol id="numbers"></ol>
+        <i class="right-icon"><img src="/image/svg/icon-arrow-right.svg" alt="right"></i>
+    </div>
+</div>
+<script src="/js/pagination.js"></script>
 
 <!-- 뉴스작성버튼 -->
-<a href="/news/newsInsert"><input type="button" value="작성하기" class="btn"></a>
-
+<div class="submitA">
+  <a href="/news/newsInsert"><input type="button" value="작성하기" class="btn"></a>
+</div>
+<input type="button" value="뭐">
 <!-- 푸터 -->
 <div class="footer">
   <th:block th:replace="~{common/footer :: footer}"/>

@@ -28,6 +28,13 @@
                  JOIN MEMBER C ON (A.MEMBER_CODE = C.MEMBER_CODE)
     </select>
 
+    <select id="newsDetail" parameterType="String" resultMap="newsInfoResultMap">
+        SELECT
+            *
+        FROM NEWS
+        WHERE NEWS_CODE = #{news_code}
+    </select>
+
     <insert id="registNewsInfo">
         INSERT
         INTO NEWS A

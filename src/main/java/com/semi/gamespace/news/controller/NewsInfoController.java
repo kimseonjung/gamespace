@@ -39,6 +39,16 @@ public class NewsInfoController {
 
         return mv;
     }
+    @GetMapping("/newsDetail")
+    public  ModelAndView newsDetail(ModelAndView mv, String newsCode){
+        NewsDTO newsDTO = newsInfoService.newsDetail(newsCode);
+
+        mv.addObject("detail", newsDTO);
+        mv.setViewName("news/newsDetail");
+
+        return mv;
+    }
+
 
     @GetMapping("newsInsert")
     public void registPage(){}
