@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.User;
 import java.sql.Date;
 import java.util.Collection;
 
-public class spaceUser extends User {
+public class SpaceUser extends User {
     private String memberCode;
     private String userId;
     private String userPwd;
@@ -15,7 +15,7 @@ public class spaceUser extends User {
     private String userName;
     private String userPhone;
     private String userEmail;
-    private Date userBirthday;
+    private String userBirthday;
     private String userGender;
     private String userAddress;
     private String userIntroduce;
@@ -24,7 +24,7 @@ public class spaceUser extends User {
     private Date banDate;
     private String isAdmin;
 
-    public spaceUser(MemberDTO member, Collection<? extends GrantedAuthority> authorities) {
+    public SpaceUser(MemberDTO member, Collection<? extends GrantedAuthority> authorities) {
         super(member.getUserId(), member.getUserPwd(), authorities);
         setMemberDetail(member);
     }
@@ -68,7 +68,7 @@ public class spaceUser extends User {
     public String getUserEmail() {
         return userEmail;
     }
-    public Date getUserBirthday() {
+    public String getUserBirthday() {
         return userBirthday;
     }
     public String getUserGender() {
@@ -93,5 +93,49 @@ public class spaceUser extends User {
         return isAdmin;
     }
 
-
+    public void setMemberCode(String memberCode) {
+        this.memberCode = memberCode;
+    }
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+    public void setUserPwd(String userPwd) {
+        this.userPwd = userPwd;
+    }
+    public void setUserNickname(String userNickname) {
+        this.userNickname = userNickname;
+    }
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
+    }
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+    public void setUserBirthday(String userBirthday) {
+        this.userBirthday = userBirthday;
+    }
+    public void setUserGender(String userGender) {
+        this.userGender = userGender;
+    }
+    public void setUserAddress(String userAddress) {
+        this.userAddress = userAddress;
+    }
+    public void setUserIntroduce(String userIntroduce) {
+        this.userIntroduce = userIntroduce;
+    }
+    public void setEnrollDate(Date enrollDate) {
+        this.enrollDate = enrollDate;
+    }
+    public void setMemberStatus(String memberStatus) {
+        this.memberStatus = memberStatus;
+    }
+    public void setBanDate(Date banDate) {
+        this.banDate = banDate;
+    }
+    public void setIsAdmin(String isAdmin) {
+        this.isAdmin = isAdmin;
+    }
 }

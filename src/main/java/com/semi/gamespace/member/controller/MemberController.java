@@ -1,8 +1,10 @@
 package com.semi.gamespace.member.controller;
 
+import com.semi.gamespace.authentication.model.dto.SpaceUser;
 import com.semi.gamespace.member.model.dto.MemberDTO;
 import com.semi.gamespace.member.model.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,6 +40,7 @@ public class MemberController {
     @PostMapping("/regist")
     public ModelAndView registMember(ModelAndView mv, MemberDTO newMember) throws Exception {
         String result = "";
+        System.out.println("다음 멤버 추가를 시도합니다 : " + newMember);
         if(memberService.registMember(newMember)) {
             result = "success";
         } else {

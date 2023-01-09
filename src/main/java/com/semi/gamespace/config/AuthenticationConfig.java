@@ -1,6 +1,10 @@
 package com.semi.gamespace.config;
 
+import com.semi.gamespace.authentication.model.dto.SpaceUser;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +15,7 @@ public class AuthenticationConfig {
         List<String> adminPermitList = new ArrayList<>();
         /* 관리자만 접근 가능한 url */
         adminPermitList.add("/admin/dashboard"); //ex
-//        adminPermitList.add("/game/game");
+//        adminPermitList.add("/game/game"); //debug
 
         return adminPermitList;
     }
@@ -20,7 +24,7 @@ public class AuthenticationConfig {
         /* 관리자와 회원만 접근 가능한 url */
         List<String> memberPermitList = new ArrayList<>();
         memberPermitList.add("/member/dashboard"); //ex
-//        memberPermitList.add("/game/game");
+//        adminPermitList.add("/game/game"); //debug
 
         return memberPermitList;
     }
@@ -36,5 +40,13 @@ public class AuthenticationConfig {
     }
     public String getAccessDeniedUrl() {
         return "/common/error/denied";
+    }
+
+    public SpaceUser getAuthenticationUser() {
+        SpaceUser member = (SpaceUser) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
+        return member;
     }
 }

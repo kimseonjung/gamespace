@@ -9,6 +9,6 @@ import java.util.List;
 public interface MemberMapper {
     MemberDTO findMemberById(String userId);
     List<MemberDTO> selectAllMember();
-    int registMember();
+    int registMember(MemberDTO member);
 
 }

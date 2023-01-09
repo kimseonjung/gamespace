@@ -27,7 +27,7 @@ public class MemberService {
     }
 
     public boolean registMember(MemberDTO mem) throws Exception {
-        int result = memberMapper.registMember();
+        int result = memberMapper.registMember(mem);
         if(result <= 0) throw new Exception("회원 가입 중 오류가 발생했습니다.");
         return result > 0 ? true : false;
     }

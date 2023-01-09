@@ -10,7 +10,7 @@ public class MemberDTO {
     private String userName;
     private String userPhone;
     private String userEmail;
-    private Date userBirthday;
+    private String userBirthday;
     private String userGender;
     private String userAddress;
     private String userIntroduce;
@@ -22,7 +22,7 @@ public class MemberDTO {
     public MemberDTO() {}
 
     public MemberDTO(String memberCode, String userId, String userPwd, String userNickname, String userName,
-                     String userPhone, String userEmail, Date userBirthday, String userGender, String userAddress,
+                     String userPhone, String userEmail, String userBirthday, String userGender, String userAddress,
                      String userIntroduce, Date enrollDate, String memberStatus, Date banDate, String isAdmin) {
         this.memberCode = memberCode;
         this.userId = userId;
@@ -60,7 +60,7 @@ public class MemberDTO {
     public String getUserEmail() {
         return userEmail;
     }
-    public Date getUserBirthday() {
+    public String getUserBirthday() {
         return userBirthday;
     }
     public String getUserGender() {
@@ -104,7 +104,7 @@ public class MemberDTO {
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
     }
-    public void setUserBirthday(Date userBirthday) {
+    public void setUserBirthday(String userBirthday) {
         this.userBirthday = userBirthday;
     }
     public void setUserGender(String userGender) {

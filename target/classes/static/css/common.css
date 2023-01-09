@@ -47,6 +47,12 @@ textarea:focus {
 }
 
 
+p {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    text-decoration: none;
+}
+
 
 /* 네비게이션 -----------------------------------------------------------------------*/
 #game .game-nav a,
@@ -138,8 +144,8 @@ li a {
     position: relative;
 }
 .dropdown-menu {
-    color: #000;
     font-family: 'Inter', sans-serif;
+    color: #000;
     font-size: 16px;
     font-weight: 500;
     cursor: pointer;
@@ -169,12 +175,18 @@ li a {
     border-radius: 12px;
     padding: 8px 0;
 }
-.dropdown-content a {
+.dropdown-content a, .dropdown-content p {
+    font-family: 'Inter', sans-serif;
     color: black;
     padding: 8px 16px;
     text-decoration: none;
     display: block;
+    font-weight: 500;
 }
+.dropdown-content p{
+    color: #333333;
+}
+
 .dropdown-content {
     display: none;
 }
@@ -184,7 +196,9 @@ li a {
 .dropdown-content a:hover {
     background-color: #f1f1f1
 }
-
+.dropdown-reverse {
+    right: 0px;
+}
 
 .nav-left{
     /* Auto layout */
@@ -260,7 +274,6 @@ li a {
 }
 
 .mypage{
-
     width: 20px;
     height: 20px;
 
@@ -270,7 +283,6 @@ li a {
     flex: none;
     order: 1;
     flex-grow: 0;
-
 }
 
 /* gametag ----------------------------------------------------------------------------------------------- */

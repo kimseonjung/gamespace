@@ -39,12 +39,22 @@
       </div>
       <div class="nav-right">
         <a href="#" class="dark"><img src="/image/icon_light/sun.svg" alt="lite"></a>
-        <th:block sec:authorize="isAnonymous()">
-          <a href="/member/login" class="mypage"><img src="/image/icon/mypage.svg" alt="mypage"></a>
-        </th:block>
-        <th:block sec:authorize="isAuthenticated()">
-          <a href="/member/logout" class="mypage"><img src="/image/icon/mypage.svg" alt="mypage"></a>
-        </th:block>
+        <div class="dropdown">
+          <th:block sec:authorize="isAnonymous()">
+            <a href="/member/login" class="mypage dropdown"><img src="/image/icon/mypage.svg" alt="mypage"></a>
+            <div class="dropdown-content dropdown-reverse">
+              <a href="/member/login">Login</a>
+            </div>
+          </th:block>
+          <th:block sec:authorize="isAuthenticated()">
+            <a href="/member/mypage" class="mypage dropdown"><img src="/image/icon/mypage.svg" alt="mypage"></a>
+            <div class="dropdown-content dropdown-reverse">
+              <p th:text="${@authenticationConfig.getAuthenticationUser().getUserNickname()}">userNickname</p>
+              <a href="/member/mypage">My Page</a>
+              <a href="/member/logout">Logout</a>
+            </div>
+          </th:block>
+        </div>
       </div>
     </nav>
   </div>
