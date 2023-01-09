@@ -1,12 +1,10 @@
 package com.semi.gamespace.game.controller;
 
-import com.semi.gamespace.game.model.dto.GameInfoDTO;
-import com.semi.gamespace.game.model.dto.MinimumSystemDTO;
-import com.semi.gamespace.game.model.dto.RecommendedSystemDTO;
-import com.semi.gamespace.game.model.dto.SpecificationDTO;
+import com.semi.gamespace.game.model.dto.*;
 import com.semi.gamespace.game.model.service.GameInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,12 +29,24 @@ public class GameInfoController {
         this.messageSource = messageSource;
     }
 
+
+
     @GetMapping("/game")
-    public ModelAndView selectGameInfoList(ModelAndView mv){
+    public ModelAndView selectGameMainList(ModelAndView mv){
         List<GameInfoDTO> gameInfoList = gameInfoService.selectAllGameInfo();
+        List<CategoryDTO> categoryList = gameInfoService.selectAllCategory();
+        List<TagDTO> tagList = gameInfoService.selectAllTag();
+        List<DevicesDTO> devicesList = gameInfoService.selectAllDevices();
+
         gameInfoList.stream().forEach(game ->System.out.println("game =" + game));
+        categoryList.stream().forEach(category ->System.out.println("category = " + category));
+        tagList.stream().forEach(tag -> System.out.println("tag = " + tag));
+        devicesList.stream().forEach(devices ->System.out.println("devices = " + devices));
 
         mv.addObject("gameInfoList", gameInfoList);
+        mv.addObject("categoryList", categoryList);
+        mv.addObject("tagList", tagList);
+        mv.addObject("devicesList", devicesList);
         mv.setViewName("game/gameMain");
 
         return mv;
@@ -45,13 +55,13 @@ public class GameInfoController {
 
     @GetMapping("/gameInfoDetail")
     public ModelAndView selectAllSystemList(ModelAndView mv){
-        List<MinimumSystemDTO> minimumSystemList = gameInfoService.selectAllMinimumSystem();
-        List<RecommendedSystemDTO> recommendedSystemList = gameInfoService.selectAllRecommendedSystem();
-        minimumSystemList.stream().forEach(mini ->System.out.println("mini =" + mini));
-        recommendedSystemList.stream().forEach(rec ->System.out.println("rec =" + rec));
+        MinimumSystemDTO minimumSystem = gameInfoService.selectAllMinimumSystem();
+        RecommendedSystemDTO recommendedSystem = gameInfoService.selectAllRecommendedSystem();
+        System.out.println("mini =" + minimumSystem);
+        System.out.println("rec =" + recommendedSystem);
 
-        mv.addObject("minimumSystemList", minimumSystemList);
-        mv.addObject("recommendedSystemList", recommendedSystemList);
+        mv.addObject("minimumSystem", minimumSystem);
+        mv.addObject("recommendedSystem", recommendedSystem);
         mv.setViewName("game/gameInfoDetail");
 
         return mv;

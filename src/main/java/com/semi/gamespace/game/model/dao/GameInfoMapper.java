@@ -1,9 +1,6 @@
 package com.semi.gamespace.game.model.dao;
 
-import com.semi.gamespace.game.model.dto.GameInfoDTO;
-import com.semi.gamespace.game.model.dto.MinimumSystemDTO;
-import com.semi.gamespace.game.model.dto.RecommendedSystemDTO;
-import com.semi.gamespace.game.model.dto.SpecificationDTO;
+import com.semi.gamespace.game.model.dto.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -15,13 +12,23 @@ public interface GameInfoMapper {
 
     int registGameInfo(GameInfoDTO newGameInfo);
 
-    List<MinimumSystemDTO> selectAllMinimumSystem();
+    MinimumSystemDTO selectAllMinimumSystem();
 
-    List<RecommendedSystemDTO> selectAllRecommendedSystem();
+    RecommendedSystemDTO selectAllRecommendedSystem();
 
     int registMinimumSystem(MinimumSystemDTO newMinimumSystem);
 
     int registRecommendedSystem(RecommendedSystemDTO newRecommendedSystem);
 
     int registSpecification(SpecificationDTO newSpecification);
+
+    List<CategoryDTO> selectAllCategory();
+
+    List<TagDTO> selectAllTag();
+
+    List<DevicesDTO> selectAllDevices();
+
+
+
+
 }

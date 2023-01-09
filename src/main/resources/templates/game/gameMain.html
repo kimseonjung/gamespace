@@ -32,14 +32,24 @@
 
 
     <section>
-        <div>기기
+        <form action="/game/game" method="get">
 
+            <div th:each="category : ${categoryList}">
+                <button th:text="${category.categoryName}"></button>
 
-        </div><br>
-        <div>카테고리</div><br>
-        <div>태그</div><br>
+            </div>
 
+            <div th:each="tag : ${tagList}">
+                <button th:text="${tag.tagName}"></button>
 
+            </div>
+
+            <div th:each="devices : ${devicesList}">
+                <button th:text="${devices.devicesName}"></button>
+
+            </div>
+
+        </form>
     </section>
 
 
@@ -82,6 +92,14 @@
 <div class="footer">
     <th:block th:replace="~{common/footer :: footer}"/>
 </div>
+
+<script>
+
+
+
+
+
+</script>
 
 </body>
 </th:block>
