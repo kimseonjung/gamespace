@@ -8,9 +8,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.HttpServletBean;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Locale;
 
@@ -59,6 +62,36 @@ public class NewsInfoController {
         mv.setViewName("redirect:/news/news");
         rttr.addFlashAttribute("successMessage", messageSource.getMessage("registNewsInfo", null, locale));
 
+
+        return mv;
+    }
+    @GetMapping("newsUpdate")
+    public ModelAndView updateNewsInfoForm(ModelAndView mv, HttpServletRequest request){
+        String newsCode = request.getParameter("newsCode");
+        NewsDTO newsDTO = newsInfoService.newsDetail(newsCode);
+        mv.addObject("detail", newsDTO);
+        mv.addObject("update", newsInfoService.getNewsCode(newsCode));
+        mv.setViewName("news/newsUpdate");
+
+        return mv;
+    }
+
+    @PostMapping("/newsUpdate")
+    public  ModelAndView updateNewsInfo(ModelAndView mv, HttpServletRequest request, RedirectAttributes rttr, Locale locale) throws Exception {
+        NewsDTO newsDTO = newsInfoService.newsDetail(request.getParameter("newsCode"));
+        newsDTO.setNewsTitle(request.getParameter("newsTitle"));
+        newsDTO.setNewsContent(request.getParameter("newsContent"));
+        newsInfoService.updateNewsInfo(newsDTO);
+        mv.setViewName("redirect:/news/news");
+        rttr.addFlashAttribute("successMessage", messageSource.getMessage("updateNewsInfo", null, locale));
+
+        return mv;
+    }
+
+    @GetMapping("/newsDelete")
+    public ModelAndView deleteNewsInfo(ModelAndView mv, String newsCode){
+        newsInfoService.deleteNewsInfo(newsCode);
+        mv.setViewName("redirect:/news/news");
 
         return mv;
     }

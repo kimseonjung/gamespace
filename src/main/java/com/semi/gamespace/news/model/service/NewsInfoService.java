@@ -35,4 +35,18 @@ public class NewsInfoService {
     public NewsDTO newsDetail(String newsCode) {
         return newsInfoMapper.newsDetail(newsCode);
     }
+
+    public NewsDTO getNewsCode(String newscode) {
+        return newsInfoMapper.getNewsCode(newscode);
+    }
+
+    public int updateNewsInfo(NewsDTO newsInfo) {
+        int result = newsInfoMapper.updateNewsInfo(newsInfo);
+        return result;
+    }
+
+
+    public void deleteNewsInfo(String newsCode) {
+        newsInfoMapper.deleteNewsInfo(newsCode);
+    }
 }
