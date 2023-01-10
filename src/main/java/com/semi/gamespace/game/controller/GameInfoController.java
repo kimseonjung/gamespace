@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Locale;
 
@@ -32,9 +35,22 @@ public class GameInfoController {
 
 
     @GetMapping("/game")
-    public ModelAndView selectGameMainList(ModelAndView mv){
+    public ModelAndView selectGameMainList(ModelAndView mv, HttpServletRequest request, HttpServletResponse response){
+
+        response.setContentType("application/json; charset=UTF-8");
+
         List<GameInfoDTO> gameInfoList = gameInfoService.selectAllGameInfo();
         List<CategoryDTO> categoryList = gameInfoService.selectAllCategory();
+
+        Enumeration params = request.getParameterNames();
+        while(params.hasMoreElements()) {
+            String name = (String) params.nextElement();
+            System.out.print(name + " : " + request.getParameter(name) + "     ");
+        }
+        System.out.println();
+        System.out.println("1111111111111111111111111111111111111111111111111111111111111111111111111111111");
+        List<CategoryDTO> categoryList2 = gameInfoService.selectOneCategory(request.getParameter("categoryNameBtn"));
+
         List<TagDTO> tagList = gameInfoService.selectAllTag();
         List<DevicesDTO> devicesList = gameInfoService.selectAllDevices();
 
@@ -47,11 +63,13 @@ public class GameInfoController {
         mv.addObject("categoryList", categoryList);
         mv.addObject("tagList", tagList);
         mv.addObject("devicesList", devicesList);
+        mv.addObject("categoryList2", categoryList2);
         mv.setViewName("game/gameMain");
 
         return mv;
 
     }
+
 
     @GetMapping("/gameInfoDetail")
     public ModelAndView selectAllSystemList(ModelAndView mv){

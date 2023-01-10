@@ -29,6 +29,5 @@ public interface GameInfoMapper {
     List<DevicesDTO> selectAllDevices();
 
 
-
-
+    List<CategoryDTO> selectOneCategory(String categoryCode);
 }

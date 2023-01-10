@@ -89,6 +89,31 @@
         ORDER BY A.GAME_CODE
     </select>
 
+
+    <select id="selectOneCategory" resultMap="gameInfoResultMap">
+
+        SELECT
+            A.GAME_CODE
+             , A.GAME_NAME
+             , A.DEVICES_CODE
+             , A.CATEGORY_CODE
+             , A.TAG_CODE
+             , A.REGISTRATION_DATE
+             , A.LAUNCH_DATE
+             , A.DEVELOPER
+             , A.DISTRIBUTOR_CODE
+             , A.RATING_CODE
+             , A.PRICE
+             , A.PLATFORM_CODE
+             , A.LANGUAGE_CODE
+             , A.SPECIFICATION_CODE
+             , A.GAME_INTRO
+             , A.GAME_STATUS
+        FROM GAME_INFO A
+        WHERE A.CATEGORY_CODE = #{categoryCode}
+    </select>
+
+
     <select id="selectOneGameInfoName" resultMap="gameInfoResultMap">
         SELECT
             A.GAME_CODE

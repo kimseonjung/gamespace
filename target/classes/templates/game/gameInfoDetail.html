@@ -17,7 +17,7 @@
 
 <section>
 
-  <div th:each="mini : ${minimumSystemList}">
+  <div th:each="mini : ${minimumSystem}">
     <div th:text="${mini.minSystemCode}"></div>
     <div th:text="${mini.minOperatingSystem}"></div>
     <div th:text="${mini.minProcessor}"></div>
@@ -40,6 +40,24 @@
 
   </div>
 
+  <div th:each="game : ${gameInfoList}">
+    <!--            <div th:text="${game.gameCode}"></div>-->
+    <div th:text="${game.gameName}"></div>
+    <!--            <div th:text="${game.devicesCode}"></div>-->
+    <div th:text="${game.categoryCode}"></div>
+    <div th:text="${game.tagCode}"></div>
+    <!--            <div th:text="${game.registrationDate}"></div>-->
+    <!--            <div th:text="${game.launchDate}"></div>-->
+    <!--            <div th:text="${game.developer}"></div>-->
+    <!--            <div th:text="${game.distributorCode}"></div>-->
+    <!--            <div th:text="${game.ratingCode}"></div>-->
+    <!--            <div th:text="${game.price}"></div>-->
+    <!--            <div th:text="${game.platformCode}"></div>-->
+    <!--            <div th:text="${game.languageCode}"></div>-->
+    <!--            <div th:text="${game.specificationCode}"></div>-->
+    <div th:text="${game.gameIntro}"></div>
+    <!--            <div th:text="${game.gameStatus}"></div>-->
+  </div>
 </section>
 
 
