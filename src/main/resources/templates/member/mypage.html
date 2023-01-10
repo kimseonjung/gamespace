@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/member/mypage.css">
+  <link rel="stylesheet" href="/css/screenModeSwapper.css">
+  <title>gamespace - 마이페이지</title>
+</head>
+<body>
+<script src="/js/init.js"></script> <!-- 초기 세팅 -->
+
+<div>
+  <th:block th:replace="~{common/header :: header}"/>
+</div>
+<div class="member-main-bg">
+  <div class="mypage-main">
+    <div class="mypage-introduce">
+      <div class="user-profile">
+        <img src="/image/icon/mypage.svg">
+      </div>
+      <div class="user-introduce">
+        <p th:text="${member.userNickname}"></p>
+        <p th:text="${member.userIntroduce}"></p>
+      </div>
+    </div>
+    <div class="blank"></div>
+    <div class="mypage-social">
+      <div class="menu-title"><p>SOCIAL MEDIA</p></div>
+      <div class="social-content">
+        <div class="social-btn"><img src="/image/icon_light/twitter.svg"></div>
+        <div class="social-btn"><img src="/image/icon_light/insta.svg"></div>
+        <div class="social-btn"><img src="/image/icon_light/github.svg"></div>
+        <div class="social-btn"><img src="/image/icon_light/globe.svg"></div>
+        <div class="social-btn"><img src="/image/icon_light/globe.svg"></div>
+        <div class="social-btn"><img src="/image/icon_light/globe.svg"></div>
+      </div>
+    </div>
+    <!-- Profile 란은 타인에게 보이지 않게 설정 -->
+    <div class="mypage-content">
+      <div class="menu-title"><p>PROFILE</p></div>
+      <div class="profile-content">
+        <a href="#" class="menu-btn btn-response">
+          <div class="img-icon"><img src="/image/icon_light/box.svg"></div>
+          <p>회원정보수정</p>
+          <img src="/image/icon_light/angle-arrow.svg">
+        </a>
+        <a href="#" class="menu-btn btn-response">
+          <div class="img-icon"><img src="/image/icon_light/lock.svg"></div>
+          <p>비밀번호수정</p>
+          <img src="/image/icon_light/angle-arrow.svg">
+        </a>
+        <a href="#" class="menu-btn btn-response">
+          <div class="img-icon"><img src="/image/icon_light/plus.svg"></div>
+          <p>고객지원</p>
+          <img src="/image/icon_light/angle-arrow.svg">
+        </a>
+      </div>
+    </div>
+
+    <div class="mypage-content">
+      <div class="menu-title"><p>LINK</p></div>
+      <div class="profile-content">
+        <a href="javascript:void(0);" class="menu-btn btn-response">
+          <div class="img-icon"><img src="/image/icon_light/insta.svg"></div>
+          <p>test/link/1</p>
+          <img src="/image/icon_light/angle-arrow.svg">
+        </a>
+        <a href="#" class="menu-btn btn-response">
+          <div class="img-icon"><img src="/image/icon_light/twitter.svg"></div>
+          <p>test/link/2</p>
+          <img src="/image/icon_light/angle-arrow.svg">
+        </a>
+        <a href="#" class="menu-btn btn-response">
+          <div class="img-icon"><img src="/image/icon_light/github.svg"></div>
+          <p>test/link/3</p>
+          <img src="/image/icon_light/angle-arrow.svg">
+        </a>
+      </div>
+    </div>
+
+    <div class="mypage-content">
+      <div class="menu-title"><p>SITE</p></div>
+      <div class="profile-content">
+        <a href="#" class="menu-btn btn-response">
+          <div class="img-icon"><img src="/image/icon_light/globe.svg"></div>
+          <p>test/link/4</p>
+          <img src="/image/icon_light/angle-arrow.svg">
+        </a>
+        <a href="#" class="menu-btn btn-response">
+          <div class="img-icon"><img src="/image/icon_light/globe.svg"></div>
+          <p>test/link/5</p>
+          <img src="/image/icon_light/angle-arrow.svg">
+        </a>
+        <a href="#" class="menu-btn btn-response">
+          <div class="img-icon"><img src="/image/icon_light/globe.svg"></div>
+          <p>test/link/6</p>
+          <img src="/image/icon_light/angle-arrow.svg">
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div>
+  <th:block th:replace="~{common/footer :: footer}"/>
+</div>
+<script src="/js/screenModeResponse.js"></script>
+</body>
+</html>

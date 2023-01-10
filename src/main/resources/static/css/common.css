@@ -472,6 +472,18 @@ li a {
 }
 
 
+/* button */
+.btn-response{
+    opacity: 1;
+}
+.btn-response:hover{
+    opacity: 0.8;
+}
+.btn-response:active{
+    opacity: 1;
+}
+
+
 /* 푸터 ----------------------------------------------------------------------*/
 footer{
     position: relative;

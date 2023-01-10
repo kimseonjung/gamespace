@@ -14,7 +14,7 @@ public class ErrorHandler implements ErrorController {
     public String handleError(HttpServletRequest request) {
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
         if(status != null) {
-            int errorCode = Integer.valueOf(status.toString());
+            int errorCode = Integer.parseInt(status.toString());
             if(errorCode == HttpStatus.NOT_FOUND.value()) {
                 return "common/error/error404";
             }
