@@ -14,4 +14,12 @@ public interface FreeGalMapper {
 
     FreeGalDTO getBoard(String freeGalCode);
 
+    void uploadBoard(FreeGalDTO freeGalDTO);
+
+    int updateBoard(FreeGalDTO freeGalDTO);
+
+    void deleteBoard(String freeGalCode);
+
+
+
 }

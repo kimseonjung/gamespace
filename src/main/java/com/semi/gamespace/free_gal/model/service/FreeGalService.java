@@ -30,4 +30,19 @@ public class FreeGalService {
         return freeGalMapper.getBoard(freeGalCode);
     }
 
+    @Transactional
+    public void uploadBoard(FreeGalDTO freeGalDTO){
+        freeGalMapper.uploadBoard(freeGalDTO);
+    }
+
+    @Transactional
+    public int updateBoard(FreeGalDTO freeGalDTO) {
+        int result = freeGalMapper.updateBoard(freeGalDTO);
+
+        return result;
+    }
+
+    @Transactional
+    public void deleteBoard(String freeGalCode) { freeGalMapper.deleteBoard(freeGalCode); }
+
 }
