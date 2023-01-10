@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/news/news.css">
+
+    <title>newDetail</title>
+</head>
+<body>
+<div class="container">
+
+</div>
+
+
+<!-- 헤더 네비게이션바 -->
+<div id="news">
+    <th:block th:replace="~{common/header :: header}"/>
+</div>
+
+<!-- 작성창 -->
+    <section class="news-insert">
+
+        <!-- 뉴스제목 -->
+        <input type="text" name="newsTitle" id="title" placeholder="뉴스제목을 입력하세요." class="input-title" th:text="${detail.newsTitle}">
+
+        <div class="textarea-wrap">
+            <textarea placeholder="본문 내용입니다." class="textarea" id="textarea" name="newsContent" th:text="${detail.newsContent}"></textarea>
+        </div>
+
+    </section>
+<!-- 푸터 -->
+<div class="footer">
+    <th:block th:replace="~{common/footer :: footer}"/>
+</div>
+</body>
+</html>

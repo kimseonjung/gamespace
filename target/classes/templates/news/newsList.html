@@ -5,12 +5,14 @@
     <title>newsList</title>
 </head>
 <body>
-<a href="#" th:fragment="newsList">
-    <div class="news-list" th:each="news : ${newsList}">
-        <div class="news-head"><p th:text="${news.newsTitle}"></p></div>
-        <div class="news-body"><p th:text="${news.newsContent}"></p></div>
-        <div class="news-foot"><p th:text="|${news.newsDate} ${news.memberName} ${news.gameName}|"></p></div>
-    </div>
-</a>
+<div th:fragment="newsList" class="news">
+        <div class="news-list" th:each="news : ${newsList}">
+            <a th:href="@{/news/newsDetail(newsCode=${news.newsCode})}">
+            <div class="news-head"><p th:text="${news.newsTitle}"></p></div>
+            <div class="news-body"><p th:text="${news.newsContent}"></p></div>
+            <div class="news-foot"><p th:text="|${news.newsDate} ${news.memberName} ${news.gameName} ${news.newsView}|"></p></div>
+            </a>
+        </div>
+</div>
 </body>
 </html>

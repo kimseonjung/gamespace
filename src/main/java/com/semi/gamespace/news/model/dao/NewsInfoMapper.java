@@ -11,4 +11,5 @@ public interface NewsInfoMapper {
 
     int registNewsInfo(NewsDTO newsDto);
 
+    NewsDTO newsDetail(String newsCode);
 }

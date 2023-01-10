@@ -32,4 +32,7 @@ public class NewsInfoService {
         return result > 0 ? true: false;
     }
 
+    public NewsDTO newsDetail(String newsCode) {
+        return newsInfoMapper.newsDetail(newsCode);
+    }
 }
