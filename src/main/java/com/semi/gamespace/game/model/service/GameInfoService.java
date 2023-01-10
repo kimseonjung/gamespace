@@ -37,17 +37,39 @@ public class GameInfoService {
     }
 
 
-    public List<MinimumSystemDTO> selectAllMinimumSystem() {
+    public MinimumSystemDTO selectAllMinimumSystem() {
 
 
         return gameInfoMapper.selectAllMinimumSystem();
     }
 
-    public List<RecommendedSystemDTO> selectAllRecommendedSystem() {
+    public RecommendedSystemDTO selectAllRecommendedSystem() {
 
         return gameInfoMapper.selectAllRecommendedSystem();
 
     }
+
+    public List<CategoryDTO> selectAllCategory(){
+
+        return gameInfoMapper.selectAllCategory();
+
+    }
+
+    public List<TagDTO> selectAllTag(){
+
+        return gameInfoMapper.selectAllTag();
+    }
+
+    public List<DevicesDTO> selectAllDevices(){
+
+        return gameInfoMapper.selectAllDevices();
+
+    }
+
+
+
+
+
 
     public boolean registMinimumSystem(MinimumSystemDTO newMinimumSystem) throws Exception{
 
@@ -83,5 +105,11 @@ public class GameInfoService {
         }
         return result > 0 ? true: false;
 
+    }
+
+    public List<CategoryDTO> selectOneCategory(String categoryCode) {
+        System.out.println("1111111111111111111111111111111111111111111111111111111111111111111111111111111");
+        System.out.println(categoryCode);
+        return gameInfoMapper.selectOneCategory(categoryCode);
     }
 }

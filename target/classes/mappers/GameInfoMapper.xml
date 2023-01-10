@@ -44,6 +44,28 @@
     </resultMap>
 
 
+
+
+
+    <resultMap type="com.semi.gamespace.game.model.dto.CategoryDTO" id="categoryResultMap">
+        <id property="categoryCode" column="CATEGORY_CODE"/>
+        <result property="categoryName" column="CATEGORY_NAME"/>
+    </resultMap>
+
+
+    <resultMap type="com.semi.gamespace.game.model.dto.TagDTO" id="tagResultMap">
+        <id property="tagCode" column="TAG_CODE"/>
+        <result property="tagName" column="TAG_NAME"/>
+    </resultMap>
+
+
+    <resultMap type="com.semi.gamespace.game.model.dto.DevicesDTO" id="devicesResultMap">
+        <id property="devicesCode" column="DEVICES_CODE"/>
+        <result property="devicesName" column="DEVICES_NAME"/>
+    </resultMap>
+
+
+
     <select id="selectAllGameInfo" resultMap="gameInfoResultMap">
         SELECT
             A.GAME_CODE
@@ -66,6 +88,31 @@
         WHERE A.GAME_STATUS = 'Y'
         ORDER BY A.GAME_CODE
     </select>
+
+
+    <select id="selectOneCategory" resultMap="gameInfoResultMap">
+
+        SELECT
+            A.GAME_CODE
+             , A.GAME_NAME
+             , A.DEVICES_CODE
+             , A.CATEGORY_CODE
+             , A.TAG_CODE
+             , A.REGISTRATION_DATE
+             , A.LAUNCH_DATE
+             , A.DEVELOPER
+             , A.DISTRIBUTOR_CODE
+             , A.RATING_CODE
+             , A.PRICE
+             , A.PLATFORM_CODE
+             , A.LANGUAGE_CODE
+             , A.SPECIFICATION_CODE
+             , A.GAME_INTRO
+             , A.GAME_STATUS
+        FROM GAME_INFO A
+        WHERE A.CATEGORY_CODE = #{categoryCode}
+    </select>
+
 
     <select id="selectOneGameInfoName" resultMap="gameInfoResultMap">
         SELECT
@@ -91,10 +138,49 @@
 
     </select>
 
+
+    <select id="selectAllCategory" resultMap="categoryResultMap">
+        SELECT
+            A.CATEGORY_CODE
+            , A.CATEGORY_NAME
+        FROM CATEGORY A
+        ORDER BY A.CATEGORY_CODE
+
+    </select>
+
+
+    <select id="selectAllTag" resultMap="tagResultMap">
+        SELECT
+            A.TAG_CODE
+            , A.TAG_NAME
+        FROM TAG A
+        ORDER BY A.TAG_CODE
+
+    </select>
+
+
+    <select id="selectAllDevices" resultMap="devicesResultMap">
+        SELECT
+            A.DEVICES_CODE
+            , A.DEVICES_NAME
+        FROM DEVICES A
+        ORDER BY A.DEVICES_CODE
+
+    </select>
+
+
+
+
+
+
+
+
+
+
     <select id="selectAllMinimumSystem" resultMap="minimumSystemResultMap">
 
         SELECT
-            MIN_SYSTEM_CODE
+            A.MIN_SYSTEM_CODE
             , A.MIN_OPERATING_SYSTEM
             , A.MIN_PROCESSOR
             , A.MIN_MEMORY
@@ -107,7 +193,7 @@
     <select id="selectAllRecommendedSystem" resultMap="recommendedSystemResultMap">
 
         SELECT
-            REC_SYSTEM_CODE
+            A.REC_SYSTEM_CODE
             , A.REC_OPERATING_SYSTEM
             , A.REC_PROCESSOR
             , A.REC_MEMORY

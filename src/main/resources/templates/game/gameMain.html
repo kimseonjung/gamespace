@@ -32,14 +32,24 @@
 
 
     <section>
-        <div>기기
+        <form action="/game/game" method="post">
 
+            <div th:each="category : ${categoryList}">
+                <button th:value="${category.categoryCode}" type="submit" href="javascript:void(0);" name="categoryNameBtn" class="cate-btn"></button>
 
-        </div><br>
-        <div>카테고리</div><br>
-        <div>태그</div><br>
+            </div>
 
+<!--            <div th:each="tag : ${tagList}">-->
+<!--                <button th:text="${tag.tagName}"></button>-->
 
+<!--            </div>-->
+
+<!--            <div th:each="devices : ${devicesList}">-->
+<!--                <button th:text="${devices.devicesName}"></button>-->
+
+<!--            </div>-->
+
+        </form>
     </section>
 
 
@@ -48,23 +58,11 @@
 
     <section>
 
-        <div th:each="game : ${gameInfoList}">
-            <div th:text="${game.gameCode}"></div>
+        <div th:each="game : ${gameInfoList}" class="t-body">
             <div th:text="${game.gameName}"></div>
-            <div th:text="${game.devicesCode}"></div>
             <div th:text="${game.categoryCode}"></div>
             <div th:text="${game.tagCode}"></div>
-            <div th:text="${game.registrationDate}"></div>
-            <div th:text="${game.launchDate}"></div>
-            <div th:text="${game.developer}"></div>
-            <div th:text="${game.distributorCode}"></div>
-            <div th:text="${game.ratingCode}"></div>
-            <div th:text="${game.price}"></div>
-            <div th:text="${game.platformCode}"></div>
-            <div th:text="${game.languageCode}"></div>
-            <div th:text="${game.specificationCode}"></div>
             <div th:text="${game.gameIntro}"></div>
-            <div th:text="${game.gameStatus}"></div>
         </div>
 
 
@@ -82,6 +80,51 @@
 <div class="footer">
     <th:block th:replace="~{common/footer :: footer}"/>
 </div>
+
+<script>
+   // $('.cate-btn').click (function etest() {
+   //
+   //     const xhttp = new XMLHttpRequest();
+   //     xhttp.onreadystatechange = function () {
+   //         if (this.readyState == 4 && this.status == 200) {
+   //             document.getElementById("t-body").innerHTML = this.responseText;
+   //         }
+   //     };
+   //     xhttp.open("GET", document.getElementsByClassName('t-body')[0].innerHTML);
+   //     xhttp.send();
+   //
+   //      console.log(xhttp);
+   // })
+
+   function insertReplyFunc(){
+
+       // 댓글 등록시 필요한 정보들 생략
+       // data["name"]=value (json) 형식으로 정보 저장
+
+       $.ajax({
+           type : "post",
+           url : "reply",
+           data : JSON.stringify(data),
+           dataType: "json",
+           contentType:"application/json;charset=UTF-8",
+           async : false,
+           success : function(data) {
+
+               if (data.result == "ok") {
+                   // 리스트 업데이트하는 getList()를 실행시킨다.
+                   getList();
+               }
+
+           },
+           error : function(){
+               alert("통신실패");
+           }
+       });
+
+   }
+
+
+</script>
 
 </body>
 </th:block>
