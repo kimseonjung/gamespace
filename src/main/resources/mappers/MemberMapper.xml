@@ -58,7 +58,7 @@
                M.BAN_DATE,
                M.ADMIN_YN
         FROM MEMBER M
-        WHERE M.ADMIN_YN = 'N'
+        WHERE M.MEMBER_CODE IN BETWEEN ${} TO ${};
         ORDER BY M.MEMBER_CODE
     </select>
 

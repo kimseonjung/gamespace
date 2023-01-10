@@ -30,6 +30,7 @@ a {
     padding: 0 20px;
     margin: 0 auto;
     position: relative;
+    z-index: 9999;
 }
 input:hover{
     opacity: 0.8;
@@ -468,6 +469,18 @@ li a {
     flex: none;
     order: 0;
     flex-grow: 0;
+}
+
+
+/* button */
+.btn-response{
+    opacity: 1;
+}
+.btn-response:hover{
+    opacity: 0.8;
+}
+.btn-response:active{
+    opacity: 1;
 }
 
 

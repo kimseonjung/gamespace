@@ -9,44 +9,44 @@
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/member/common.css">
     <link rel="stylesheet" href="/css/member/regist.css">
-    <script src="/js/screenModeResponse.js"></script>
-    <script src="/js/member.js"></script>
+    <link rel="stylesheet" href="/css/screenModeSwapper.css">
     <title>gamespace - 로그인</title>
 </head>
 <body>
-<div class="member-main-bg light-bg-screen"></div>
+<script src="/js/init.js"></script> <!-- 초기 세팅 -->
+<div class="member-main-bg bg-screen"></div>
 <form id="registForm" action="/member/regist" method="post" onsubmit="return registCheck();">
-    <div class="regist-main light-bg-window">
+    <div class="regist-main bg-window">
         <div class="window-title">
             <a href="/member/login" class="btn-cross btn-response">
-                <div class="light-icon-cross"></div>
+                <div class="icon-cross"></div>
             </a>
             <div class="logo-gamespace">
-                <div class="light-icon-gamespace"></div>
+                <div class="icon-gamespace"></div>
             </div>
         </div>
         <div class="window-input">
             <div class="regist-body">
                 <div class="regist-input regist-step-1">
-                    <div class="input-placeholder light-placeholder input-required">
-                        <input class="input-text light-text" name="userId" type="text" placeholder="ID">
+                    <div class="input-placeholder input-required">
+                        <input class="input-text" name="userId" type="text" placeholder="ID">
                     </div>
-                    <div class="input-placeholder light-placeholder input-required">
-                        <input class="input-text light-text" name="userPwd" type="password" placeholder="Password">
+                    <div class="input-placeholder input-required">
+                        <input class="input-text" name="userPwd" type="password" placeholder="Password">
                     </div>
-                    <div class="input-placeholder light-placeholder input-required">
-                        <input class="input-text light-text" name="userPwd-check" type="password" placeholder="Password Check">
+                    <div class="input-placeholder input-required">
+                        <input class="input-text" name="userPwd-check" type="password" placeholder="Password Check">
                     </div>
                 </div>
                 <div class="regist-input regist-step-2">
-                    <div class="input-placeholder light-placeholder input-required">
-                        <input class="input-text light-text" name="userNickname" type="text" placeholder="Nickname">
+                    <div class="input-placeholder input-required">
+                        <input class="input-text" name="userNickname" type="text" placeholder="Nickname">
                     </div>
-                    <div class="input-placeholder light-placeholder input-required">
-                        <input class="input-text light-text" name="userName" type="text" placeholder="Name">
+                    <div class="input-placeholder input-required">
+                        <input class="input-text" name="userName" type="text" placeholder="Name">
                     </div>
-                    <div class="input-placeholder light-placeholder input-required">
-                        <input class="input-text light-text" name="userBirthday" type="text" placeholder="Birthday (yyyymmdd)">
+                    <div class="input-placeholder input-required">
+                        <input class="input-text" name="userBirthday" type="text" placeholder="Birthday (yyyymmdd)">
                     </div>
                     <div class="gender-area">
                         <label for="male">
@@ -62,34 +62,35 @@
                             <div class="btn-white-default gender-btn"><p>비공개</p></div>
                         </label>
                     </div>
-                    <div class="input-placeholder light-placeholder input-required">
-                        <input class="input-text light-text" name="userPhone" type="text" placeholder="Phone">
+                    <div class="input-placeholder input-required">
+                        <input class="input-text" name="userPhone" type="text" placeholder="Phone">
                     </div>
-                    <div class="input-placeholder light-placeholder input-required">
-                        <input class="input-text light-text" name="userEmail" type="text" placeholder="Email">
+                    <div class="input-placeholder input-required">
+                        <input class="input-text" name="userEmail" type="text" placeholder="Email">
                     </div>
                 </div>
                 <div class="regist-input regist-step-3">
                     <div class="regist-zipcode">
-                        <div class="input-placeholder light-placeholder modify-zipcode input-required">
-                            <input class="input-text light-text" name="regist-zipcode" type="text" placeholder="Zip code">
+                        <div class="input-placeholder modify-zipcode input-required">
+                            <input class="input-text" name="regist-zipcode" type="text" placeholder="Zip code">
                         </div>
                         <a href="#" class="zipcode-search-btn btn-response btn-white-default">
                             <p class="zipcode-search-text">&gt;</p>
                         </a>
                     </div>
-                    <div class="input-placeholder light-placeholder input-required">
-                        <input class="input-text light-text" name="regist-address1" type="text" placeholder="Address">
+                    <div class="input-placeholder input-required">
+                        <input class="input-text" name="regist-address1" type="text" placeholder="Address">
                     </div>
-                    <div class="input-placeholder light-placeholder input-required">
-                        <input class="input-text light-text" name="regist-address2" type="text" placeholder="Address detail">
+                    <div class="input-placeholder input-required">
+                        <input class="input-text" name="regist-address2" type="text" placeholder="Address detail">
                     </div>
-                    <div class="input-placeholder light-placeholder input-required">
-                        <input class="input-text light-text" name="userIntroduce" type="text" placeholder="About Me">
+                    <div class="input-placeholder input-required">
+                        <input class="input-text" name="userIntroduce" type="text" placeholder="About Me">
                     </div>
-                    <input class="address-sum" type="hidden" name="userAddress">
+<!--                    <input class="address-sum" type="hidden" name="userAddress">-->
                 </div>
                 <div class="regist-input regist-step-4">
+                    <div class="g-recaptcha" data-sitekey="6LeYBncjAAAAADP1POqLMPJRDjorv1H9gTpY4Dbt"></div>
 <!--                    <a href="#" class="btn-blue-default regist-btn btn-response">-->
 <!--                        <p class="regist-btn-text white-text">회원가입</p>-->
 <!--                    </a>-->
@@ -99,6 +100,15 @@
         </div>
     </div>
 </form>
-<div class="screen-mode-btn" onclick="switchScreenMode();"></div>
+<input class="screen-mode-btn" type="checkbox">
+
+<!-- APIs -->
+<!-- g-RECAPTCHA -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+        async defer>
+</script>
+<script src="/js/member.js"></script>
+<script src="/js/screenModeResponse.js"></script>
 </body>
 </html>

@@ -9,29 +9,30 @@
   <link rel="stylesheet" href="/css/reset.css">
   <link rel="stylesheet" href="/css/member/common.css">
   <link rel="stylesheet" href="/css/member/login.css">
-  <script src="/js/screenModeResponse.js"></script>
+  <link rel="stylesheet" href="/css/screenModeSwapper.css">
   <title>gamespace - 로그인</title>
 </head>
 <body>
-<div class="member-main-bg light-bg-screen"></div>
+<script src="/js/init.js"></script> <!-- 초기 세팅 -->
+<div class="member-main-bg bg-screen"></div>
 <form id="loginForm" action="/member/login" method="post">
-  <div class="login-main light-bg-window">
+  <div class="login-main bg-window">
     <div class="window-title">
       <a href="/" class="btn-cross btn-response">
-        <div class="light-icon-cross"></div>
+        <div class="icon-cross"></div>
       </a>
       <div class="logo-gamespace">
-        <div class="light-icon-gamespace"></div>
+        <div class="icon-gamespace"></div>
       </div>
     </div>
     <div class="window-input">
       <div class="login-body">
         <div class="login-input">
-          <div class="input-placeholder light-placeholder">
-            <input class="input-text light-text" name="userId" type="text" placeholder="ID">
+          <div class="input-placeholder">
+            <input class="input-text" name="userId" type="text" placeholder="ID">
           </div>
-          <div class="input-placeholder light-placeholder">
-            <input class="input-text light-text" name="password" type="password" placeholder="Password">
+          <div class="input-placeholder">
+            <input class="input-text" name="password" type="password" placeholder="Password">
           </div>
         </div>
         <div class="login-help">
@@ -59,6 +60,7 @@
     </div>
   </div>
 </form>
-<div class="screen-mode-btn" onclick="switchScreenMode();"></div>
+<input class="screen-mode-btn" type="checkbox">
+<script src="/js/screenModeResponse.js"></script>
 </body>
 </html>
