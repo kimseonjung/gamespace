@@ -20,6 +20,8 @@
     <!-- Popper JS-->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 
+
+
 </head>
 <body>
 
@@ -32,33 +34,43 @@
 
 
     <section>
-        <form action="/game/game" method="post">
+        <form action="/game/game"  method="post">
 
             <div th:each="category : ${categoryList}">
-                <button th:value="${category.categoryCode}" type="submit" href="javascript:void(0);" name="categoryNameBtn" class="cate-btn"></button>
+                <input th:text="${category.categoryName}" th:value="${category.categoryCode}" th:type="checkbox" name="categoryCode" th:class="cate-btn" >
 
             </div>
 
-<!--            <div th:each="tag : ${tagList}">-->
-<!--                <button th:text="${tag.tagName}"></button>-->
+            <div th:each="tag : ${tagList}">
+                <input th:text="${tag.tagName}" th:value="${tag.tagCode}" th:type="checkbox" name="tagNameBtn" th:class="cate-btn">
+            </div>
 
-<!--            </div>-->
 
-<!--            <div th:each="devices : ${devicesList}">-->
-<!--                <button th:text="${devices.devicesName}"></button>-->
+            <div th:each="devices : ${devicesList}">
+                <button th:text="${devices.devicesName}"></button>
 
-<!--            </div>-->
-
+            </div>
+            <input type="submit" th:id="gosubmit">
         </form>
+
+<!--            <div class="toggle" >-->
+<!--                <form th:action="@{game}" method="get">-->
+<!--                    <label for="pc"><input type="radio" name="category" id="pc" class="category" checked th:value="${devicesOne.devicesCode}"><div class="togg pc"><img src="/image/icon_dark/pc.svg" alt=""></div></label>-->
+<!--                </form>-->
+<!--                <form th:action="@{game}" method="get">-->
+<!--                    <label for="mobile"><input type="radio" name="category" id="mobile" class="category" th:value="${devicesOne.devicesCode}"><div class="togg mobile"><img src="/image/icon_dark/mobile.svg" alt=""></div></label>-->
+<!--                </form>-->
+<!--                <form th:action="@{game}" method="get">-->
+<!--                    <label for="console"><input type="radio" name="category" id="console" class="category" th:value="${devicesOne.devicesCode}"><div class="togg console"><img src="/image/icon_dark/console.svg" alt=""></div></label>-->
+<!--                </form>-->
+<!--            </div>-->
+
     </section>
-
-
-
 
 
     <section>
 
-        <div th:each="game : ${gameInfoList}" class="t-body">
+        <div th:each="game : ${gameInfoList}"> <!--th:class="t-body"-->
             <div th:text="${game.gameName}"></div>
             <div th:text="${game.categoryCode}"></div>
             <div th:text="${game.tagCode}"></div>
@@ -82,19 +94,119 @@
 </div>
 
 <script>
-   $('.cate-btn').click (function etest() {
+   // $('.cate-btn').click (function etest() {
+   //
+   //     const xhttp = new XMLHttpRequest();
+   //     xhttp.onreadystatechange = function () {
+   //         if (this.readyState == 4 && this.status == 200) {
+   //             document.getElementById("t-body").innerHTML = this.responseText;
+   //         }
+   //     };
+   //     xhttp.open("GET", document.getElementsByClassName('t-body')[0].innerHTML);
+   //     xhttp.send();
+   //
+   //      console.log(xhttp);
+   // })
 
-       const xhttp = new XMLHttpRequest();
-       xhttp.onreadystatechange = function () {
-           if (this.readyState == 4 && this.status == 200) {
-               document.getElementById("t-body").innerHTML = this.responseText;
+   // function insertReplyFunc(){
+   //
+   //     // 댓글 등록시 필요한 정보들 생략
+   //     // data["name"]=value (json) 형식으로 정보 저장
+   //
+   //     $.ajax({
+   //         type : "post",
+   //         url : "reply",
+   //         data : JSON.stringify(data),
+   //         dataType: "json",
+   //         contentType:"application/json;charset=UTF-8",
+   //         async : false,
+   //         success : function(data) {
+   //
+   //             if (data.result == "ok") {
+   //                 // 리스트 업데이트하는 getList()를 실행시킨다.
+   //                 getList();
+   //             }
+   //
+   //         },
+   //         error : function(){
+   //             alert("통신실패");
+   //         }
+   //     });
+   //
+   // }
+
+
+
+
+
+
+
+
+   // $.ajax({
+   //     type : 'get',           // 타입 (get, post, put 등등)
+   //     url : '/game/game',           // 요청할 서버url
+   //     async : true,            // 비동기화 여부 (default : true)
+   //     headers : {              // Http header
+   //         "Content-Type" : "application/json",
+   //         "X-HTTP-Method-Override" : "POST"
+   //     },
+   //     dataType : 'text',       // 데이터 타입 (html, xml, json, text 등등)
+   //     data : JSON.stringify({  // 보낼 데이터 (Object , String, Array)
+   //         "no" : no,
+   //         "name" : name,
+   //         "nick" : nick
+   //     }),
+   //     success : function(result) { // 결과 성공 콜백함수
+   //         console.log(result);
+   //     },
+   //     error : function(request, status, error) { // 결과 에러 콜백함수
+   //         console.log(error)
+   //     }
+   // })
+
+   $(document).ready(function (){
+       $("#gosubmit").click(searchGameMainList);
+   });
+   function searchGameMainList() {
+       console.log('test');
+       jQuery.ajaxSettings.traditional = true;
+       $.ajax({
+           url: "game",             // 요청할 서버url
+           type : "post", // 타입은 뭘 쓸거니?
+           datatype : "json",
+
+           // data : JSON.stringify({  // 보낼 데이터 (Object , String, Array)
+           //
+           // }),
+
+           success: function(data, status, xhr) {    // 결과 성공 콜백함수
+                console.log(data)
+
+           },
+           error: function(xhr, status, error) {   // 결과 에러 콜백함수
+               console.log(error);
            }
-       };
-       xhttp.open("GET", document.getElementsByClassName('t-body')[0].innerHTML);
-       xhttp.send();
+       });
+   };
 
-        console.log(xhttp);
-   })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
 
 </body>
