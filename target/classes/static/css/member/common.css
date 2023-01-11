@@ -95,6 +95,31 @@
 .black-text{
     color: #22242C;
 }
+.disabled-placeholder{
+    background-color: #BBBBBB;
+}
+.disabled-text{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 4px 0px;
+
+    width: 288px;
+    height: 20px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 20px;
+
+    letter-spacing: -0.009em;
+
+    border: 0px;
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+}
 
 
 .btn-blue-default{

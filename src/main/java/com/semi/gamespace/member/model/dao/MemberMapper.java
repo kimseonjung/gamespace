@@ -8,7 +8,8 @@ import java.util.List;
 @Mapper
 public interface MemberMapper {
     MemberDTO findMemberById(String userId);
-    List<MemberDTO> selectAllMember();
+    int countFollowFromByCode(String userCode);
+    int countFollowToByCode(String userCode);
     int registMember(MemberDTO member);
-
+    int updateMember(MemberDTO member);
 }

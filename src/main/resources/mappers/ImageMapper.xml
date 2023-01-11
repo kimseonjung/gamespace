@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.semi.gamespace.common.model.dao.ImageDAO">
+    <resultMap id="imageResultMap" type="com.semi.gamespace.common.model.dto.ImageDTO">
+        <id property="attachCode" column="ATTACHED_NO"/>
+        <result property="refCode" column="REF_CODE"/>
+        <result property="originName" column="ORIGINAL_NAME"/>
+        <result property="saveName" column="SAVED_NAME"/>
+        <result property="savePath" column="SAVE_PATH"/>
+        <result property="fileType" column="FILE_TYPE"/>
+        <result property="thumbnailPath" column="THUMBNAIL_PATH"/>
+        <result property="attachStatus" column="ATTACHED_STATUS"/>
+    </resultMap>
+
+    <select id="countIfProfileIsExist" resultType="_int" parameterType="string">
+        SELECT COUNT(*)
+          FROM ATT_FILE A
+         WHERE A.REF_CODE = #{ member_code }
+    </select>
+
+    <select id="selectProfileByCode" resultMap="imageResultMap" parameterType="string">
+        SELECT A.ATTACHED_NO
+             , A.REF_CODE
+             , A.ORIGINAL_NAME
+             , A.SAVED_NAME
+             , A.SAVE_PATH
+             , A.FILE_TYPE
+             , A.THUMBNAIL_PATH
+             , A.ATTACHED_STATUS
+          FROM ATT_FILE A
+         WHERE A.REF_CODE = #{ member_code }
+    </select>
+
+    <insert id="insertAttachImage" parameterType="com.semi.gamespace.common.model.dto.ImageDTO">
+        INSERT
+          INTO ATT_FILE A
+            (
+              A.ATTACHMENT_NO
+            , A.REF_BOARD_NO
+            , A.ORIGINAL_NAME
+            , A.SAVED_NAME
+            , A.SAVE_PATH
+            , A.FILE_TYPE
+            , A.THUMBNAIL_PATH
+            , A.ATTACHED_STATUS
+            )
+        VALUES
+            (
+              'ATT_'||ATT_NO_SEQ.NEXTVAL
+            , #{ refCode }
+            , #{ originName }
+            , #{ saveName }
+            , #{ savePath }
+            , #{ fileType }
+            , #{ thumbnailPath }
+            , 'Y'
+            )
+    </insert>
+</mapper>

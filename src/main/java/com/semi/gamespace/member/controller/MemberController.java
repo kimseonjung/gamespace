@@ -1,5 +1,8 @@
 package com.semi.gamespace.member.controller;
 
+import com.semi.gamespace.common.model.dto.ImageDTO;
+import com.semi.gamespace.common.model.service.ImageService;
+import com.semi.gamespace.member.model.dto.FollowDTO;
 import com.semi.gamespace.member.model.dto.MemberDTO;
 import com.semi.gamespace.member.model.service.MemberService;
 import org.json.simple.JSONObject;
@@ -18,15 +21,18 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 @RequestMapping("/member")
 public class MemberController {
     private final MemberService memberService;
+    private final ImageService imageService;
 
     @Autowired
-    public MemberController(MemberService memberService) {
+    public MemberController(MemberService memberService, ImageService imageService) {
         this.memberService = memberService;
+        this.imageService = imageService;
     }
 
     @GetMapping("/login")
@@ -44,20 +50,54 @@ public class MemberController {
     @GetMapping("/insert/failure")
     public void memberRegistFailure() {}
 
-    @GetMapping("/mypage")
+    @GetMapping("/userSetting")
     public Model memberProfilePage(Model model, Principal principal) {
-
         MemberDTO member = memberService.findMemberById(principal.getName());
+        int followFrom = memberService.countFollowFromByCode(member.getMemberCode());
+        int followTo = memberService.countFollowToByCode(member.getMemberCode());
+
+        ImageDTO image = imageService.selectProfileByCode(member.getMemberCode());
+
+        model.addAttribute("image", image);
         model.addAttribute("member", member);
+        model.addAttribute("followFrom", followFrom);
+        model.addAttribute("followTo", followTo);
         return model;
     }
 
+    @GetMapping("/update/info")
+    public Model memberInfoUpdatePart1(Model model, Principal principal) {
+        MemberDTO member = memberService.findMemberById(principal.getName());
+        ImageDTO image = imageService.selectProfileByCode(member.getMemberCode());
+
+        String[] addressData = member.getUserAddress().split("\\^");
+        model.addAttribute("member", member);
+        model.addAttribute("image", image);
+        for(int i = 0; i < 3; i++) {
+            System.out.println(addressData[i]);
+            model.addAttribute("address"+i, addressData[i]);
+        }
+        return model;
+    }
+
+    @PostMapping("/update/info")
+    public String memberInfoUpdatePart1Submit(HttpServletRequest request, MemberDTO updateMember) {
+        String newAddress = request.getParameter("update-zipcode") +
+                "^" + request.getParameter("update-address1") +
+                "^" + request.getParameter("update-address2");
+        updateMember.setUserAddress(newAddress);
+
+        if(memberService.updateMember(updateMember)) {
+            return "redirect:/member/userSetting";
+        }
+        return "redirect:/member/update/info";
+    }
     @PostMapping ("/regist")
     public String registMember(HttpServletRequest request, MemberDTO newMember) throws Exception {
         //우편번호, 주소, 상세주소 합치는 과정
         String newAddress = request.getParameter("regist-zipcode") +
-                "&" + request.getParameter("regist-address1") +
-                "&" + request.getParameter("regist-address2");
+                "^" + request.getParameter("regist-address1") +
+                "^" + request.getParameter("regist-address2");
         newMember.setUserAddress(newAddress);
 
         //reCAPTCHA

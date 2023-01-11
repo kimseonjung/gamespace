@@ -5,3 +5,16 @@ function registCheck() {
     }
     return true;
 }
+
+function infoCheck() {
+    return true;
+}
+
+function loadProfile(value) {
+    if(value.files && value.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function (event) {
+            document.getElementsByClassName("profile-image")
+        }
+    }
+}

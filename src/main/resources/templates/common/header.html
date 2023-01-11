@@ -50,7 +50,8 @@
             <a href="/member/mypage" class="mypage dropdown"><img src="/image/icon/mypage.svg" alt="mypage"></a>
             <div class="dropdown-content dropdown-reverse">
               <p th:text="${@authenticationConfig.getAuthenticationUser().getUserNickname()}">userNickname</p>
-              <a href="/member/mypage">My Page</a>
+              <a href="/image/insert">My Page</a>
+              <a href="/member/userSetting">Setting</a>
               <a href="/member/logout">Logout</a>
             </div>
           </th:block>

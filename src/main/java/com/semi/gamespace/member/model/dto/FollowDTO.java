@@ -4,14 +4,14 @@ import java.sql.Date;
 
 public class FollowDTO {
     private String followCode;
-    private int followReq;
-    private int followTar;
+    private String followReq;
+    private String followTar;
     private Date followDate;
 
     public FollowDTO() {
     }
 
-    public FollowDTO(String followCode, int followReq, int followTar, Date followDate) {
+    public FollowDTO(String followCode, String followReq, String followTar, Date followDate) {
         this.followCode = followCode;
         this.followReq = followReq;
         this.followTar = followTar;
@@ -21,10 +21,10 @@ public class FollowDTO {
     public String getFollowCode() {
         return followCode;
     }
-    public int getFollowReq() {
+    public String getFollowReq() {
         return followReq;
     }
-    public int getFollowTar() {
+    public String getFollowTar() {
         return followTar;
     }
     public Date getFollowDate() {
@@ -34,10 +34,10 @@ public class FollowDTO {
     public void setFollowCode(String followCode) {
         this.followCode = followCode;
     }
-    public void setFollowReq(int followReq) {
+    public void setFollowReq(String followReq) {
         this.followReq = followReq;
     }
-    public void setFollowTar(int followTar) {
+    public void setFollowTar(String followTar) {
         this.followTar = followTar;
     }
     public void setFollowDate(Date followDate) {

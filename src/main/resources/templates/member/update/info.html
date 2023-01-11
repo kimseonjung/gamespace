@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/member/common.css">
+  <link rel="stylesheet" href="/css/member/update.css">
+  <link rel="stylesheet" href="/css/screenModeSwapper.css">
+  <title>gamespace</title>
+</head>
+<body>
+<script src="/js/init.js"></script> <!-- 초기 세팅 -->
+<div class="member-main-bg bg-screen"></div>
+<form id="updateForm" action="/member/update/info" method="post" onsubmit="return infoCheck();">
+  <div class="update-main bg-window">
+    <div class="window-title">
+      <a href="/member/userSetting" class="btn-cross btn-response">
+        <div class="icon-cross"></div>
+      </a>
+      <div class="logo-member">
+        <img th:src="${image.savePath}+${image.saveName}">
+        <input type="file" class="icon-plus" name="changedImage" onchange="loadProfile(this)">
+      </div>
+    </div>
+    <div class="window-input">
+      <div class="update-body">
+        <div class="update-input update-step-1">
+          <div class="input-placeholder disabled-placeholder input-required">
+            <input class="disabled-text disabled-placeholder" name="userIdDisabled" type="text" th:value="${member.userId}" placeholder="ID" disabled>
+            <input type="hidden" name="userId" th:value="${member.userId}">
+          </div>
+          <div class="input-placeholder input-required">
+            <input class="input-text" name="userNickname" type="text" th:value="${member.userNickname}" placeholder="Nickname">
+          </div>
+          <div class="input-placeholder input-required">
+            <input class="input-text" name="userName" type="text" th:value="${member.userName}" placeholder="Name">
+          </div>
+          <div class="input-placeholder input-required">
+            <input class="input-text" name="userBirthday" type="text" th:value="${member.userBirthday}" placeholder="Birthday (yyyymmdd)">
+          </div>
+          <div class="gender-area">
+            <label for="male">
+              <input type="radio" name="userGender" value="M" id="male" class="btn-response" checked>
+              <div class="btn-white-default gender-btn"><p>남</p></div>
+            </label>
+            <label for="female">
+              <input type="radio" name="userGender" value="F" id="female" class="btn-response">
+              <div class="btn-white-default gender-btn"><p>여</p></div>
+            </label>
+            <label for="unknown">
+              <input type="radio" name="userGender" value="U" id="unknown" class="btn-response">
+              <div class="btn-white-default gender-btn"><p>비공개</p></div>
+            </label>
+          </div>
+          <div class="input-placeholder input-required">
+            <input class="input-text" name="userPhone" type="text" th:value="${member.userPhone}" placeholder="Phone">
+          </div>
+          <div class="input-placeholder input-required">
+            <input class="input-text" name="userEmail" type="text" th:value="${member.userEmail}" placeholder="Email">
+          </div>
+        </div>
+        <div class="update-input update-step-2">
+          <div class="update-zipcode">
+            <div class="input-placeholder modify-zipcode input-required">
+              <input class="input-text" name="update-zipcode" type="text" th:value="${address0}" placeholder="Zip code">
+            </div>
+            <a href="#" class="zipcode-search-btn btn-response btn-white-default">
+              <p class="zipcode-search-text">&gt;</p>
+            </a>
+          </div>
+          <div class="input-placeholder input-required">
+            <input class="input-text" name="update-address1" type="text" th:value="${address1}" placeholder="Address">
+          </div>
+          <div class="input-placeholder input-required">
+            <input class="input-text" name="update-address2" type="text" th:value="${address2}" placeholder="Address detail">
+          </div>
+          <div class="input-placeholder input-required">
+            <input class="input-text" name="userIntroduce" type="text" th:value="${member.userIntroduce}" placeholder="About Me">
+          </div>
+        </div>
+        <div class="update-input update-step-3">
+          <input type="submit" value="수정" class="btn-blue-default update-btn btn-response update-btn-text white-text">
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<input class="screen-mode-btn" type="checkbox">
+
+<!-- APIs -->
+<script src="/js/member.js"></script>
+<script src="/js/screenModeResponse.js"></script>
+</body>
+</html>
