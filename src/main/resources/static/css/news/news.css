@@ -277,7 +277,7 @@
     margin: auto;
     margin-top: 18px;
     width: 708px;
-    height: 1134px;
+    min-height: 1134px;
 
 
     /* Light/Nav BG */
@@ -641,3 +641,118 @@
     font-weight: bold;
     color: rgba(77, 62, 255, 0.9);
 }
+
+/* 뉴스 디테일 ------------------------------------------------------------------------------------------------------*/
+.detail-title {
+    border: none;
+}
+.detail-title h2{
+    /* 15/15 - Med */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 20px;
+    /* identical to box height, or 133% */
+
+    letter-spacing: -0.009em;
+
+    /* Light/Primary Text */
+
+    color: #22242C;
+
+}
+.detail-sub{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px;
+    gap: 4px;
+
+    width: 676px;
+    height: 36px;
+
+    /* Basic / White */
+
+    background: #FFFFFF;
+    border-radius: 24px;
+
+    /* Inside auto layout */
+
+
+}
+.detail-sub p {
+    /* 15/15 - Med */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 20px;
+    /* identical to box height, or 133% */
+
+    letter-spacing: -0.009em;
+
+    /* Light/Light Gray */
+
+    color: rgba(74, 87, 111, 0.7);
+}
+.detail-sub .detail-sub-left{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 20px;
+}
+.detail-sub .detail-sub-right{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 4px;
+}
+
+
+
+.detail-body{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 4px;
+
+    width: 676px;
+    min-height: 980px;
+
+    /* Basic / White */
+
+    background: #FFFFFF;
+    border-radius: 24px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+}
+.detail-body p{
+    /* 15/15 - Med */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 20px;
+    /* or 133% */
+
+    letter-spacing: -0.009em;
+
+    /* Light/Primary Text */
+
+    color: #22242C;
+
+}
+

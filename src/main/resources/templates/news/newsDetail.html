@@ -17,13 +17,18 @@
 
 <!-- 작성창 -->
 
-    <section class="news-insert active">
+    <section class="news-insert">
 
         <!-- 뉴스제목 -->
-        <input type="text" name="newsTitle" id="title" placeholder="뉴스제목을 입력하세요." class="input-title" readonly = "readonly" th:value="${detail.newsTitle}">
+        <div class="input-title detail-title"><h2 th:text="${detail.newsTitle}"></h2> </div>
+        <div class="detail-sub">
+            <div class="detail-sub-left"><p th:text="|${detail.memberName} ${detail.newsDate} ${detail.gameName}|"></p></div>
+            <div class="detail-sub-right"><p>조회수</p> <p th:text="${detail.newsView}" ></p></div>
+        </div>
 
-        <div class="textarea-wrap active">
-            <textarea placeholder="본문 내용입니다." class="textarea" id="textarea" name="newsContent"readonly = "readonly" th:text="${detail.newsContent}" ></textarea>
+        <div class="textarea-wrap">
+            <div placeholder="본문 내용입니다." class="detail-body"><p th:text="${detail.newsContent}" ></p></div>
+            <div class="detail-com"></div>
         </div>
 
         <!-- 삭제하기 버튼 -->

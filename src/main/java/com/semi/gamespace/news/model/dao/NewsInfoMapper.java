@@ -4,6 +4,7 @@ import com.semi.gamespace.news.model.dto.NewsDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface NewsInfoMapper {
@@ -19,4 +20,6 @@ public interface NewsInfoMapper {
 
 
     void deleteNewsInfo(String newsCode);
+
+    Map<String,Object> selectAllgameCodeNews();
 }
