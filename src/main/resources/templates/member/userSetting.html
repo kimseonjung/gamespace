@@ -18,34 +18,17 @@
 <div>
   <th:block th:replace="~{common/header :: header}"/>
 </div>
-<div class="member-main-bg">
+<div>
+  <th:block th:replace="~{member/profile :: profile}"/>
+</div>
+
+<div class="mypage-container">
   <div class="mypage-main">
-    <div class="mypage-introduce">
-      <div class="user-profile">
-        <img src="/image/icon/mypage.svg">
-      </div>
-      <div class="user-introduce">
-        <p th:text="${member.userNickname}"></p>
-        <p th:text="${member.userIntroduce}"></p>
-      </div>
-    </div>
-    <div class="blank"></div>
-    <div class="mypage-social">
-      <div class="menu-title"><p>SOCIAL MEDIA</p></div>
-      <div class="social-content">
-        <div class="social-btn"><img src="/image/icon_light/twitter.svg"></div>
-        <div class="social-btn"><img src="/image/icon_light/insta.svg"></div>
-        <div class="social-btn"><img src="/image/icon_light/github.svg"></div>
-        <div class="social-btn"><img src="/image/icon_light/globe.svg"></div>
-        <div class="social-btn"><img src="/image/icon_light/globe.svg"></div>
-        <div class="social-btn"><img src="/image/icon_light/globe.svg"></div>
-      </div>
-    </div>
     <!-- Profile 란은 타인에게 보이지 않게 설정 -->
     <div class="mypage-content">
       <div class="menu-title"><p>PROFILE</p></div>
       <div class="profile-content">
-        <a href="#" class="menu-btn btn-response">
+        <a href="/member/update/info" class="menu-btn btn-response">
           <div class="img-icon"><img src="/image/icon_light/box.svg"></div>
           <p>회원정보수정</p>
           <img src="/image/icon_light/angle-arrow.svg">
@@ -66,19 +49,19 @@
     <div class="mypage-content">
       <div class="menu-title"><p>LINK</p></div>
       <div class="profile-content">
-        <a href="javascript:void(0);" class="menu-btn btn-response">
+        <a th:href="${member.userSiteLink1}" class="menu-btn btn-response">
           <div class="img-icon"><img src="/image/icon_light/insta.svg"></div>
-          <p>test/link/1</p>
+          <p class="text-link" th:text="${member.userSiteLink1}"></p>
           <img src="/image/icon_light/angle-arrow.svg">
         </a>
-        <a href="#" class="menu-btn btn-response">
+        <a th:href="${member.userSiteLink2}" class="menu-btn btn-response">
           <div class="img-icon"><img src="/image/icon_light/twitter.svg"></div>
-          <p>test/link/2</p>
+          <p class="text-link" th:text="${member.userSiteLink2}"></p>
           <img src="/image/icon_light/angle-arrow.svg">
         </a>
-        <a href="#" class="menu-btn btn-response">
+        <a th:href="${member.userSiteLink3}" class="menu-btn btn-response">
           <div class="img-icon"><img src="/image/icon_light/github.svg"></div>
-          <p>test/link/3</p>
+          <p class="text-link" th:text="${member.userSiteLink3}"></p>
           <img src="/image/icon_light/angle-arrow.svg">
         </a>
       </div>
@@ -87,19 +70,19 @@
     <div class="mypage-content">
       <div class="menu-title"><p>SITE</p></div>
       <div class="profile-content">
-        <a href="#" class="menu-btn btn-response">
+        <a th:href="${member.userSiteLink4}" class="menu-btn btn-response">
           <div class="img-icon"><img src="/image/icon_light/globe.svg"></div>
-          <p>test/link/4</p>
+          <p class="text-link" th:text="${member.userSiteLink4}"></p>
           <img src="/image/icon_light/angle-arrow.svg">
         </a>
-        <a href="#" class="menu-btn btn-response">
+        <a th:href="${member.userSiteLink5}" class="menu-btn btn-response">
           <div class="img-icon"><img src="/image/icon_light/globe.svg"></div>
-          <p>test/link/5</p>
+          <p class="text-link" th:text="${member.userSiteLink5}"></p>
           <img src="/image/icon_light/angle-arrow.svg">
         </a>
-        <a href="#" class="menu-btn btn-response">
+        <a th:href="${member.userSiteLink6}" class="menu-btn btn-response">
           <div class="img-icon"><img src="/image/icon_light/globe.svg"></div>
-          <p>test/link/6</p>
+          <p class="text-link" th:text="${member.userSiteLink6}"></p>
           <img src="/image/icon_light/angle-arrow.svg">
         </a>
       </div>

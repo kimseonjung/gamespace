@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div th:fragment="profile">
+  <div class="mypage-container">
+    <div class="mypage-main">
+      <div class="mypage-introduce">
+        <div class="user-profile">
+          <img th:src="${image.savePath}+${image.saveName}">
+        </div>
+        <div class="user-introduce">
+          <p class="text-name" th:text="${member.userNickname}"></p>
+          <p th:text="${member.userIntroduce}"></p>
+        </div>
+      </div>
+      <div class="mypage-follow">
+        <a href="#" class="follow-btn btn-response">
+          <p class="text-follow">팔로워</p>
+          <p class="text-follow" th:text="${followFrom}"></p>
+        </a>
+        <a href="#" class="follow-btn btn-response">
+          <p class="text-follow">팔로잉</p>
+          <p class="text-follow" th:text="${followTo}"></p>
+        </a>
+        <a href="#" class="follow-btn following btn-response">
+          <p class="text-follow text-following">♥</p>
+        </a>
+      </div>
+      <div class="mypage-social">
+        <div class="menu-title"><p>SOCIAL MEDIA</p></div>
+        <div class="social-content">
+          <a th:href="${member.userSiteLink1}" class="social-btn btn-response"><img src="/image/icon_light/twitter.svg"></a>
+          <a th:href="${member.userSiteLink2}" class="social-btn btn-response"><img src="/image/icon_light/insta.svg"></a>
+          <a th:href="${member.userSiteLink3}" class="social-btn btn-response"><img src="/image/icon_light/github.svg"></a>
+          <a th:href="${member.userSiteLink4}" class="social-btn btn-response"><img src="/image/icon_light/globe.svg"></a>
+          <a th:href="${member.userSiteLink5}" class="social-btn btn-response"><img src="/image/icon_light/globe.svg"></a>
+          <a th:href="${member.userSiteLink6}" class="social-btn btn-response"><img src="/image/icon_light/globe.svg"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

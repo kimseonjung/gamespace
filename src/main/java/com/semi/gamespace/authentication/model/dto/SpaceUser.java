@@ -19,6 +19,12 @@ public class SpaceUser extends User {
     private String userGender;
     private String userAddress;
     private String userIntroduce;
+    private String userSiteLink1;
+    private String userSiteLink2;
+    private String userSiteLink3;
+    private String userSiteLink4;
+    private String userSiteLink5;
+    private String userSiteLink6;
     private Date enrollDate;
     private String memberStatus;
     private Date banDate;
@@ -41,6 +47,12 @@ public class SpaceUser extends User {
         this.userGender = member.getUserGender();
         this.userAddress = member.getUserAddress();
         this.userIntroduce = member.getUserIntroduce();
+        this.userSiteLink1 = userSiteLink1;
+        this.userSiteLink2 = userSiteLink2;
+        this.userSiteLink3 = userSiteLink3;
+        this.userSiteLink4 = userSiteLink4;
+        this.userSiteLink5 = userSiteLink5;
+        this.userSiteLink6 = userSiteLink6;
         this.enrollDate = member.getEnrollDate();
         this.memberStatus = member.getMemberStatus();
         this.banDate = member.getBanDate();
@@ -79,6 +91,24 @@ public class SpaceUser extends User {
     }
     public String getUserIntroduce() {
         return userIntroduce;
+    }
+    public String getUserSiteLink1() {
+        return userSiteLink1;
+    }
+    public String getUserSiteLink2() {
+        return userSiteLink2;
+    }
+    public String getUserSiteLink3() {
+        return userSiteLink3;
+    }
+    public String getUserSiteLink4() {
+        return userSiteLink4;
+    }
+    public String getUserSiteLink5() {
+        return userSiteLink5;
+    }
+    public String getUserSiteLink6() {
+        return userSiteLink6;
     }
     public Date getEnrollDate() {
         return enrollDate;
@@ -125,6 +155,24 @@ public class SpaceUser extends User {
     }
     public void setUserIntroduce(String userIntroduce) {
         this.userIntroduce = userIntroduce;
+    }
+    public void setUserSiteLink1(String userSiteLink1) {
+        this.userSiteLink1 = userSiteLink1;
+    }
+    public void setUserSiteLink2(String userSiteLink2) {
+        this.userSiteLink2 = userSiteLink2;
+    }
+    public void setUserSiteLink3(String userSiteLink3) {
+        this.userSiteLink3 = userSiteLink3;
+    }
+    public void setUserSiteLink4(String userSiteLink4) {
+        this.userSiteLink4 = userSiteLink4;
+    }
+    public void setUserSiteLink5(String userSiteLink5) {
+        this.userSiteLink5 = userSiteLink5;
+    }
+    public void setUserSiteLink6(String userSiteLink6) {
+        this.userSiteLink6 = userSiteLink6;
     }
     public void setEnrollDate(Date enrollDate) {
         this.enrollDate = enrollDate;

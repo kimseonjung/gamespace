@@ -2,9 +2,7 @@ package com.semi.gamespace.config;
 
 import com.semi.gamespace.authentication.model.dto.SpaceUser;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
