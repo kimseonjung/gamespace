@@ -9,6 +9,7 @@
         <result property="freeGalDate" column="FREE_GAL_DATE"/>
         <result property="freeGalContent" column="FREE_GAL_CONTENT"/>
         <result property="memberCode" column="MEMBER_CODE"/>
+        <result property="memberNickname" column="MEMBER_NICKNAME"/>
         <result property="freeGalNotice" column="FREE_GAL_NOTICE"/>
     </resultMap>
 
@@ -20,16 +21,42 @@
             F.FREE_GAL_DATE,
             F.FREE_GAL_CONTENT,
             F.MEMBER_CODE,
-            F.FREE_GAL_NOTICE
+            F.FREE_GAL_NOTICE,
+            B.MEMBER_NICKNAME
         FROM FREE_GAL F
+        JOIN MEMBER B ON (F.MEMBER_CODE = B.MEMBER_CODE)
+        WHERE FREE_GAL_NOTICE = 'N'
     </select>
+
+    <select id="getListNotice" resultMap="freeGalResultMap">
+        SELECT
+            F.FREE_GAL_CODE,
+            F.FREE_GAL_TITLE,
+            F.FREE_GAL_VIEW,
+            F.FREE_GAL_DATE,
+            F.FREE_GAL_CONTENT,
+            F.MEMBER_CODE,
+            F.FREE_GAL_NOTICE,
+            B.MEMBER_NICKNAME
+        FROM FREE_GAL F
+                 JOIN MEMBER B ON (F.MEMBER_CODE = B.MEMBER_CODE)
+        WHERE FREE_GAL_NOTICE = 'Y'
+    </select>
+
     <select id="getBoard" parameterType="String" resultMap="freeGalResultMap">
         SELECT
-            *
-        FROM
-            FREE_GAL
+            F.FREE_GAL_CODE,
+            F.FREE_GAL_TITLE,
+            F.FREE_GAL_VIEW,
+            F.FREE_GAL_DATE,
+            F.FREE_GAL_CONTENT,
+            F.MEMBER_CODE,
+            F.FREE_GAL_NOTICE,
+            B.MEMBER_NICKNAME
+        FROM FREE_GAL F
+        JOIN MEMBER B ON (F.MEMBER_CODE = B.MEMBER_CODE)
         WHERE
-            FREE_GAL_CODE = #{FREE_GAL_CODE}
+            F.FREE_GAL_CODE = #{FREE_GAL_CODE}
 
     </select>
 

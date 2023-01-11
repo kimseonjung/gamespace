@@ -5,13 +5,13 @@
     padding: 0px;
     gap: 24px;
 
-    position: absolute;
+    margin: 0 auto;
     width: 708px;
     height: 301px;
     left: 366px;
     top: 126px;
 }
-.notic{
+.notice{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -33,7 +33,7 @@
     order: 0;
     flex-grow: 0;
 }
-.notic-title{
+.notice-title{
     width: 116px;
     height: 22px;
 
@@ -59,7 +59,7 @@
     order: 0;
     flex-grow: 0;
 }
-.notic-body{
+.notice-body{
     width: 684px;
     height: 40px;
 
@@ -85,5 +85,721 @@
     flex: none;
     order: 1;
     align-self: stretch;
+    flex-grow: 0;
+}
+
+.freeBoard{
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: 20px;
+
+    margin: 0 auto;
+    margin-top: 24px;
+    width: 708px;
+    height: 1160px;
+    left: 366px;
+    top: 535px;
+
+}
+
+.searchBar{
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 24px;
+
+    width: 708px;
+    height: 40px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.searchStick{
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 16px;
+    gap: 4px;
+
+    width: 584px;
+    height: 40px;
+
+    /* Light/Light Gray */
+
+    border: 0.5px solid rgba(74, 87, 111, 0.7);
+    border-radius: 24px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+.searchSticks{
+    /* Search */
+
+
+    width: 528px;
+    height: 20px;
+
+    /* 15/15 - Med */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 20px;
+    /* identical to box height, or 133% */
+
+    letter-spacing: -0.009em;
+
+    /* Light/Light Gray */
+
+    color: rgba(74, 87, 111, 0.7);
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.insertB{
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 20px;
+    gap: 4px;
+
+    width: 100px;
+    height: 40px;
+
+    /* Basic/Purple */
+
+    border: 1px solid rgba(77, 62, 255, 0.9);
+    border-radius: 24px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+.btn{
+    /* Button */
+
+
+    width: 28px;
+    height: 20px;
+
+    /* 15/15 - Med */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 15px;
+    line-height: 20px;
+    /* identical to box height, or 133% */
+
+    letter-spacing: -0.009em;
+
+    /* Basic/Purple */
+
+    color: rgba(77, 62, 255, 0.9);
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.freeGalBoard{
+    /* Frame 2028 */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 14px;
+
+    width: 708px;
+    height: 1036px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.gallery{
+    /* AppItem / gallery */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px;
+    gap: 16px;
+    isolation: isolate;
+
+    width: 708px;
+    height: 91px;
+
+    /* Light/Nav BG */
+
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.gal-list{
+    /* Frame 1997 */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 16px;
+
+    width: 684px;
+    height: 67px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 1;
+    z-index: 1;
+}
+
+.gal-head{
+    /* Frame 1966 */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 12px;
+
+    width: 400px;
+    height: 22px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.gal-body{
+    width: 684px;
+    height: 40px;
+
+    /* 14/14 - Reg */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    /* or 143% */
+
+    letter-spacing: -0.006em;
+
+    /* Light/Primary Text */
+
+    color: #22242C;
+
+    opacity: 0.6;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.gal-foot{
+    width: 300px;
+    height: 18px;
+
+
+    /* Light/Primary Text */
+
+    color: #22242C;
+
+    opacity: 0.3;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 3;
+    flex-grow: 0;
+    z-index: 3;
+}
+
+.view{
+    /* nav / category */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    gap: 14px;
+
+    margin: 0 auto;
+    width: 708px;
+    height: 1382px;
+    left: 359px;
+    top: 126px;
+
+    /* Light/Nav BG */
+
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+}
+
+.titleBar{
+    /* Input */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 16px;
+    gap: 4px;
+
+    width: 676px;
+    height: 36px;
+
+    /* Basic / White */
+
+    background: #FFFFFF;
+    border-radius: 24px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.viewTitle{
+    /* Placeholder + Text */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+
+    width: 644px;
+    height: 20px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+}
+
+.infoBar{
+    /* Input */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 16px;
+    gap: 4px;
+
+    width: 676px;
+    height: 36px;
+
+    /* Basic / White */
+
+    background: #FFFFFF;
+    border-radius: 24px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.viewInfo{
+    /* Placeholder + Text */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+
+    width: 644px;
+    height: 20px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+}
+
+.viewNicknameAndDate{
+    /* Frame 2033 */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 20px;
+
+    width: 229px;
+    height: 20px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.viewNickname{
+    Get unlimited pages & more
+
+    Width
+    Hug (86px)
+Height
+Hug (20px)
+작성자 홍길동
+Ag
+15/15 - Med
+Font
+Inter
+Weight
+500
+Size
+15px
+Line height
+20px
+Letter
+-0.9%
+    /* 작성자 홍길동 */
+
+
+width: 86px;
+    height: 20px;
+
+    /* 15/15 - Med */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 20px;
+    /* identical to box height, or 133% */
+
+    letter-spacing: -0.009em;
+
+    /* Light/Light Gray */
+
+    color: rgba(74, 87, 111, 0.7);
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.viewDate{
+    /* 2022/12/20 18:18 */
+
+
+    width: 123px;
+    height: 20px;
+
+    /* 15/15 - Med */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 20px;
+    /* identical to box height, or 133% */
+
+    letter-spacing: -0.009em;
+
+    /* Light/Light Gray */
+
+    color: rgba(74, 87, 111, 0.7);
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.viewView{
+    /* 조회수 1,000 */
+
+
+    width: 84px;
+    height: 20px;
+
+    /* 15/15 - Med */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 20px;
+    /* identical to box height, or 133% */
+
+    text-align: right;
+    letter-spacing: -0.009em;
+
+    /* Light/Light Gray */
+
+    color: rgba(74, 87, 111, 0.7);
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+}
+
+.viewContentArea{
+    /* Input */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 4px;
+
+    width: 676px;
+    height: 980px;
+
+    /* Basic / White */
+
+    background: #FFFFFF;
+    border-radius: 24px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+}
+
+.form-control{
+    /* Placeholder + Text */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+
+    width: 636px;
+    height: 745px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 1;
+}
+
+.viewButtonZone{
+    /* Frame 2033 */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 20px;
+    margin: 0 auto;
+
+
+
+    width: 484px;
+    height: 48px;
+    left: 471px;
+    top: 1300px;
+
+}
+
+.viewDelete{
+    /* Button */
+
+
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 20px;
+    gap: 4px;
+
+    width: 148px;
+    height: 48px;
+
+    /* Basic/Purple */
+
+    border: 1px solid rgba(77, 62, 255, 0.9);
+    border-radius: 24px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.viewUpdate{
+    /* Button */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 20px;
+    gap: 4px;
+    border: none;
+
+    width: 148px;
+    height: 48px;
+
+    /* Basic/Purple */
+
+    background: rgba(77, 62, 255, 0.9);
+    border-radius: 24px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.viewGoList{
+    /* Button */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 20px;
+    gap: 4px;
+    border: none;
+
+    width: 148px;
+    height: 48px;
+
+    /* Basic/Purple */
+
+    background: rgba(77, 62, 255, 0.9);
+    border-radius: 24px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 2;
     flex-grow: 0;
 }

@@ -82,19 +82,48 @@
 </div>
 
 <script>
-   $('.cate-btn').click (function etest() {
+   // $('.cate-btn').click (function etest() {
+   //
+   //     const xhttp = new XMLHttpRequest();
+   //     xhttp.onreadystatechange = function () {
+   //         if (this.readyState == 4 && this.status == 200) {
+   //             document.getElementById("t-body").innerHTML = this.responseText;
+   //         }
+   //     };
+   //     xhttp.open("GET", document.getElementsByClassName('t-body')[0].innerHTML);
+   //     xhttp.send();
+   //
+   //      console.log(xhttp);
+   // })
 
-       const xhttp = new XMLHttpRequest();
-       xhttp.onreadystatechange = function () {
-           if (this.readyState == 4 && this.status == 200) {
-               document.getElementById("t-body").innerHTML = this.responseText;
+   function insertReplyFunc(){
+
+       // 댓글 등록시 필요한 정보들 생략
+       // data["name"]=value (json) 형식으로 정보 저장
+
+       $.ajax({
+           type : "post",
+           url : "reply",
+           data : JSON.stringify(data),
+           dataType: "json",
+           contentType:"application/json;charset=UTF-8",
+           async : false,
+           success : function(data) {
+
+               if (data.result == "ok") {
+                   // 리스트 업데이트하는 getList()를 실행시킨다.
+                   getList();
+               }
+
+           },
+           error : function(){
+               alert("통신실패");
            }
-       };
-       xhttp.open("GET", document.getElementsByClassName('t-body')[0].innerHTML);
-       xhttp.send();
+       });
 
-        console.log(xhttp);
-   })
+   }
+
+
 </script>
 
 </body>

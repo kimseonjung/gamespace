@@ -26,6 +26,10 @@ public class FreeGalService {
         return freeGalMapper.getList();
     }
 
+    public List<FreeGalDTO> getListNotice() {
+        return freeGalMapper.getListNotice();
+    }
+
     public FreeGalDTO getBoard(String freeGalCode){
         return freeGalMapper.getBoard(freeGalCode);
     }
