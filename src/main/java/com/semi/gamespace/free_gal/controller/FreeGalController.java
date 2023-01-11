@@ -27,9 +27,12 @@ public class FreeGalController {
 
     @GetMapping("/freeGalList")
     public ModelAndView freeGalList(ModelAndView mv){
+        List<FreeGalDTO> freeGalListNotice = freeGalService.getListNotice();
         List<FreeGalDTO> freeGalList = freeGalService.getList();
         freeGalList.stream().forEach(freeGal -> System.out.println("freeGal =" + freeGal));
+        freeGalListNotice.stream().forEach(freeGalNotice -> System.out.println("freeGal =" + freeGalNotice));
 
+        mv.addObject("freeGalListNotice", freeGalListNotice);
         mv.addObject("freeGalList", freeGalList);
         mv.setViewName("freeGal/freeGalList");
 

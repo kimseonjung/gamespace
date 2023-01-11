@@ -12,6 +12,8 @@ public interface FreeGalMapper {
 
     List<FreeGalDTO> getList();
 
+    List<FreeGalDTO> getListNotice();
+
     FreeGalDTO getBoard(String freeGalCode);
 
     void uploadBoard(FreeGalDTO freeGalDTO);

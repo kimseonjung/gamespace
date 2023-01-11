@@ -10,11 +10,34 @@ public class FreeGalDTO {
     private String freeGalContent;
     private String memberCode;
     private String freeGalNotice;
+    private String memberNickname;
+
+    @Override
+    public String toString() {
+        return "FreeGalDTO{" +
+                "freeGalCode='" + freeGalCode + '\'' +
+                ", freeGalTitle='" + freeGalTitle + '\'' +
+                ", view='" + view + '\'' +
+                ", freeGalDate=" + freeGalDate +
+                ", freeGalContent='" + freeGalContent + '\'' +
+                ", memberCode='" + memberCode + '\'' +
+                ", freeGalNotice='" + freeGalNotice + '\'' +
+                ", memberNickname='" + memberNickname + '\'' +
+                '}';
+    }
+
+    public String getMemberNickname() {
+        return memberNickname;
+    }
+
+    public void setMemberNickname(String memberNickname) {
+        this.memberNickname = memberNickname;
+    }
 
     public FreeGalDTO() {
     }
 
-    public FreeGalDTO(String freeGalCode, String freeGalTitle, String view, Date freeGalDate, String freeGalContent, String memberCode, String freeGalNotice) {
+    public FreeGalDTO(String freeGalCode, String freeGalTitle, String view, Date freeGalDate, String freeGalContent, String memberCode, String freeGalNotice, String memberNickname) {
         this.freeGalCode = freeGalCode;
         this.freeGalTitle = freeGalTitle;
         this.view = view;
@@ -22,6 +45,8 @@ public class FreeGalDTO {
         this.freeGalContent = freeGalContent;
         this.memberCode = memberCode;
         this.freeGalNotice = freeGalNotice;
+        this.memberNickname = memberNickname;
+
     }
 
     public String getFreeGalCode() {
@@ -80,17 +105,5 @@ public class FreeGalDTO {
         this.freeGalNotice = freeGalNotice;
     }
 
-    @Override
-    public String toString() {
-        return "FreeGalDTO{" +
-                "freeGalCode='" + freeGalCode + '\'' +
-                ", freeGalTitle='" + freeGalTitle + '\'' +
-                ", view='" + view + '\'' +
-                ", freeGalDate=" + freeGalDate +
-                ", freeGalContent='" + freeGalContent + '\'' +
-                ", memberCode='" + memberCode + '\'' +
-                ", freeGalNotice='" + freeGalNotice + '\'' +
-                '}';
-    }
 }
 
