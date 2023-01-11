@@ -1,11 +1,11 @@
 @charset "UTF-8";
 
 /* modify */
-.member-main-bg{
+.mypage-container{
     margin: 0 auto;
     margin-top: calc(160px - 96px);
     width: 520px;
-    height: calc(160px*2 + 180px + 89px + 36px + 763px);
+    /*height: calc(160px*2 + 180px + 89px + 36px + 763px);*/
 }
 
 /* home */
@@ -17,7 +17,7 @@
     gap: 40px;
 
     width: 520px;
-    height: calc(180px + 89px + 36px + 763px);
+    /*height: calc(180px + 89px + 36px + 763px);*/
 
     flex: none;
     order: 0;
@@ -34,6 +34,16 @@
     height: 180px;
     top: 160px;
     left: calc(50% - 260px);
+}
+.mypage-follow{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 8px;
+
+    width: 508px;
+    height: 56px;
 }
 .mypage-social{
     display: flex;
@@ -97,6 +107,27 @@
     height: 20px;
     opacity: 0.7;
 }
+
+.follow-btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+
+    width: 196px;
+    height: 56px;
+
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+}
+.following{
+    justify-content: center;
+    padding: 10px 20px;
+    width: 100px;
+    background: rgba(77, 62, 255, 0.9);
+}
+
 .social-content{
     display: flex;
     flex-direction: row;
@@ -125,4 +156,28 @@
 }
 .user-introduce{
     text-align: center;
+}
+
+.text-name{
+    font-weight: 600;
+    font-size: 21px;
+    line-height: 33px;
+}
+.text-link{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.text-follow{
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.014em;
+    color: #22242C;
+    opacity: 0.5;
+}
+.text-following{
+    font-size: 20px;
+    color: #FFFFFF;
+    opacity: 1;
 }

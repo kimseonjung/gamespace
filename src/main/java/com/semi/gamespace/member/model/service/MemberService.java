@@ -1,6 +1,7 @@
 package com.semi.gamespace.member.model.service;
 
 import com.semi.gamespace.member.model.dao.MemberMapper;
+import com.semi.gamespace.member.model.dto.FollowDTO;
 import com.semi.gamespace.member.model.dto.MemberDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,10 +27,12 @@ public class MemberService {
         return memberMapper.findMemberById(userId);
     }
 
-    public List<MemberDTO> selectAllMember() {
-        return memberMapper.selectAllMember();
+    public int countFollowFromByCode(String userCode) {
+        return memberMapper.countFollowFromByCode(userCode);
     }
-
+    public int countFollowToByCode(String userCode) {
+        return memberMapper.countFollowToByCode(userCode);
+    }
     public boolean registMember(MemberDTO mem) throws Exception {
         /* 비밀번호 암호화 */
         String encodedPassword = passwordEncoder.encode(mem.getUserPwd());
@@ -41,6 +44,19 @@ public class MemberService {
             System.out.println("멤버 등록 완료");
         } catch (Exception e) {
             System.out.println("멤버 등록 실패 - 오류가 발생했습니다.");
+        }
+        System.out.println("등록 시도 결과 : " + result);
+        return result > 0 ? true : false;
+    }
+
+    public boolean updateMember(MemberDTO mem) {
+        int result = 0;
+        try {
+            System.out.println("다음 멤버 정보 수정을 시도합니다 : " + mem);
+            result = memberMapper.updateMember(mem);
+            System.out.println("멤버 수정 완료");
+        } catch (Exception e) {
+            System.out.println("멤버 수정 실패 - 오류가 발생했습니다.");
         }
         System.out.println("등록 시도 결과 : " + result);
         return result > 0 ? true : false;
