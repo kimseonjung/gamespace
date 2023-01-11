@@ -59,5 +59,29 @@
             )
     </insert>
 
+    <select id="getNewsCode" parameterType="String" resultMap="newsInfoResultMap">
+        SELECT
+            *
+        FROM
+            NEWS
+        WHERE
+            NEWS_CODE = #{news_code}
+    </select>
+
+
+    <update id="updateNewsInfo" parameterType="com.semi.gamespace.news.model.dto.NewsDTO">
+        UPDATE NEWS
+        SET
+            NEWS_TITLE=#{newsTitle},
+            NEWS_CONTENT=#{newsContent}
+            WHERE NEWS_CODE=#{newsCode}
+    </update>
+
+    <delete id="deleteNewsInfo" parameterType="String">
+        DELETE
+        FROM NEWS
+        WHERE NEWS_CODE=#{newsCode}
+    </delete>
+
 
 </mapper>

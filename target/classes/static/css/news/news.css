@@ -116,6 +116,8 @@
     align-self: stretch;
     flex-grow: 0;
     z-index: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .news-body p{
     /* 16/16 - Reg */

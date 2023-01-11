@@ -12,4 +12,11 @@ public interface NewsInfoMapper {
     int registNewsInfo(NewsDTO newsDto);
 
     NewsDTO newsDetail(String newsCode);
+
+    NewsDTO getNewsCode(String newscode);
+
+    int updateNewsInfo(NewsDTO newsInfo);
+
+
+    void deleteNewsInfo(String newsCode);
 }
