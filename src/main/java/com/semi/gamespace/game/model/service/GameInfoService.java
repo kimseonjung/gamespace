@@ -108,8 +108,7 @@ public class GameInfoService {
     }
 
     public List<CategoryDTO> selectOneCategory(String categoryCode) {
-        System.out.println("1111111111111111111111111111111111111111111111111111111111111111111111111111111");
-        System.out.println(categoryCode);
+
         return gameInfoMapper.selectOneCategory(categoryCode);
     }
 }

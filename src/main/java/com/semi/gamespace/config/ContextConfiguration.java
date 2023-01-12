@@ -25,7 +25,7 @@ public class ContextConfiguration {
         return messageSource;
     }
 
-    @Bean(name = "jsonView")
+    @Bean
     MappingJackson2JsonView jsonView(){
         return new MappingJackson2JsonView();
     }

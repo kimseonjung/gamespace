@@ -61,10 +61,12 @@ public class GameInfoController {
 
     }
 
-    @PostMapping("game")
-    public ModelAndView selectGameMainJsonList( HttpServletRequest request, HttpServletResponse response) {
-        ModelAndView mv = new ModelAndView("jsonView");
-        response.setContentType("application/json; charset=UTF-8");
+    @PostMapping(value = "game", produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public String selectGameMainJsonList( HttpServletRequest request, HttpServletResponse response) {
+
+        //ModelAndView mv = new ModelAndView("jsonView");
+        //response.setContentType("application/json; charset=UTF-8");
 
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd hh:mm:ss:SSS")
@@ -74,14 +76,14 @@ public class GameInfoController {
                 .disableHtmlEscaping()
                 .create();
 
-
+        System.out.println(request.getParameter("categoryCode"));
 
         List<CategoryDTO> categoryList = gameInfoService.selectOneCategory(request.getParameter("categoryCode"));
 
-        mv.addObject("categoryList", gson.toJson(categoryList));
+        //mv.addObject("categoryList", gson.toJson(categoryList));
         //mv.setViewName("jsonView");
 
-        return mv;
+        return gson.toJson(categoryList);
     }
 
 
