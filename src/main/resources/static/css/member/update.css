@@ -1,4 +1,8 @@
 @charset "UTF-8";
+*{
+    box-sizing: inherit;
+}
+
 
 /* modify */
 .window-input{
@@ -26,6 +30,31 @@
     height: 60px;
     left: 184px;
     top: 20px;
+}
+.logo-member input[type="file"]{
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
+.logo-member button{
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
+
+.profile-cross{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 50px;
+    top: 40px;
+    z-index: 1;
 }
 
 /* update */

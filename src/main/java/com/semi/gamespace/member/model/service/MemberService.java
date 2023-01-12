@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
@@ -60,5 +61,25 @@ public class MemberService {
         }
         System.out.println("등록 시도 결과 : " + result);
         return result > 0 ? true : false;
+    }
+
+    public void updateMemberSiteLink(Map<String, String> linkAttribute) {
+        int result = 0;
+        try {
+            System.out.println("다음 링크 수정을 시도합니다 : " + linkAttribute);
+            result = memberMapper.updateMemberSiteLink(linkAttribute);
+            System.out.println("링크 수정 완료");
+        } catch (Exception e) {
+            System.out.println("링크 수정 실패 - 오류가 발생했습니다.");
+        }
+        System.out.println("수정 시도 결과 : " + result);
+    }
+
+    public int countHistoryOfBoard(String memberCode) {
+        return memberMapper.countHistoryOfBoard(memberCode);
+    }
+
+    public int countHistoryOfComment(String memberCode) {
+        return memberMapper.countHistoryOfComment(memberCode);
     }
 }

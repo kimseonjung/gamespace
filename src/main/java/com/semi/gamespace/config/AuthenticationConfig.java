@@ -22,7 +22,7 @@ public class AuthenticationConfig {
         /* 관리자와 회원만 접근 가능한 url */
         List<String> memberPermitList = new ArrayList<>();
         memberPermitList.add("/member/dashboard"); //ex
-//        memberPermitList.add("/game/game"); //debug
+        memberPermitList.add("/member/userSetting");
 
         return memberPermitList;
     }

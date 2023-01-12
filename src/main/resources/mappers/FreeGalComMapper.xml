@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.semi.gamespace.free_gal.model.dao.FreeGalMapper">
+    <resultMap id="freeGalComResultMap" type="com.semi.gamespace.free_gal.model.dto.FreeGalComDTO">
+        <id property="freeGalCode" column="FREE_GAL_CODE"/>
+        <result property="freeGalComCode" column="FREE_GAL_COM_CODE"/>
+        <result property="freeGalComTitle" column="FREE_GAL_COM_TITLE"/>
+        <result property="memberCode" column="MEMBER_CODE"/>
+        <result property="memberNickname" column="MEMBER_NICKNAME"/>
+        <result property="freeGalComParent" column="FREE_GAL_COM_PARENT"/>
+    </resultMap>
+
+    <!-- 댓글 조회 -->
+    <select id="getComment" parameterType="String" resultMap="freeGalComResultMap">
+        SELECT
+            A.FREE_GAL_COM_CODE,
+            A.FREE_GAL_COM_TITLE,
+            B.MEMBER_NICKNAME
+        FROM FREE_GAL_COM A
+        JOIN MEMBER B ON (A.MEMBER_CODE = B.MEMBER_CODE)
+        WHERE FREE_GAL_CODE = #{freeGalCode}
+    </select>
+
+    <!-- 댓글 FREE_GAL_CODE 넘기기 -->
+    <select id="getFreeGalCode" parameterType="String" resultMap="freeGalComResultMap">
+        SELECT
+            FREE_GAL_CODE
+        FROM FREE_GAL_COM
+        WHERE FREE_GAL_CODE = #{freeGalCode}
+    </select>
+
+    <!-- 댓글 작성 -->
+    <insert id="uploadComment" parameterType="com.semi.gamespace.free_gal.model.dto.FreeGalComDTO">
+        INSERT INTO FREE_GAL_COM(FREE_GAL_CODE, FREE_GAL_COM_CODE, FREE_GAL_COM_TITLE)
+        VALUES(#{freeGalCode}, FREE_GAL_COM_SEQ.NEXTVAL, #{freeGalComTitle})
+    </insert>
+
+    <!-- 댓글 수정 -->
+    <update id="updateComment" parameterType="com.semi.gamespace.free_gal.model.dto.FreeGalComDTO">
+        UPDATE FREE_GAL_COM
+        SET
+            FREE_GAL_COM_TITLE=#{freeGalComTitle}
+        WHERE FREE_GAL_COM_CODE=#{freeGalComCode} and FREE_GAL_CODE=#{freeGalCode}
+    </update>
+
+    <!-- 댓글 삭제 -->
+    <delete id="deleteComment" parameterType="String">
+        DELETE FROM FREE_GAL_COM
+        WHERE FREE_GAL_COM_CODE=#{freeGalComCode}
+    </delete>
+
+
+
+
+
+
+</mapper>
