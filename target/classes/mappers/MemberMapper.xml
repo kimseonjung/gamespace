@@ -91,6 +91,20 @@
          WHERE F.FOLLOW_REQ_CODE = #{ code }
     </select>
 
+    <select id="countHistoryOfBoard" resultType="_int" parameterType="string">
+        SELECT
+            (SELECT COUNT(*) FROM FREE_GAL WHERE MEMBER_CODE = #{ code }),
+            (SELECT COUNT(*) FROM GAME_GAL WHERE MEMBER_CODE = #{ code })
+        FROM DUAL
+    </select>
+
+    <select id="countHistoryOfComment" resultType="_int" parameterType="string">
+        SELECT
+                (SELECT COUNT(*) FROM FREE_GAL_COM WHERE MEMBER_CODE = #{ code }),
+                (SELECT COUNT(*) FROM GAME_GAL_COM WHERE MEMBER_CODE = #{ code })
+        FROM DUAL
+    </select>
+
     <insert id="registMember" parameterType="com.semi.gamespace.member.model.dto.MemberDTO">
         INSERT
         INTO MEMBER M (
@@ -163,5 +177,20 @@
                     FROM DUAL
             )
          WHERE M.MEMBER_ID = #{ userId }
+    </update>
+
+    <update id="updateMemberSiteLink" parameterType="java.util.HashMap">
+        UPDATE MEMBER M
+        <set>
+        <choose>
+            <when test="linkCode == 1">M.SITE_LINK_1 = #{ modifyLink }</when>
+            <when test="linkCode == 2">M.SITE_LINK_2 = #{ modifyLink }</when>
+            <when test="linkCode == 3">M.SITE_LINK_3 = #{ modifyLink }</when>
+            <when test="linkCode == 4">M.SITE_LINK_4 = #{ modifyLink }</when>
+            <when test="linkCode == 5">M.SITE_LINK_5 = #{ modifyLink }</when>
+            <when test="linkCode == 6">M.SITE_LINK_6 = #{ modifyLink }</when>
+        </choose>
+        </set>
+        WHERE M.MEMBER_CODE = #{ memberCode }
     </update>
 </mapper>
