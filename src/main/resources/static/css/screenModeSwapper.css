@@ -34,11 +34,6 @@
     background-size: 52px 34px;
 }
 .screen-light .icon-plus{
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    left: 50px;
-    z-index: 1;
     background-image: url("../image/icon_light/plus.svg");
     background-size: 20px 20px;
 }
@@ -77,11 +72,6 @@
     background-size: 52px 34px;
 }
 .screen-dark .icon-plus{
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    left: 50px;
-    z-index: 1;
     background-image: url("../image/icon_dark/plus.svg");
     background-size: 20px 20px;
 }

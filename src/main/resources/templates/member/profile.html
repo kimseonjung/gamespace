@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
@@ -11,7 +10,8 @@
     <div class="mypage-main">
       <div class="mypage-introduce">
         <div class="user-profile">
-          <img th:src="${image.savePath}+${image.saveName}">
+          <img th:if="${image == null}" src="/image/icon/mypage.svg">
+          <img th:if="${image != null}" th:src="${image.savePath}+${image.saveName}">
         </div>
         <div class="user-introduce">
           <p class="text-name" th:text="${member.userNickname}"></p>

@@ -10,18 +10,20 @@ import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/member")
@@ -50,12 +52,34 @@ public class MemberController {
     @GetMapping("/insert/failure")
     public void memberRegistFailure() {}
 
-    @GetMapping("/userSetting")
-    public Model memberProfilePage(Model model, Principal principal) {
+    @GetMapping("/mypage")
+    public Model memberMyPageMain(Model model, Principal principal) {
+        //인증된 사용자 정보를 통해 member정보 불러오기
         MemberDTO member = memberService.findMemberById(principal.getName());
+        int historyBoard = memberService.countHistoryOfBoard(member.getMemberCode());
         int followFrom = memberService.countFollowFromByCode(member.getMemberCode());
         int followTo = memberService.countFollowToByCode(member.getMemberCode());
+        int historyComment = memberService.countHistoryOfComment(member.getMemberCode());
+        ImageDTO image = imageService.selectProfileByCode(member.getMemberCode());
 
+        model.addAttribute("image", image);
+        model.addAttribute("member", member);
+        model.addAttribute("followFrom", followFrom);
+        model.addAttribute("followTo", followTo);
+        model.addAttribute("historyBoard", historyBoard);
+        model.addAttribute("historyComment", historyComment);
+        return model;
+    }
+
+    @GetMapping("/userSetting")
+    public Model memberProfilePage(Model model, Principal principal) {
+        //인증된 사용자 정보를 통해 member정보 불러오기
+        MemberDTO member = memberService.findMemberById(principal.getName());
+        //팔로우 받은 수
+        int followFrom = memberService.countFollowFromByCode(member.getMemberCode());
+        //팔로우 건 수
+        int followTo = memberService.countFollowToByCode(member.getMemberCode());
+        //프로필
         ImageDTO image = imageService.selectProfileByCode(member.getMemberCode());
 
         model.addAttribute("image", image);
@@ -74,10 +98,25 @@ public class MemberController {
         model.addAttribute("member", member);
         model.addAttribute("image", image);
         for(int i = 0; i < 3; i++) {
-            System.out.println(addressData[i]);
             model.addAttribute("address"+i, addressData[i]);
         }
         return model;
+    }
+
+    @ResponseBody
+    @PostMapping("/userSetting")
+    public Map<String, String> memberSiteLinkModify(@RequestParam Map<String, String> linkAttribute) throws IOException {
+
+        memberService.updateMemberSiteLink(linkAttribute);
+
+        System.out.println("11111111111111111111111111111");
+        return linkAttribute;
+    }
+
+    @ResponseBody
+    @PostMapping("/userSetting/initLinkModify")
+    public Map<String, String> memberSiteLinkModifyInit(@RequestParam Map<String, String> linkCode) throws IOException {
+        return linkCode;
     }
 
     @PostMapping("/update/info")

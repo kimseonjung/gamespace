@@ -17,11 +17,11 @@ public class ImageService {
 
     public ImageDTO selectProfileByCode(String memberCode) {
         ImageDTO image = imageDAO.selectProfileByCode(memberCode);
-        if(image == null) {
-            image = new ImageDTO();
-            image.setSavePath("/image/icon/");
-            image.setSaveName("mypage.svg");
-        }
+//        if(image == null) {
+//            image = new ImageDTO();
+//            image.setSavePath("/image/icon/");
+//            image.setSaveName("mypage.svg");
+//        }
         return image;
     }
 
