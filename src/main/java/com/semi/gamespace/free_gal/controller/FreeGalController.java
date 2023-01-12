@@ -1,5 +1,6 @@
 package com.semi.gamespace.free_gal.controller;
 
+import com.semi.gamespace.free_gal.model.dto.FreeGalComDTO;
 import com.semi.gamespace.free_gal.model.dto.FreeGalDTO;
 import com.semi.gamespace.free_gal.model.service.FreeGalService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,12 +44,26 @@ public class FreeGalController {
     public ModelAndView freeGalView(ModelAndView mv, String freeGalCode){
 
         FreeGalDTO freeGalView = freeGalService.getBoard(freeGalCode);
+
+        //댓글 데이터를 freeGalComList에 담기
+//        mv.addObject("freeGalComList", freeGalService.getComment(freeGalCode));
         mv.addObject("halo", freeGalView);
 
-        mv.setViewName("freeGal/view");
 
+
+        mv.setViewName("freeGal/view");
+        System.out.println("111111111111111111111111111111111111111111111111111");
         return mv;
     }
+
+//    @PostMapping("/view")
+//    public String uploadComment(String freeGalCode, FreeGalComDTO freeGalComDTO) {
+//        freeGalService.uploadComment(freeGalComDTO);
+//
+//        return "redirect:/freeGal/view?freeGalCode="+freeGalCode;
+//
+//
+//    }
 
     @GetMapping("/upload")
     public ModelAndView uploadBoardForm(ModelAndView mv){

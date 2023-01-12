@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns xmlns:th="http://www.w3.org/1999/xhtml" : th="http://www.thymeleaf.org">
 <head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">-->
   <meta charset="UTF-8">
   <link rel="stylesheet" href="/css/reset.css">
   <link rel="stylesheet" href="/css/common.css">
@@ -25,11 +25,11 @@
 <div class="upload">
 
   <!-- 제목 부분-->
-  <div class="titleBar">
-    <p class="uploadTitle"> 제목을 입력하세요
-      <form th:action="@{upload}" method="post">
-      <input type="text" class="form-control" name="freeGalTitle">
-      </form>
+
+  <div class="uploadTitleBar">
+    <p class="uploadTitle">
+      <input type="text" class="uploadTitle-control" name="freeGalTitle">
+
     </p>
   </div>
   <!-- 첨부파일 -->
@@ -45,14 +45,26 @@
 
   </div>
   <div class="uploadContentArea">
-    <form th:action="@{upload}" method="post">
-      <textarea class="form-control" name="freeGalContent" class="form-control"></textarea>
+
+      <textarea class="form-control" name="freeGalContent"></textarea>
     </form>
   </div>
 
 </div>
+<div class="uploadButtonZone">
 
-<button type="submit">글 작성</button>
+  <form th:action="@{freeGalList}" method="get">
+    <button type="submit" class="uploadGoList">취소하기</button>
+  </form>
+
+  <form th:action="@{upload}" method="post">
+    <button type="submit" class="uploadUpload">작성하기</button>
+<!--    <input type="text" class="uploadTitle-control" name="freeGalTitle">-->
+<!--    <textarea class="form-control" name="freeGalContent"></textarea>-->
+  </form>
+
+</div>
+
 
 <!-- 푸터 -->
 <div class="footer">
