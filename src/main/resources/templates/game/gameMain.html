@@ -15,12 +15,12 @@
 
 
     <!-- jQuery library -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+<!--    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>-->
 
     <!-- Popper JS-->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 
-
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
 </head>
 <body>
@@ -31,18 +31,18 @@
 
 
 
-
+<!--th:text="${category.categoryName}"-->
 
     <section>
-        <form action="/game/game"  method="post">
+        <form action="/game/game"  method="post" onsubmit="return false;">
 
-            <div th:each="category : ${categoryList}">
-                <input th:text="${category.categoryName}" th:value="${category.categoryCode}" th:type="checkbox" name="categoryCode" th:class="cate-btn" >
-
+            <div th:each="category : ${categoryList}" th:id="listCategory">
+                <input th:value="${category.categoryCode}" th:type="checkbox" th:field="*{categoryList}">
+                <label th:for="${#ids.prev('categoryList')}" th:text="${category.categoryName}"></label>
             </div>
 
-            <div th:each="tag : ${tagList}">
-                <input th:text="${tag.tagName}" th:value="${tag.tagCode}" th:type="checkbox" name="tagNameBtn" th:class="cate-btn">
+            <div th:each="tagList : ${tagList}">
+                <input th:text="${tagList.tagName}" th:value="${tagList.tagCode}" th:type="checkbox" name="tagCode">
             </div>
 
 
@@ -50,7 +50,7 @@
                 <button th:text="${devices.devicesName}"></button>
 
             </div>
-            <input type="submit" th:id="gosubmit">
+            <button type="button" onclick="searchGameMainList()">전송</button>
         </form>
 
 <!--            <div class="toggle" >-->
@@ -77,6 +77,13 @@
             <div th:text="${game.gameIntro}"></div>
         </div>
 
+        <div th:id="search">
+<!--            <div id="game-title"> </div>-->
+<!--            <div id="game-body"> </div>-->
+
+        </div>
+
+
 
     </section>
 
@@ -94,53 +101,6 @@
 </div>
 
 <script>
-   // $('.cate-btn').click (function etest() {
-   //
-   //     const xhttp = new XMLHttpRequest();
-   //     xhttp.onreadystatechange = function () {
-   //         if (this.readyState == 4 && this.status == 200) {
-   //             document.getElementById("t-body").innerHTML = this.responseText;
-   //         }
-   //     };
-   //     xhttp.open("GET", document.getElementsByClassName('t-body')[0].innerHTML);
-   //     xhttp.send();
-   //
-   //      console.log(xhttp);
-   // })
-
-   // function insertReplyFunc(){
-   //
-   //     // 댓글 등록시 필요한 정보들 생략
-   //     // data["name"]=value (json) 형식으로 정보 저장
-   //
-   //     $.ajax({
-   //         type : "post",
-   //         url : "reply",
-   //         data : JSON.stringify(data),
-   //         dataType: "json",
-   //         contentType:"application/json;charset=UTF-8",
-   //         async : false,
-   //         success : function(data) {
-   //
-   //             if (data.result == "ok") {
-   //                 // 리스트 업데이트하는 getList()를 실행시킨다.
-   //                 getList();
-   //             }
-   //
-   //         },
-   //         error : function(){
-   //             alert("통신실패");
-   //         }
-   //     });
-   //
-   // }
-
-
-
-
-
-
-
 
    // $.ajax({
    //     type : 'get',           // 타입 (get, post, put 등등)
@@ -164,23 +124,49 @@
    //     }
    // })
 
-   $(document).ready(function (){
-       $("#gosubmit").click(searchGameMainList);
-   });
+   // $(document).ready(function (){
+   //     $("#gosubmit").click(searchGameMainList);
+   // });
    function searchGameMainList() {
-       console.log('test');
-       jQuery.ajaxSettings.traditional = true;
+
+       //jQuery.ajaxSettings.traditional = true;
+
        $.ajax({
-           url: "game",             // 요청할 서버url
+           url: "/game/game",             // 요청할 서버url
            type : "post", // 타입은 뭘 쓸거니?
            datatype : "json",
+           //data:JSON.stringify(obj),
+
 
            // data : JSON.stringify({  // 보낼 데이터 (Object , String, Array)
            //
            // }),
 
-           success: function(data, status, xhr) {    // 결과 성공 콜백함수
-                console.log(data)
+           success: function(data,status, xhr) {    // 결과 성공 콜백함수
+               // let result='';
+               // for (let i=0; i<data.length; i++){
+               //     result += '<div>'+data[i].property+'</div>';
+               // }
+               $('#search').html(data);
+
+            // for (let i in data){
+            //     let table = "<tr>";
+            //     table += "<td>"+data[i].gameName+"</td>";
+            //     table += "<td>"+data[i].devicesCode+"</td>";
+            //     table += "<td>"+data[i].categoryCode+"</td>";
+            //     table += "<td>"+data[i].tagCode+"</td>";
+            //     table += "<td>"+data[i].launchDate+"</td>";
+            //     table += "<td>"+data[i].developer+"</td>";
+            //     table += "<td>"+data[i].distributorCode+"</td>";
+            //     table += "<td>"+data[i].ratingCode+"</td>";
+            //     table += "<td>"+data[i].price+"</td>";
+            //     table += "<td>"+data[i].platformCode+"</td>";
+            //     table += "<td>"+data[i].languageCode+"</td>";
+            //     table += "<td>"+data[i].gameIntro+"</td>";
+            //
+            //
+            //     $('#search').append(table);
+            // }
 
            },
            error: function(xhr, status, error) {   // 결과 에러 콜백함수
@@ -188,19 +174,6 @@
            }
        });
    };
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
