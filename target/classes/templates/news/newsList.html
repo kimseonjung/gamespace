@@ -8,7 +8,7 @@
 <div th:fragment="newsList" class="news">
         <div class="news-list" th:each="news : ${newsList}">
             <a th:href="@{/news/newsDetail(newsCode=${news.newsCode})}">
-            <div class="news-head"><p th:text="${news.newsTitle}"></p></div>
+            <div class="news-head"><p class="news-head-p" th:text="${news.newsTitle}"></p></div>
             <div class="news-body"><p th:text="${news.newsContent}"></p></div>
             <div class="news-foot"><p th:text="|${news.newsDate} ${news.memberName} ${news.gameName} ${news.newsView}|"></p></div>
             </a>

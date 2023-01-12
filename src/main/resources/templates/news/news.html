@@ -3,7 +3,7 @@
 <head>
   <meta charset='utf-8' />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <!-- 기본링크 -->
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/reset.css">
@@ -15,6 +15,7 @@
   <script src='/js/ko.js'></script>
   <script src='/js/fullcalendar.main.min.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bPopup/0.11.0/jquery.bpopup.min.js"></script>
+
 
   <!-- pagination -->
 
@@ -127,5 +128,47 @@
   <th:block th:replace="~{common/footer :: footer}"/>
 </div>
 
+
+<script>
+    function getCheckboxValue()  {
+        // 선택된 목록 가져오기
+        const query = 'input[name="game-tag"]:checked';
+        const selectedEls =
+            document.querySelectorAll(query);
+
+        // 선택된 목록에서 value 찾기
+        let result = '';
+        selectedEls.forEach((el) => {
+            result += `<p class="tag-gameName">${el.value}</p>`;
+        });
+
+        // 출력
+        document.getElementById('tag-result').innerHTML
+            = result;
+
+        // 코드로 받은 리스트 출력
+    }
+        const gameCode = document.getElementsByClassName('.gameName'.value)[0];
+    $(".gametags table tbody tr td input:not(checked) ").on("click",function init() {
+            $.ajax({
+                type : "get",
+                url : "/news/gameCodeNews",
+                data : {
+                    gameCode : gameCode
+                },
+                contentType: "application/json",
+                dataType: "json",
+                success : function (data, status) {
+                    alert(status);
+                    const newsTitle = document.getElementsByClassName(data);
+                    document.getElementsByClassName('.news-head-p').innerHTML = data;
+                },
+                error : function (status) {
+                    alert(status + "error!");
+                }
+            });
+    }//init
+    );
+</script>
 </body>
 </html>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
@@ -48,5 +49,9 @@ public class NewsInfoService {
 
     public void deleteNewsInfo(String newsCode) {
         newsInfoMapper.deleteNewsInfo(newsCode);
+    }
+
+    public Map<String,Object> selectAllGameCodeNews() {
+        return newsInfoMapper.selectAllGameCodeNews();
     }
 }

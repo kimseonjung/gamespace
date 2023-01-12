@@ -13,6 +13,16 @@
         <result property="gameName" column="GAME_NAME"/>
         <result property="memberName" column="MEMBER_NAME"/>
     </resultMap>
+
+    <resultMap id="newsInfoResultMap2" type="com.semi.gamespace.news.model.dto.NewsDTO">
+        <id property="newsCode" column="NEWS_CODE"/>
+        <result property="newsTitle" column="NEWS_TITLE"/>
+        <result property="newsView" column="NEWS_VIEW"/>
+        <result property="newsDate" column="NEWS_DATE"/>
+        <result property="newsContent" column="NEWS_CONTENT"/>
+        <result property="gameName" column="GAME_CODE"/>
+        <result property="memberName" column="MEMBER_CODE"/>
+    </resultMap>
     
     <select id="selectAllNewsList" resultMap="newsInfoResultMap">
         SELECT
@@ -66,6 +76,14 @@
             NEWS
         WHERE
             NEWS_CODE = #{news_code}
+    </select>
+
+    <select id="selectAllGameCodeNews" parameterType="String" resultMap="newsInfoResultMap2">
+        SELECT
+            *
+        FROM NEWS A
+                 JOIN GAME_INFO B ON (A.GAME_CODE = B.GAME_CODE)
+        WHERE A.GAME_CODE = 'GAM_1'
     </select>
 
 
