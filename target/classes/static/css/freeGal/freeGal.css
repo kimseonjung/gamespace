@@ -803,3 +803,179 @@ width: 86px;
     order: 2;
     flex-grow: 0;
 }
+
+.upload{
+
+    /* nav / category */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    gap: 14px;
+
+    margin: 0 auto;
+
+    width: 708px;
+    height: 1134px;
+    left: 359px;
+    top: 126px;
+
+    /* Light/Nav BG */
+
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+
+}
+
+.uploadTitle{
+    /* Placeholder */
+
+
+    width: 644px;
+    height: 20px;
+
+    /* 15/15 - Med */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 20px;
+    /* identical to box height, or 133% */
+
+    letter-spacing: -0.009em;
+
+    /* Light/Light Gray */
+
+    color: rgba(74, 87, 111, 0.7);
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.att-btn{
+    /* Frame 2033 */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 8px;
+
+    width: 676px;
+    height: 48px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.file-select-name{
+    /* Input */
+
+
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 16px;
+    gap: 4px;
+
+    width: 528px;
+    height: 48px;
+
+    /* Basic / White */
+
+    background: #FFFFFF;
+    /* Basic/Purple */
+
+    border: 1px solid rgba(77, 62, 255, 0.9);
+    border-radius: 24px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.file-select-button{
+    /* Button */
+
+
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 20px;
+    gap: 4px;
+
+    width: 140px;
+    height: 48px;
+
+    /* Basic/Purple */
+
+    border: 1px solid rgba(77, 62, 255, 0.9);
+    border-radius: 24px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.uploadContentArea{
+    /* Input */
+
+
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    gap: 4px;
+
+    width: 676px;
+    height: 980px;
+
+    /* Basic / White */
+
+    background: #FFFFFF;
+    /* Basic/Purple */
+
+    border: 1px solid rgba(77, 62, 255, 0.9);
+    border-radius: 24px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+}
+

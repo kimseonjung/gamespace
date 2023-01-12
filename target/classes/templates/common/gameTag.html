@@ -14,37 +14,18 @@
   <div class="gametag-body">
     <div class="gametag-body-left">Tag</div>
     <form class="gametags">
-      <table>
+
+      <table th:each="game : ${gameInfoList}">
         <tr>
-          <td>게임이름</td>
-          <td>게임이름</td>
-          <td>게임이름</td>
-          <td>게임이름</td>
-          <td>게임이름</td>
-          <td>게임이름</td>
-        </tr>
-        <tr>
-          <td>게임이름</td>
-          <td>게임이름</td>
-          <td>게임이름</td>
-          <td>게임이름</td>
-          <td>게임이름</td>
-          <td>게임이름</td>
-        </tr>
-        <tr>
-          <td>게임이름</td>
-          <td>게임이름</td>
-          <td>게임이름</td>
-          <td>게임이름</td>
-          <td>게임이름</td>
-          <td>게임이름</td>
+          <td><input type="checkbox" th:text="${game.gameName}" th:value="${game.gameCode}" name="game-tag" class="gameName" onclick='getCheckboxValue()'></td>
         </tr>
       </table>
+
     </form>
     <div class="down"><img src="/image/icon_light/down.svg" alt="down"></div>
   </div>
   <div class="gametag-foot">
-    <div class="tag"> <p>게임이름</p></div>
+    <div class="tag" id="tag-result"></div>
   </div>
 </section>
 </body>
