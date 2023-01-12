@@ -148,17 +148,25 @@
 
         // 코드로 받은 리스트 출력
     }
-
+        const gameCode = document.getElementsByClassName('.gameName'.value)[0];
     $(".gametags table tbody tr td input:not(checked) ").on("click",function init() {
-            let rows = document.getElementsByClassName('.gameName'.value);
-        $.ajax({
-            type: "POST",
-            url: "/news/gameCodeNews",
-            contentType: "application/json",
-            data: JSON.stringify(rows),
-
-            datatype: 'json'
-        })
+            $.ajax({
+                type : "get",
+                url : "/news/gameCodeNews",
+                data : {
+                    gameCode : gameCode
+                },
+                contentType: "application/json",
+                dataType: "json",
+                success : function (data, status) {
+                    alert(status);
+                    const newsTitle = document.getElementsByClassName(data);
+                    document.getElementsByClassName('.news-head-p').innerHTML = data;
+                },
+                error : function (status) {
+                    alert(status + "error!");
+                }
+            });
     }//init
     );
 </script>

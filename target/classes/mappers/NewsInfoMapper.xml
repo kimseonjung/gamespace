@@ -78,7 +78,7 @@
             NEWS_CODE = #{news_code}
     </select>
 
-    <select id="selectAllgameCodeNews" parameterType="String" resultMap="newsInfoResultMap2">
+    <select id="selectAllGameCodeNews" parameterType="String" resultMap="newsInfoResultMap2">
         SELECT
             *
         FROM NEWS A

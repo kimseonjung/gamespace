@@ -10,10 +10,7 @@ import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.HttpServletBean;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -54,15 +51,26 @@ public class NewsInfoController {
         return mv;
     }
 
-    @PostMapping(value = "/gameCodeNews",produces = "application/json")
-    public ResponseEntity selectAllgameCodeNews(@RequestBody Map<String,Object> objectMap){
+    @ResponseBody
+    @GetMapping(value = "/gameCodeNews",produces = "application/json")
+    public ResponseEntity selectAllGameCodeNews(@RequestBody Map<String,Object> objectMap){
 
 
-        Map<String,Object> map = new HashMap<String,Object>();
-        map = newsInfoService.selectAllgameCodeNews();
+        Map<String,Object> map = new HashMap<>();
+        System.out.println(objectMap);
+        map = newsInfoService.selectAllGameCodeNews();
 
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
+//    @ResponseBody
+//    @PostMapping("/gameCodeNews")
+//    public ModelAndView selectAllGameCodeNews(ModelAndView mv){
+//
+//        List<NewsDTO> gameCodeNews = newsInfoService.selectAllGameCodeNews();
+//        mv.addObject("gameCodeNews", gameCodeNews);
+//
+//        return mv;
+//    }
 
     @GetMapping("/newsDetail")
     public  ModelAndView newsDetail(ModelAndView mv, String newsCode){

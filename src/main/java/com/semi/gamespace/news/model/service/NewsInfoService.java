@@ -51,7 +51,7 @@ public class NewsInfoService {
         newsInfoMapper.deleteNewsInfo(newsCode);
     }
 
-    public Map<String,Object> selectAllgameCodeNews() {
-        return newsInfoMapper.selectAllgameCodeNews();
+    public Map<String,Object> selectAllGameCodeNews() {
+        return newsInfoMapper.selectAllGameCodeNews();
     }
 }

@@ -21,5 +21,5 @@ public interface NewsInfoMapper {
 
     void deleteNewsInfo(String newsCode);
 
-    Map<String,Object> selectAllgameCodeNews();
+    Map<String,Object> selectAllGameCodeNews();
 }
