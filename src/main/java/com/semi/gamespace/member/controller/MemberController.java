@@ -1,5 +1,6 @@
 package com.semi.gamespace.member.controller;
 
+import com.semi.gamespace.authentication.model.dto.SpaceUser;
 import com.semi.gamespace.common.model.dto.ImageDTO;
 import com.semi.gamespace.common.model.service.ImageService;
 import com.semi.gamespace.member.model.dto.FollowDTO;
@@ -8,9 +9,11 @@ import com.semi.gamespace.member.model.service.MemberService;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -43,8 +46,11 @@ public class MemberController {
 
     //social - google : http://localhost:8001/oauth2/authorization/google
     /* 구글 로그인 API [POST] */
-//    @ResponseBody
-//    기본 Controller 사용
+    @ResponseBody
+    @GetMapping("/login/social/success")
+    public void socialLoginProgress(@RequestParam String code){
+
+    }
 
     @GetMapping("/regist")
     public void memberRegistForm() {}

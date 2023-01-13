@@ -14,6 +14,6 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         System.out.println("LoginSuccessHandler.onAuthenticationSuccess 메소드 호출");
-        response.sendRedirect("http://localhost:8001/member/login");
+        response.sendRedirect("http://localhost:8001/member/firstSocialLogin");
     }
 }
