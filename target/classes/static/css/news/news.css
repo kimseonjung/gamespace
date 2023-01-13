@@ -31,7 +31,7 @@
 }
 
 /* 뉴스 ----------------------------------------------------------------------*/
-.news-lists{
+.lists{
     margin: auto;
     margin-top: 18px;
     display: flex;
@@ -47,7 +47,7 @@
     order: 0;
     flex-grow: 0;
 }
-.news-list{
+.list{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -63,7 +63,7 @@
     order: 0;
     flex-grow: 0;
 }
-.news-list:hover{
+.list:hover{
     background: linear-gradient(90deg, rgba(255, 233, 244, 0.3) 0%, rgba(234, 243, 255, 0.5) 100%);
     border-radius: 16px;
 }
@@ -287,7 +287,7 @@
 }
 
 
-.input-title{
+.input {
     box-sizing: border-box;
 
     /* Auto layout */
@@ -320,6 +320,22 @@
     border: 1px solid rgba(77, 62, 255, 0.9);
 
 }
+
+.com-input{
+    width: 636px;
+}
+
+.update-btn{
+    position: absolute;
+    left: 494px;
+    bottom: 8px;
+
+
+}
+.delete-btn{
+    margin-left: 560px;
+}
+
 .textarea-wrap.active textarea{
     border: 1px solid rgba(77, 62, 255, 0.9);
 }
@@ -756,3 +772,74 @@
 
 }
 
+/* 뉴스 디테일 ------------------------------------------------------------------------------------------------------*/
+
+.detail-comList{
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 0px;
+    margin-top: 14px;
+    gap: 14px;
+
+    width: 676px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 3;
+    flex-grow: 0;
+}
+.detail-com{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 8px 20px;
+    gap: 6px;
+
+    width: 676px;
+    min-height: 40px;
+
+    /* Basic / White */
+
+    background: #FFFFFF;
+    border-radius: 24px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    word-break: break-word;
+    position: relative;
+}
+.detail-com p{
+    min-width: 49px;
+    min-height: 20px;
+    /* 15/15 - Med */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 20px;
+    /* identical to box height, or 133% */
+
+    letter-spacing: -0.009em;
+
+    /* Light/Primary Text */
+
+    color: #22242C;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin-top: 8px;
+}

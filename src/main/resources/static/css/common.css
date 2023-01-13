@@ -5,11 +5,11 @@
 }
 
 html{
+    background: rgba(224, 229, 239, 1);
     background-image: url("../image/icon/Property 1=header-gradient.svg") ;
     background-repeat: no-repeat;
     background-position-x: center;
     background-position-y: top;
-
 }
 body {
     height: 100%;
@@ -303,8 +303,10 @@ li a {
     top: 1062px;
 
     /* Light/Nav BG */
+    /* Light/Nav BG */
+
     background: rgba(255, 255, 255, 0.2);
-    box-shadow:1px 4px 11px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
 
     border-radius: 20px;
 }
