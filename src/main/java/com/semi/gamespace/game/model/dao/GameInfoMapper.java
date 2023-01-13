@@ -31,4 +31,6 @@ public interface GameInfoMapper {
 
 
     List<CategoryDTO> selectCheckCategory(Map<String, List<String>> categoryCode);
+
+
 }

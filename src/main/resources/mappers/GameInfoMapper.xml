@@ -237,7 +237,7 @@
         )
         VALUES
             (
-            GAME_CODE_SEQ.NEXTVAL
+            'GAM_'||GAME_CODE_SEQ.NEXTVAL
                 , #{ gameName }
                 , #{ devicesCode }
                 , #{ categoryCode }
