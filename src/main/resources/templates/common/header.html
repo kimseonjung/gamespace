@@ -46,11 +46,11 @@
               <a href="/member/login">Login</a>
             </div>
           </th:block>
-          <th:block sec:authorize="isAuthenticated()">
-            <a href="/member/mypage" class="mypage dropdown"><img src="/image/icon/mypage.svg" alt="mypage"></a>
+          <th:block sec:authorize="isAuthenticated()" th:with="user=${@authenticationConfig.getAuthenticationUser()}">
+            <a th:href="@{/member/user/{id} (id=${user.getUserId()})}" class="mypage dropdown"><img src="/image/icon/mypage.svg" alt="mypage"></a>
             <div class="dropdown-content dropdown-reverse">
-              <p th:text="${@authenticationConfig.getAuthenticationUser().getUserNickname()}">userNickname</p>
-              <a href="/member/mypage">My Page</a>
+              <p th:text="${user.getUserNickname()}">userNickname</p>
+              <a th:href="@{/member/user/{id} (id=${user.getUserId()})}">My Page</a>
               <a href="/member/userSetting">Setting</a>
               <a href="/member/logout">Logout</a>
             </div>

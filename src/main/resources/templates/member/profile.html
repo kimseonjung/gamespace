@@ -6,6 +6,7 @@
 </head>
 <body>
 <div th:fragment="profile">
+  <script th:inline="javascript" src="/js/member.js"></script>
   <div class="mypage-container">
     <div class="mypage-main">
       <div class="mypage-introduce">
@@ -27,7 +28,7 @@
           <p class="text-follow">팔로잉</p>
           <p class="text-follow" th:text="${followTo}"></p>
         </a>
-        <a href="#" class="follow-btn following btn-response">
+        <a href="#" class="follow-btn following btn-response follow-active">
           <p class="text-follow text-following">♥</p>
         </a>
       </div>
@@ -35,11 +36,11 @@
         <div class="menu-title"><p>SOCIAL MEDIA</p></div>
         <div class="social-content">
           <a th:href="${member.userSiteLink1}" class="social-btn btn-response"><img src="/image/icon_light/twitter.svg"></a>
-          <a th:href="${member.userSiteLink2}" class="social-btn btn-response"><img src="/image/icon_light/insta.svg"></a>
-          <a th:href="${member.userSiteLink3}" class="social-btn btn-response"><img src="/image/icon_light/github.svg"></a>
-          <a th:href="${member.userSiteLink4}" class="social-btn btn-response"><img src="/image/icon_light/globe.svg"></a>
-          <a th:href="${member.userSiteLink5}" class="social-btn btn-response"><img src="/image/icon_light/globe.svg"></a>
-          <a th:href="${member.userSiteLink6}" class="social-btn btn-response"><img src="/image/icon_light/globe.svg"></a>
+          <a class="social-btn btn-response"><img src="/image/icon_light/insta.svg"></a>
+          <a class="social-btn btn-response"><img src="/image/icon_light/github.svg"></a>
+          <a class="social-btn btn-response"><img src="/image/icon_light/globe.svg"></a>
+          <a class="social-btn btn-response"><img src="/image/icon_light/globe.svg"></a>
+          <a class="social-btn btn-response"><img src="/image/icon_light/globe.svg"></a>
         </div>
       </div>
     </div>

@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-signin-client_id" content="638146553578-6arnfteekhokl91jgsv38j5ah5jmmafn.apps.googleusercontent.com">
 
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/reset.css">
@@ -14,8 +15,10 @@
 </head>
 <body>
 <script src="/js/init.js"></script> <!-- 초기 세팅 -->
+<!-- API scripts -->
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
 <div class="member-main-bg bg-screen"></div>
-<form id="loginForm" action="/member/login" method="post">
   <div class="login-main bg-window">
     <div class="window-title">
       <a href="/" class="btn-cross btn-response">
@@ -26,40 +29,41 @@
       </div>
     </div>
     <div class="window-input">
-      <div class="login-body">
-        <div class="login-input">
-          <div class="input-placeholder">
-            <input class="input-text" name="userId" type="text" placeholder="ID">
+      <form id="loginForm" action="/member/login" method="post">
+        <div class="login-body">
+          <div class="login-input">
+            <div class="input-placeholder">
+              <input class="input-text" name="userId" type="text" placeholder="ID">
+            </div>
+            <div class="input-placeholder">
+              <input class="input-text" name="password" type="password" placeholder="Password">
+            </div>
           </div>
-          <div class="input-placeholder">
-            <input class="input-text" name="password" type="password" placeholder="Password">
+          <div class="login-help">
+            <a href="#" class="btn-response help-btn-text">아이디찾기</a>
+            <p>|</p>
+            <a href="#" class="btn-response help-btn-text">비밀번호찾기</a>
+            <p>|</p>
+            <a href="regist" class="btn-response help-btn-text">회원가입</a>
           </div>
         </div>
-        <div class="login-help">
-          <a href="#" class="btn-response help-btn-text">아이디찾기</a>
-          <p>|</p>
-          <a href="#" class="btn-response help-btn-text">비밀번호찾기</a>
-          <p>|</p>
-          <a href="regist" class="btn-response help-btn-text">회원가입</a>
+        <div class="login-buttons">
+  <!--        <a href="#" class="login-btn btn-blue-default btn-response">-->
+  <!--          <p class="login-btn-text white-text">로그인</p>-->
+  <!--        </a>-->
+          <input type="submit" value="로그인" class="login-btn btn-blue-default btn-response login-btn-text white-text">
+          <a href="/oauth2/authorization/google" class="login-btn btn-google btn-response">
+            <div class="login-btn-logo btn-logo-google"></div>
+            <p class="login-btn-text black-text">Google</p>
+          </a>
+          <a href="#" class="login-btn btn-kakao btn-response">
+            <div class="login-btn-logo btn-logo-kakao"></div>
+            <p class="login-btn-text black-text">Kakao</p>
+          </a>
         </div>
-      </div>
-      <div class="login-buttons">
-<!--        <a href="#" class="login-btn btn-blue-default btn-response">-->
-<!--          <p class="login-btn-text white-text">로그인</p>-->
-<!--        </a>-->
-        <input type="submit" value="로그인" class="login-btn btn-blue-default btn-response login-btn-text white-text">
-        <a href="#" class="login-btn btn-google btn-response">
-          <div class="login-btn-logo btn-logo-google"></div>
-          <p class="login-btn-text black-text">Google</p>
-        </a>
-        <a href="#" class="login-btn btn-kakao btn-response">
-          <div class="login-btn-logo btn-logo-kakao"></div>
-          <p class="login-btn-text black-text">Kakao</p>
-        </a>
-      </div>
+      </form>
     </div>
   </div>
-</form>
 <input class="screen-mode-btn" type="checkbox">
 <script src="/js/screenModeResponse.js"></script>
 </body>

@@ -13,6 +13,7 @@ public class AuthenticationConfig {
         List<String> adminPermitList = new ArrayList<>();
         /* 관리자만 접근 가능한 url */
         adminPermitList.add("/admin/dashboard"); //ex
+        adminPermitList.add("/admin/**");
 //        adminPermitList.add("/game/game"); //debug
 
         return adminPermitList;

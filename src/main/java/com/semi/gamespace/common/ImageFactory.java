@@ -18,6 +18,7 @@ public class ImageFactory {
     //초기화 - 리스트 선언
     public ImageFactory init() {
         imageList = new ArrayList<>();
+        ImageDTO image = new ImageDTO();
         return this;
     }
     //리턴 - imageList 출력

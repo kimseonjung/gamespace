@@ -53,6 +53,33 @@
         FROM MEMBER M
         WHERE M.MEMBER_ID = #{ userId }
     </select>
+
+    <select id="findMemberByEmailForSocialLogin" resultMap="memberResultMap" parameterType="string">
+        SELECT M.MEMBER_CODE,
+               M.MEMBER_ID,
+               M.MEMBER_PWD,
+               M.MEMBER_NICKNAME,
+               M.MEMBER_NAME,
+               M.MEMBER_PHONE,
+               M.MEMBER_EMAIL,
+               M.MEMBER_BIRTH,
+               M.MEMBER_GENDER,
+               M.ADDRESS,
+               M.INTRODUCE,
+               M.SITE_LINK_1,
+               M.SITE_LINK_2,
+               M.SITE_LINK_3,
+               M.SITE_LINK_4,
+               M.SITE_LINK_5,
+               M.SITE_LINK_6,
+               M.ENROLL_DATE,
+               M.MEMBER_STATUS,
+               M.BAN_DATE,
+               M.ADMIN_YN
+        FROM MEMBER M
+        WHERE M.MEMBER_EMAIL = #{ userEmail }
+    </select>
+
     <select id="selectAllMember" resultMap="memberResultMap">
         SELECT M.MEMBER_CODE,
                M.MEMBER_ID,
@@ -103,6 +130,12 @@
                 (SELECT COUNT(*) FROM FREE_GAL_COM WHERE MEMBER_CODE = #{ code }),
                 (SELECT COUNT(*) FROM GAME_GAL_COM WHERE MEMBER_CODE = #{ code })
         FROM DUAL
+    </select>
+
+    <select id="SocialMemberEmailCheck" resultType="_int" parameterType="string">
+        SELECT COUNT(*)
+        FROM MEMBER M
+        WHERE M.MEMBER_EMAIL = #{ userEmail }
     </select>
 
     <insert id="registMember" parameterType="com.semi.gamespace.member.model.dto.MemberDTO">

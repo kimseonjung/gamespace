@@ -487,6 +487,7 @@ li a {
 
 /* button */
 .btn-response{
+    cursor: pointer;
     opacity: 1;
 }
 .btn-response:hover{

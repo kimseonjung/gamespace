@@ -37,6 +37,16 @@
     background-image: url("../image/icon_light/plus.svg");
     background-size: 20px 20px;
 }
+.screen-light .number-arrow-left{
+    background-image: url("../image/icon_light/left.svg");
+    background-size: 8px 14px;
+}
+.screen-light .number-page p{
+    color: rgba(74, 87, 111, 0.7);
+}
+.screen-light .number-arrow p{
+    color: rgba(74, 87, 111, 0.7);
+}
 
 /* dark background */
 .screen-dark .bg-window{
@@ -74,4 +84,14 @@
 .screen-dark .icon-plus{
     background-image: url("../image/icon_dark/plus.svg");
     background-size: 20px 20px;
+}
+.screen-dark .number-arrow-left{
+    background-image: url("../image/icon_dark/left.svg");
+    background-size: 8px 14px;
+}
+.screen-dark .number-page p{
+    color: rgba(114, 120, 136, 0.6);
+}
+.screen-dark .number-arrow p{
+    color: rgba(114, 120, 136, 0.6);
 }
