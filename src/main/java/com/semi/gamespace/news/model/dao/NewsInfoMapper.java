@@ -1,5 +1,6 @@
 package com.semi.gamespace.news.model.dao;
 
+import com.semi.gamespace.game.model.dto.GameInfoDTO;
 import com.semi.gamespace.news.model.dto.NewsComDTO;
 import com.semi.gamespace.news.model.dto.NewsDTO;
 import org.apache.ibatis.annotations.Mapper;
@@ -31,4 +32,6 @@ public interface NewsInfoMapper {
     int updateNewsCom(Map<String, String> newsCom);
 
     void deleteNewsCom(String newsComCode);
+
+    List<GameInfoDTO> gameCodeNewsList(Map<String, List<String>> gameCode);
 }

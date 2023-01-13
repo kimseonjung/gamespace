@@ -299,7 +299,7 @@
     gap: 4px;
 
     width: 676px;
-    height: 48px;
+    min-height: 48px;
 
     /* Basic / White */
 
@@ -323,6 +323,7 @@
 
 .com-input{
     width: 636px;
+    min-height: 20px;
 }
 
 .update-btn{
@@ -841,5 +842,39 @@
     flex: none;
     order: 1;
     flex-grow: 0;
-    margin-top: 8px;
+    margin: 10px 0px;
+}
+.dis{
+    background: transparent;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* gap: 4px; */
+    width: 72px;
+    height: 24px;
+    border: 1px solid rgba(77, 62, 255, 0.9);
+    border-radius: 24px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: -0.014em;
+    color: rgba(77, 62, 255, 0.9);
+    margin-top: 2px;
+}
+.dis:hover{
+    opacity: 0.8;
+}
+.dis:active{
+    opacity: 0.9;
+}
+.dix{
+    background: rgba(77, 62, 255, 0.9);
+    border: none;
+    color: #FFFFFF;
+}
+.com-btn{
+    margin: 6px 0px 0px 576px;
 }
