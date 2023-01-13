@@ -38,7 +38,10 @@ public class GameInfoController {
     @GetMapping("game")
     public ModelAndView selectGameMainList(ModelAndView mv, HttpServletRequest request, HttpServletResponse response){
 
+
+
         List<GameInfoDTO> gameInfoList = gameInfoService.selectAllGameInfo();
+
         List<CategoryDTO> categoryList = gameInfoService.selectAllCategory();
         List<TagDTO> tagList = gameInfoService.selectAllTag();
         List<DevicesDTO> devicesList = gameInfoService.selectAllDevices();
@@ -60,6 +63,18 @@ public class GameInfoController {
 
     }
 
+    @GetMapping("selectCategoryOne")
+    public ModelAndView selectCategoryOne(ModelAndView mv, HttpServletRequest request, HttpServletResponse response){
+
+        String cate_no = request.getParameter("cate_no");
+
+        List<GameInfoDTO> selectCategoryOne = gameInfoService.selectCategoryOne(cate_no);
+        mv.addObject("cate_no", cate_no);
+        mv.addObject("selectCategoryOne", selectCategoryOne);
+
+        return mv;
+    }
+
     @PostMapping(value = "game", produces = "application/json; charset=UTF-8")
     @ResponseBody
     public String selectGameMainJsonList(Model model, CategoryDTO categoryDTO, TagDTO tagDTO,
@@ -75,7 +90,7 @@ public class GameInfoController {
         dataMap.put("tagCode", tagCode.isEmpty() ? null : tagCode);
 //        Map<String, List<String>>
 
-        List<CategoryDTO> categoryList = gameInfoService.selectCheckCategory(dataMap);
+        List<CategoryDTO> categoryTagList = gameInfoService.selectCheckCategoryTag(dataMap);
 //        List<TagDTO> tagList = gameInfoService.selectCheckTag(tagCode);
 
         System.out.println(categoryCode);
@@ -89,7 +104,7 @@ public class GameInfoController {
                 .create();
         Map<String, Object> map = new HashMap<String, Object>();
 
-        map.put("categoryList", categoryList);
+        map.put("categoryTagList", categoryTagList);
 
         String jsonString = gson.toJson(map);
 

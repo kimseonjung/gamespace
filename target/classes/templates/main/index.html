@@ -67,40 +67,46 @@
 <!-- 장르컨텐츠 -->
 <section class="main2">
     <section class="items">
-        <a href="#">
-            <div class="item-wrap">
-                <div class="item-img"><img src="/image/img/Work/image%20792.png" alt="mmo"></div>
-                <div class="item-text">MMO</div>
-            </div>
-        </a>
-        <a href="#">
+        <form action="/game/game"  method="post" onsubmit="return false;" id="category">
+<!--        <a href="/game?cate_no=CAT_2">-->
+           <label for="CAT_2">
+               <div class="item-wrap">
+                   <div class="item-img"><img src="/image/img/Work/image%20792.png" alt="mmo"></div>
+                   <div class="item-text">MMO</div>
+               </div>
+           </label>
+            <input type="hidden" value="CAT_2">
+            <button type="submit" id="CAT_2" onclick="window.location.href='http://localhost:8001/game/game';"></button>
+<!--        </a>-->
+        </form>
+        <a href="/game?cate_no=CAT_8">
             <div class="item-wrap">
                 <div class="item-img"><img src="/image/img/Work/3dicons.png" alt="mmo"></div>
-                <div class="item-text">RPG</div>
+                <div class="item-text">보드</div>
             </div>
         </a>
-        <a href="#">
+        <a href="/game?cate_no=CAT_6">
             <div class="item-wrap">
                 <div class="item-img"><img src="/image/img/Work/V5.png" alt="mmo"></div>
-                <div class="item-text">레이싱</div>
+                <div class="item-text">아케이드</div>
             </div>
         </a>
     </section>
 
     <section class="items">
-        <a href="#">
+        <a href="/game?cate_no=CAT_3">
             <div class="item-wrap">
                 <div class="item-img"><img src="/image/img/Work/uiLogos.png" alt="mmo"></div>
                 <div class="item-text">스포츠</div>
             </div>
         </a>
-        <a href="#">
+        <a href="/game?cate_no=CAT_7">
             <div class="item-wrap">
                 <div class="item-img"><img src="/image/img/Work/uihues.png" alt="mmo"></div>
                 <div class="item-text">시뮬레이션</div>
             </div>
         </a>
-        <a href="#">
+        <a href="/game?cate_no=CAT_4">
             <div class="item-wrap">
                 <div class="item-img"><img src="/image/img/Work/croods.png" alt="mmo"></div>
                 <div class="item-text">액션</div>
@@ -109,19 +115,19 @@
     </section>
 
     <section class="items">
-        <a href="#">
+        <a href="/game?cate_no=CAT_5">
             <div class="item-wrap">
                 <div class="item-img"><img src="/image/img/Work/image%20792.png" alt="mmo"></div>
                 <div class="item-text">어드벤처</div>
             </div>
         </a>
-        <a href="#">
+        <a href="/game?cate_no=CAT_1">
             <div class="item-wrap">
                 <div class="item-img"><img src="/image/img/Work/3dicons.png" alt="mmo"></div>
-                <div class="item-text">인디</div>
+                <div class="item-text">롤플레잉</div>
             </div>
         </a>
-        <a href="#">
+        <a href="/game?cate_no=CAT_10">
             <div class="item-wrap">
                 <div class="item-img"><img src="/image/img/Work/V5.png" alt="mmo"></div>
                 <div class="item-text">전략</div>
@@ -130,24 +136,24 @@
     </section>
 
     <section class="items">
-        <a href="#">
+        <a href="/game?cate_no=CAT_9">
             <div class="item-wrap">
                 <div class="item-img"><img src="/image/img/Work/uiLogos.png" alt="mmo"></div>
                 <div class="item-text">캐주얼</div>
             </div>
         </a>
-        <a href="#">
-            <div class="item-wrap">
+<!--        <a href="#">-->
+            <div class="item-wrap" style="visibility: hidden">
                 <div class="item-img"><img src="/image/img/Work/uihues.png" alt="mmo"></div>
                 <div class="item-text">롤플레잉</div>
             </div>
-        </a>
-        <a href="#">
-            <div class="item-wrap">
+<!--        </a>-->
+<!--        <a href="#">-->
+            <div class="item-wrap" style="visibility: hidden">
                 <div class="item-img"><img src="/image/img/Work/croods.png" alt="mmo"></div>
                 <div class="item-text">아케이드</div>
             </div>
-        </a>
+<!--        </a>-->
     </section>
 </section>
 
