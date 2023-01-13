@@ -74,33 +74,6 @@ function genderBtnResponse() {
 
 /* ----- 성별 버튼 반응 끝 ----- */
 
-/* ----- 회원 가입 전 검증 ----- */
-function registVerify() {
-    const userId = document.getElementsByName("userId")[0];
-    const userPwd = document.getElementsByName("userPwd")[0];
-    const userPwdChk = document.getElementsByName("userPwd-check")[0];
-    const userNickname = document.getElementsByName("userNickname")[0];
-    const userName = document.getElementsByName("userName")[0];
-    const userBirthday = document.getElementsByName("userBirthday")[0];
-    const userPhone = document.getElementsByName("userPhone")[0];
-    const userEmail = document.getElementsByName("userEmail")[0];
-    const userIsVerify = grecaptcha.getResponse().length == 0;
-
-    //ID
-    // if()
-    //reCAPTCHA
-    if(userIsVerify) {
-        document.getElementById('error-reCaptcha').innerText = "인증을 진행해주세요.";
-        return false;
-    } else {
-        document.getElementById('error-reCaptcha').innerText = "";
-    }
-
-    return true;
-
-}
-/* ----- 회원 가입 전 검증 끝 ----- */
-
 /* ----- 링크 수정 ----- */
 $(function () {
     for (let i = 0; i < 6; i++) {

@@ -9,4 +9,4 @@ gen
 .gradle
 build
 /target/
-application-oauth
+application-oauth.yml

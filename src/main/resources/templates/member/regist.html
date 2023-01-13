@@ -31,34 +31,34 @@
         <div class="window-input">
             <div class="regist-body">
                 <div class="regist-input regist-step-1">
-                    <div class="input-placeholder input-required">
+                    <div class="input-placeholder input-required" id="border-id">
                         <div class="input-head"></div>
                         <input class="input-text" name="userId" type="text" placeholder="* ID">
                     </div>
                     <p class="error-text" id="error-id"></p>
-                    <div class="input-placeholder input-required">
+                    <div class="input-placeholder input-required" id="border-pwd">
                         <div class="input-head"></div>
                         <input class="input-text" name="userPwd" type="password" placeholder="* Password">
                     </div>
                     <p class="error-text" id="error-pwd"></p>
-                    <div class="input-placeholder input-required">
+                    <div class="input-placeholder input-required" id="border-pwd-check">
                         <div class="input-head"></div>
                         <input class="input-text" name="userPwd-check" type="password" placeholder="* Password Check">
                     </div>
                     <p class="error-text" id="error-pwd-check"></p>
                 </div>
                 <div class="regist-input regist-step-2">
-                    <div class="input-placeholder input-required">
+                    <div class="input-placeholder input-required" id="border-nickname">
                         <div class="input-head"></div>
                         <input class="input-text" name="userNickname" type="text" placeholder="* Nickname">
                     </div>
                     <p class="error-text" id="error-nickname"></p>
-                    <div class="input-placeholder input-required">
+                    <div class="input-placeholder input-required" id="border-name">
                         <div class="input-head"></div>
                         <input class="input-text" name="userName" type="text" placeholder="* Name">
                     </div>
                     <p class="error-text" id="error-name"></p>
-                    <div class="input-placeholder input-required">
+                    <div class="input-placeholder input-required" id="border-birthday">
                         <div class="input-head"></div>
                         <input class="input-text" name="userBirthday" type="text" placeholder="* Birthday (yyyy-mm-dd)">
                     </div>
@@ -78,12 +78,12 @@
                         </label>
                     </div>
                     <p class="error-text"></p>
-                    <div class="input-placeholder input-required">
+                    <div class="input-placeholder input-required" id="border-phone">
                         <div class="input-head"></div>
                         <input class="input-text" name="userPhone" type="text" placeholder="* Phone">
                     </div>
                     <p class="error-text" id="error-phone"></p>
-                    <div class="input-placeholder input-required">
+                    <div class="input-placeholder input-required" id="border-email">
                         <div class="input-head"></div>
                         <input class="input-text" name="userEmail" type="text" placeholder="* Email">
                     </div>
@@ -134,6 +134,7 @@
 
 </body>
 <script src="/js/member.js"></script>
+<script src="/js/userValidation.js"></script>
 <script src="/js/screenModeResponse.js"></script>
 <!-- APIs -->
 <!-- g-RECAPTCHA -->
