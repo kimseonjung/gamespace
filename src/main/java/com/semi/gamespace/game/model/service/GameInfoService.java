@@ -118,4 +118,6 @@ public class GameInfoService {
         return gameInfoMapper.selectCategoryOne(cate_no);
 
     }
+
+
 }

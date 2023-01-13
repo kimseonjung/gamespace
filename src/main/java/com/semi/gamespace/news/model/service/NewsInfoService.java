@@ -1,6 +1,7 @@
 package com.semi.gamespace.news.model.service;
 
 import com.semi.gamespace.game.model.dao.GameInfoMapper;
+import com.semi.gamespace.game.model.dto.GameInfoDTO;
 import com.semi.gamespace.news.model.dao.NewsInfoMapper;
 import com.semi.gamespace.news.model.dto.NewsComDTO;
 import com.semi.gamespace.news.model.dto.NewsDTO;
@@ -77,5 +78,9 @@ public class NewsInfoService {
 
     public void deleteNewsCom(String newsComCode) {
         newsInfoMapper.deleteNewsCom(newsComCode);
+    }
+
+    public List<GameInfoDTO> gameCodeNewsList(Map<String, List<String>> gameCode) {
+        return newsInfoMapper.gameCodeNewsList(gameCode);
     }
 }

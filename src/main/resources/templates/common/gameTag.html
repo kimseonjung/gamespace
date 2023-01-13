@@ -17,7 +17,9 @@
 
       <table >
         <tr>
-          <td th:each="game : ${gameInfoList}"><input type="checkbox" th:text="${game.gameName}" th:value="${game.gameCode}" name="game-tag" class="gameName" onclick='getCheckboxValue()'></td>
+
+          <td><label th:for="${game.gameCode}" th:text="${game.gameName}"></label><input type="checkbox"th:id="${game.gameCode}" th:value="${game.gameCode}" name="game-tag" class="gameName" onclick='getCheckboxValue();searchGameCodeList();'></td>
+
         </tr>
       </table>
 
