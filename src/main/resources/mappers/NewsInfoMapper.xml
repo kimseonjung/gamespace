@@ -23,6 +23,14 @@
         <result property="gameName" column="GAME_CODE"/>
         <result property="memberName" column="MEMBER_CODE"/>
     </resultMap>
+
+    <resultMap id="newsComResultMap" type="com.semi.gamespace.news.model.dto.NewsComDTO">
+        <id property="newsComCode" column="NEWS_COM_CODE"/>
+        <result property="newsCode" column="NEWS_CODE"/>
+        <result property="newsCom" column="NEWS_COM_TITLE"/>
+        <result property="memberCode" column="MEMBER_CODE"/>
+        <result property="regDate" column="REGDATE"/>
+    </resultMap>
     
     <select id="selectAllNewsList" resultMap="newsInfoResultMap">
         SELECT
@@ -101,5 +109,58 @@
         WHERE NEWS_CODE=#{newsCode}
     </delete>
 
+
+    <!-- 댓글 ************************************************************************************************* -->
+
+    <!-- 댓글 조회 -->
+    <select id="getNewsCom" parameterType="String" resultMap="newsComResultMap">
+        SELECT
+            A.NEWS_COM_CODE,
+            A.NEWS_CODE,
+            A.NEWS_COM_TITLE,
+            A.MEMBER_CODE,
+            A.REGDATE
+        FROM NEWS_COM A
+        WHERE NEWS_CODE = #{newsCode}
+    </select>
+
+    <!-- 댓글 boardId 넘기기 -->
+    <select id="getNewsComCode" parameterType="String" resultType="String">
+        SELECT
+            NEWS_COM_CODE
+        FROM NEWS_COM
+        WHERE NEWS_COM_CODE = #{NewsComCode}
+    </select>
+
+    <!-- 댓글 작성 -->
+    <insert id="uploadNewsCom" parameterType="com.semi.gamespace.news.model.dto.NewsComDTO">
+        INSERT INTO
+            NEWS_COM(
+                NEWS_COM_CODE,
+                    NEWS_CODE,
+                    NEWS_COM_TITLE,
+                    MEMBER_CODE
+                     )
+        VALUES(
+            'NEWC_' ||NEWS_COM_CODE_SEQ.nextval,
+               #{newsCode},
+               #{newsCom},
+               'MEM_1'
+               )
+    </insert>
+
+    <!-- 댓글 수정 -->
+    <update id="updateNewsCom" parameterType="java.util.HashMap">
+        UPDATE NEWS_COM
+        SET
+            MEMBER_CODE='MEM_1', NEWS_COM_TITLE=#{newsCom}
+        WHERE NEWS_COM_CODE=#{newsComCode} AND NEWS_CODE=#{newsCode}
+    </update>
+
+    <!-- 댓글 삭제 -->
+    <delete id="deleteNewsCom" parameterType="String">
+        DELETE FROM NEWS_COM
+        WHERE NEWS_COM_CODE=#{newsComCode}
+    </delete>
 
 </mapper>

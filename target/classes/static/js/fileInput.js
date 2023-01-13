@@ -20,6 +20,16 @@ $('#title').on("change", function () {
     }
 });
 
+$('#insertNewsCom').on("change", function () {
+    let insertNews = $("#insertNewsCom").val();
+    if (/^\s*$/.test(insertNews)) {
+        $(".detail-com-input").removeClass('active');
+    }
+    else {
+        $(".detail-com-input").addClass('active');
+    }
+});
+
 $('#textarea').on("change", function () {
     var title = $("#textarea").val();
     if (/^\s*$/.test(title)) {
