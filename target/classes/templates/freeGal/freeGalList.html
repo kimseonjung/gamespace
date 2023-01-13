@@ -57,20 +57,24 @@
   </div>
 
   <!-- 자유갤러리 메인 글 리스트 -->
-  <div class="freeGalBoard">
+  <section id="table">
+      <div class="freeGalBoard lists">
 
-      <div th:each="freeGal : ${freeGalList}" class="gallery">
-        <div class="gal-list">
-            <a th:href="@{/freeGal/view(freeGalCode=${freeGal.freeGalCode})}">
-            <div class="gal-head"><p th:text="${freeGal.freeGalTitle}"> </p></div>
-            <div class="gal-body"><p th:text="${freeGal.freeGalContent}"> </p></div>
-            <div class="gal-foot"><p th:text="|${freeGal.freeGalDate} ${freeGal.memberNickname} ${freeGal.view}|"> </p></div>
-            </a>
-        </div>
+          <div class="item">
+              <div th:each="freeGal : ${freeGalList}" class="gallery list">
+                  <div class="gal-list">
+                      <a th:href="@{/freeGal/view(freeGalCode=${freeGal.freeGalCode})}">
+                          <div class="gal-head"><p th:text="${freeGal.freeGalTitle}"> </p></div>
+                          <div class="gal-body"><p th:text="${freeGal.freeGalContent}"> </p></div>
+                          <div class="gal-foot"><p th:text="|${freeGal.freeGalDate} ${freeGal.memberNickname} ${freeGal.view}|"> </p></div>
+                      </a>
+                  </div>
+
+              </div>
+          </div>
 
       </div>
-
-  </div>
+  </section>
 </div>
 
 <!-- 다음 리스트 페이지 -->

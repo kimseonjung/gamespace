@@ -19,7 +19,7 @@
             B.MEMBER_NICKNAME
         FROM FREE_GAL_COM A
         JOIN MEMBER B ON (A.MEMBER_CODE = B.MEMBER_CODE)
-        WHERE FREE_GAL_CODE = #{freeGalCode}
+        WHERE FREE_GAL_CODE = #{FREE_GAL_CODE} AND FREE_GAL_COM_PARENT IS NULL
     </select>
 
     <!-- 댓글 FREE_GAL_CODE 넘기기 -->
@@ -27,13 +27,13 @@
         SELECT
             FREE_GAL_CODE
         FROM FREE_GAL_COM
-        WHERE FREE_GAL_CODE = #{freeGalCode}
+        WHERE FREE_GAL_CODE = #{FREE_GAL_CODE}
     </select>
 
     <!-- 댓글 작성 -->
     <insert id="uploadComment" parameterType="com.semi.gamespace.free_gal.model.dto.FreeGalComDTO">
-        INSERT INTO FREE_GAL_COM(FREE_GAL_CODE, FREE_GAL_COM_CODE, FREE_GAL_COM_TITLE)
-        VALUES(#{freeGalCode}, FREE_GAL_COM_SEQ.NEXTVAL, #{freeGalComTitle})
+        INSERT INTO FREE_GAL_COM(FREE_GAL_CODE, FREE_GAL_COM_CODE, FREE_GAL_COM_TITLE, MEMBER_CODE)
+        VALUES(#{freeGalCode}, 'FGC_'||FREE_GAL_COM_CODE_SEQ.NEXTVAL, #{freeGalComTitle}, 'MEM_1')
     </insert>
 
     <!-- 댓글 수정 -->
@@ -50,9 +50,40 @@
         WHERE FREE_GAL_COM_CODE=#{freeGalComCode}
     </delete>
 
+    <!-- 대댓글 작성 -->
+    <insert id="uploadCommentComment" parameterType="com.semi.gamespace.free_gal.model.dto.FreeGalComDTO">
+        INSERT INTO FREE_GAL_COM(
+            FREE_GAL_CODE,
+            FREE_GAL_COM_CODE,
+            FREE_GAL_COM_TITLE,
+            MEMBER_CODE,
+            FREE_GAL_COM_PARENT)
 
+        VALUES(#{freeGalCode}, 'FGC_'||FREE_GAL_COM_CODE_SEQ.NEXTVAL, #{freeGalComTitle}, 'MEM_1', #{freeGalComParent})
+    </insert>
 
+    <!-- 대댓글 조회 -->
+    <select id="getCommentComment" parameterType="String" resultMap="freeGalComResultMap">
+        SELECT
+            A.FREE_GAL_COM_CODE, A.FREE_GAL_COM_TITLE, B.MEMBER_NICKNAME, A.FREE_GAL_COM_PARENT
+        FROM FREE_GAL_COM A
+        JOIN MEMBER B ON (A.MEMBER_CODE = B.MEMBER_CODE)
+        WHERE A.FREE_GAL_CODE = #{freeGalCode} AND A.FREE_GAL_COM_PARENT IS NOT NULL
+    </select>
 
+    <!-- 대댓글 수정 -->
+    <update id="updateCommentComment" parameterType="com.semi.gamespace.free_gal.model.dto.FreeGalComDTO">
+        UPDATE FREE_GAL_COM
+        SET
+            FREE_GAL_COM_TITLE=#{freeGalComTitle}
+        WHERE FREE_GAL_COM_CODE=#{freeGalComCode} and FREE_GAL_CODE=#{freeGalCode}
+    </update>
+
+    <!-- 대댓글 삭제 -->
+    <delete id="deleteCommentComment" parameterType="String">
+        DELETE FROM FREE_GAL_COM
+        WHERE FREE_GAL_COM_CODE=#{freeGalComCode}
+    </delete>
 
 
 </mapper>
