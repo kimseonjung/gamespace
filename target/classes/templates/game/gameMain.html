@@ -7,15 +7,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/common.css">
-
-
+    <link rel="stylesheet" href="/css/game/gameMain.css">
 
     <title>gamespace</title>
 
-
-
     <!-- jQuery library -->
-<!--    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>-->
+    <!--    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>-->
 
     <!-- Popper JS-->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -35,54 +32,56 @@
 <!--th:field="*{category}"-->
 <!--th:for="${#ids.prev(categoryList)}"-->
 <!--th:value="${category.categoryCode}"-->
-    <section>
-        <form action="/game/game"  method="post" onsubmit="return false;" id="category">
+    <section class="gametag-wrap">
+        <div class="gametag-header">
+            <div class="logo"><img src="/image/icon_light/gamespace.svg" alt="gamespace"></div>
+        </div>
 
-            <div th:each="category : ${categoryList}" id="categoryCode">
-                <input th:text="${category.categoryName}" th:value="${category.categoryCode}" th:type="checkbox" name="categoryCode" class="category">
+<!--                <form action="/game/game"  method="post" onsubmit="return false;" id="category" class="gamecategorytag">-->
+<!--        style="position: absolute;left: -1000%;"-->
+                    <div class="gametag-body">
+                        <div class="gametag-body-left">Category</div>
+                        <table th:each="category : ${categoryList}" id="categoryCode" class="gametags">
+                            <tr>
+                                <td><label th:for="${category.categoryCode}" th:text="${category.categoryName}"></label><input th:id="${category.categoryCode}" th:value="${category.categoryCode}" th:type="checkbox" name="categoryCode" class="categoryCheck" onclick="searchGameMainList()" ></td>
+                            </tr>
+                        </table>
+                    </div>
 
-            </div>
+                    <div class="gametag-body">
+                        <div class="gametag-body-left">Tag</div>
+                        <table th:each="tag : ${tagList}" id="tagCode" class="gametags">
+                            <tr>
+                                <td><label th:for="${tag.tagCode}" th:text="${tag.tagName}"></label><input th:id="${tag.tagCode}" th:value="${tag.tagCode}" th:type="checkbox" name="tagCode" class="tagCheck" onclick="searchGameMainList()"></td>
+                            </tr>
+                        </table>
+                    </div>
 
 
-            <div th:each="tag : ${tagList}" id="tagCode">
-                <input th:text="${tag.tagName}" th:value="${tag.tagCode}" th:type="checkbox" name="tagCode" class="tag">
-            </div>
+<!--                    <div th:each="devices : ${devicesList}">-->
+<!--                        <button th:text="${devices.devicesName}"></button>-->
+<!--                    </div>-->
 
 
-            <div th:each="devices : ${devicesList}">
-                <button th:text="${devices.devicesName}"></button>
-
-            </div>
-            <input type="submit" onclick="searchGameMainList()">전송</input>
-        </form>
-
-<!--            <div class="toggle" >-->
-<!--                <form th:action="@{game}" method="get">-->
-<!--                    <label for="pc"><input type="radio" name="category" id="pc" class="category" checked th:value="${devicesOne.devicesCode}"><div class="togg pc"><img src="/image/icon_dark/pc.svg" alt=""></div></label>-->
 <!--                </form>-->
-<!--                <form th:action="@{game}" method="get">-->
-<!--                    <label for="mobile"><input type="radio" name="category" id="mobile" class="category" th:value="${devicesOne.devicesCode}"><div class="togg mobile"><img src="/image/icon_dark/mobile.svg" alt=""></div></label>-->
-<!--                </form>-->
-<!--                <form th:action="@{game}" method="get">-->
-<!--                    <label for="console"><input type="radio" name="category" id="console" class="category" th:value="${devicesOne.devicesCode}"><div class="togg console"><img src="/image/icon_dark/console.svg" alt=""></div></label>-->
-<!--                </form>-->
-<!--            </div>-->
+        <div class="gametag-foot">
+            <div class="tag" id="tag-result"></div>
+        </div>
 
     </section>
 
 
     <section>
 
-<!--        <div th:each="game : ${gameInfoList}"> &lt;!&ndash;th:class="t-body"&ndash;&gt;-->
-<!--            <div th:text="${game.gameName}"></div>-->
-<!--            <div th:text="${game.categoryCode}"></div>-->
-<!--            <div th:text="${game.tagCode}"></div>-->
-<!--            <div th:text="${game.gameIntro}"></div>-->
-<!--        </div>-->
 
-        <div th:id="search">
-<!--            <div id="game-title"> </div>-->
-<!--            <div id="game-body"> </div>-->
+
+        <div th:id="search" class="lists">
+                    <div class='list' th:each="game : ${gameInfoList}"> <!--th:class="t-body"-->
+                        <div class='game-head' th:text="${game.gameName}"></div>
+                        <div th:text="${game.categoryCode}"></div>
+                        <div th:text="${game.tagCode}"></div>
+                        <div class='news-body' th:text="${game.gameIntro}"></div>
+                    </div>
 
         </div>
 
@@ -94,8 +93,14 @@
 
 
 
-
-
+<div class="pagination">
+    <div class="pagination-wrap">
+        <i class="left-icon"><img src="/image/svg/icon-arrow-left.svg" alt="left"></i>
+        <ol id="numbers"></ol>
+        <i class="right-icon"><img src="/image/svg/icon-arrow-right.svg" alt="right"></i>
+    </div>
+</div>
+<script src="/js/pagination.js"></script>
 
 
 
@@ -136,18 +141,18 @@
 
            success: function(data,status, xhr) {    // 결과 성공 콜백함수
 
-               console.log(data.categoryList[0].gameName);
+               console.log(data.categoryTagList[0].gameName);
 
 
                $('#search').html("");
 
-               data.categoryList.forEach(function(item) {
-                   let table = "<tr>";
-                   table += "<td>"+item.gameName+"</td>";
-                   table += "<td>"+item.categoryCode+"</td>";
-                   table += "<td>"+item.tagCode+"</td>";
-                   table += "<td>"+item.gameIntro+"</td>";
-                   table += "</tr>";
+               data.categoryTagList.forEach(function(item) {
+                   let table = "<div class='list'>";
+                   table += "<div class='game-head'>"+item.gameName+"</div>";
+                   table += "<div class=''>"+item.categoryCode+"</div>";
+                   table += "<div class=''>"+item.tagCode+"</div>";
+                   table += "<div class='news-body'>"+item.gameIntro+"</div>";
+                   table += "</div>";
                    $('#search').append(table);
                });
 
