@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
@@ -107,8 +108,8 @@ public class GameInfoService {
 
     }
 
-    public List<CategoryDTO> selectOneCategory(String categoryCode) {
+    public List<CategoryDTO> selectCheckCategory(Map<String, List<String>> categoryCode) {
 
-        return gameInfoMapper.selectOneCategory(categoryCode);
+        return gameInfoMapper.selectCheckCategory(categoryCode);
     }
 }

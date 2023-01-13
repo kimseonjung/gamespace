@@ -90,7 +90,7 @@
     </select>
 
 
-    <select id="selectOneCategory" resultMap="gameInfoResultMap">
+    <select id="selectCheckCategory" parameterType="java.util.HashMap" resultMap="gameInfoResultMap">
 
         SELECT
             A.GAME_CODE
@@ -110,7 +110,19 @@
              , A.GAME_INTRO
              , A.GAME_STATUS
         FROM GAME_INFO A
-        WHERE A.CATEGORY_CODE = #{categoryCode}
+        WHERE 1=0
+          <if test="categoryCode != null">
+              OR A.CATEGORY_CODE IN
+              <foreach item="item" index="index" collection="categoryCode" open="(" separator="," close=")">
+                  #{item}
+              </foreach>
+          </if>
+          <if test="tagCode != null">
+              OR A.TAG_CODE IN
+              <foreach item="item" index="index" collection="tagCode" open="(" separator="," close=")">
+                  #{item}
+              </foreach>
+          </if>
     </select>
 
 
