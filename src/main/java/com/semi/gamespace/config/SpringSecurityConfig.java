@@ -1,28 +1,39 @@
 package com.semi.gamespace.config;
 
 import com.semi.gamespace.authentication.AuthenticationService;
+import com.semi.gamespace.authentication.model.service.OAuth2DetailsService;
+import com.semi.gamespace.authentication.controller.LoginSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.registration.ClientRegistration;
+import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
+import org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @EnableWebSecurity
 public class SpringSecurityConfig {
     private final AuthenticationService authenticationService;
     private final AuthenticationConfig authenticationConfig;
+    private final OAuth2DetailsService oAuth2DetailsService;
 
     @Autowired
-    public SpringSecurityConfig(AuthenticationService authenticationService, AuthenticationConfig authenticationConfig) {
+    public SpringSecurityConfig(AuthenticationService authenticationService, AuthenticationConfig authenticationConfig,
+                                OAuth2DetailsService oAuth2DetailsService) {
         this.authenticationService = authenticationService;
         this.authenticationConfig = authenticationConfig;
+        this.oAuth2DetailsService = oAuth2DetailsService;
     }
 
     @Bean
@@ -53,7 +64,7 @@ public class SpringSecurityConfig {
                 //anyRequest() : 그 외의 path는
                 //permitAll() : 모든 유저의 접근을 허용
 
-                /* 로그인 */
+                /* 일반 로그인 */
                 .and()
                 .formLogin()
                 //form 기반 인증 - 로그인 정보는 기본적으로 HttpSession을 이용
@@ -81,7 +92,18 @@ public class SpringSecurityConfig {
                 /* 예외처리 */
                 .and()
                 .exceptionHandling()
-                .accessDeniedPage(authenticationConfig.getAccessDeniedUrl());
+                .accessDeniedPage(authenticationConfig.getAccessDeniedUrl())
+
+                /* 소셜 로그인 */
+                .and()
+                .oauth2Login()
+                //OAuth2 로그인 설정 진입점
+                .loginPage("/member/login")
+                .successHandler(new LoginSuccessHandler())
+                .userInfoEndpoint()
+                //OAuth2 로그인 성공 후 사용자 정보를 가져오는 설정
+                .userService(oAuth2DetailsService);
+                //로그인 성공 후속 조치를 진행할 UserService 등록
 
         return http.build();
     }

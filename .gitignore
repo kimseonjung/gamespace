@@ -9,3 +9,4 @@ gen
 .gradle
 build
 /target/
+application-oauth.properties

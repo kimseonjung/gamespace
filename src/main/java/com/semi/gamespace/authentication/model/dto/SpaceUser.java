@@ -3,11 +3,14 @@ package com.semi.gamespace.authentication.model.dto;
 import com.semi.gamespace.member.model.dto.MemberDTO;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.Collection;
+import java.util.Map;
 
-public class SpaceUser extends User {
+public class SpaceUser extends User implements OAuth2User, Serializable {
     private String memberCode;
     private String userId;
     private String userPwd;
@@ -57,6 +60,16 @@ public class SpaceUser extends User {
         this.memberStatus = member.getMemberStatus();
         this.banDate = member.getBanDate();
         this.isAdmin = member.getIsAdmin();
+    }
+
+    @Override
+    public Map<String, Object> getAttributes() {
+        return null;
+    }
+
+    @Override
+    public String getName() {
+        return null;
     }
 
     public String getMemberCode() {

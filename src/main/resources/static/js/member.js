@@ -1,5 +1,3 @@
-/*<![CDATA[*/
-
 function registCheck() {
     if(grecaptcha.getResponse().length == 0) {
         alert("reCAPTCHA 인증 실패");
@@ -15,6 +13,12 @@ function infoCheck() {
 $profileClear = document.getElementById("profile-clear");
 // $profileClear.onClick = () => removeProfile(0);
 
+/* 페이지 로드 시 실행 */
+window.onload = function () {
+
+}
+
+/* ----- 링크 수정 ----- */
 $(function () {
     for (let i = 0; i < 6; i++) {
         $('.link-modify-submit').eq(i).on('click', function () {
@@ -83,6 +87,19 @@ $(function () {
     }
 });
 
+/* ----- 링크 수정 끝 ----- */
+
+/* ----- 링크 버튼 갱신 ----- */
+
+function refreshLink(index, newURL) {
+    index -= 1;
+    const target = document.getElementsByClassName("social-btn")[index];
+
+}
+
+/* ----- 링크 버튼 갱신 끝 ----- */
+
+/* ----- 프로필 수정 ----- */
 
 function loadProfile(targetObj) {
     const profile = targetObj.files[0];
@@ -96,4 +113,9 @@ function loadProfile(targetObj) {
 function removeProfile(index) {
 }
 
-/*]]>*/
+/* ----- 프로필 수정 끝 ----- */
+
+/* ----- 팔로우 버튼 ----- */
+$(function () {
+
+})

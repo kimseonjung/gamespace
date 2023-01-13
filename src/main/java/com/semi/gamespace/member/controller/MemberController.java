@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.http.HttpServletRequest;
@@ -40,6 +41,11 @@ public class MemberController {
     @GetMapping("/login")
     public void memberLoginForm() {}
 
+    //social - google : http://localhost:8001/oauth2/authorization/google
+    /* 구글 로그인 API [POST] */
+//    @ResponseBody
+//    기본 Controller 사용
+
     @GetMapping("/regist")
     public void memberRegistForm() {}
 
@@ -52,23 +58,23 @@ public class MemberController {
     @GetMapping("/insert/failure")
     public void memberRegistFailure() {}
 
-    @GetMapping("/mypage")
-    public Model memberMyPageMain(Model model, Principal principal) {
-        //인증된 사용자 정보를 통해 member정보 불러오기
-        MemberDTO member = memberService.findMemberById(principal.getName());
+    @GetMapping("/user/{id}")
+    public ModelAndView memberMyPageMain(ModelAndView mv, @PathVariable("id") String userId) {
+        MemberDTO member = memberService.findMemberById(userId);
         int historyBoard = memberService.countHistoryOfBoard(member.getMemberCode());
         int followFrom = memberService.countFollowFromByCode(member.getMemberCode());
         int followTo = memberService.countFollowToByCode(member.getMemberCode());
         int historyComment = memberService.countHistoryOfComment(member.getMemberCode());
         ImageDTO image = imageService.selectProfileByCode(member.getMemberCode());
 
-        model.addAttribute("image", image);
-        model.addAttribute("member", member);
-        model.addAttribute("followFrom", followFrom);
-        model.addAttribute("followTo", followTo);
-        model.addAttribute("historyBoard", historyBoard);
-        model.addAttribute("historyComment", historyComment);
-        return model;
+        mv.setViewName("/member/myPage");
+        mv.addObject("image", image);
+        mv.addObject("member", member);
+        mv.addObject("followFrom", followFrom);
+        mv.addObject("followTo", followTo);
+        mv.addObject("historyBoard", historyBoard);
+        mv.addObject("historyComment", historyComment);
+        return mv;
     }
 
     @GetMapping("/userSetting")
@@ -138,6 +144,12 @@ public class MemberController {
                 "^" + request.getParameter("regist-address1") +
                 "^" + request.getParameter("regist-address2");
         newMember.setUserAddress(newAddress);
+        newMember.setUserSiteLink1("");
+        newMember.setUserSiteLink2("");
+        newMember.setUserSiteLink3("");
+        newMember.setUserSiteLink4("");
+        newMember.setUserSiteLink5("");
+        newMember.setUserSiteLink6("");
 
         //reCAPTCHA
         String gRecaptchaResponse = request.getParameter("g-recaptcha-response");

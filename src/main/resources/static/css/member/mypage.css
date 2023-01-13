@@ -44,6 +44,7 @@
 .mypage-follow{
     display: flex;
     flex-direction: row;
+    justify-content: center;
     align-items: flex-start;
     padding: 0px;
     gap: 8px;
@@ -86,6 +87,37 @@
     align-items: center;
     padding: 0px;
     gap: 16px;
+}
+.mypage-number-outline{
+    width: 348px;
+    height: 40px;
+}
+.mypage-number{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 4px;
+
+    position: relative;
+    top: 20%;
+}
+
+.number-page p{
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+
+    text-align: center;
+    letter-spacing: -0.006em;
+}
+.number-arrow, .number-btn{
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    background-color: #00000000;
 }
 
 .list-show{
@@ -214,7 +246,8 @@
     gap: 5px;
 
     width: 652px;
-    height: 67px;
+    height: 94px;
+    overflow: hidden;
 }
 
 .my-board-top{
@@ -224,7 +257,7 @@
     padding: 0px;
     gap: 12px;
 
-    width: 652px;
+    width: max-content;
     height: 22px;
     overflow: hidden;
 }
@@ -232,6 +265,7 @@
     display: flex;
     padding: 1px 6px;
 
+    max-width: 152px;
     height: 22px;
 
     background: linear-gradient(90deg, #F7BE2B 0%, #F537F9 100%);
@@ -241,10 +275,19 @@
     display: flex;
     padding: 1px 6px;
 
+    max-width: 152px;
     height: 22px;
 
     background: linear-gradient(90.42deg, #4AB1F1 0.58%, #566CEC 37.22%, #D749AF 73.87%, #FF7C51 112.26%);
     border-radius: 8px;
+}
+.my-board-top p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.my-board-top>p{
+    max-width: 50%;
 }
 .my-board-content{
     width: 652px;
@@ -269,7 +312,8 @@
     justify-content: center;
     padding: 10px 20px;
     width: 100px;
-    background: rgba(77, 62, 255, 0.9);
+    border: 1px solid rgba(77, 62, 255, 0.9);
+    background: rgba(77, 62, 255, 0);
 }
 
 .social-content{
@@ -324,4 +368,20 @@
     font-size: 20px;
     color: #FFFFFF;
     opacity: 1;
+}
+
+/* common(maybe) */
+
+.history-active{
+    border: 1px solid rgba(77, 62, 255, 0.9);
+}
+.number-active p{
+    color: rgba(77, 62, 255, 0.9);
+}
+.follow-active{
+    border: 0;
+    background: rgba(77, 62, 255, 0.9);
+}
+.follow-active p{
+    color: #FFFFFF;
 }
