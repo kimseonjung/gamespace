@@ -70,4 +70,22 @@ public class FreeGalService {
         freeGalMapper.deleteComment(freeGalComCode);
     }
 
+    // 대댓글 작성
+    public void uploadCommentComment(FreeGalComDTO freeGalComDTO) {freeGalMapper.uploadCommentComment(freeGalComDTO); }
+
+    // 대댓글 조회
+    public List<FreeGalComDTO> getCommentComment(String freeGalCode) {
+        return freeGalMapper.getCommentComment(freeGalCode);
+    }
+
+    // 대댓글 업데이트
+    public void updateCommentComment(FreeGalComDTO freeGalComDTO) {
+        freeGalMapper.updateCommentComment(freeGalComDTO);
+    }
+
+    // 대댓글 삭제
+    public void deleteCommentComment(String freeGalComCode) {
+        freeGalMapper.deleteCommentComment(freeGalComCode);
+    }
+
 }

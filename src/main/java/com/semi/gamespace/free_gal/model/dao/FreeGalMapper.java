@@ -38,4 +38,16 @@ public interface FreeGalMapper {
     // 댓글 삭제
     void deleteComment(String freeGalComCode);
 
+    // 대댓글 작성
+    void uploadCommentComment(FreeGalComDTO freeGalComDTO);
+
+    // 대댓글 조회
+    List<FreeGalComDTO> getCommentComment(String freeGalCode);
+
+    // 대댓글 수정
+    void updateCommentComment(FreeGalComDTO freeGalComDTO);
+
+    // 대댓글 삭제
+    void deleteCommentComment(String freeGalComCode);
+
 }
