@@ -98,8 +98,9 @@ public class SpringSecurityConfig {
                 .and()
                 .oauth2Login()
                 //OAuth2 로그인 설정 진입점
-                .loginPage("/member/login")
+//                .loginPage("/oauth2/authorization/google")
                 .successHandler(new LoginSuccessHandler())
+                //성공 시 넘어갈 페이지 Handler
                 .userInfoEndpoint()
                 //OAuth2 로그인 성공 후 사용자 정보를 가져오는 설정
                 .userService(oAuth2DetailsService);
