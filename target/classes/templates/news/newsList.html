@@ -5,8 +5,8 @@
     <title>newsList</title>
 </head>
 <body>
-<div th:fragment="newsList" class="news">
-        <div class="news-list" th:each="news : ${newsList}">
+<div th:fragment="newsList" class="item">
+        <div class="list" th:each="news : ${newsList}">
             <a th:href="@{/news/newsDetail(newsCode=${news.newsCode})}">
             <div class="news-head"><p class="news-head-p" th:text="${news.newsTitle}"></p></div>
             <div class="news-body"><p th:text="${news.newsContent}"></p></div>

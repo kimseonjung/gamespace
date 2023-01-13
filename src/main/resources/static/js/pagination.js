@@ -1,7 +1,7 @@
 // 한페이지에 몇개를 출력할것인가
 const rowsPerPage = 10;
 
-const rows = document.querySelectorAll('#news-table .news-lists .news .news-list');
+const rows = document.querySelectorAll('#table .lists .item .list');
 const rowsCount = rows.length; // 201/10 20.1 -> 21
 // console.log(rows); 길이찍어보기
 
