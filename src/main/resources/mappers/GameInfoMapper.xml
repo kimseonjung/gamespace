@@ -69,29 +69,27 @@
     <select id="selectAllGameInfo" resultMap="gameInfoResultMap">
         SELECT
             A.GAME_CODE
-            , A.GAME_NAME
-            , A.DEVICES_CODE
-            , A.CATEGORY_CODE
-            , A.TAG_CODE
-            , A.REGISTRATION_DATE
-            , A.LAUNCH_DATE
-            , A.DEVELOPER
-            , A.DISTRIBUTOR_CODE
-            , A.RATING_CODE
-            , A.PRICE
-            , A.PLATFORM_CODE
-            , A.LANGUAGE_CODE
-            , A.SPECIFICATION_CODE
-            , A.GAME_INTRO
-            , A.GAME_STATUS
+             , A.GAME_NAME
+             , A.DEVICES_CODE
+             , A.CATEGORY_CODE
+             , A.TAG_CODE
+             , A.REGISTRATION_DATE
+             , A.LAUNCH_DATE
+             , A.DEVELOPER
+             , A.DISTRIBUTOR_CODE
+             , A.RATING_CODE
+             , A.PRICE
+             , A.PLATFORM_CODE
+             , A.LANGUAGE_CODE
+             , A.SPECIFICATION_CODE
+             , A.GAME_INTRO
+             , A.GAME_STATUS
         FROM GAME_INFO A
         WHERE A.GAME_STATUS = 'Y'
         ORDER BY A.GAME_CODE
     </select>
 
-
-    <select id="selectCheckCategory" parameterType="java.util.HashMap" resultMap="gameInfoResultMap">
-
+    <select id="selectCategoryOne" resultMap="gameInfoResultMap">
         SELECT
             A.GAME_CODE
              , A.GAME_NAME
@@ -110,40 +108,67 @@
              , A.GAME_INTRO
              , A.GAME_STATUS
         FROM GAME_INFO A
+        WHERE A.CATEGORY_CODE = #{cate_no}
+        ORDER BY A.GAME_CODE
+    </select>
+
+
+    <select id="selectCheckCategoryTag" parameterType="java.util.HashMap" resultMap="gameInfoResultMap">
+
+        SELECT
+        A.GAME_CODE
+        , A.GAME_NAME
+        , A.DEVICES_CODE
+        , A.CATEGORY_CODE
+        , A.TAG_CODE
+        , A.REGISTRATION_DATE
+        , A.LAUNCH_DATE
+        , A.DEVELOPER
+        , A.DISTRIBUTOR_CODE
+        , A.RATING_CODE
+        , A.PRICE
+        , A.PLATFORM_CODE
+        , A.LANGUAGE_CODE
+        , A.SPECIFICATION_CODE
+        , A.GAME_INTRO
+        , A.GAME_STATUS
+        , B.CATEGORY_NAME
+        FROM GAME_INFO A
+        JOIN CATEGORY B ON A.CATEGORY_CODE = B.CATEGORY_CODE
         WHERE 1=0
-          <if test="categoryCode != null">
-              OR A.CATEGORY_CODE IN
-              <foreach item="item" index="index" collection="categoryCode" open="(" separator="," close=")">
-                  #{item}
-              </foreach>
-          </if>
-          <if test="tagCode != null">
-              OR A.TAG_CODE IN
-              <foreach item="item" index="index" collection="tagCode" open="(" separator="," close=")">
-                  #{item}
-              </foreach>
-          </if>
+        <if test="categoryCode != null">
+            OR A.CATEGORY_CODE IN
+            <foreach item="item" index="index" collection="categoryCode" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="tagCode != null">
+            OR A.TAG_CODE IN
+            <foreach item="item" index="index" collection="tagCode" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
     </select>
 
 
     <select id="selectOneGameInfoName" resultMap="gameInfoResultMap">
         SELECT
             A.GAME_CODE
-            , A.GAME_NAME
-            , A.DEVICES_CODE
-            , A.CATEGORY_CODE
-            , A.TAG_CODE
-            , A.REGISTRATION_DATE
-            , A.LAUNCH_DATE
-            , A.DEVELOPER
-            , A.DISTRIBUTOR_CODE
-            , A.RATING_CODE
-            , A.PRICE
-            , A.PLATFORM_CODE
-            , A.LANGUAGE_CODE
-            , A.SPECIFICATION_CODE
-            , A.GAME_INTRO
-            , A.GAME_STATUS
+             , A.GAME_NAME
+             , A.DEVICES_CODE
+             , A.CATEGORY_CODE
+             , A.TAG_CODE
+             , A.REGISTRATION_DATE
+             , A.LAUNCH_DATE
+             , A.DEVELOPER
+             , A.DISTRIBUTOR_CODE
+             , A.RATING_CODE
+             , A.PRICE
+             , A.PLATFORM_CODE
+             , A.LANGUAGE_CODE
+             , A.SPECIFICATION_CODE
+             , A.GAME_INTRO
+             , A.GAME_STATUS
         FROM GAME_INFO A
         WHERE A.GAME_NAME = #{gameName}
 
@@ -154,7 +179,7 @@
     <select id="selectAllCategory" resultMap="categoryResultMap">
         SELECT
             A.CATEGORY_CODE
-            , A.CATEGORY_NAME
+             , A.CATEGORY_NAME
         FROM CATEGORY A
         ORDER BY A.CATEGORY_CODE
 
@@ -164,7 +189,7 @@
     <select id="selectAllTag" resultMap="tagResultMap">
         SELECT
             A.TAG_CODE
-            , A.TAG_NAME
+             , A.TAG_NAME
         FROM TAG A
         ORDER BY A.TAG_CODE
 
@@ -174,7 +199,7 @@
     <select id="selectAllDevices" resultMap="devicesResultMap">
         SELECT
             A.DEVICES_CODE
-            , A.DEVICES_NAME
+             , A.DEVICES_NAME
         FROM DEVICES A
         ORDER BY A.DEVICES_CODE
 
@@ -193,11 +218,11 @@
 
         SELECT
             A.MIN_SYSTEM_CODE
-            , A.MIN_OPERATING_SYSTEM
-            , A.MIN_PROCESSOR
-            , A.MIN_MEMORY
-            , A.MIN_STORAGE_SPACE
-            , A.MIN_GRAPHIC
+             , A.MIN_OPERATING_SYSTEM
+             , A.MIN_PROCESSOR
+             , A.MIN_MEMORY
+             , A.MIN_STORAGE_SPACE
+             , A.MIN_GRAPHIC
         FROM MINIMUM_SYSTEM A
     </select>
 
@@ -206,11 +231,11 @@
 
         SELECT
             A.REC_SYSTEM_CODE
-            , A.REC_OPERATING_SYSTEM
-            , A.REC_PROCESSOR
-            , A.REC_MEMORY
-            , A.REC_STORAGE_SPACE
-            , A.REC_GRAPHIC
+             , A.REC_OPERATING_SYSTEM
+             , A.REC_PROCESSOR
+             , A.REC_MEMORY
+             , A.REC_STORAGE_SPACE
+             , A.REC_GRAPHIC
         FROM RECOMMENDED_SYSTEM A
     </select>
 
@@ -237,7 +262,9 @@
         )
         VALUES
             (
-            GAME_CODE_SEQ.NEXTVAL
+
+             'GAM_' || GAME_CODE_SEQ.NEXTVAL
+
                 , #{ gameName }
                 , #{ devicesCode }
                 , #{ categoryCode }
@@ -321,8 +348,8 @@
         VALUES
             (
             'SPE_'|| SPECIFICATION_CODE_SEQ.CURRVAL
-            , 'MSYS_'|| MIN_SYSTEM_CODE_SEQ.CURRVAL
-            , 'RSYS_'|| REC_SYSTEM_CODE_SEQ.CURRVAL
+                , 'MSYS_'|| MIN_SYSTEM_CODE_SEQ.CURRVAL
+                , 'RSYS_'|| REC_SYSTEM_CODE_SEQ.CURRVAL
             )
 
 

@@ -8,6 +8,7 @@ public class GameInfoDTO {
     private String gameName;
     private String devicesCode;
     private String categoryCode;
+
     private String tagCode;
     private Date registrationDate;
     private String launchDate;

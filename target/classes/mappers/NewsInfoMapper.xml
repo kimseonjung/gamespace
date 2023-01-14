@@ -37,7 +37,7 @@
             A.NEWS_CODE,
             A.NEWS_TITLE,
             A.NEWS_VIEW,
-            A.NEWS_DATE,
+            TO_CHAR(TO_DATE(A.NEWS_DATE,'YY-MM-DD'),'RRRR-MM-DD') AS NEWS_DATE,
             A.NEWS_CONTENT,
             B.GAME_NAME,
             C.MEMBER_NAME
@@ -162,5 +162,27 @@
         DELETE FROM NEWS_COM
         WHERE NEWS_COM_CODE=#{newsComCode}
     </delete>
+
+    <select id="gameCodeNewsList" parameterType="java.util.HashMap" resultMap="newsInfoResultMap">
+        SELECT
+        A.NEWS_CODE,
+        A.NEWS_TITLE,
+        A.NEWS_VIEW,
+        TO_CHAR(TO_DATE(A.NEWS_DATE,'YY-MM-DD'),'RRRR-MM-DD') AS NEWS_DATE,
+        A.NEWS_CONTENT,
+        B.GAME_NAME,
+        C.MEMBER_NAME
+        FROM NEWS A
+            JOIN GAME_INFO B ON (A.GAME_CODE = B.GAME_CODE)
+            JOIN MEMBER C ON (A.MEMBER_CODE = C.MEMBER_CODE)
+        WHERE 1=1
+        <if test="gameCode != null">
+            AND A.GAME_CODE IN
+            <foreach item="item" index="index" collection="gameCode" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+
 
 </mapper>

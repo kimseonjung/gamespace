@@ -30,5 +30,9 @@ public interface GameInfoMapper {
     List<DevicesDTO> selectAllDevices();
 
 
-    List<CategoryDTO> selectCheckCategory(Map<String, List<String>> categoryCode);
+
+    List<CategoryDTO> selectCheckCategoryTag(Map<String, List<String>> categoryCode);
+
+    List<GameInfoDTO> selectCategoryOne(String cateNo);
+
 }

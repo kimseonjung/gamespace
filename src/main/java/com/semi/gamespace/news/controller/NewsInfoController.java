@@ -1,6 +1,11 @@
 package com.semi.gamespace.news.controller;
 
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.semi.gamespace.game.model.dto.CategoryDTO;
 import com.semi.gamespace.game.model.dto.GameInfoDTO;
+import com.semi.gamespace.game.model.dto.TagDTO;
 import com.semi.gamespace.game.model.service.GameInfoService;
 import com.semi.gamespace.news.model.dto.NewsComDTO;
 import com.semi.gamespace.news.model.dto.NewsDTO;
@@ -11,6 +16,7 @@ import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.HttpServletBean;
 import org.springframework.web.servlet.ModelAndView;
@@ -162,6 +168,40 @@ public class NewsInfoController {
         mv.setViewName("redirect:/news/news");
 
         return mv;
+    }
+
+
+    @PostMapping(value = "tag", produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public String gameCodeNewsList(Model model, NewsDTO newsDTO,
+                                         @RequestParam(value = "gameCode[]")List<String> gameCode) throws Exception{
+
+        gameCode.remove(0);
+        System.out.println(newsDTO);
+
+        Map<String, List<String>> dataMap = new HashMap<>();
+        dataMap.put("gameCode", gameCode.isEmpty() ? null : gameCode);
+        List<GameInfoDTO> gameCodeNewsList = newsInfoService.gameCodeNewsList(dataMap);
+
+        Gson gson = new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd")
+                .setPrettyPrinting()
+                .setFieldNamingPolicy(FieldNamingPolicy.IDENTITY)
+                .serializeNulls()
+                .disableHtmlEscaping()
+                .create();
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        map.put("gameCodeNewsList", gameCodeNewsList);
+
+        String jsonString = gson.toJson(map);
+
+        System.out.println(jsonString);
+
+        //mv.addObject("categoryList", gson.toJson(categoryList));
+        //mv.setViewName("jsonView");
+
+        return jsonString;
     }
 
 

@@ -108,8 +108,16 @@ public class GameInfoService {
 
     }
 
-    public List<CategoryDTO> selectCheckCategory(Map<String, List<String>> categoryCode) {
+    public List<CategoryDTO> selectCheckCategoryTag(Map<String, List<String>> categoryCode) {
 
-        return gameInfoMapper.selectCheckCategory(categoryCode);
+        return gameInfoMapper.selectCheckCategoryTag(categoryCode);
     }
+
+    public List<GameInfoDTO> selectCategoryOne(String cate_no) {
+
+        return gameInfoMapper.selectCategoryOne(cate_no);
+
+    }
+
+
 }
