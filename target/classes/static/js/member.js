@@ -1,7 +1,3 @@
-function infoCheck() {
-    return true;
-}
-
 $profileClear = document.getElementById("profile-clear");
 // $profileClear.onClick = () => removeProfile(0);
 
@@ -55,6 +51,35 @@ function registInputCheck(content) {
     }
 }
 /* ----- 회원 가입 폼 끝 ----- */
+
+/* ----- (API) 주소 검색 ----- */
+
+function searchAddress() {
+    new daum.Postcode({
+        oncomplete : function (data) {
+            //우편번호
+            const postCode = data.zonecode;
+            //도로명 주소
+            const roadAddress = data.roadAddress;
+
+            document.getElementsByName('regist-zipcode')[0].value = postCode;
+            document.getElementsByName('regist-address1')[0].value = roadAddress;
+        },
+        onclose: function(state) {
+            if(state === 'COMPLETE_CLOSE'){
+                //사용자가 검색결과를 선택하여 팝업창이 닫혔을 경우
+                const content = ['ID', 'Password', 'Password Check', 'Nickname', 'Name', 'Birthday', 'Phone',
+                        'Email', 'Zip code', 'Address', 'Address Detail', 'About Me'];
+                registInputCheck(content);
+            }
+        }
+    }).open({
+        //새 창으로 여러 개 열리는 것을 방지
+        popupKey : 'popup1'
+    });
+}
+
+/* ----- (API) 주소 검색 끝 ----- */
 
 /* ----- 성별 버튼 반응 ----- */
 $(function () {

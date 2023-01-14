@@ -46,10 +46,20 @@ public class MemberController {
 
     //social - google : http://localhost:8001/oauth2/authorization/google
     /* 구글 로그인 API [POST] */
-    @ResponseBody
-    @GetMapping("/login/social/success")
-    public void socialLoginProgress(@RequestParam String code){
 
+    @GetMapping("/login/social/success")
+    public ModelAndView socialLoginProgress(ModelAndView mv, Principal principal){
+        System.out.println("socialLoginProgress");
+        System.out.println(principal.getName());
+        MemberDTO socialMember = memberService.findMemberById(principal.getName());
+        if(socialMember == null) {
+            System.out.println("not found social user in DB!");
+            mv.setViewName("/member/registSocial");
+        }
+        System.out.println("found social user in DB : " + socialMember);
+        mv.setViewName("/main/index");
+
+        return mv;
     }
 
     @GetMapping("/regist")
@@ -109,9 +119,16 @@ public class MemberController {
         String[] addressData = member.getUserAddress().split("\\^");
         model.addAttribute("member", member);
         model.addAttribute("image", image);
-        for(int i = 0; i < 3; i++) {
-            model.addAttribute("address"+i, addressData[i]);
+        if(addressData.length == 3) {
+            for(int i = 0; i < 3; i++) {
+                model.addAttribute("address"+i, addressData[i]);
+            }
+        } else {
+            for(int i = 0; i < 3; i++) {
+                model.addAttribute("address"+i, "");
+            }
         }
+
         return model;
     }
 

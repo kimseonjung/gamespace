@@ -12,6 +12,9 @@
 .modify-zipcode input{
     width: 200px;
 }
+.modify-zipcode .input-title{
+    width: 200px;
+}
 
 /* regist */
 .regist-main{
@@ -22,7 +25,7 @@
 
     position: absolute;
     width: 448px;
-    height: 1220px;
+    height: 1280px;
     top: 260px;
     left: calc(50% - 448px/2);
     border-radius: 24px;
@@ -53,19 +56,19 @@
     width: 320px;
 }
 .regist-step-1{
-    height: 176px;
+    height: calc(65px * 3);
 }
 .regist-step-2{
-    height: 368px;
+    height: calc(65px * 6);
 }
 .regist-step-3{
-    height: 180px;
+    height: calc(65px * 3);
 }
 .regist-step-4{
-    height: 48px;
+    height: calc(65px * 1);
 }
 .regist-step-5{
-    height: 48px;
+    height: 150px;
 }
 
 .error-text{
@@ -142,7 +145,7 @@
     text-decoration: none;
 }
 
-.zipcode-search-btn{
+#zipcode-search-btn{
     display: flex;
     flex-direction: row;
     justify-content: center;

@@ -47,9 +47,6 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
             throw new RuntimeException(e);
         }
 
-        String uuid = UUID.randomUUID().toString().substring(0, 6);
-        String pwd = bCryptPasswordEncoder.encode("pwd"+uuid);
-        String name = (String) userInfo.get("name");
         String username = "";
         String email = "";
         switch (provider) {
@@ -60,6 +57,7 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
             case "naver":
                 Map<String, Object> response = oAuth2User.getAttribute("response");
                 username = "N" + (String) response.get("id");
+                username = username.substring(0, 30);
                 email = (String) response.get("email");
                 break;
             case "kakao":
@@ -73,15 +71,24 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
         authorities.add(new SimpleGrantedAuthority("ROLE_MEMBER"));
         System.out.println(username + ", " + email + ", " + "N");
         if(memberMapper.SocialMemberEmailCheck(email) == 0) {
+            String uuid = UUID.randomUUID().toString().substring(0, 6);
+            String pwd = bCryptPasswordEncoder.encode("Spwd"+uuid);
+            String name = (String) userInfo.get("name");
+
             MemberDTO socialNewMember = new MemberDTO();
             socialNewMember.setUserId(username);
+            socialNewMember.setUserPwd(pwd);
             socialNewMember.setUserNickname(username);
             socialNewMember.setUserName(name);
-            socialNewMember.setUserPwd(pwd);
+            socialNewMember.setUserPhone("00000000000");
             socialNewMember.setUserEmail(email);
+            socialNewMember.setUserBirthday("1900-01-01");
+            socialNewMember.setUserGender("U");
+            socialNewMember.setUserAddress("^^");
+            socialNewMember.setUserIntroduce("");
             socialNewMember.setIsAdmin("N");
             System.out.println("newMember : " + socialNewMember);
-            return new SpaceUser(socialNewMember, authorities);
+            memberMapper.registMember(socialNewMember);
         }
 
         return new SpaceUser(memberMapper.findMemberByEmailForSocialLogin(email), authorities);

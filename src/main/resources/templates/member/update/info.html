@@ -19,7 +19,7 @@
 <body>
 <script src="/js/init.js"></script> <!-- 초기 세팅 -->
 <div class="member-main-bg bg-screen"></div>
-<form id="updateForm" action="/member/update/info" method="post" onsubmit="return infoCheck();">
+<form id="updateForm" action="/member/update/info" method="post" onsubmit="return updateVerify();">
   <div class="update-main bg-window">
     <div class="window-title">
       <a href="/member/userSetting" class="btn-cross btn-response">
@@ -38,32 +38,32 @@
       <div class="update-body">
         <div class="update-input update-step-1">
           <div class="input-placeholder disabled-placeholder input-required" id="border-id">
-            <input class="disabled-text disabled-placeholder" name="userIdDisabled" type="text" th:value="${member.userId}" placeholder="ID" disabled>
+            <input class="disabled-text disabled-placeholder" name="userIdDisabled" type="text" th:value="${member.userId}" placeholder="* ID" disabled>
             <input type="hidden" name="userId" th:value="${member.userId}">
           </div>
           <p class="error-text" id="error-id"></p>
           <div class="input-placeholder input-required" id="border-nickname">
-            <input class="input-text" name="userNickname" type="text" th:value="${member.userNickname}" placeholder="Nickname">
+            <input class="input-text" name="userNickname" type="text" th:value="${member.userNickname}" placeholder="* Nickname">
           </div>
           <p class="error-text" id="error-nickname"></p>
           <div class="input-placeholder input-required" id="border-name">
-            <input class="input-text" name="userName" type="text" th:value="${member.userName}" placeholder="Name">
+            <input class="input-text" name="userName" type="text" th:value="${member.userName}" placeholder="* Name">
           </div>
           <p class="error-text" id="error-name"></p>
           <div class="input-placeholder input-required" id="border-birthday">
-            <input class="input-text" name="userBirthday" type="text" th:value="${member.userBirthday}" placeholder="Birthday (yyyymmdd)">
+            <input class="input-text" name="userBirthday" type="text" th:value="${member.userBirthday}" placeholder="* Birthday(YYYYMMDD)">
           </div>
           <p class="error-text" id="error-birthday"></p>
           <div class="gender-area">
-            <input type="radio" name="userGender" value="M" id="male" class="gender-radio" checked>
+            <input type="radio" name="userGender" value="M" id="male" class="gender-radio" th:attr="${member.userGender == 'M'}">
             <label for="male">
               <div class="btn-white-default gender-btn btn-response"><p>남</p></div>
             </label>
-            <input type="radio" name="userGender" value="F" id="female" class="gender-radio">
+            <input type="radio" name="userGender" value="F" id="female" class="gender-radio" th:attr="${member.userGender == 'F'}">
             <label for="female">
               <div class="btn-white-default gender-btn btn-response"><p>여</p></div>
             </label>
-            <input type="radio" name="userGender" value="U" id="unknown" class="gender-radio">
+            <input type="radio" name="userGender" value="U" id="unknown" class="gender-radio" th:attr="${member.userGender == 'U'}">
             <label for="unknown">
               <div class="btn-white-default gender-btn btn-response"><p>비공개</p></div>
             </label>
@@ -74,7 +74,7 @@
           </div>
           <p class="error-text" id="error-phone"></p>
           <div class="input-placeholder input-required" id="border-email">
-            <input class="input-text" name="userEmail" type="text" th:value="${member.userEmail}" placeholder="Email">
+            <input class="input-text" name="userEmail" type="text" th:value="${member.userEmail}" placeholder="* Email">
           </div>
           <p class="error-text" id="error-email"></p>
         </div>
