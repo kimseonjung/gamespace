@@ -36,7 +36,7 @@
                M.MEMBER_NAME,
                M.MEMBER_PHONE,
                M.MEMBER_EMAIL,
-               TO_CHAR(TO_DATE(M.MEMBER_BIRTH, 'YY/MM/DD'),'RRRR-MM-DD') AS MEMBER_BIRTH,
+               TO_CHAR(TO_DATE(M.MEMBER_BIRTH, 'RR/MM/DD'),'YYYY-MM-DD') AS MEMBER_BIRTH,
                M.MEMBER_GENDER,
                M.ADDRESS,
                M.INTRODUCE,
@@ -62,7 +62,7 @@
                M.MEMBER_NAME,
                M.MEMBER_PHONE,
                M.MEMBER_EMAIL,
-               TO_CHAR(TO_DATE(M.MEMBER_BIRTH, 'YY/MM/DD'),'RRRR-MM-DD') AS MEMBER_BIRTH,
+               TO_CHAR(TO_DATE(M.MEMBER_BIRTH, 'RR/MM/DD'),'YYYY-MM-DD') AS MEMBER_BIRTH,
                M.MEMBER_GENDER,
                M.ADDRESS,
                M.INTRODUCE,
@@ -88,7 +88,7 @@
                M.MEMBER_NAME,
                M.MEMBER_PHONE,
                M.MEMBER_EMAIL,
-               TO_CHAR(TO_DATE(M.MEMBER_BIRTH, 'YY/MM/DD'),'RRRR-MM-DD') AS MEMBER_BIRTH,
+               TO_CHAR(TO_DATE(M.MEMBER_BIRTH, 'RR/MM/DD'),'YYYY-MM-DD') AS MEMBER_BIRTH,
                M.MEMBER_GENDER,
                M.ADDRESS,
                M.INTRODUCE,
@@ -136,6 +136,13 @@
         SELECT COUNT(*)
         FROM MEMBER M
         WHERE M.MEMBER_EMAIL = #{ userEmail }
+    </select>
+
+    <select id="checkFollowState" resultType="_int" parameterType="java.util.HashMap">
+        SELECT COUNT(*)
+        FROM FOLLOW F
+        WHERE F.FOLLOW_REQ_CODE = #{ current }
+          AND F.FOLLOW_TAR_CODE = #{ target }
     </select>
 
     <insert id="registMember" parameterType="com.semi.gamespace.member.model.dto.MemberDTO">
@@ -188,6 +195,22 @@
         )
     </insert>
 
+    <insert id="insertFollowConnect" parameterType="java.util.HashMap">
+        INSERT
+        INTO FOLLOW F (
+            F.FOLLOW_CODE,
+            F.FOLLOW_REQ_CODE,
+            F.FOLLOW_TAR_CODE,
+            F.FOLLOW_DATE
+        )
+        VALUES (
+            'FOL_'||FOLLOW_CODE_SEQ.NEXTVAL,
+            #{ requestCode },
+            #{ targetCode },
+            TO_DATE(SYSDATE, 'YYYY-MM-DD')
+        )
+    </insert>
+
     <update id="updateMember" parameterType="com.semi.gamespace.member.model.dto.MemberDTO">
         UPDATE MEMBER M
            SET (
@@ -226,4 +249,11 @@
         </set>
         WHERE M.MEMBER_CODE = #{ memberCode }
     </update>
+
+    <delete id="deleteFollowConnect" parameterType="java.util.HashMap">
+        DELETE
+          FROM FOLLOW F
+         WHERE F.FOLLOW_REQ_CODE = #{ requestCode }
+           AND F.FOLLOW_TAR_CODE = #{ targetCode }
+    </delete>
 </mapper>

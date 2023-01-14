@@ -1,3 +1,9 @@
+window.addEventListener('DOMContentLoaded', function () {
+    genderBtnResponse();
+    registInputCheck(['ID', 'Nickname', 'Name', 'Birthday',
+        'Phone', 'Email', 'Zip code', 'Address', 'Address Detail', 'About Me']);
+})
+
 /* ----- 회원 가입 전 검증 ----- */
 function registVerify() {
     let pass = true;
@@ -15,6 +21,7 @@ function registVerify() {
     return pass;
 }
 function updateVerify() {
+    console.log("updateVerify");
     let pass = true;
     if(!checkIntroduce()) pass = false;
     if(!checkEmail()) pass = false;
@@ -135,7 +142,7 @@ function checkName() {
         problem = '이름을 입력해주세요.';
     } else if(size > 32) {
         problem = '입력할 수 있는 길이를 초과하였습니다. (' + size + '/32)';
-    } else if(!value.match(/^[a-zA-Z가-힣]+$/)) {
+    } else if(!value.match(/^[a-zA-Z가-힣\s]+$/)) {
         problem = '이름에 사용할 수 없는 문자가 포함되어있습니다.';
     }
 
@@ -157,15 +164,21 @@ function checkBirthday() {
     let value = target.value+"";
     if(value == '') {
         problem = "생년월일을 입력해주세요.";
-    } else if(!value.match(/^(19[0-9]{2}|2[0-9]{3})[\/.]?(0[1-9]|1[012])[\/.]?([123]0|[012][1-9]|31)$/)) {
+    } else if(!value.match(/^(19[0-9]{2}|2[0-9]{3})[\/\-.]?(0[1-9]|1[012])[\/\-.]?([123]0|[012][1-9]|31)$/)) {
         problem = "형식을 확인해주세요 : YYYYMMDD, YYYY-MM-DD, YYYY/MM/DD, YYYY.MM.DD";
     //형식 통일
     } else {
+        console.log(value)
         // YYYY-MM-DD, YYYY/MM/DD, YYYY.MM.DD -> YYYYMMDD
-        value.replace(/[-/.]/, '');
+        if(!value.match(/^[0-9]{8}$/)) {
+            const tmp = value.slice(0, 4) + value.slice(5, 7) + value.slice(8, 10);
+            value = tmp;
+        }
+        console.log(value)
         // YYYYMMDD -> YYYY-MM-DD
         const tmp = value.slice(0, 4) + '-' + value.slice(4, 6) + '-' + value.slice(6, 8);
         value = tmp;
+        console.log(value)
     }
 
     document.getElementsByName("userBirthday")[0].value = value;

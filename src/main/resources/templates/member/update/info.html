@@ -8,9 +8,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/reset.css">
 <!--  <link rel="stylesheet" href="/css/common.css">-->
+  <link rel="stylesheet" href="/css/screenModeSwapper.css">
   <link rel="stylesheet" href="/css/member/common.css">
   <link rel="stylesheet" href="/css/member/update.css">
-  <link rel="stylesheet" href="/css/screenModeSwapper.css">
 
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -38,42 +38,48 @@
       <div class="update-body">
         <div class="update-input update-step-1">
           <div class="input-placeholder disabled-placeholder input-required" id="border-id">
+            <div class="input-head"></div>
             <input class="disabled-text disabled-placeholder" name="userIdDisabled" type="text" th:value="${member.userId}" placeholder="* ID" disabled>
             <input type="hidden" name="userId" th:value="${member.userId}">
           </div>
           <p class="error-text" id="error-id"></p>
           <div class="input-placeholder input-required" id="border-nickname">
+            <div class="input-head"></div>
             <input class="input-text" name="userNickname" type="text" th:value="${member.userNickname}" placeholder="* Nickname">
           </div>
           <p class="error-text" id="error-nickname"></p>
           <div class="input-placeholder input-required" id="border-name">
+            <div class="input-head"></div>
             <input class="input-text" name="userName" type="text" th:value="${member.userName}" placeholder="* Name">
           </div>
           <p class="error-text" id="error-name"></p>
           <div class="input-placeholder input-required" id="border-birthday">
+            <div class="input-head"></div>
             <input class="input-text" name="userBirthday" type="text" th:value="${member.userBirthday}" placeholder="* Birthday(YYYYMMDD)">
           </div>
           <p class="error-text" id="error-birthday"></p>
           <div class="gender-area">
-            <input type="radio" name="userGender" value="M" id="male" class="gender-radio" th:attr="${member.userGender == 'M'}">
+            <input type="radio" name="userGender" value="M" id="male" class="gender-radio" th:checked="${(member.userGender == 'M')}">
             <label for="male">
               <div class="btn-white-default gender-btn btn-response"><p>남</p></div>
             </label>
-            <input type="radio" name="userGender" value="F" id="female" class="gender-radio" th:attr="${member.userGender == 'F'}">
+            <input type="radio" name="userGender" value="F" id="female" class="gender-radio" th:checked="${(member.userGender == 'F')}">
             <label for="female">
               <div class="btn-white-default gender-btn btn-response"><p>여</p></div>
             </label>
-            <input type="radio" name="userGender" value="U" id="unknown" class="gender-radio" th:attr="${member.userGender == 'U'}">
+            <input type="radio" name="userGender" value="U" id="unknown" class="gender-radio" th:checked="${(member.userGender == 'U')}">
             <label for="unknown">
               <div class="btn-white-default gender-btn btn-response"><p>비공개</p></div>
             </label>
           </div>
           <p class="error-text"></p>
           <div class="input-placeholder input-required" id="border-phone">
+            <div class="input-head"></div>
             <input class="input-text" name="userPhone" type="text" th:value="${member.userPhone}" placeholder="Phone">
           </div>
           <p class="error-text" id="error-phone"></p>
           <div class="input-placeholder input-required" id="border-email">
+            <div class="input-head"></div>
             <input class="input-text" name="userEmail" type="text" th:value="${member.userEmail}" placeholder="* Email">
           </div>
           <p class="error-text" id="error-email"></p>
@@ -81,6 +87,7 @@
         <div class="update-input update-step-2">
           <div class="update-zipcode">
             <div class="input-placeholder modify-zipcode input-required">
+              <div class="input-head"></div>
               <input class="input-text" name="update-zipcode" type="text" th:value="${address0}" placeholder="Zip code">
             </div>
             <a href="#" class="zipcode-search-btn btn-response btn-white-default">
@@ -89,17 +96,20 @@
           </div>
           <p class="error-text"></p>
           <div class="input-placeholder input-required">
+            <div class="input-head"></div>
             <input class="input-text" name="update-address1" type="text" th:value="${address1}" placeholder="Address">
           </div>
           <p class="error-text"></p>
           <div class="input-placeholder input-required">
+            <div class="input-head"></div>
             <input class="input-text" name="update-address2" type="text" th:value="${address2}" placeholder="Address detail">
           </div>
           <p class="error-text"></p>
-          <div class="input-placeholder input-required">
+          <div class="input-placeholder input-required" id="border-introduce">
+            <div class="input-head"></div>
             <input class="input-text" name="userIntroduce" type="text" th:value="${member.userIntroduce}" placeholder="About Me">
           </div>
-          <p class="error-text"></p>
+          <p class="error-text" id="error-introduce"></p>
         </div>
         <div class="update-input update-step-3">
           <input type="submit" value="수정" class="btn-blue-default update-btn btn-response update-btn-text white-text">
@@ -110,9 +120,9 @@
 </form>
 <input class="screen-mode-btn" type="checkbox">
 
-<!-- APIs -->
-<script th:inline="javascript" src="/js/member.js"></script>
-<script src="/js/userValidation.js"></script>
-<script src="/js/screenModeResponse.js"></script>
 </body>
+<script src="/js/member.js"></script>
+<script src="/js/userValidation.js"></script>
+<script src="/js/memberUpdate.js"></script>
+<script src="/js/screenModeResponse.js"></script>
 </html>

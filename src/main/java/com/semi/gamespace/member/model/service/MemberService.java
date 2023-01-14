@@ -82,4 +82,16 @@ public class MemberService {
     public int countHistoryOfComment(String memberCode) {
         return memberMapper.countHistoryOfComment(memberCode);
     }
+
+    public int checkFollowState(Map<String, String> followInfo) {
+        int result = 1;
+        result += memberMapper.checkFollowState(followInfo);
+        return result;
+    }
+    public void insertFollowConnect(Map<String, String> codeData) {
+        memberMapper.insertFollowConnect(codeData);
+    }
+    public void deleteFollowConnect(Map<String, String> codeData) {
+        memberMapper.deleteFollowConnect(codeData);
+    }
 }

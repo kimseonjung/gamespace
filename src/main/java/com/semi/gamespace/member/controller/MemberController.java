@@ -75,11 +75,19 @@ public class MemberController {
     public void memberRegistFailure() {}
 
     @GetMapping("/user/{id}")
-    public ModelAndView memberMyPageMain(ModelAndView mv, @PathVariable("id") String userId) {
+    public ModelAndView memberMyPageMain(ModelAndView mv, @PathVariable("id") String userId, Principal principal) {
         MemberDTO member = memberService.findMemberById(userId);
         int historyBoard = memberService.countHistoryOfBoard(member.getMemberCode());
         int followFrom = memberService.countFollowFromByCode(member.getMemberCode());
         int followTo = memberService.countFollowToByCode(member.getMemberCode());
+        int followStatus = 0;   //1 : false, 2 : true
+        if(principal != null && principal.getName() != member.getUserId()) {
+            MemberDTO currUser = memberService.findMemberById(principal.getName());
+            Map<String, String> followInfo = new HashMap<>();
+            followInfo.put("current", currUser.getMemberCode());
+            followInfo.put("target", member.getMemberCode());
+            followStatus = memberService.checkFollowState(followInfo);//팔로우 상태를 저장
+        }
         int historyComment = memberService.countHistoryOfComment(member.getMemberCode());
         ImageDTO image = imageService.selectProfileByCode(member.getMemberCode());
 
@@ -88,6 +96,7 @@ public class MemberController {
         mv.addObject("member", member);
         mv.addObject("followFrom", followFrom);
         mv.addObject("followTo", followTo);
+        mv.addObject("followStatus", followStatus);
         mv.addObject("historyBoard", historyBoard);
         mv.addObject("historyComment", historyComment);
         return mv;
@@ -138,8 +147,26 @@ public class MemberController {
 
         memberService.updateMemberSiteLink(linkAttribute);
 
-        System.out.println("11111111111111111111111111111");
+        System.out.println("memberSiteLinkModify()");
         return linkAttribute;
+    }
+
+    @ResponseBody
+    @PostMapping("/myPage")
+    public Map<String, String> memberFollowToggleMethod(@RequestParam Map<String, String> followData, Principal principal) {
+        MemberDTO currUser = memberService.findMemberById(principal.getName());
+        //기존false : 추가모드, 기존true : 삭제모드
+        boolean isAdd = followData.get("isFollow").equals("F");
+
+        Map<String, String> codeData = new HashMap<>();
+        codeData.put("requestCode", currUser.getMemberCode());
+        codeData.put("targetCode", followData.get("userCode"));
+        if(isAdd) memberService.insertFollowConnect(codeData);
+        else memberService.deleteFollowConnect(codeData);
+
+        Map<String, String> returnValue = new HashMap<>();
+        returnValue.put("beforeFollow", followData.get("beforeFollow"));
+        return returnValue;
     }
 
     @ResponseBody

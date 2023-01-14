@@ -8,6 +8,12 @@
 .window-input{
     height: 956px;
 }
+#border-id .input-title{
+    background-color: #FFFFFF00;
+}
+.update-zipcode .input-title{
+    width: 200px;
+}
 
 .member-main-bg{
     height: calc(260px*2 + 100px + 956px);
@@ -102,9 +108,9 @@
 /*.update-step-2{*/
 /*    height: 368px;*/
 /*}*/
-/*.update-step-3{*/
-/*    height: 240px;*/
-/*}*/
+.update-step-3{
+    height: 48px;
+}
 
 .error-text{
     font-weight: 500;

@@ -1,45 +1,11 @@
-$profileClear = document.getElementById("profile-clear");
-// $profileClear.onClick = () => removeProfile(0);
-
-/* 페이지 로드 시 실행 */
-window.onload = function () {
-    registInputCheck(['ID', 'Password', 'Password Check', 'Nickname', 'Name', 'Birthday', 'Phone',
-        'Email', 'Zip code', 'Address', 'Address Detail', 'About Me']);
-    genderBtnResponse();
-}
-
-/* ----------------------- */
-
 /* ----- 회원 가입 폼 ----- */
-//입력값 있을 시 폼 변경
-$(function () {
-    //값 입력 시
-    $('.input-text').keyup(function () {
-        const content = ['ID', 'Password', 'Password Check', 'Nickname', 'Name', 'Birthday', 'Phone',
-                        'Email', 'Zip code', 'Address', 'Address Detail', 'About Me'];
-        registInputCheck(content);
-    });
-    // //포커스 될 시
-    // $('.input-text').focus(function () {
-    //
-    // })
-    // //포커스를 잃었을 시
-    // $('.input-text').blur(function () {
-    //     const content = document.getElementsByClassName('input-text');
-    //     for(let i = 0; i < content.length; i++) {
-    //         if(content[i].value=='') {
-    //             document.getElementsByClassName('input-placeholder')[i].classList.remove('input-filled');
-    //         }
-    //     }
-    // })
-});
-
 function registInputCheck(content) {
+    console.log('registInputCheck');
     const targetList = document.getElementsByClassName('input-text');
     const textList = document.getElementsByClassName('input-head');
     // const borderList = document.getElementsByClassName('input-placeholder');
-    for(let i = 0; i < targetList.length; i++) {
-        const target = targetList[i];
+    for(let i = 0; i <= targetList.length; i++) {
+        const target = i>0 ? targetList[i-1] : document.getElementsByName('disabled-text');
         const text = textList[i];
         // const border = borderList[i];
         if(target.value == "") {
@@ -122,6 +88,9 @@ $(function () {
                     target[1].classList.replace('list-show', 'list-hide');
                     document.getElementsByClassName("social-btn")[i].href = modifyLink;
                     document.getElementsByClassName("text-link")[i].innerHTML = modifyLink;
+
+                    linkIconCheck(i);
+
                     return false;
                 },
                 error : function () {
@@ -179,6 +148,10 @@ function refreshLink(index, newURL) {
 }
 
 /* ----- 링크 버튼 갱신 끝 ----- */
+
+$profileClear = document.getElementById("profile-clear");
+// $profileClear.onClick = () => removeProfile(0);
+
 
 /* ----- 프로필 수정 ----- */
 

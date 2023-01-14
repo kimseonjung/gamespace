@@ -20,4 +20,7 @@ public interface MemberMapper {
     int countHistoryOfBoard(String memberCode);
     int countHistoryOfComment(String memberCode);
     int SocialMemberEmailCheck(String email); // OAuth2DetailsService.java
+    int checkFollowState(Map<String, String> followInfo);
+    void insertFollowConnect(Map<String, String> codeData);
+    void deleteFollowConnect(Map<String, String> codeData);
 }

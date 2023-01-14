@@ -79,6 +79,16 @@
   <th:block th:replace="~{common/footer :: footer}"/>
 </div>
 <script src="/js/member.js"></script>
+<script src="/js/memberMypage.js"></script>
+<script src="/js/memberLinkModify.js"></script>
 <script src="/js/screenModeResponse.js"></script>
+<!-- 팔로우 버튼 상태 초기 갱신 -->
+<script th:inline="javascript">
+  /* <![CDATA[ */
+  const initFollow = [[${followStatus}]]==2;
+  followRefresh(initFollow);
+  document.getElementById('isFollow').value = initFollow;
+  /* ]]> */
+</script>
 </body>
 </html>

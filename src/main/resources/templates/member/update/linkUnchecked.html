@@ -9,13 +9,13 @@
   <form method="POST" action="/member/userSetting/initLinkModify" onsubmit="return false;">
     <input type="hidden" name="linkCode" class="linkCode" th:value="${num}">
     <button type="button" class="menu-btn link-unchecked">
-      <div class="img-icon"><img src="/image/icon_light/insta.svg"></div>
-        <p th:if="${num == '1'}" class="text-link" th:text="${member.userSiteLink1}"></p>
-        <p th:if="${num == '2'}" class="text-link" th:text="${member.userSiteLink2}"></p>
-        <p th:if="${num == '3'}" class="text-link" th:text="${member.userSiteLink3}"></p>
-        <p th:if="${num == '4'}" class="text-link" th:text="${member.userSiteLink4}"></p>
-        <p th:if="${num == '5'}" class="text-link" th:text="${member.userSiteLink5}"></p>
-        <p th:if="${num == '6'}" class="text-link" th:text="${member.userSiteLink6}"></p>
+      <div class="img-icon"><img src="/image/icon_light/globe.svg"></div>
+        <p th:if="${num == '1'}" class="text-link" th:text="${#strings.defaultString(member.userSiteLink1, '링크를 입력해주세요.')}"></p>
+        <p th:if="${num == '2'}" class="text-link" th:text="${#strings.defaultString(member.userSiteLink2, '링크를 입력해주세요.')}"></p>
+        <p th:if="${num == '3'}" class="text-link" th:text="${#strings.defaultString(member.userSiteLink3, '링크를 입력해주세요.')}"></p>
+        <p th:if="${num == '4'}" class="text-link" th:text="${#strings.defaultString(member.userSiteLink4, '링크를 입력해주세요.')}"></p>
+        <p th:if="${num == '5'}" class="text-link" th:text="${#strings.defaultString(member.userSiteLink5, '링크를 입력해주세요.')}"></p>
+        <p th:if="${num == '6'}" class="text-link" th:text="${#strings.defaultString(member.userSiteLink6, '링크를 입력해주세요.')}"></p>
       <img src="/image/icon_light/more-horizontal.svg">
     </button>
   </form>
