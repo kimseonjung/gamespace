@@ -2,6 +2,7 @@ package com.semi.gamespace.news.controller;
 
 import com.semi.gamespace.game.model.dto.GameInfoDTO;
 import com.semi.gamespace.game.model.service.GameInfoService;
+import com.semi.gamespace.news.model.dto.NewsComDTO;
 import com.semi.gamespace.news.model.dto.NewsDTO;
 import com.semi.gamespace.news.model.service.NewsInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,10 +76,47 @@ public class NewsInfoController {
     @GetMapping("/newsDetail")
     public  ModelAndView newsDetail(ModelAndView mv, String newsCode){
         NewsDTO newsDTO = newsInfoService.newsDetail(newsCode);
+//        List<NewsComDTO> newsComDTO = newsInfoService.getNewsCom(newsCode);
+//        System.out.println(newsComDTO.get(0));
+
+        mv.addObject("newsComList",newsInfoService.getNewsCom(newsCode));
 
         mv.addObject("detail", newsDTO);
         mv.setViewName("news/newsDetail");
 
+        return mv;
+    }
+    @PostMapping("/uploadNewsCom")
+    public  ModelAndView uploadNewsCom(ModelAndView mv, NewsComDTO newsComDTO,String newsCode){
+        newsInfoService.uploadNewsCom(newsComDTO);
+
+        mv.setViewName("redirect:/news/newsDetail?newsCode="+newsCode);
+        return mv;
+    }
+
+
+    @PostMapping("/newsDetail")
+    public  ModelAndView newsDetail(ModelAndView mv, NewsComDTO newsComDTO,String newsCode){
+
+        Map<String, String> newsCom = new HashMap<String, String>();
+        newsCom.put("newsComCode",newsComDTO.getNewsComCode());
+        newsCom.put("newsCode",newsCode);
+        newsCom.put("newsCom",newsComDTO.getNewsCom());
+
+        newsInfoService.updateNewsCom(newsCom);
+
+
+
+        mv.setViewName("redirect:/news/newsDetail?newsCode="+newsCode);
+        return mv;
+    }
+    @PostMapping("/deleteNewsCom")
+    public  ModelAndView deleteNewsCom(ModelAndView mv, String newsComCode,String newsCode){
+
+
+        newsInfoService.deleteNewsCom(newsComCode);
+
+        mv.setViewName("redirect:/news/newsDetail?newsCode="+newsCode);
         return mv;
     }
 
@@ -125,4 +163,9 @@ public class NewsInfoController {
 
         return mv;
     }
+
+
+
+
+
 }

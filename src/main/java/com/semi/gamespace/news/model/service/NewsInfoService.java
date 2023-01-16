@@ -2,6 +2,7 @@ package com.semi.gamespace.news.model.service;
 
 import com.semi.gamespace.game.model.dao.GameInfoMapper;
 import com.semi.gamespace.news.model.dao.NewsInfoMapper;
+import com.semi.gamespace.news.model.dto.NewsComDTO;
 import com.semi.gamespace.news.model.dto.NewsDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +20,10 @@ public class NewsInfoService {
         this.newsInfoMapper = newsInfoMapper;
     }
 
+    public List<NewsComDTO> getNewsCom(String newsCode) {
+        return newsInfoMapper.getNewsCom(newsCode);
+    }
+
     public List<NewsDTO> selectAllNewsList() {
         return newsInfoMapper.selectAllNewsList();
     }
@@ -27,7 +32,7 @@ public class NewsInfoService {
         int result = newsInfoMapper.registNewsInfo(newsDto);
 
         if (result <= 0){
-            throw new Exception("신규게임정보추가등록실패");
+            throw new Exception("뉴스등록실패");
 
         }
         return result > 0 ? true: false;
@@ -53,5 +58,24 @@ public class NewsInfoService {
 
     public Map<String,Object> selectAllGameCodeNews() {
         return newsInfoMapper.selectAllGameCodeNews();
+    }
+
+    public boolean uploadNewsCom(NewsComDTO newsComDTO) {
+        int result = newsInfoMapper.uploadNewsCom(newsComDTO);
+
+        if (result <= 0){
+            System.out.println("뉴스등록실패");
+
+        }
+        return result > 0 ? true: false;
+    }
+
+    public int updateNewsCom(Map<String, String> newsCom) {
+        int result = newsInfoMapper.updateNewsCom(newsCom);
+        return result;
+    }
+
+    public void deleteNewsCom(String newsComCode) {
+        newsInfoMapper.deleteNewsCom(newsComCode);
     }
 }

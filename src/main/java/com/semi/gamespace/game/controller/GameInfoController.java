@@ -10,15 +10,14 @@ import org.springframework.context.MessageSource;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Enumeration;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 @Controller
 @RequestMapping(value = {"/game","/"})
@@ -63,10 +62,23 @@ public class GameInfoController {
 
     @PostMapping(value = "game", produces = "application/json; charset=UTF-8")
     @ResponseBody
-    public String selectGameMainJsonList( HttpServletRequest request, HttpServletResponse response) {
+    public String selectGameMainJsonList(Model model, CategoryDTO categoryDTO, TagDTO tagDTO,
+                                         @RequestParam(value = "categoryCode[]")List<String> categoryCode, @RequestParam(value = "tagCode[]")List<String> tagCode) throws Exception{
 
-        //ModelAndView mv = new ModelAndView("jsonView");
-        //response.setContentType("application/json; charset=UTF-8");
+        categoryCode.remove(0);
+        tagCode.remove(0);
+        System.out.println(categoryDTO);
+        System.out.println(tagDTO);
+
+        Map<String, List<String>> dataMap = new HashMap<>();
+        dataMap.put("categoryCode", categoryCode.isEmpty() ? null : categoryCode);
+        dataMap.put("tagCode", tagCode.isEmpty() ? null : tagCode);
+//        Map<String, List<String>>
+
+        List<CategoryDTO> categoryList = gameInfoService.selectCheckCategory(dataMap);
+//        List<TagDTO> tagList = gameInfoService.selectCheckTag(tagCode);
+
+        System.out.println(categoryCode);
 
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd hh:mm:FreeGalMapper:SSS")
@@ -75,15 +87,18 @@ public class GameInfoController {
                 .serializeNulls()
                 .disableHtmlEscaping()
                 .create();
+        Map<String, Object> map = new HashMap<String, Object>();
 
-        System.out.println(request.getParameter("categoryCode"));
+        map.put("categoryList", categoryList);
 
-        List<CategoryDTO> categoryList = gameInfoService.selectOneCategory(request.getParameter("categoryCode"));
+        String jsonString = gson.toJson(map);
+
+        System.out.println(jsonString);
 
         //mv.addObject("categoryList", gson.toJson(categoryList));
         //mv.setViewName("jsonView");
 
-        return gson.toJson(categoryList);
+        return jsonString;
     }
 
 

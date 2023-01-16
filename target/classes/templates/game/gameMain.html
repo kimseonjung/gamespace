@@ -32,17 +32,20 @@
 
 
 <!--th:text="${category.categoryName}"-->
-
+<!--th:field="*{category}"-->
+<!--th:for="${#ids.prev(categoryList)}"-->
+<!--th:value="${category.categoryCode}"-->
     <section>
-        <form action="/game/game"  method="post" onsubmit="return false;">
+        <form action="/game/game"  method="post" onsubmit="return false;" id="category">
 
-            <div th:each="category : ${categoryList}" th:id="listCategory">
-                <input th:value="${category.categoryCode}" th:type="checkbox" th:field="*{categoryList}">
-                <label th:for="${#ids.prev('categoryList')}" th:text="${category.categoryName}"></label>
+            <div th:each="category : ${categoryList}" id="categoryCode">
+                <input th:text="${category.categoryName}" th:value="${category.categoryCode}" th:type="checkbox" name="categoryCode" class="category">
+
             </div>
 
-            <div th:each="tagList : ${tagList}">
-                <input th:text="${tagList.tagName}" th:value="${tagList.tagCode}" th:type="checkbox" name="tagCode">
+
+            <div th:each="tag : ${tagList}" id="tagCode">
+                <input th:text="${tag.tagName}" th:value="${tag.tagCode}" th:type="checkbox" name="tagCode" class="tag">
             </div>
 
 
@@ -50,7 +53,7 @@
                 <button th:text="${devices.devicesName}"></button>
 
             </div>
-            <button type="button" onclick="searchGameMainList()">전송</button>
+            <input type="submit" onclick="searchGameMainList()">전송</input>
         </form>
 
 <!--            <div class="toggle" >-->
@@ -70,12 +73,12 @@
 
     <section>
 
-        <div th:each="game : ${gameInfoList}"> <!--th:class="t-body"-->
-            <div th:text="${game.gameName}"></div>
-            <div th:text="${game.categoryCode}"></div>
-            <div th:text="${game.tagCode}"></div>
-            <div th:text="${game.gameIntro}"></div>
-        </div>
+<!--        <div th:each="game : ${gameInfoList}"> &lt;!&ndash;th:class="t-body"&ndash;&gt;-->
+<!--            <div th:text="${game.gameName}"></div>-->
+<!--            <div th:text="${game.categoryCode}"></div>-->
+<!--            <div th:text="${game.tagCode}"></div>-->
+<!--            <div th:text="${game.gameIntro}"></div>-->
+<!--        </div>-->
 
         <div th:id="search">
 <!--            <div id="game-title"> </div>-->
@@ -102,75 +105,56 @@
 
 <script>
 
-   // $.ajax({
-   //     type : 'get',           // 타입 (get, post, put 등등)
-   //     url : '/game/game',           // 요청할 서버url
-   //     async : true,            // 비동기화 여부 (default : true)
-   //     headers : {              // Http header
-   //         "Content-Type" : "application/json",
-   //         "X-HTTP-Method-Override" : "POST"
-   //     },
-   //     dataType : 'text',       // 데이터 타입 (html, xml, json, text 등등)
-   //     data : JSON.stringify({  // 보낼 데이터 (Object , String, Array)
-   //         "no" : no,
-   //         "name" : name,
-   //         "nick" : nick
-   //     }),
-   //     success : function(result) { // 결과 성공 콜백함수
-   //         console.log(result);
-   //     },
-   //     error : function(request, status, error) { // 결과 에러 콜백함수
-   //         console.log(error)
-   //     }
-   // })
-
-   // $(document).ready(function (){
-   //     $("#gosubmit").click(searchGameMainList);
-   // });
    function searchGameMainList() {
 
-       //jQuery.ajaxSettings.traditional = true;
+       const categoryCode = [];
+       categoryCode.push('tmp');
+       $("input[name='categoryCode']:checked").each(function (){
+           let chk = $(this).val();
+           categoryCode.push(chk);
+       });
+
+       const tagCode = [];
+       tagCode.push('tmp');
+       $("input[name='tagCode']:checked").each(function (){
+           let thk = $(this).val();
+           tagCode.push(thk);
+       });
+
+
+       console.log(categoryCode);
+       console.log(tagCode);
 
        $.ajax({
            url: "/game/game",             // 요청할 서버url
            type : "post", // 타입은 뭘 쓸거니?
            datatype : "json",
-           //data:JSON.stringify(obj),
-
-
-           // data : JSON.stringify({  // 보낼 데이터 (Object , String, Array)
-           //
-           // }),
+           data: {
+               categoryCode : categoryCode,
+               tagCode : tagCode
+           },
 
            success: function(data,status, xhr) {    // 결과 성공 콜백함수
-               // let result='';
-               // for (let i=0; i<data.length; i++){
-               //     result += '<div>'+data[i].property+'</div>';
-               // }
-               $('#search').html(data);
 
-            // for (let i in data){
-            //     let table = "<tr>";
-            //     table += "<td>"+data[i].gameName+"</td>";
-            //     table += "<td>"+data[i].devicesCode+"</td>";
-            //     table += "<td>"+data[i].categoryCode+"</td>";
-            //     table += "<td>"+data[i].tagCode+"</td>";
-            //     table += "<td>"+data[i].launchDate+"</td>";
-            //     table += "<td>"+data[i].developer+"</td>";
-            //     table += "<td>"+data[i].distributorCode+"</td>";
-            //     table += "<td>"+data[i].ratingCode+"</td>";
-            //     table += "<td>"+data[i].price+"</td>";
-            //     table += "<td>"+data[i].platformCode+"</td>";
-            //     table += "<td>"+data[i].languageCode+"</td>";
-            //     table += "<td>"+data[i].gameIntro+"</td>";
-            //
-            //
-            //     $('#search').append(table);
-            // }
+               console.log(data.categoryList[0].gameName);
+
+
+               $('#search').html("");
+
+               data.categoryList.forEach(function(item) {
+                   let table = "<tr>";
+                   table += "<td>"+item.gameName+"</td>";
+                   table += "<td>"+item.categoryCode+"</td>";
+                   table += "<td>"+item.tagCode+"</td>";
+                   table += "<td>"+item.gameIntro+"</td>";
+                   table += "</tr>";
+                   $('#search').append(table);
+               });
+
 
            },
            error: function(xhr, status, error) {   // 결과 에러 콜백함수
-               console.log(error);
+               console.log('error');
            }
        });
    };

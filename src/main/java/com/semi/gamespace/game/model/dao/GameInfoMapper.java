@@ -4,6 +4,7 @@ import com.semi.gamespace.game.model.dto.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface GameInfoMapper {
@@ -29,5 +30,5 @@ public interface GameInfoMapper {
     List<DevicesDTO> selectAllDevices();
 
 
-    List<CategoryDTO> selectOneCategory(String categoryCode);
+    List<CategoryDTO> selectCheckCategory(Map<String, List<String>> categoryCode);
 }
