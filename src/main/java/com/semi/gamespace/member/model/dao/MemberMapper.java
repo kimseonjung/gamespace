@@ -1,8 +1,10 @@
 package com.semi.gamespace.member.model.dao;
 
+import com.semi.gamespace.admin.model.dto.SimpleMemberDTO;
 import com.semi.gamespace.member.model.dto.MemberDTO;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
 import java.util.Map;
 
 @Mapper
@@ -28,4 +30,10 @@ public interface MemberMapper {
     void leaveMemberByCode(String memberCode);
     void deleteFollowAll(String memberCode);
     void updateMemberPassword(Map<String, String> data);
+    int countAllUser(String status);
+
+    List<SimpleMemberDTO> findMemberUsingIndex(Map<String, String> search);
+    void memberBanByCode(Map<String, String> banData);
+
+    void memberUnbanByCode(String memberCode);
 }

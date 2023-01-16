@@ -265,7 +265,6 @@
     gap: 5px;
 
     width: 596px;
-    height: 22px;
 
 
     /* Inside auto layout */
@@ -274,7 +273,7 @@
     order: 1;
     flex-grow: 1;
 }
-.membr-info-left{
+.member-info-upper, .member-info-lower{
     /* Auto layout */
 
     display: flex;
@@ -325,6 +324,7 @@
 
 .banDate-wrap{
     position: absolute;
+    top: 14px;
     right: 0;
 
     /* Auto layout */
@@ -345,7 +345,7 @@
     order: 1;
     flex-grow: 0;
 }
-.submit{
+.submit-btn{
 
     /* Auto layout */
 
@@ -356,7 +356,7 @@
     padding: 6px 12px;
     gap: 2px;
 
-    width: 50px;
+    width: 55px;
     height: 22px;
 
     /* Basic/Purple */
@@ -379,4 +379,8 @@
     /* Basic / White */
 
     color: #FFFFFF;
+}
+
+.banDate-val{
+    width: 34px;
 }
