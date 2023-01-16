@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns xmlns:th="http://www.w3.org/1999/xhtml" : th="http://www.thymeleaf.org" :sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-<!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">-->
+  <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">-->
   <meta charset="UTF-8">
   <link rel="stylesheet" href="/css/reset.css">
   <link rel="stylesheet" href="/css/common.css">
@@ -25,7 +25,7 @@
 <div class="upload">
 
   <!-- 제목 부분-->
-  <form th:action="@{upload}" method="post">
+  <form th:action="@{uploadNotice}" method="post">
     <div class="uploadTitleBar">
       <p class="uploadTitle">
         <input type="text" class="uploadTitle-control" name="freeGalTitle">
@@ -34,24 +34,17 @@
     <!-- 첨부파일 -->
     <div class="att-btn">
 
-     <div class="file-upload">
+      <div class="file-upload">
         <div class="file-select">
-         <div class="file-select-name" id="noFile">첨부파일</div>
-         <div class="file-select-button" id="fileName">첨부파일</div>
-         <input type="file" name="chooseFile" id="chooseFile" style=" z-index: 100;
-                cursor: pointer;
-                position: absolute;
-                height: 100%;
-                width: 100%;
-                top: 0;
-                left: 0;
-                opacity: 0;">
+          <div class="file-select-name" id="noFile">첨부파일</div>
+          <div class="file-select-button" id="fileName">첨부파일</div>
+          <input type="file" name="chooseFile" id="chooseFile">
         </div>
       </div>
 
     </div>
     <div class="uploadContentArea">
-        <textarea class="form-control" name="freeGalContent"></textarea>
+      <textarea class="form-control" name="freeGalContent"></textarea>
 
     </div>
 
@@ -59,12 +52,12 @@
 
 <div class="uploadButtonZone">
 
-    <button type="submit" class="uploadUpload">작성하기</button>
-<!--    <input type="text" class="uploadTitle-control" name="freeGalTitle">&ndash;&gt;-->
-<!--    <textarea class="form-control" name="freeGalContent"></textarea>&ndash;&gt;-->
+  <button type="submit" class="uploadUpload">작성하기</button>
+  <!--    <input type="text" class="uploadTitle-control" name="freeGalTitle">&ndash;&gt;-->
+  <!--    <textarea class="form-control" name="freeGalContent"></textarea>&ndash;&gt;-->
   </form>
 
-  <form th:action="@{freeGalList}" method="get">
+  <form th:action="@{freeGalListNotice}" method="get">
     <button type="submit" class="uploadGoList">취소하기</button>
   </form>
 

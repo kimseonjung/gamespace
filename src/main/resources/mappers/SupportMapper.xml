@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.semi.gamespace.support.model.dao.SupportMapper">
+    <resultMap id="supportResultMap" type="com.semi.gamespace.support.model.dto.SupportDTO">
+        <id property="supportCode" column="SUPPORT_CODE"/>
+        <result property="supportTitle" column="SUPPORT_TITLE"/>
+        <result property="supportView" column="SUPPORT_VIEW"/>
+        <result property="supportDate" column="SUPPORT_DATE"/>
+        <result property="supportContent" column="SUPPORT_CONTENT"/>
+        <result property="memberCode" column="MEMBER_CODE"/>
+        <result property="memberNickname" column="MEMBER_NICKNAME"/>
+    </resultMap>
+
+    <select id="getList" resultMap="supportResultMap">
+        SELECT
+            F.SUPPORT_CODE,
+            F.SUPPORT_TITLE,
+            F.SUPPORT_VIEW,
+            F.SUPPORT_DATE,
+            F.SUPPORT_CONTENT,
+            F.MEMBER_CODE,
+            B.MEMBER_NICKNAME
+        FROM SUPPORT F
+                 JOIN MEMBER B ON (F.MEMBER_CODE = B.MEMBER_CODE)
+    </select>
+
+</mapper>
