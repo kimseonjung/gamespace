@@ -4,6 +4,8 @@ import com.semi.gamespace.authentication.model.dto.SpaceUser;
 import com.semi.gamespace.common.model.dto.ImageDTO;
 //import com.semi.gamespace.common.model.service.EmailService;
 import com.semi.gamespace.common.model.service.ImageService;
+import com.semi.gamespace.config.ImageConfiguration;
+import com.semi.gamespace.member.model.dto.FollowDTO;
 import com.semi.gamespace.member.model.dto.MemberDTO;
 import com.semi.gamespace.member.model.service.MemberService;
 import org.json.simple.JSONObject;
@@ -12,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.mail.MessagingException;
@@ -19,6 +23,7 @@ import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
@@ -118,6 +123,9 @@ public class MemberController {
         return model;
     }
 
+    @GetMapping("/update/modifyPwd")
+    public String memberModifyPwd() {return "/member/modifyPassword";}
+
     @GetMapping("/leave")
     public void memberLeave() {};
 
@@ -146,7 +154,7 @@ public class MemberController {
     public String debugInsertMember(Model model, Principal principal) {
         MemberDTO member = new MemberDTO();
 
-        for(int i = 10; i <= 99; i++) {
+        for(int i = 1000; i <= 999; i++) {
             member.setUserId("user" + i);
             member.setUserPwd("pass" + i);
             member.setUserNickname("test" + i);
@@ -165,6 +173,27 @@ public class MemberController {
             } catch (Exception e) {
                 System.out.println("error!! (i = " + i + ")");
                 break;
+            }
+        }
+        return "redirect:/";
+    }
+
+    @GetMapping("/debug/insertFollow")
+    public String debugInsertFollow() {
+        Map<String, String> conn = new HashMap<>();
+        String followReq = "";
+        String followTar = "";
+
+        for(int i = 299; i <= 1197; i++) {
+            followReq = "MEM_" + i;
+            for(int j = 298; j <= 1197; j++) {
+                if(Math.random()*100 < 33) {
+                    if(i == j) continue;
+                    followTar = "MEM_" + j;
+                    conn.put("requestCode", followReq);
+                    conn.put("targetCode", followTar);
+                    memberService.insertFollowConnect(conn);
+                }
             }
         }
         return "redirect:/";
@@ -203,6 +232,19 @@ public class MemberController {
 //        return resultAttribute;
 //    }
 
+    @ResponseBody
+    @PostMapping("/findPwdDirect")
+    public Map<String, String> memberFindPwdVerify(Principal principal, @RequestParam Map<String, String> input) {
+        MemberDTO currUser = memberService.findMemberById(principal.getName());
+        String password = input.get("inputPass");
+
+        Map<String, String> resultAttribute = new HashMap<>();
+        if(!memberService.memberPasswordIsMatch(currUser, password)) resultAttribute.put("findResult", "passwordNotMatch");
+        else resultAttribute.put("findResult", "passwordMatch");
+
+        return resultAttribute;
+    }
+
     @PostMapping("/leave")
     public String memberLeaveProcess(@RequestParam String userLeave, Principal principal) {
         MemberDTO currUser = memberService.findMemberById(principal.getName());
@@ -215,7 +257,6 @@ public class MemberController {
     @ResponseBody
     @PostMapping("/userSetting")
     public Map<String, String> memberSiteLinkModify(@RequestParam Map<String, String> linkAttribute) {
-
         memberService.updateMemberSiteLink(linkAttribute);
 
         System.out.println("memberSiteLinkModify()");
@@ -248,6 +289,7 @@ public class MemberController {
 
     @PostMapping("/update/info")
     public String memberInfoUpdatePart1Submit(HttpServletRequest request, MemberDTO updateMember) {
+        //기본정보 수정
         String newAddress = request.getParameter("update-zipcode") +
                 "^" + request.getParameter("update-address1") +
                 "^" + request.getParameter("update-address2");
@@ -257,6 +299,27 @@ public class MemberController {
             return "redirect:/member/userSetting";
         }
         return "redirect:/member/update/info";
+    }
+
+    @ResponseBody
+    @PostMapping("/update/profile")
+    public Map<String, String> memberInfoUpdateProfile(@RequestParam MultipartFile image, Principal principal) {
+        MemberDTO currUser = memberService.findMemberById(principal.getName());
+        ImageConfiguration imageConfig = ImageConfiguration.builder()
+                .maxFileSize(1024 * 1024 * 10)  //10MB
+                .encodingType("UTF-8")
+                .fileType("BODY")   //check('TITLE', 'BODY'), 나눠서 구현할 사람 전용
+                .imagePath("/src/main/resources/static/image/attachment/original/")     //이미지 저장 경로
+                .thumbnailPath("/src/main/resources/static/image/attachment/thumbnail/")   //썸네일 저장 경로
+                .refCode(currUser.getMemberCode())  //참조 코드 - 이 사진이 어떤 code를 참조하는지 기입
+                .build();
+        if(imageService.insertMemberProfile(imageConfig, image)) {
+            System.out.println("profile 등록 성공");
+        } else {
+            System.out.println("profile 등록 실패");
+        }
+
+        return null;
     }
 
     @ResponseBody
@@ -301,6 +364,18 @@ public class MemberController {
         return output;
     }
 
+    @PostMapping("/update/modifyPwd")
+    public String memberModifyPaassword(@RequestParam Map<String, String> input, Principal principal) {
+        MemberDTO currUser = memberService.findMemberById(principal.getName());
+
+        Map<String, String> data = new HashMap<>();
+        data.put("userCode", currUser.getMemberCode());
+        data.put("userData", input.get("userNewPwd"));
+
+        memberService.updateMemberPassword(data);
+
+        return "redirect:/member/userSetting";
+    }
 
     @PostMapping ("/regist")
     public String registMember(HttpServletRequest request, MemberDTO newMember) throws Exception {

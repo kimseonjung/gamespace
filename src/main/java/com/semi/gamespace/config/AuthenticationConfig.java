@@ -24,6 +24,7 @@ public class AuthenticationConfig {
         List<String> memberPermitList = new ArrayList<>();
         memberPermitList.add("/member/dashboard"); //ex
         memberPermitList.add("/member/userSetting");
+        memberPermitList.add("/member/update/**");
 
         return memberPermitList;
     }

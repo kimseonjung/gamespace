@@ -293,6 +293,12 @@
         WHERE M.MEMBER_CODE = #{ memberCode }
     </update>
 
+    <update id="updateMemberPassword" parameterType="java.util.HashMap">
+        UPDATE MEMBER M
+           SET M.MEMBER_PWD = #{ userData }
+         WHERE M.MEMBER_CODE = #{ userCode }
+    </update>
+
     <delete id="deleteFollowConnect" parameterType="java.util.HashMap">
         DELETE
           FROM FOLLOW F

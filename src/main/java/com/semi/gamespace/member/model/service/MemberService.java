@@ -135,4 +135,11 @@ public class MemberService {
     public void deleteFollowAll(String memberCode) {
         memberMapper.deleteFollowAll(memberCode);
     }
+
+    public void updateMemberPassword(Map<String, String> data) {
+        /* 비밀번호 암호화 */
+        String encodedPassword = passwordEncoder.encode(data.get("userData"));
+        data.put("userData", encodedPassword);
+        memberMapper.updateMemberPassword(data);
+    }
 }

@@ -171,15 +171,48 @@ $profileClear = document.getElementById("profile-clear");
 /* ----- 프로필 수정 ----- */
 
 function loadProfile(targetObj) {
-    const profile = targetObj.files[0];
-    const preview = document.getElementsByClassName(".profile-change")[0];
+    if(targetObj.files && targetObj.files[0]) { //파일이 존재하는 경우
+        if(!targetObj.files[0].type.match(/image.*/)) return;
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            document.getElementsByClassName('profile-change')[0].src = e.target.result;
+        }
+        reader.readAsDataURL(targetObj.files[0]);
 
-    if(!profile.type.match(/image.*/)) return;
+        console.log(targetObj.files[0]);
 
+        const formData = new FormData();
+        formData.append("image", targetObj.files[0]);
+        // formData를 콘솔로 조회
+        // for (var key of formData.keys()) {
+        //     console.log(key);
+        // }
+        // for (var value of formData.values()) {
+        //     console.log(value);
+        // }
 
+        $.ajax({
+            url : '/member/update/profile',
+            type : 'post',
+            async : false,
+            contentType : false,
+            processData : false,
+            data : formData,
+            success : function (data) {
+                console.log('success');
+                return false;
+            },
+            error : function () {
+                console.log('fail');
+                return false;
+            }
+        });
+    }
 }
 
-function removeProfile(index) {
+function removeProfile() {
+    document.getElementById('userProfile').value = null;
+    document.getElementsByClassName('profile-change')[0].src = "/image/icon/mypage.svg";
 }
 
 /* ----- 프로필 수정 끝 ----- */

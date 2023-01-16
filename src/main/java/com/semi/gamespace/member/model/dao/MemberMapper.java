@@ -27,4 +27,5 @@ public interface MemberMapper {
     int registEmailCheck(String inputEmail);
     void leaveMemberByCode(String memberCode);
     void deleteFollowAll(String memberCode);
+    void updateMemberPassword(Map<String, String> data);
 }

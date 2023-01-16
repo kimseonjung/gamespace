@@ -7,7 +7,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/reset.css">
-<!--  <link rel="stylesheet" href="/css/common.css">-->
+  <!--  <link rel="stylesheet" href="/css/common.css">-->
   <link rel="stylesheet" href="/css/screenModeSwapper.css">
   <link rel="stylesheet" href="/css/member/common.css">
   <link rel="stylesheet" href="/css/member/update.css">
@@ -19,22 +19,24 @@
 <body>
 <script src="/js/init.js"></script> <!-- 초기 세팅 -->
 <div class="member-main-bg bg-screen"></div>
-<form id="updateForm" action="/member/update/info" method="post" onsubmit="return updateVerify();">
-  <div class="update-main bg-window">
-    <div class="window-title">
+<div class="update-main bg-window">
+  <div class="window-title">
+    <form id="updateProfileForm" action="/member/update/profile" method="post" enctype="multipart/form-data" onsubmit="return false;">
       <a href="/member/userSetting" class="btn-cross btn-response">
         <div class="icon-cross"></div>
       </a>
       <div class="logo-member">
-        <label for="profile-upload">
+<!--        <label for="userProfile">-->
           <img class="profile-change btn-response" th:if="${image == null}" src="/image/icon/mypage.svg">
           <img class="profile-change btn-response" th:if="${image != null}" th:src="${image.savePath}+${image.saveName}">
-        </label>
-        <input type="file" name="profile-upload" id="profile-upload" onchange="loadProfile(this)">
-        <div class="icon-cross profile-cross btn-response" onchange="removeProfile(0)"></div>
+<!--        </label>-->
+<!--        <input type="file" name="userProfile" id="userProfile" onchange="loadProfile(this)">-->
+        <div class="icon-cross profile-cross btn-response" onclick="removeProfile()"></div>
       </div>
-    </div>
-    <div class="window-input">
+    </form>
+  </div>
+  <div class="window-input">
+    <form id="updateForm" action="/member/update/info" method="post" onsubmit="return updateVerify();">
       <div class="update-body">
         <div class="update-input update-step-1">
           <div class="input-placeholder disabled-placeholder input-required" id="border-id">
@@ -115,9 +117,9 @@
           <input type="submit" value="수정" class="btn-blue-default update-btn btn-response update-btn-text white-text">
         </div>
       </div>
-    </div>
+    </form>
   </div>
-</form>
+</div>
 <input class="screen-mode-btn" type="checkbox">
 
 </body>

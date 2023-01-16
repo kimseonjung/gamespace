@@ -1,7 +1,7 @@
 $(function () {
     //값 입력 시
     $('.input-text').keyup(function () {
-        registInputCheck(['Id', 'Email']);
+        registInputCheck(['Password', 'New Password', 'New Password Check']);
     });
 });
 
@@ -34,4 +34,34 @@ function findPwd() {
             return false;
         }
     });
+}
+
+function findPwdDirect() {
+    let pass = false;
+    const input = document.getElementsByName('userPwd')[0].value;
+    $.ajax({
+        url : '/member/findPwdDirect',
+        type : 'post',
+        data : {
+            inputPass : input
+        },
+        async : false,
+        success: function (data) {
+            if(data.findResult == 'passwordNotMatch') {
+                document.getElementById('error-pwd').innerText = '비밀번호가 일치하지 않습니다.';
+                document.getElementById("border-pwd").classList.add('input-error');
+                document.getElementsByName("userPwd")[0].focus();
+            } else {
+                document.getElementById('error-pwd').innerText = '';
+                document.getElementById("border-pwd").classList.remove('input-error');
+                pass = true;
+            }
+            return false;
+        },
+        error : function () {
+            document.getElementById('error-find-user').innerText = '오류가 발생했습니다.';
+            return false;
+        }
+    });
+    return pass;
 }

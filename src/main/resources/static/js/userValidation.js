@@ -50,6 +50,16 @@ function findPwdVerify() {
     return pass;
 }
 
+function modifyPassVerify() {
+    let pass = true;
+    if(!findPwdDirect()) pass = false;
+    if(!pass) return false;
+    if(!checkModifyPwdCheck()) pass = false;
+    if(!checkModifyPwd()) pass = false;
+
+    return pass;
+}
+
 //아이디 체크
 function checkId(mode) {
     let problem = '';
@@ -152,6 +162,56 @@ function checkPwdCheck() {
         return true;
     } else {
         document.getElementById("border-pwd-check").classList.add('input-error');
+        target.focus();
+        return false;
+    }
+}
+
+//비밀번호 변경 체크
+function checkModifyPwd() {
+    let problem = '';
+    const target = document.getElementsByName("userNewPwd")[0];
+    const value = target.value+"";
+    if(value == '') {
+        problem = '비밀번호를 입력해주세요.';
+    } else if(value.length < 8) {
+        problem = '비밀번호는 8자 이상 입력해주세요.';
+    } else if(value.length > 56) {
+        problem = '비밀번호는 최대 56자까지 입력 가능합니다.';
+    } else if(!value.match(/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,56})/)) {
+        problem = '비밀번호는 영문자 대문자와 소문자, 숫자, 특수문자를 포함해야 합니다.';
+    } else if(value == document.getElementsByName("userPwd")[0].value) {
+        problem = '기존 비밀번호로 변경할 수 없습니다.'
+    }
+
+    document.getElementById('error-new-pwd').innerText = problem;
+    if(problem=='') {
+        document.getElementById("border-new-pwd").classList.remove('input-error');
+        return true;
+    } else {
+        document.getElementById("border-new-pwd").classList.add('input-error');
+        target.focus();
+        return false;
+    }
+}
+
+//비밀번호 변경 확인 체크
+function checkModifyPwdCheck() {
+    let problem = '';
+    const target = document.getElementsByName("userNewPwdChk")[0];
+    const value = target.value+"";
+    if(value == '') {
+        problem = '비밀번호를 다시 한 번 입력해주세요.';
+    } else if(value != document.getElementsByName("userNewPwd")[0].value+"") {
+        problem = '변경된 비밀번호가 일치하지 않습니다';
+    }
+
+    document.getElementById('error-new-pwd-chk').innerText = problem;
+    if(problem=='') {
+        document.getElementById("border-new-pwd-chk").classList.remove('input-error');
+        return true;
+    } else {
+        document.getElementById("border-new-pwd-chk").classList.add('input-error');
         target.focus();
         return false;
     }
