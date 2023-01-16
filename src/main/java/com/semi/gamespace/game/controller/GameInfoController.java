@@ -63,19 +63,41 @@ public class GameInfoController {
 
     }
 
-    @GetMapping("selectCategoryOne")
-    public ModelAndView selectCategoryOne(ModelAndView mv, HttpServletRequest request, HttpServletResponse response){
+    @GetMapping("/gameInfoInsert")
+    public ModelAndView selectCategoryTagList(ModelAndView mv, HttpServletRequest request, HttpServletResponse response){
 
-        String cate_no = request.getParameter("cate_no");
 
-        List<GameInfoDTO> selectCategoryOne = gameInfoService.selectCategoryOne(cate_no);
-        mv.addObject("cate_no", cate_no);
-        mv.addObject("selectCategoryOne", selectCategoryOne);
+        List<CategoryDTO> categoryList = gameInfoService.selectAllCategory();
+        List<TagDTO> tagList = gameInfoService.selectAllTag();
+
+
+        categoryList.stream().forEach(category ->System.out.println("category = " + category));
+        tagList.stream().forEach(tag -> System.out.println("tag = " + tag));
+
+
+
+        mv.addObject("categoryList", categoryList);
+        mv.addObject("tagList", tagList);
+        mv.setViewName("game/gameInfoInsert");
 
         return mv;
+
     }
 
-    @PostMapping(value = "game", produces = "application/json; charset=UTF-8")
+
+//    @GetMapping("selectCategoryOne")
+//    public ModelAndView selectCategoryOne(ModelAndView mv, HttpServletRequest request, HttpServletResponse response){
+//
+//        String cate_no = request.getParameter("cate_no");
+//
+//        List<GameInfoDTO> selectCategoryOne = gameInfoService.selectCategoryOne(cate_no);
+//        mv.addObject("cate_no", cate_no);
+//        mv.addObject("selectCategoryOne", selectCategoryOne);
+//
+//        return mv;
+//    }
+
+    @PostMapping(value ={ "game"}, produces = "application/json; charset=UTF-8")
     @ResponseBody
     public String selectGameMainJsonList(Model model, CategoryDTO categoryDTO, TagDTO tagDTO,
                                          @RequestParam(value = "categoryCode[]")List<String> categoryCode, @RequestParam(value = "tagCode[]")List<String> tagCode) throws Exception{
@@ -88,10 +110,10 @@ public class GameInfoController {
         Map<String, List<String>> dataMap = new HashMap<>();
         dataMap.put("categoryCode", categoryCode.isEmpty() ? null : categoryCode);
         dataMap.put("tagCode", tagCode.isEmpty() ? null : tagCode);
-//        Map<String, List<String>>
+
 
         List<CategoryDTO> categoryTagList = gameInfoService.selectCheckCategoryTag(dataMap);
-//        List<TagDTO> tagList = gameInfoService.selectCheckTag(tagCode);
+
 
         System.out.println(categoryCode);
 
@@ -122,23 +144,21 @@ public class GameInfoController {
 
 
 
-
-
-
-
-
-
-
-
     @GetMapping("/gameInfoDetail")
-    public ModelAndView selectAllSystemList(ModelAndView mv){
-        MinimumSystemDTO minimumSystem = gameInfoService.selectAllMinimumSystem();
-        RecommendedSystemDTO recommendedSystem = gameInfoService.selectAllRecommendedSystem();
-        System.out.println("mini =" + minimumSystem);
-        System.out.println("rec =" + recommendedSystem);
+    public ModelAndView selectGameInfoDetailb (ModelAndView mv, String gameCode){
 
-        mv.addObject("minimumSystem", minimumSystem);
-        mv.addObject("recommendedSystem", recommendedSystem);
+        GameInfoDTO gameInfoDetail = gameInfoService.selectGameDetail(gameCode);
+
+        System.out.println("detail =" + gameInfoDetail);
+
+//        MinimumSystemDTO minimumSystem = gameInfoService.selectAllMinimumSystem(gameCode);
+//        RecommendedSystemDTO recommendedSystem = gameInfoService.selectAllRecommendedSystem(gameCode);
+//        System.out.println("mini =" + minimumSystem);
+//        System.out.println("rec =" + recommendedSystem);
+//
+//        mv.addObject("minimumSystem", minimumSystem);
+//        mv.addObject("recommendedSystem", recommendedSystem);
+        mv.addObject("gameInfoDetail", gameInfoDetail);
         mv.setViewName("game/gameInfoDetail");
 
         return mv;
@@ -146,9 +166,52 @@ public class GameInfoController {
     }
 
 
+//    @GetMapping("/gameInfoUpdate")
+//    public ModelAndView updateGameInfoDetailForm(ModelAndView mv, HttpServletRequest request){
+//
+//        String gameCode = request.getParameter("gameCode");
+//        GameInfoDTO gameInfoDetail = gameInfoService.selectGameDetail(gameCode);
+//        mv.addObject("gameInfoDetail", gameInfoDetail);
+//        mv.addObject("gameInfoUpdate", gameInfoService.getGameCode(gameCode));
+//        mv.setViewName("game/gameInfoDetail");
+//
+//        return mv;
+//    }
 
-    @GetMapping("gameInfoInsert")
-    public void registPage(){}
+//    @PostMapping("/gameInfoUpdate")
+//    public ModelAndView updateGameInfoDetail(ModelAndView mv, HttpServletRequest request, RedirectAttributes rttr, Locale locale) throws Exception {
+//
+//        GameInfoDTO gameInfoDetail = gameInfoService.selectGameDetail(request.getParameter("gameCode"));
+//        gameInfoDetail.setCategoryCode(request.getParameter("categoryCode"));
+//        gameInfoDetail.setTagCode(request.getParameter("tagCode"));
+//        gameInfoDetail.setDevicesCode(request.getParameter("devicesCode"));
+//        gameInfoDetail.setGameName(request.getParameter("gameName"));
+//        gameInfoDetail.setRatingCode(request.getParameter("ratingCode"));
+//        gameInfoDetail.setLaunchDate(request.getParameter("launchDate"));
+//        gameInfoDetail.setPrice(request.getParameter("price"));
+//        gameInfoDetail.setDeveloper(request.getParameter("developer"));
+//        gameInfoDetail.setPlatformCode(request.getParameter("platformCode"));
+//        gameInfoDetail.setDistributorCode(request.getParameter("distributorCode"));
+//        gameInfoDetail.setLanguageCode(request.getParameter("languageCode"));
+//        gameInfoDetail.setGameIntro(request.getParameter("gameIntro"));
+//        gameInfoDetail.setGameStatus(request.getParameter("gameStatus"));
+//
+//        gameInfoService.updateGameInfo(gameInfoDetail);
+//        gameInfoService.updateMinimumSystem(newMinimumSystem);
+//        gameInfoService.updateRecommendedSystem(newRecommendedSystem);
+//        gameInfoService.updateSpecification(newSpecification);
+//
+//        mv.setViewName("redirect:/game/game");
+//        rttr.addFlashAttribute("successMessage", messageSource.getMessage("updateGameInfo", null, locale));
+//
+//
+//        return mv;
+//    }
+
+
+//
+//    @GetMapping("gameInfoInsert")
+//    public void registPage(){}
 
 
 
@@ -156,7 +219,6 @@ public class GameInfoController {
     @PostMapping("gameInfoInsert")
     public ModelAndView registGameInfo(ModelAndView mv, GameInfoDTO newGameInfo, SpecificationDTO newSpecification, MinimumSystemDTO newMinimumSystem, RecommendedSystemDTO newRecommendedSystem , RedirectAttributes rttr, Locale locale) throws Exception{
         gameInfoService.registGameInfo(newGameInfo);
-
         gameInfoService.registMinimumSystem(newMinimumSystem);
         gameInfoService.registRecommendedSystem(newRecommendedSystem);
         gameInfoService.registSpecification(newSpecification);
