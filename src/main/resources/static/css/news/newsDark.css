@@ -18,13 +18,14 @@
     color: transparent;
 
 }
-.head h3{
+.screen-dark .head h3{
     margin: 0;
     font-size: 18px;
     font-weight: 400;
+    color: #fff;
 }
-.head .decorativeBar{
-    background-image: url("../../image/_Border/Decorative Bar.png");
+.screen-dark .head .decorativeBar{
+    background-image: url("../../image/_Border/Decorative Bar_dark.png");
     background-repeat: no-repeat;
     background-position: center;
     width: 410px;
@@ -34,24 +35,10 @@
 
 }
 
+
 /* 뉴스 ----------------------------------------------------------------------*/
-.lists{
-    margin: auto;
-    margin-top: 18px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 16px;
-    gap: 20px;
 
-    width: 708px;
-
-
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-}
-.list{
+.screen-dark .list{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -68,19 +55,15 @@
     order: 0;
     flex-grow: 0;
 }
-.list:hover{
-    background: linear-gradient(90deg, rgba(255, 233, 244, 0.3) 0%, rgba(234, 243, 255, 0.5) 100%);
+.screen-dark .list:hover{
+    /* Dark / Hover BG */
+    background: linear-gradient(90deg, rgba(30, 28, 50, 0.5) 0%, rgba(43, 22, 29, 0.55) 100%);
     border-radius: 16px;
 }
-.news-head{
+.screen-dark .news-head{
     width: 652px;
     height: 24px;
 
-
-
-    /* Light/Primary Text */
-
-    color: #22242C;
 
 
     /* Inside auto layout */
@@ -91,7 +74,7 @@
     flex-grow: 0;
     z-index: 1;
 }
-.news-head p{
+.screen-dark .news-head p{
     /* 18/18 - SemiB */
 
     font-family: 'Inter';
@@ -102,17 +85,15 @@
     /* identical to box height, or 133% */
 
     letter-spacing: -0.014em;
+
+    /* Dark/Primary Text */
+
+    color: #ECEDEE;
 }
-.news-body{
+.screen-dark .news-body{
     width: 652px;
     height: 48px;
 
-
-    /* Light/Primary Text */
-
-    color: #22242C;
-
-    opacity: 0.6;
 
     /* Inside auto layout */
 
@@ -124,7 +105,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.news-body p{
+.screen-dark .news-body p{
     /* 16/16 - Reg */
 
     font-family: 'Inter';
@@ -135,17 +116,16 @@
     /* or 150% */
 
     letter-spacing: -0.011em;
+
+    /* Dark/Primary Text */
+
+    color: #ECEDEE;
+
 }
-.news-foot{
+.screen-dark .news-foot{
     width: 300px;
     height: 18px;
 
-
-    /* Light/Primary Text */
-
-    color: #22242C;
-
-    opacity: 0.3;
 
     /* Inside auto layout */
 
@@ -154,8 +134,8 @@
     flex-grow: 0;
     z-index: 3;
 }
-.news-foot p{
-    /* 12 / 12 - Med */
+.screen-dark .news-foot p{
+    /* 13 / 13 - Med */
 
     font-family: 'Inter';
     font-style: normal;
@@ -165,115 +145,17 @@
     /* identical to box height, or 138% */
 
     letter-spacing: -0.08px;
+
+    /* Dark/Primary Text */
+
+    color: #ECEDEE;
+
 }
 
-/* 작성하기 버튼 */
-.btn{
-    background:  transparent;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 12px 20px;
-    gap: 4px;
 
-    width: 148px;
-    height: 48px;
-
-    /* Basic/Purple */
-
-    border: 1px solid rgba(77, 62, 255, 0.9);
-    border-radius: 24px;
-
-    /* Inside auto layout */
-
-    flex: none;
-    order: 1;
-    flex-grow: 0;
-    cursor: pointer;
-
-    /* 18/18 - Med */
-
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 24px;
-    /* identical to box height, or 133% */
-
-    letter-spacing: -0.014em;
-
-    /* Basic/Purple */
-
-    color: rgba(77, 62, 255, 0.9);
-    margin: auto;
-}
-.btn:hover{
-    opacity:0.8;
-}
-.btn:active{
-    opacity:0.9;
-}
-.btn-primary{
-    border: none;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 12px 20px;
-    gap: 4px;
-
-    width: 148px;
-    height: 48px;
-
-    /* Basic/Purple */
-
-    background: rgba(77, 62, 255, 0.9);
-    border-radius: 24px;
-
-    /* Inside auto layout */
-
-    flex: none;
-    order: 1;
-    flex-grow: 0;
-
-    /* 18/18 - Med */
-
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 24px;
-    /* identical to box height, or 133% */
-
-    letter-spacing: -0.014em;
-
-    /* Basic / White */
-
-    color: #FFFFFF;
-}
-.btn-primary:hover{
-    opacity:0.8;
-}
-.btn-primary:active{
-    opacity:0.9;
-}
-.btn-wrap{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 0px;
-    gap: 20px;
-
-
-    width: 316px;
-    height: 48px;
-    margin: 0 auto;
-}
 
 /* newsInsert ----------------------------------------------------------------------------------------------------*/
-.news-insert{
+.screen-dark .news-insert{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -285,14 +167,14 @@
     min-height: 1134px;
 
 
-    /* Light/Nav BG */
+    /* Dark / Nav BG */
 
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(28, 22, 47, 0.2);
     border-radius: 20px;
 }
 
 
-.input {
+.screen-dark .input {
     box-sizing: border-box;
 
     /* Auto layout */
@@ -306,12 +188,13 @@
     width: 676px;
     min-height: 48px;
 
-    /* Basic / White */
 
-    background: #FFFFFF;
-    /* Light/Light Gray */
+    /* Basic/Black */
 
-    border: 0.5px solid rgba(74, 87, 111, 0.7);
+    background: #0A0A0D;
+    /* Dark/Light Gray */
+
+    border: 0.5px solid rgba(114, 120, 136, 0.6);
     border-radius: 24px;
 
     /* Inside auto layout */
@@ -319,6 +202,7 @@
     flex: none;
     order: 0;
     flex-grow: 0;
+
 
     /* 15/15 - Med */
 
@@ -331,14 +215,18 @@
 
     letter-spacing: -0.009em;
 
-    /* Light/Light Gray */
+    /* Dark/Light Gray */
 
-    color: rgba(74, 87, 111, 0.7);
+    color: rgba(114, 120, 136, 0.6);
+}
+.screen-dark input:focus{
+    border: 1px solid rgba(77, 62, 255, 0.9);
+    color: #fff;
 }
 
-.active input{
+.screen-dark .active input{
     border: 1px solid rgba(77, 62, 255, 0.9);
-
+    color: #fff;
 }
 
 .com-input{
@@ -355,10 +243,6 @@
 }
 .delete-btn{
     margin-left: 560px;
-}
-
-.textarea-wrap.active textarea{
-    border: 1px solid rgba(77, 62, 255, 0.9);
 }
 
 .att-btn{
@@ -461,7 +345,7 @@
 
 }
 
-.file-upload .file-select .file-select-name{
+.screen-dark .file-upload .file-select .file-select-name{
     box-sizing: border-box;
 
     /* Auto layout */
@@ -475,12 +359,13 @@
     width: 528px;
     height: 48px;
 
-    /* Basic / White */
 
-    background: #FFFFFF;
-    /* Light/Light Gray */
+    /* Basic/Black */
 
-    border: 0.5px solid rgba(74, 87, 111, 0.7);
+    background: #0A0A0D;
+    /* Dark/Light Gray */
+
+    border: 0.5px solid rgba(114, 120, 136, 0.6);
     border-radius: 24px;
 
     /* Inside auto layout */
@@ -500,10 +385,9 @@
 
     letter-spacing: -0.009em;
 
-    /* Light/Light Gray */
+    /* Dark/Light Gray */
 
-    color: rgba(74, 87, 111, 0.7);
-
+    color: rgba(114, 120, 136, 0.6);
 
     /* Inside auto layout */
 
@@ -515,7 +399,7 @@
 
 }
 
-.file-upload .file-select input[type=file]{
+.screen-dark .file-upload .file-select input[type=file]{
     z-index:100;
     cursor:pointer;
     position:absolute;
@@ -527,13 +411,15 @@
     filter:alpha(opacity=0);
 }
 
-.file-upload.active .file-select .file-select-name{
+.screen-dark .file-upload.active .file-select .file-select-name{
     border: 1px solid rgba(77, 62, 255, 0.9);
     border-radius: 24px;
     transition:all .2s ease-in-out;
     -moz-transition:all .2s ease-in-out;
     -webkit-transition:all .2s ease-in-out;
     -o-transition:all .2s ease-in-out;
+
+    color: rgba(77, 62, 255, 0.9);
 }
 
 
@@ -541,7 +427,7 @@
 
 
 
-.textarea{
+.screen-dark .textarea{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -551,11 +437,12 @@
     width: 676px;
     height: 980px;
 
-    /* Basic / White */
+    /* Basic/Black */
 
-    background: #FFFFFF;
-    /* Basic/Purple */
-    border: 0.5px solid rgba(74, 87, 111, 0.7);
+    background: #0A0A0D;
+    /* Dark/Light Gray */
+
+    border: 0.5px solid rgba(114, 120, 136, 0.6);
     border-radius: 24px;
 
     /* Inside auto layout */
@@ -565,6 +452,30 @@
     flex-grow: 0;
 
     resize: none;
+
+    /* 15/15 - Med */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 20px;
+    /* or 133% */
+
+    letter-spacing: -0.009em;
+
+    /* Dark/Primary Text */
+
+    color: #ECEDEE;
+}
+.screen-dark .textarea:focus{
+    border: 1px solid rgba(77, 62, 255, 0.9);
+    color: #fff;
+}
+
+.screen-dark .textarea-wrap.active textarea{
+    border: 1px solid rgba(77, 62, 255, 0.9);
+    color: #fff;
 }
 
 /* 작성하기 버튼 */
@@ -577,7 +488,7 @@
 }
 
 /* 페이지네이션 --------------------------------------------------------------------*/
-.pagination{
+.screen-dark .pagination{
     position: relative;
     left: 0%;
     right: 0%;
@@ -587,7 +498,7 @@
     padding: 8px;
     /* Light/Hover BG */
 
-    background: linear-gradient(90deg, rgba(255, 233, 244, 0.3) 0%, rgba(234, 243, 255, 0.5) 100%);
+    background: linear-gradient(90deg, rgba(30, 28, 50, 0.5) 0%, rgba(43, 22, 29, 0.55) 100%);
     border-radius: 24px;
 
     width: 348px;
@@ -635,15 +546,16 @@
     height: 24px;
     padding: 5px 5px;
 }
-.pagination-wrap .left-icon{
-    background-image: url("../../image/svg/icon-arrow-left.svg");
+.screen-dark .pagination-wrap .left-icon{
+    background-image: url("../../image/svg/icon-arrow-left-w.svg");
     background-size: contain;
     background-repeat: no-repeat;
     width: 14px;
     height: 14px;
 }
-.pagination-wrap .right-icon{
-    background-image: url("../../image/svg/icon-arrow-right.svg");
+
+.screen-dark .pagination-wrap .right-icon{
+    background-image: url("../../image/svg/icon-arrow-right-w.svg");
     background-size: contain;
     background-repeat: no-repeat;
     width: 14px;
@@ -693,7 +605,7 @@
 .detail-title {
     border: none;
 }
-.detail-title h2{
+.screen-dark .detail-title h2{
     /* 15/15 - Med */
 
     font-family: 'Inter';
@@ -705,9 +617,9 @@
 
     letter-spacing: -0.009em;
 
-    /* Light/Primary Text */
+    /* Dark/Primary Text */
 
-    color: #22242C;
+    color: #ECEDEE;
 
 }
 .detail-sub{
