@@ -40,11 +40,11 @@
             </div>
           </div>
           <div class="login-help">
-            <a href="#" class="btn-response help-btn-text">아이디찾기</a>
+            <a href="/member/findId" class="btn-response help-btn-text">아이디분실</a>
             <p>|</p>
-            <a href="#" class="btn-response help-btn-text">비밀번호찾기</a>
+            <a href="/member/findPwd" class="btn-response help-btn-text">비밀번호분실</a>
             <p>|</p>
-            <a href="regist" class="btn-response help-btn-text">회원가입</a>
+            <a href="/member/regist" class="btn-response help-btn-text">회원가입</a>
           </div>
         </div>
         <div class="login-buttons">
@@ -56,15 +56,18 @@
             <div class="login-btn-logo btn-logo-google"></div>
             <p class="login-btn-text black-text">Google</p>
           </a>
-          <a href="#" class="login-btn btn-kakao btn-response">
+          <a href="/oauth2/authorization/kakao" class="login-btn btn-kakao btn-response">
             <div class="login-btn-logo btn-logo-kakao"></div>
             <p class="login-btn-text black-text">Kakao</p>
+          </a>
+          <a href="/oauth2/authorization/naver" class="login-btn btn-naver btn-response">
+            <div class="login-btn-logo btn-logo-naver"></div>
+            <p class="login-btn-text black-text">Naver</p>
           </a>
         </div>
       </form>
     </div>
   </div>
-<input class="screen-mode-btn" type="checkbox">
 <script src="/js/screenModeResponse.js"></script>
 </body>
 </html>

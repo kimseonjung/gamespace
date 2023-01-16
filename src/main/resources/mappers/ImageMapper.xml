@@ -15,11 +15,11 @@
         <result property="attachStatus" column="ATTACHED_STATUS"/>
     </resultMap>
 
-    <select id="countIfProfileIsExist" resultType="_int" parameterType="string">
-        SELECT COUNT(*)
-          FROM ATT_FILE A
-         WHERE A.REF_CODE = #{ member_code }
-    </select>
+<!--    <select id="countIfProfileIsExist" resultType="_int" parameterType="string">-->
+<!--        SELECT COUNT(*)-->
+<!--          FROM ATT_FILE A-->
+<!--         WHERE A.REF_CODE = #{ member_code }-->
+<!--    </select>-->
 
     <select id="selectProfileByCode" resultMap="imageResultMap" parameterType="string">
         SELECT A.ATTACHED_NO
@@ -38,8 +38,8 @@
         INSERT
           INTO ATT_FILE A
             (
-              A.ATTACHMENT_NO
-            , A.REF_BOARD_NO
+              A.ATTACHED_NO
+            , A.REF_CODE
             , A.ORIGINAL_NAME
             , A.SAVED_NAME
             , A.SAVE_PATH

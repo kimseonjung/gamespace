@@ -199,7 +199,7 @@
     border: 0;
 }
 
-.follow-btn{
+.follow-count{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -209,8 +209,37 @@
     width: 196px;
     height: 56px;
 
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 12px;
+}
+.follow-btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+
+    width: 100px;
+    height: 56px;
+
+    border-radius: 12px;
+}
+
+.followable{
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(77, 62, 255, 0);
+}
+.followable p{
+    color: #22242C;
+    opacity: 0.5;
+}
+.following{
+    border: 1px solid rgba(77, 62, 255, 0.9);
+    background: rgba(77, 62, 255, 1);
+}
+.following p{
+    color: #FFFFFF;
+    opacity: 1;
 }
 
 .history-btn{
@@ -308,14 +337,6 @@
     -webkit-box-orient: vertical;
 }
 
-.following{
-    justify-content: center;
-    padding: 10px 20px;
-    width: 100px;
-    border: 1px solid rgba(77, 62, 255, 0.9);
-    background: rgba(77, 62, 255, 0);
-}
-
 .social-content{
     display: flex;
     flex-direction: row;
@@ -344,6 +365,10 @@
 }
 .user-introduce{
     text-align: center;
+    width: 100%;
+}
+.user-introduce p{
+    word-break: break-all;
 }
 
 .text-name{
@@ -377,11 +402,4 @@
 }
 .number-active p{
     color: rgba(77, 62, 255, 0.9);
-}
-.follow-active{
-    border: 0;
-    background: rgba(77, 62, 255, 0.9);
-}
-.follow-active p{
-    color: #FFFFFF;
 }

@@ -36,7 +36,7 @@
                M.MEMBER_NAME,
                M.MEMBER_PHONE,
                M.MEMBER_EMAIL,
-               TO_CHAR(TO_DATE(M.MEMBER_BIRTH, 'YY/MM/DD'),'RRRR-MM-DD') AS MEMBER_BIRTH,
+               TO_CHAR(TO_DATE(M.MEMBER_BIRTH, 'RR/MM/DD'),'YYYY-MM-DD') AS MEMBER_BIRTH,
                M.MEMBER_GENDER,
                M.ADDRESS,
                M.INTRODUCE,
@@ -50,8 +50,9 @@
                M.MEMBER_STATUS,
                M.BAN_DATE,
                M.ADMIN_YN
-        FROM MEMBER M
-        WHERE M.MEMBER_ID = #{ userId }
+          FROM MEMBER M
+         WHERE M.MEMBER_ID = #{ userId }
+           AND M.MEMBER_STATUS = 'Y'
     </select>
 
     <select id="findMemberByEmailForSocialLogin" resultMap="memberResultMap" parameterType="string">
@@ -62,7 +63,7 @@
                M.MEMBER_NAME,
                M.MEMBER_PHONE,
                M.MEMBER_EMAIL,
-               TO_CHAR(TO_DATE(M.MEMBER_BIRTH, 'YY/MM/DD'),'RRRR-MM-DD') AS MEMBER_BIRTH,
+               TO_CHAR(TO_DATE(M.MEMBER_BIRTH, 'RR/MM/DD'),'YYYY-MM-DD') AS MEMBER_BIRTH,
                M.MEMBER_GENDER,
                M.ADDRESS,
                M.INTRODUCE,
@@ -78,6 +79,7 @@
                M.ADMIN_YN
         FROM MEMBER M
         WHERE M.MEMBER_EMAIL = #{ userEmail }
+          AND M.MEMBER_STATUS = 'Y'
     </select>
 
     <select id="selectAllMember" resultMap="memberResultMap">
@@ -88,7 +90,7 @@
                M.MEMBER_NAME,
                M.MEMBER_PHONE,
                M.MEMBER_EMAIL,
-               TO_CHAR(TO_DATE(M.MEMBER_BIRTH, 'YY/MM/DD'),'RRRR-MM-DD') AS MEMBER_BIRTH,
+               TO_CHAR(TO_DATE(M.MEMBER_BIRTH, 'RR/MM/DD'),'YYYY-MM-DD') AS MEMBER_BIRTH,
                M.MEMBER_GENDER,
                M.ADDRESS,
                M.INTRODUCE,
@@ -102,14 +104,49 @@
                M.MEMBER_STATUS,
                M.BAN_DATE,
                M.ADMIN_YN
+          FROM MEMBER M
+           AND M.MEMBER_STATUS = 'Y'
+         ORDER BY M.MEMBER_CODE
+    </select>
+
+    <select id="findMemberId" resultType="String" parameterType="java.util.HashMap">
+        SELECT M.MEMBER_ID
+          FROM MEMBER M
+         WHERE M.MEMBER_NAME = #{ memberName }
+           AND M.MEMBER_EMAIL = #{ memberEmail }
+           AND M.MEMBER_STATUS = 'Y'
+    </select>
+
+    <select id="findMemberForEmailSend" resultType="String" parameterType="java.util.HashMap">
+        SELECT M.MEMBER_EMAIL
         FROM MEMBER M
-        ORDER BY M.MEMBER_CODE
+        WHERE M.MEMBER_ID = #{ userId }
+          AND M.MEMBER_EMAIL = #{ userEmail }
+          AND M.MEMBER_STATUS = 'Y'
     </select>
 
     <select id="countFollowFromByCode" resultType="_int" parameterType="string">
         SELECT COUNT(*)
-          FROM FOLLOW F
-         WHERE F.FOLLOW_TAR_CODE = #{ code }
+        FROM FOLLOW F
+        WHERE F.FOLLOW_TAR_CODE = #{ code }
+    </select>
+
+    <select id="registIdCheck" resultType="_int" parameterType="string">
+        SELECT COUNT(*)
+          FROM MEMBER M
+         WHERE M.MEMBER_ID = #{ input }
+    </select>
+
+    <select id="registNicknameCheck" resultType="_int" parameterType="string">
+        SELECT COUNT(*)
+        FROM MEMBER M
+        WHERE M.MEMBER_NICKNAME = #{ input }
+    </select>
+
+    <select id="registEmailCheck" resultType="_int" parameterType="string">
+        SELECT COUNT(*)
+        FROM MEMBER M
+        WHERE M.MEMBER_EMAIL = #{ input }
     </select>
 
     <select id="countFollowToByCode" resultType="_int" parameterType="string">
@@ -136,6 +173,13 @@
         SELECT COUNT(*)
         FROM MEMBER M
         WHERE M.MEMBER_EMAIL = #{ userEmail }
+    </select>
+
+    <select id="checkFollowState" resultType="_int" parameterType="java.util.HashMap">
+        SELECT COUNT(*)
+        FROM FOLLOW F
+        WHERE F.FOLLOW_REQ_CODE = #{ current }
+          AND F.FOLLOW_TAR_CODE = #{ target }
     </select>
 
     <insert id="registMember" parameterType="com.semi.gamespace.member.model.dto.MemberDTO">
@@ -188,6 +232,22 @@
         )
     </insert>
 
+    <insert id="insertFollowConnect" parameterType="java.util.HashMap">
+        INSERT
+        INTO FOLLOW F (
+            F.FOLLOW_CODE,
+            F.FOLLOW_REQ_CODE,
+            F.FOLLOW_TAR_CODE,
+            F.FOLLOW_DATE
+        )
+        VALUES (
+            'FOL_'||FOLLOW_CODE_SEQ.NEXTVAL,
+            #{ requestCode },
+            #{ targetCode },
+            TO_DATE(SYSDATE, 'YYYY-MM-DD')
+        )
+    </insert>
+
     <update id="updateMember" parameterType="com.semi.gamespace.member.model.dto.MemberDTO">
         UPDATE MEMBER M
            SET (
@@ -212,6 +272,12 @@
          WHERE M.MEMBER_ID = #{ userId }
     </update>
 
+    <update id="leaveMemberByCode" parameterType="String">
+        UPDATE MEMBER M
+           SET M.MEMBER_STATUS = 'N'
+         WHERE M.MEMBER_CODE = #{ input }
+    </update>
+
     <update id="updateMemberSiteLink" parameterType="java.util.HashMap">
         UPDATE MEMBER M
         <set>
@@ -226,4 +292,24 @@
         </set>
         WHERE M.MEMBER_CODE = #{ memberCode }
     </update>
+
+    <update id="updateMemberPassword" parameterType="java.util.HashMap">
+        UPDATE MEMBER M
+           SET M.MEMBER_PWD = #{ userData }
+         WHERE M.MEMBER_CODE = #{ userCode }
+    </update>
+
+    <delete id="deleteFollowConnect" parameterType="java.util.HashMap">
+        DELETE
+          FROM FOLLOW F
+         WHERE F.FOLLOW_REQ_CODE = #{ requestCode }
+           AND F.FOLLOW_TAR_CODE = #{ targetCode }
+    </delete>
+
+    <delete id="deleteFollowAll" parameterType="string">
+        DELETE
+          FROM FOLLOW F
+         WHERE F.FOLLOW_REQ_CODE = #{ input }
+            OR F.FOLLOW_TAR_CODE = #{ input }
+    </delete>
 </mapper>

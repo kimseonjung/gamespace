@@ -20,27 +20,34 @@
         </div>
       </div>
       <div class="mypage-follow">
-        <a href="#" class="follow-btn btn-response">
+        <a href="#" class="follow-count btn-response">
           <p class="text-follow">팔로워</p>
-          <p class="text-follow" th:text="${followFrom}"></p>
+          <p class="text-follow" id="follow-count" th:text="${followFrom}"></p>
         </a>
-        <a href="#" class="follow-btn btn-response">
+        <a href="#" class="follow-count btn-response">
           <p class="text-follow">팔로잉</p>
           <p class="text-follow" th:text="${followTo}"></p>
         </a>
-        <a href="#" class="follow-btn following btn-response follow-active">
-          <p class="text-follow text-following">♥</p>
-        </a>
+        <th:block th:if="${followStatus > 0 && member.userId != @authenticationConfig.getAuthenticationUser().getUserId()}">
+          <form method="POST" action="/member/userSetting" onsubmit="return false;">
+            <input type="hidden" name="isFollow" id="isFollow" th:value="${followStatus == 2} ? true : false">
+            <input type="hidden" name="userCode" id="userCode" th:value="${member.memberCode}">
+            <input type="hidden" name="beforeFollow" id="beforeFollow" th:value="${followFrom}">
+            <button type="button" class="follow-btn followable btn-response follow-active">
+              <p class="text-follow text-following">♥</p>
+            </button>
+          </form>
+        </th:block>
       </div>
       <div class="mypage-social">
         <div class="menu-title"><p>SOCIAL MEDIA</p></div>
         <div class="social-content">
-          <a th:href="${member.userSiteLink1}" class="social-btn btn-response"><img src="/image/icon_light/twitter.svg"></a>
-          <a class="social-btn btn-response"><img src="/image/icon_light/insta.svg"></a>
-          <a class="social-btn btn-response"><img src="/image/icon_light/github.svg"></a>
-          <a class="social-btn btn-response"><img src="/image/icon_light/globe.svg"></a>
-          <a class="social-btn btn-response"><img src="/image/icon_light/globe.svg"></a>
-          <a class="social-btn btn-response"><img src="/image/icon_light/globe.svg"></a>
+          <a th:href="${member.userSiteLink1}" target="_blank" class="social-btn btn-response"><img class="social-icon" src="/image/icon_light/globe.svg"></a>
+          <a th:href="${member.userSiteLink2}" target="_blank" class="social-btn btn-response"><img class="social-icon" src="/image/icon_light/globe.svg"></a>
+          <a th:href="${member.userSiteLink3}" target="_blank" class="social-btn btn-response"><img class="social-icon" src="/image/icon_light/globe.svg"></a>
+          <a th:href="${member.userSiteLink4}" target="_blank" class="social-btn btn-response"><img class="social-icon" src="/image/icon_light/globe.svg"></a>
+          <a th:href="${member.userSiteLink5}" target="_blank" class="social-btn btn-response"><img class="social-icon" src="/image/icon_light/globe.svg"></a>
+          <a th:href="${member.userSiteLink6}" target="_blank" class="social-btn btn-response"><img class="social-icon" src="/image/icon_light/globe.svg"></a>
         </div>
       </div>
     </div>

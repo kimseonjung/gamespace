@@ -60,7 +60,7 @@
                     <p class="error-text" id="error-name"></p>
                     <div class="input-placeholder input-required" id="border-birthday">
                         <div class="input-head"></div>
-                        <input class="input-text" name="userBirthday" type="text" placeholder="* Birthday (yyyy-mm-dd)">
+                        <input class="input-text" name="userBirthday" type="text" placeholder="* Birthday(YYYYMMDD)">
                     </div>
                     <p class="error-text" id="error-birthday"></p>
                     <div class="gender-area">
@@ -80,7 +80,7 @@
                     <p class="error-text"></p>
                     <div class="input-placeholder input-required" id="border-phone">
                         <div class="input-head"></div>
-                        <input class="input-text" name="userPhone" type="text" placeholder="* Phone">
+                        <input class="input-text" name="userPhone" type="text" placeholder="Phone">
                     </div>
                     <p class="error-text" id="error-phone"></p>
                     <div class="input-placeholder input-required" id="border-email">
@@ -90,12 +90,12 @@
                     <p class="error-text" id="error-email"></p>
                 </div>
                 <div class="regist-input regist-step-3">
-                    <div class="input-head"></div>
                     <div class="regist-zipcode">
                         <div class="input-placeholder modify-zipcode input-required">
+                            <div class="input-head"></div>
                             <input class="input-text" name="regist-zipcode" type="text" placeholder="Zip code" readonly>
                         </div>
-                        <a href="#" class="zipcode-search-btn btn-response btn-white-default">
+                        <a id="zipcode-search-btn" class="btn-response btn-white-default" onclick="searchAddress();">
                             <p class="zipcode-search-text">&gt;</p>
                         </a>
                     </div>
@@ -112,10 +112,11 @@
                     <p class="error-text"></p>
                 </div>
                 <div class="regist-input regist-step-4">
-                    <div class="input-placeholder input-required">
+                    <div class="input-placeholder input-required" id="border-introduce">
                         <div class="input-head"></div>
                         <input class="input-text" name="userIntroduce" type="text" placeholder="About Me">
                     </div>
+                    <p class="error-text" id="error-introduce"></p>
                 </div>
                 <div class="regist-input regist-step-5">
                     <div class="g-recaptcha" data-sitekey="6LeYBncjAAAAADP1POqLMPJRDjorv1H9gTpY4Dbt"></div>
@@ -129,15 +130,16 @@
         </div>
     </div>
 </form>
-
-<input class="screen-mode-btn" type="checkbox">
-
 </body>
-<script src="/js/member.js"></script>
-<script src="/js/userValidation.js"></script>
-<script src="/js/screenModeResponse.js"></script>
 <!-- APIs -->
-<!-- g-RECAPTCHA -->
+    <!-- 우편번호 검색 -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <!-- g-RECAPTCHA -->
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+<!-- JS -->
+<script src="/js/member.js"></script>
+<script src="/js/userValidation.js"></script>
+<script src="/js/memberRegist.js"></script>
+<script src="/js/screenModeResponse.js"></script>
 </html>

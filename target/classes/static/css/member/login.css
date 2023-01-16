@@ -4,6 +4,16 @@
 .window-input{
     height: 410px;
 }
+#border-id .input-title{
+    background-color: #FFFFFF00;
+}
+.error-text{
+    font-weight: 500;
+    font-size: 10px;
+    height: 15px;
+    letter-spacing: -0.014em;
+    color: rgba(255, 62, 77, 0.9);
+}
 
 .member-main-bg{
     height: calc(260px*2 + 100px + 410px);
@@ -51,21 +61,19 @@
     border: 1px solid rgba(74, 87, 111, 0.7);
 }
 .btn-kakao{
-    background: #FBE300;
+    background: #FBE300CC;
+}
+.btn-naver{
+    background: #1EC800CC;
 }
 .btn-logo-google{
-    left: 1%;
-    right: -1%;
-    top: 1%;
-    bottom: -1%;
     background: url("../../image/logo_google.png");
 }
 .btn-logo-kakao{
-    left: 0%;
-    right: 0%;
-    top: 0%;
-    bottom: 0%;
     background: url("../../image/logo_kakao.png");
+}
+.btn-logo-naver{
+    background: url("../../image/logo_naver.png");
 }
 
 /* login */
@@ -77,7 +85,7 @@
 
     position: absolute;
     width: 448px;
-    height: 510px;
+    height: 620px;
     top: 260px;
     left: calc(50% - 448px/2);
     border-radius: 24px;
@@ -91,7 +99,7 @@
     gap: 6px;
 
     width: 320px;
-    height: 134px;
+    height: 143px;
 
     flex: none;
     order: 0;
@@ -120,7 +128,7 @@
     gap: 6px;
 
     width: 217px;
-    height: 16px;
+    height: 25px;
 
     flex: none;
     order: 1;
@@ -137,7 +145,7 @@
     gap: 16px;
 
     width: 320px;
-    height: 176px;
+    height: calc(48px*4 + 16px*3);
 
     flex: none;
     order: 1;
@@ -149,7 +157,7 @@
     justify-content: center;
     align-items: center;
     padding: 12px 0px;
-    gap: 4px;
+    gap: 6px;
 
     width: 100%;
     height: 48px;

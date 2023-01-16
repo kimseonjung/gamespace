@@ -47,8 +47,9 @@ public class NewsInfoController {
     @GetMapping("/news")
     public ModelAndView selectAllNewsList(ModelAndView mv){
         List<NewsDTO> newsList = newsInfoService.selectAllNewsList();
-        newsList.stream().forEach(newsDTO -> System.out.println("news =" + newsDTO) );
+        newsList.stream().forEach(newsDTO -> System.out.println("news = " + newsDTO) );
         List<GameInfoDTO> gameInfoList = gameInfoService.selectAllGameInfo();
+        gameInfoList.stream().forEach(GameInfoDTO -> System.out.println("games = " + GameInfoDTO) );
 
 
         mv.addObject("gameInfoList", gameInfoList);

@@ -37,7 +37,7 @@
           <p>회원정보수정</p>
           <img src="/image/icon_light/angle-arrow.svg">
         </a>
-        <a href="#" class="menu-btn btn-response">
+        <a href="/member/update/modifyPwd" class="menu-btn btn-response">
           <div class="img-icon"><img src="/image/icon_light/lock.svg"></div>
           <p>비밀번호수정</p>
           <img src="/image/icon_light/angle-arrow.svg">
@@ -72,6 +72,16 @@
         <div class="list-6 list-hide"><div th:block th:replace="~{member/update/linkChecked :: linkChecked('6')}"></div></div>
       </div>
     </div>
+    <div class="mypage-content">
+      <div class="menu-title"><p>LEAVE</p></div>
+      <div class="profile-content">
+        <a href="/member/leave" class="menu-btn btn-response">
+          <div class="img-icon"><img src="/image/icon_light/lock.svg"></div>
+          <p>회원탈퇴</p>
+          <img src="/image/icon_light/cross.svg">
+        </a>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -79,6 +89,16 @@
   <th:block th:replace="~{common/footer :: footer}"/>
 </div>
 <script src="/js/member.js"></script>
+<script src="/js/memberMypage.js"></script>
+<script src="/js/memberLinkModify.js"></script>
 <script src="/js/screenModeResponse.js"></script>
+<!-- 팔로우 버튼 상태 초기 갱신 -->
+<script th:inline="javascript">
+  /* <![CDATA[ */
+  const initFollow = [[${followStatus}]]==2;
+  followRefresh(initFollow);
+  document.getElementById('isFollow').value = initFollow;
+  /* ]]> */
+</script>
 </body>
 </html>

@@ -1,48 +1,9 @@
-function infoCheck() {
-    return true;
-}
-
-$profileClear = document.getElementById("profile-clear");
-// $profileClear.onClick = () => removeProfile(0);
-
-/* 페이지 로드 시 실행 */
-window.onload = function () {
-    registInputCheck(['ID', 'Password', 'Password Check', 'Nickname', 'Name', 'Birthday', 'Phone',
-        'Email', 'Zip code', 'Address', 'Address Detail', 'About Me']);
-    genderBtnResponse();
-}
-
-/* ----------------------- */
-
 /* ----- 회원 가입 폼 ----- */
-//입력값 있을 시 폼 변경
-$(function () {
-    //값 입력 시
-    $('.input-text').keyup(function () {
-        const content = ['ID', 'Password', 'Password Check', 'Nickname', 'Name', 'Birthday', 'Phone',
-                        'Email', 'Zip code', 'Address', 'Address Detail', 'About Me'];
-        registInputCheck(content);
-    });
-    // //포커스 될 시
-    // $('.input-text').focus(function () {
-    //
-    // })
-    // //포커스를 잃었을 시
-    // $('.input-text').blur(function () {
-    //     const content = document.getElementsByClassName('input-text');
-    //     for(let i = 0; i < content.length; i++) {
-    //         if(content[i].value=='') {
-    //             document.getElementsByClassName('input-placeholder')[i].classList.remove('input-filled');
-    //         }
-    //     }
-    // })
-});
-
 function registInputCheck(content) {
     const targetList = document.getElementsByClassName('input-text');
     const textList = document.getElementsByClassName('input-head');
     // const borderList = document.getElementsByClassName('input-placeholder');
-    for(let i = 0; i < targetList.length; i++) {
+    for(let i = 0; i <= targetList.length; i++) {
         const target = targetList[i];
         const text = textList[i];
         // const border = borderList[i];
@@ -54,7 +15,52 @@ function registInputCheck(content) {
         }
     }
 }
+function updateInputCheck(content) {
+    const targetList = document.getElementsByClassName('input-text');
+    const textList = document.getElementsByClassName('input-head');
+    // const borderList = document.getElementsByClassName('input-placeholder');
+    for(let i = 0; i <= targetList.length; i++) {
+        const target = i>0 ? targetList[i-1] : document.getElementsByName('disabled-text');
+        const text = textList[i];
+        // const border = borderList[i];
+        if(target.value == "") {
+            text.innerHTML = "";
+        } else {
+            text.innerHTML = `<p class="input-title">${content[i]}</p>`;
+            // border.classList.add('input-filled');
+        }
+    }
+}
 /* ----- 회원 가입 폼 끝 ----- */
+
+/* ----- (API) 주소 검색 ----- */
+
+function searchAddress() {
+    new daum.Postcode({
+        oncomplete : function (data) {
+            //우편번호
+            const postCode = data.zonecode;
+            //도로명 주소
+            const roadAddress = data.roadAddress;
+
+            document.getElementsByName('regist-zipcode')[0].value = postCode;
+            document.getElementsByName('regist-address1')[0].value = roadAddress;
+        },
+        onclose: function(state) {
+            if(state === 'COMPLETE_CLOSE'){
+                //사용자가 검색결과를 선택하여 팝업창이 닫혔을 경우
+                const content = ['ID', 'Password', 'Password Check', 'Nickname', 'Name', 'Birthday', 'Phone',
+                        'Email', 'Zip code', 'Address', 'Address Detail', 'About Me'];
+                registInputCheck(content);
+            }
+        }
+    }).open({
+        //새 창으로 여러 개 열리는 것을 방지
+        popupKey : 'popup1'
+    });
+}
+
+/* ----- (API) 주소 검색 끝 ----- */
 
 /* ----- 성별 버튼 반응 ----- */
 $(function () {
@@ -97,6 +103,9 @@ $(function () {
                     target[1].classList.replace('list-show', 'list-hide');
                     document.getElementsByClassName("social-btn")[i].href = modifyLink;
                     document.getElementsByClassName("text-link")[i].innerHTML = modifyLink;
+
+                    linkIconCheck(i);
+
                     return false;
                 },
                 error : function () {
@@ -155,18 +164,55 @@ function refreshLink(index, newURL) {
 
 /* ----- 링크 버튼 갱신 끝 ----- */
 
+$profileClear = document.getElementById("profile-clear");
+// $profileClear.onClick = () => removeProfile(0);
+
+
 /* ----- 프로필 수정 ----- */
 
 function loadProfile(targetObj) {
-    const profile = targetObj.files[0];
-    const preview = document.getElementsByClassName(".profile-change")[0];
+    if(targetObj.files && targetObj.files[0]) { //파일이 존재하는 경우
+        if(!targetObj.files[0].type.match(/image.*/)) return;
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            document.getElementsByClassName('profile-change')[0].src = e.target.result;
+        }
+        reader.readAsDataURL(targetObj.files[0]);
 
-    if(!profile.type.match(/image.*/)) return;
+        console.log(targetObj.files[0]);
 
+        const formData = new FormData();
+        formData.append("image", targetObj.files[0]);
+        // formData를 콘솔로 조회
+        // for (var key of formData.keys()) {
+        //     console.log(key);
+        // }
+        // for (var value of formData.values()) {
+        //     console.log(value);
+        // }
 
+        $.ajax({
+            url : '/member/update/profile',
+            type : 'post',
+            async : false,
+            contentType : false,
+            processData : false,
+            data : formData,
+            success : function (data) {
+                console.log('success');
+                return false;
+            },
+            error : function () {
+                console.log('fail');
+                return false;
+            }
+        });
+    }
 }
 
-function removeProfile(index) {
+function removeProfile() {
+    document.getElementById('userProfile').value = null;
+    document.getElementsByClassName('profile-change')[0].src = "/image/icon/mypage.svg";
 }
 
 /* ----- 프로필 수정 끝 ----- */

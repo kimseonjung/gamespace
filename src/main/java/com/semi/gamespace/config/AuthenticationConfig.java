@@ -24,8 +24,10 @@ public class AuthenticationConfig {
         List<String> memberPermitList = new ArrayList<>();
         memberPermitList.add("/member/dashboard"); //ex
         memberPermitList.add("/member/userSetting");
+        memberPermitList.add("/member/update/**");
         memberPermitList.add("/freeGal/upload"); //게시글 작성 파트
         memberPermitList.add("/freeGal/view"); //게시글 상세보기 파트
+
         return memberPermitList;
     }
 
