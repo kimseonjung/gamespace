@@ -1,8 +1,8 @@
 package com.semi.gamespace.free_gal.model.service;
 
 import com.semi.gamespace.free_gal.model.dao.FreeGalMapper;
-import com.semi.gamespace.free_gal.model.dto.FreeGalComDTO;
 import com.semi.gamespace.free_gal.model.dto.FreeGalDTO;
+import com.semi.gamespace.free_gal.model.dto.FreeGalComDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,6 +41,11 @@ public class FreeGalService {
     }
 
     @Transactional
+    public void uploadBoardNotice(FreeGalDTO freeGalDTO){
+        freeGalMapper.uploadBoardNotice(freeGalDTO);
+    }
+
+    @Transactional
     public int updateBoard(FreeGalDTO freeGalDTO) {
         int result = freeGalMapper.updateBoard(freeGalDTO);
 
@@ -71,7 +76,8 @@ public class FreeGalService {
     }
 
     // 대댓글 작성
-    public void uploadCommentComment(FreeGalComDTO freeGalComDTO) {freeGalMapper.uploadCommentComment(freeGalComDTO); }
+    public void uploadCommentComment(FreeGalComDTO freeGalComDTO) {
+        freeGalMapper.uploadCommentComment(freeGalComDTO); }
 
     // 대댓글 조회
     public List<FreeGalComDTO> getCommentComment(String freeGalCode) {

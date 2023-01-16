@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,5 +16,6 @@ public class FreeGalComDTO {
     private String memberCode;
     private String memberNickname;
     private String freeGalComParent;
+    private String isAdmin;
 
 }

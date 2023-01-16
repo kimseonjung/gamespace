@@ -15,7 +15,7 @@ public class AuthenticationConfig {
         adminPermitList.add("/admin/dashboard"); //ex
         adminPermitList.add("/admin/**");
 //        adminPermitList.add("/game/game"); //debug
-
+        adminPermitList.add("/freeGal/freeGalListNotice"); //공지사항 리스트만 및 공지사항 작성 메뉴
         return adminPermitList;
     }
 
@@ -24,7 +24,8 @@ public class AuthenticationConfig {
         List<String> memberPermitList = new ArrayList<>();
         memberPermitList.add("/member/dashboard"); //ex
         memberPermitList.add("/member/userSetting");
-
+        memberPermitList.add("/freeGal/upload"); //게시글 작성 파트
+        memberPermitList.add("/freeGal/view"); //게시글 상세보기 파트
         return memberPermitList;
     }
 

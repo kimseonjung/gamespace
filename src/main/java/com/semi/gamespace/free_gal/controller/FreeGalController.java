@@ -3,33 +3,34 @@ package com.semi.gamespace.free_gal.controller;
 import com.semi.gamespace.free_gal.model.dto.FreeGalComDTO;
 import com.semi.gamespace.free_gal.model.dto.FreeGalDTO;
 import com.semi.gamespace.free_gal.model.service.FreeGalService;
+import com.semi.gamespace.member.model.dto.MemberDTO;
+import com.semi.gamespace.member.model.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.security.Principal;
 import java.util.List;
-import java.util.Locale;
 
 @Controller
 @RequestMapping(value = {"/freeGal"})
 public class FreeGalController {
     private final FreeGalService freeGalService;
+    private final MemberService memberService;
 
     @Autowired
-    public FreeGalController(FreeGalService freeGalService) {
+    public FreeGalController(FreeGalService freeGalService, MemberService memberService) {
         this.freeGalService = freeGalService;
+        this.memberService = memberService;
     }
 
     @GetMapping("/freeGalList")
     public ModelAndView freeGalList(ModelAndView mv){
+
+
         List<FreeGalDTO> freeGalListNotice = freeGalService.getListNotice();
         List<FreeGalDTO> freeGalList = freeGalService.getList();
         freeGalList.stream().forEach(freeGal -> System.out.println("freeGal =" + freeGal));
@@ -38,6 +39,19 @@ public class FreeGalController {
         mv.addObject("freeGalListNotice", freeGalListNotice);
         mv.addObject("freeGalList", freeGalList);
         mv.setViewName("freeGal/freeGalList");
+
+        return mv;
+    }
+
+    @GetMapping("/freeGalListNotice")
+    public ModelAndView freeGalListNotice(ModelAndView mv){
+        List<FreeGalDTO> freeGalListNotice = freeGalService.getListNotice();
+
+        freeGalListNotice.stream().forEach(freeGalNotice -> System.out.println("freeGal =" + freeGalNotice));
+
+        mv.addObject("freeGalListNotice", freeGalListNotice);
+
+        mv.setViewName("freeGal/freeGalListNotice");
 
         return mv;
     }
@@ -57,12 +71,16 @@ public class FreeGalController {
 
 
         mv.setViewName("freeGal/view");
-        System.out.println("111111111111111111111111111111111111111111111111111");
+
         return mv;
     }
 
     @PostMapping("/view")
-    public String uploadComment(String freeGalCode, FreeGalComDTO freeGalComDTO) {
+    public String uploadComment(String freeGalCode, FreeGalComDTO freeGalComDTO, Principal principal) {
+        MemberDTO memberInfo = memberService.findMemberById(principal.getName());
+        freeGalComDTO.setMemberCode(memberInfo.getMemberCode());
+        freeGalComDTO.setMemberNickname(memberInfo.getUserNickname());
+
         freeGalService.uploadComment(freeGalComDTO);
 
         return "redirect:/freeGal/view?freeGalCode="+freeGalCode;
@@ -77,11 +95,36 @@ public class FreeGalController {
         return mv;
     }
 
+    @GetMapping("/uploadNotice")
+    public ModelAndView uploadBoardNoticeForm(ModelAndView mv){
+
+        mv.setViewName("freeGal/uploadNotice");
+
+        return mv;
+    }
+
     @PostMapping("/upload")
-    public ModelAndView uploadBoard(ModelAndView mv, FreeGalDTO freeGalDTO){
+    public ModelAndView uploadBoard(ModelAndView mv, FreeGalDTO freeGalDTO, Principal principal){
+        MemberDTO memberInfo = memberService.findMemberById(principal.getName());
+        freeGalDTO.setMemberCode(memberInfo.getMemberCode());
+        freeGalDTO.setMemberNickname(memberInfo.getUserNickname());
+
         freeGalService.uploadBoard(freeGalDTO);
 
+        memberInfo.getUserNickname();
+
         mv.setViewName("redirect:/freeGal/freeGalList");
+
+
+        return mv;
+
+    }
+
+    @PostMapping("/uploadNotice")
+    public ModelAndView uploadBoardNotice(ModelAndView mv, FreeGalDTO freeGalDTO){
+        freeGalService.uploadBoardNotice(freeGalDTO);
+
+        mv.setViewName("redirect:/freeGal/freeGalListNotice");
 
 
         return mv;
@@ -133,7 +176,11 @@ public class FreeGalController {
     }
 
     @PostMapping("/uploadCommentComment")
-    public ModelAndView uploadCommentComment(ModelAndView mv, String freeGalCode, FreeGalComDTO freeGalComDTO) {
+    public ModelAndView uploadCommentComment(ModelAndView mv, String freeGalCode, FreeGalComDTO freeGalComDTO, Principal principal) {
+        MemberDTO memberInfo = memberService.findMemberById(principal.getName());
+        freeGalComDTO.setMemberCode(memberInfo.getMemberCode());
+        freeGalComDTO.setMemberNickname(memberInfo.getUserNickname());
+
         freeGalService.uploadCommentComment(freeGalComDTO);
 
         mv.setViewName("redirect:/freeGal/view?freeGalCode="+freeGalCode);
