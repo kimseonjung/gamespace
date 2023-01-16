@@ -9,6 +9,7 @@
         <result property="memberCode" column="MEMBER_CODE"/>
         <result property="memberNickname" column="MEMBER_NICKNAME"/>
         <result property="freeGalComParent" column="FREE_GAL_COM_PARENT"/>
+        <result property="isAdmin" column="ADMIN_YN"/>
     </resultMap>
 
     <!-- 댓글 조회 -->
@@ -16,7 +17,8 @@
         SELECT
             A.FREE_GAL_COM_CODE,
             A.FREE_GAL_COM_TITLE,
-            B.MEMBER_NICKNAME
+            B.MEMBER_NICKNAME,
+            B.ADMIN_YN
         FROM FREE_GAL_COM A
         JOIN MEMBER B ON (A.MEMBER_CODE = B.MEMBER_CODE)
         WHERE FREE_GAL_CODE = #{FREE_GAL_CODE} AND FREE_GAL_COM_PARENT IS NULL
@@ -33,7 +35,7 @@
     <!-- 댓글 작성 -->
     <insert id="uploadComment" parameterType="com.semi.gamespace.free_gal.model.dto.FreeGalComDTO">
         INSERT INTO FREE_GAL_COM(FREE_GAL_CODE, FREE_GAL_COM_CODE, FREE_GAL_COM_TITLE, MEMBER_CODE)
-        VALUES(#{freeGalCode}, 'FGC_'||FREE_GAL_COM_CODE_SEQ.NEXTVAL, #{freeGalComTitle}, 'MEM_1')
+        VALUES(#{freeGalCode}, 'FGC_'||FREE_GAL_COM_CODE_SEQ.NEXTVAL, #{freeGalComTitle}, #{memberCode})
     </insert>
 
     <!-- 댓글 수정 -->
@@ -59,13 +61,13 @@
             MEMBER_CODE,
             FREE_GAL_COM_PARENT)
 
-        VALUES(#{freeGalCode}, 'FGC_'||FREE_GAL_COM_CODE_SEQ.NEXTVAL, #{freeGalComTitle}, 'MEM_1', #{freeGalComParent})
+        VALUES(#{freeGalCode}, 'FGC_'||FREE_GAL_COM_CODE_SEQ.NEXTVAL, #{freeGalComTitle}, #{memberCode}, #{freeGalComParent})
     </insert>
 
     <!-- 대댓글 조회 -->
     <select id="getCommentComment" parameterType="String" resultMap="freeGalComResultMap">
         SELECT
-            A.FREE_GAL_COM_CODE, A.FREE_GAL_COM_TITLE, B.MEMBER_NICKNAME, A.FREE_GAL_COM_PARENT
+            A.FREE_GAL_COM_CODE, A.FREE_GAL_COM_TITLE, B.MEMBER_NICKNAME, A.FREE_GAL_COM_PARENT,  B.ADMIN_YN
         FROM FREE_GAL_COM A
         JOIN MEMBER B ON (A.MEMBER_CODE = B.MEMBER_CODE)
         WHERE A.FREE_GAL_CODE = #{freeGalCode} AND A.FREE_GAL_COM_PARENT IS NOT NULL

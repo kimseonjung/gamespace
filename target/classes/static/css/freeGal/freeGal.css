@@ -669,7 +669,7 @@ min-width: 86px;
 
     width: 636px;
     height: 745px;
-
+    border: none;
 
     /* Inside auto layout */
 
@@ -693,7 +693,7 @@ min-width: 86px;
     margin-top: 14px;
 
     width: 676px;
-    height: 270px;
+    min-height: 270px;
 
 
     /* Inside auto layout */
@@ -716,7 +716,7 @@ min-width: 86px;
     padding: 20px;
     gap: 4px;
 
-    width: 676px;
+    min-width: 676px;
     min-height: 54px;
 
     /* Basic / White */
@@ -743,8 +743,8 @@ min-width: 86px;
     padding: 0px;
     gap: 6px;
 
-    width: 636px;
-    height: 24px;
+    min-width: 636px;
+    min-height: 24px;
 
 
     /* Inside auto layout */
@@ -774,7 +774,7 @@ min-width: 86px;
     /* 1번댓글 */
 
 
-    min-width: 49px;
+    width: 500px;
     height: 20px;
 
     /* 15/15 - Med */
@@ -803,7 +803,7 @@ min-width: 86px;
 .viewComments-nickname{
     /* 1번댓글 */
 
-
+    margin: 0 auto;
     min-width: 49px;
     height: 20px;
 
@@ -884,6 +884,29 @@ min-width: 86px;
     flex-grow: 1;
 }
 
+.uploadCommentCommentArea{
+    /* Placeholder + Text */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 4px 0px;
+    gap: 6px;
+
+    width: 608px;
+    height: 28px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+}
+
 .uploadComment-btn{
     /* Button */
 
@@ -912,6 +935,33 @@ min-width: 86px;
     flex-grow: 0;
 }
 
+.uploadCommentComment-btn{
+    /* Button */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 20px;
+    gap: 4px;
+
+    width: 130px;
+    height: 34px;
+    margin-top: 10px;
+    /* Basic/Purple */
+
+    background: rgba(77, 62, 255, 0.9);
+    border-radius: 24px;
+    border: none;
+    /* Inside auto layout */
+
+    flex: none;
+    order: 4;
+    flex-grow: 0;
+}
 
 .viewButtonZone{
     /* Frame 2033 */
@@ -1083,11 +1133,6 @@ min-width: 86px;
 }
 
 .att-btn{
-    /* Frame 2033 */
-
-
-    /* Auto layout */
-
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -1101,14 +1146,14 @@ min-width: 86px;
     /* Inside auto layout */
 
     flex: none;
-    order: 1;
     flex-grow: 0;
 }
 
+.file-upload{
+    position: relative;
+}
+
 .file-select-name{
-    /* Input */
-
-
     box-sizing: border-box;
 
     /* Auto layout */
@@ -1116,7 +1161,7 @@ min-width: 86px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 8px 16px;
+    padding: 10px 16px;
     gap: 4px;
 
     width: 528px;
@@ -1125,9 +1170,9 @@ min-width: 86px;
     /* Basic / White */
 
     background: #FFFFFF;
-    /* Basic/Purple */
+    /* Light/Light Gray */
 
-    border: 1px solid rgba(77, 62, 255, 0.9);
+    border: 0.5px solid rgba(74, 87, 111, 0.7);
     border-radius: 24px;
 
     /* Inside auto layout */
@@ -1135,12 +1180,35 @@ min-width: 86px;
     flex: none;
     order: 0;
     flex-grow: 0;
+
+    /* 15/15 - Med */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 20px;
+    /* identical to box height, or 133% */
+
+    letter-spacing: -0.009em;
+
+    /* Light/Light Gray */
+
+    color: rgba(74, 87, 111, 0.7);
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    float: left;
+
 }
 
+
 .file-select-button{
-    /* Button */
-
-
     box-sizing: border-box;
 
     /* Auto layout */
@@ -1163,8 +1231,23 @@ min-width: 86px;
     /* Inside auto layout */
 
     flex: none;
-    order: 1;
+    order: 0;
     flex-grow: 0;
+
+    /* 18/18 - Med */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    /* identical to box height, or 133% */
+
+    letter-spacing: -0.014em;
+
+    /* Basic/Purple */
+
+    color: rgba(77, 62, 255, 0.9);
 }
 
 .uploadContentArea{
@@ -1294,7 +1377,7 @@ min-width: 86px;
 
     width: 644px;
     height: 28px;
-
+    border: none;
 
     /* Inside auto layout */
 
@@ -1336,23 +1419,12 @@ min-width: 86px;
 }
 
 .file-select{
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 0px;
-    gap: 8px;
-
-    margin: 0 auto;
-    height: 48px;
-
-
-    /* Inside auto layout */
-
-    flex: none;
-    order: 1;
-    flex-grow: 0;
-
-    overflow:hidden;position:relative;cursor:pointer;
+    border: 1px solid rgba(77, 62, 255, 0.9);
+    border-radius: 24px;
+    transition:all .2s ease-in-out;
+    -moz-transition:all .2s ease-in-out;
+    -webkit-transition:all .2s ease-in-out;
+    -o-transition:all .2s ease-in-out;
 }
 .formCom-control{
     /* Input */
@@ -1383,6 +1455,34 @@ min-width: 86px;
 
     flex: none;
     order: 4;
+    flex-grow: 0;
+}
+
+.uploadCommentComment{
+    /* Input */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 4px;
+
+    width: 646px;
+    min-height: 40px;
+
+    /* Basic / White */
+
+    background: #FFFFFF;
+    border-radius: 24px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
     flex-grow: 0;
 }
 

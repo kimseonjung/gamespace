@@ -69,7 +69,7 @@ public class GameInfoController {
         //response.setContentType("application/json; charset=UTF-8");
 
         Gson gson = new GsonBuilder()
-                .setDateFormat("yyyy-MM-dd hh:mm:ss:SSS")
+                .setDateFormat("yyyy-MM-dd hh:mm:FreeGalMapper:SSS")
                 .setPrettyPrinting()
                 .setFieldNamingPolicy(FieldNamingPolicy.IDENTITY)
                 .serializeNulls()

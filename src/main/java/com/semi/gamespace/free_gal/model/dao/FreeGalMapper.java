@@ -19,9 +19,12 @@ public interface FreeGalMapper {
 
     void uploadBoard(FreeGalDTO freeGalDTO);
 
+    void uploadBoardNotice(FreeGalDTO freeGalDTO);
+
     int updateBoard(FreeGalDTO freeGalDTO);
 
     void deleteBoard(String freeGalCode);
+
 
     // 댓글 조회
     List<FreeGalComDTO> getComment(String freeGalCode);
