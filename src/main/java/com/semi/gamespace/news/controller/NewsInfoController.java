@@ -7,6 +7,8 @@ import com.semi.gamespace.game.model.dto.CategoryDTO;
 import com.semi.gamespace.game.model.dto.GameInfoDTO;
 import com.semi.gamespace.game.model.dto.TagDTO;
 import com.semi.gamespace.game.model.service.GameInfoService;
+import com.semi.gamespace.member.model.dto.MemberDTO;
+import com.semi.gamespace.member.model.service.MemberService;
 import com.semi.gamespace.news.model.dto.NewsComDTO;
 import com.semi.gamespace.news.model.dto.NewsDTO;
 import com.semi.gamespace.news.model.service.NewsInfoService;
@@ -23,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 import java.util.*;
 
 @Controller
@@ -32,13 +35,14 @@ public class NewsInfoController {
     private final NewsInfoService newsInfoService;
     private final GameInfoService gameInfoService;
 
-
+    private final MemberService memberService;
     private  final MessageSource messageSource;
 
     @Autowired
-    public NewsInfoController(NewsInfoService newsInfoService,GameInfoService gameInfoService, MessageSource messageSource) {
+    public NewsInfoController(NewsInfoService newsInfoService,GameInfoService gameInfoService, MemberService memberService, MessageSource messageSource) {
         this.newsInfoService = newsInfoService;
         this.gameInfoService = gameInfoService;
+        this.memberService = memberService;
         this.messageSource = messageSource;
     }
 
@@ -131,9 +135,15 @@ public class NewsInfoController {
     }
 
     @PostMapping("newsInsert")
-    public ModelAndView registNewsInfo(ModelAndView mv, NewsDTO newNewsInfo, RedirectAttributes rttr, Locale locale) throws Exception{
+    public ModelAndView registNewsInfo(ModelAndView mv, NewsDTO newNewsInfo, RedirectAttributes rttr, Locale locale, Principal principal) throws Exception{
+
+        MemberDTO memberInfo = memberService.findMemberById(principal.getName());
+//        newNewsInfo.setMemberCode(memberInfo.getMemberCode());
+        newNewsInfo.setMemberName(memberInfo.getMemberCode());
+
         newsInfoService.registNewsInfo(newNewsInfo);
-        System.out.println("@@@@@@@@@@@@@@@@" + newNewsInfo);
+
+
         mv.setViewName("redirect:/news/news");
         rttr.addFlashAttribute("successMessage", messageSource.getMessage("registNewsInfo", null, locale));
 

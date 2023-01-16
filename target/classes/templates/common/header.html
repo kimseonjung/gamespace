@@ -16,7 +16,7 @@
           <li class="dropdown gallery-nav">
             <div class="dropdown-menu">
               gallery
-              <img src="/image/icon_light/down.svg" alt="down">
+              <div class="menuImg"></div>
             </div>
             <div class="dropdown-content">
               <a href="/freeGal/freeGalList">free gallery</a>
@@ -28,17 +28,27 @@
           <li class="dropdown admin-nav">
             <div class="dropdown-menu">
               admin
-              <img src="/image/icon_light/down.svg" alt="down">
+              <div class="menuImg"></div>
             </div>
             <div class="dropdown-content">
               <a href="#">gallery</a>
-              <a href="#">member</a>
+              <a href="/adminMember">member</a>
             </div>
           </li>
         </ul>
       </div>
       <div class="nav-right">
-        <a href="#" class="dark"><img src="/image/icon_light/sun.svg" alt="lite"></a>
+        <label for="screenMode">
+          <input class="screen-mode-btn" type="checkbox" id="screenMode">
+          <script src="/js/screenModeResponse.js"></script>
+
+          <div class="light-Mode"></div>
+        </label>
+<!--        <a href="#" class="dark">-->
+<!--          <img src="/image/icon_light/sun.svg" alt="lite">-->
+<!--        </a>-->
+
+
         <div class="dropdown">
           <th:block sec:authorize="isAnonymous()">
             <a href="/member/login" class="mypage dropdown"><img src="/image/icon/mypage.svg" alt="mypage"></a>

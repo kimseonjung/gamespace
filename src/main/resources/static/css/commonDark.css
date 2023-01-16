@@ -4,74 +4,24 @@
     font-size: 16px;
 }
 
-
-body {
-    background: rgba(224, 229, 239, 1);
+.screen-dark {
+    background: rgba(10, 10, 13, 0.98);
     height: 100%;
     background-image: url("../image/icon/Property 1=header-gradient.svg"), url("../image/icon/Property 1=footer-gradient.png") ;
     background-repeat: no-repeat;
     background-position: top, bottom;
     background-position-x: center;
 }
-a {
-    font-family: 'Inter', sans-serif;
-    font-size: 16px;
-    text-decoration: none;
-}
-.container {
-    width: 100%;
-    max-width: 1440px;
-    padding: 0 20px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 9999;
-}
-input:hover{
-    opacity: 0.8;
-}
-textarea:hover{
-    opacity: 0.8;
-}
-input:focus {
-    outline: none !important;
-    border: 1px solid rgba(77, 62, 255, 0.9);
-}
-textarea:focus {
-    outline: none !important;
-    border: 1px solid rgba(77, 62, 255, 0.9);
+.screen-dark a {
+    color: #fff;
 }
 
 
-p {
-    font-family: 'Inter', sans-serif;
-    font-size: 16px;
-    text-decoration: none;
-}
 
 
-/* 네비게이션 -----------------------------------------------------------------------*/
-#game .game-nav a,
-#gallery .gallery-nav .dropdown-menu,
-#news .news-nav a,
-#support .support-nav a,
-#admin .admin-nav .dropdown-menu {
-    background: -webkit-linear-gradient(left,#4AB1F1, #566CEC, #D749AF, #FF7C51);
-    background:    -moz-linear-gradient(left,#4AB1F1, #566CEC, #D749AF, #FF7C51);
-    background:      -o-linear-gradient(left,#4AB1F1, #566CEC, #D749AF, #FF7C51);
-    background:         linear-gradient(left,#4AB1F1, #566CEC, #D749AF, #FF7C51);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-}
-header {
 
-    width: 100%;
-    padding: 20px 0;
-    z-index: 3;
-    margin: 0 auto;
-}
 
-.nav{
+.screen-dark .nav{
     /* navbar */
 
 
@@ -91,22 +41,14 @@ header {
 
     /* Light/Nav BG */
 
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(28, 22, 47, 0.2);
     backdrop-filter: blur(12px);
     /* Note: backdrop-filter has minimal browser support */
 
     border-radius: 12px;
 
 }
-
-.main-navigation a {
-    color: #000;
-    font-size: 16px;
-    font-weight: 500;
-
-}
-
-.nav-left a:hover {
+.screen-dark .nav-left a:hover {
 
     background: -webkit-linear-gradient(left,#4AB1F1, #566CEC, #D749AF, #FF7C51);
     background:    -moz-linear-gradient(left,#4AB1F1, #566CEC, #D749AF, #FF7C51);
@@ -119,37 +61,30 @@ header {
 
 }
 
-nav ul {
-    width: 100%;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+.screen-dark .main-navigation a {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
 
 }
 
-nav ul li {
-    display: inline-block;
-    margin-left: 14px;
-}
-li a {
+
+
+.screen-dark li a {
+    color: #fff;
     font-size: 16px;
     font-weight: 500;
 }
-.dropdown {
-    position: relative;
-}
-.dropdown-menu {
-    display: flex;
-    align-content: center;
 
+.screen-dark .dropdown-menu {
     font-family: 'Inter', sans-serif;
-    color: #000;
+    color: #fff;
     font-size: 16px;
     font-weight: 500;
     cursor: pointer;
 
 }
-.dropdown-menu:hover{
+.screen-dark .dropdown-menu:hover{
     background: -webkit-linear-gradient(left,#4AB1F1, #566CEC, #D749AF, #FF7C51);
     background:    -moz-linear-gradient(left,#4AB1F1, #566CEC, #D749AF, #FF7C51);
     background:      -o-linear-gradient(left,#4AB1F1, #566CEC, #D749AF, #FF7C51);
@@ -159,10 +94,29 @@ li a {
     color: transparent;
 }
 
+.screen-dark .dropdown-content {
+    position: absolute;
+    background-color: #000;
+    min-width: 160px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    padding: 8px 0;
+}
+.screen-dark .dropdown-content a, .dropdown-content p {
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+    padding: 8px 16px;
+    text-decoration: none;
+    display: block;
+    font-weight: 500;
+}
 
-.dropdown-menu .menuImg{
+.screen-dark .light-Mode{
+    background-image: url("../image/icon_dark/moon.svg");
+}
+.screen-dark .dropdown-menu .menuImg{
     display: inline-block;
-    background-image: url("../image/icon_light/down.svg");
+    background-image: url("../image/icon_dark/down.svg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -170,131 +124,9 @@ li a {
     width: 16px;
     height: 16px;
 }
-.dropdown-content {
-    position: absolute;
-    background-color: #fff;
-    min-width: 160px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
-    border-radius: 12px;
-    padding: 8px 0;
-}
-.dropdown-content a, .dropdown-content p {
-    font-family: 'Inter', sans-serif;
-    color: black;
-    padding: 8px 16px;
-    text-decoration: none;
-    display: block;
-    font-weight: 500;
-}
-.dropdown-content p{
-    color: #333333;
-}
-
-.dropdown-content {
-    display: none;
-}
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-.dropdown-content a:hover {
-    background-color: #f1f1f1
-}
-.dropdown-reverse {
-    right: 0px;
-}
-
-.nav-left{
-    /* Auto layout */
-
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 0px;
-    gap: 10px;
-
-    width: 480px;
-    height: 24px;
-
-
-    /* Inside auto layout */
-
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-}
-
-
-.logo{
-    display: inline-block;
-}
-
-.nav-right{
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 0px;
-    gap: 12px;
-
-    width: 72px;
-    height: 20px;
-
-
-    /* Inside auto layout */
-
-    flex: none;
-    order: 1;
-    flex-grow: 0;
-}
-
-
-.nav-right img{
-    width: 20px;
-    height: 20px;
-}
-.screen-mode-btn{
-    position: absolute;
-    left: -1000%;
-}
-.light-Mode{
-    box-sizing: border-box;
-
-    /* Auto layout */
-
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 2px 12px;
-    gap: 24px;
-
-    width: 40px;
-    height: 20px;
-
-    border-right: 1px solid rgba(0, 0, 0, 0.15);
-
-    background-image: url("../image/icon_light/sun.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-}
-.screen-dark .light-Mode{
-    background-image: url("../image/icon_dark/moon.svg");
-}
-
-.mypage{
-    width: 20px;
-    height: 20px;
-
-
-    /* Inside auto layout */
-
-    flex: none;
-    order: 1;
-    flex-grow: 0;
-}
 
 /* gametag ----------------------------------------------------------------------------------------------- */
-.gametag-wrap{
+.screen-dark .gametag-wrap{
     /* Auto layout */
 
     display: flex;
@@ -308,17 +140,14 @@ li a {
     left: 366px;
     top: 1062px;
 
-    /* Light/Nav BG */
-    /* Light/Nav BG */
+    /* Dark / Nav BG */
 
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
-
+    background: rgba(28, 22, 47, 0.2);
     border-radius: 20px;
 }
 
 
-.gametag-header{
+.screen-dark .gametag-header{
 
     width: 676px;
     height: 52px;
@@ -330,8 +159,8 @@ li a {
     position: relative;
     margin-bottom: 8px;
 }
-.gametag-header .logo{
-    background-image: url("../image/icon_light/gamespace.svg");
+.screen-dark .gametag-header .logo{
+    background-image: url("../image/icon_dark/gamespace.svg");
     background-size: contain;
     background-repeat: no-repeat;
     position: absolute;
@@ -341,8 +170,8 @@ li a {
     top: calc(50% - 34px/2);
 }
 
-.gametag-header .down{
-    background-image: url("../image/icon_light/down.svg");
+.screen-dark .gametag-header .down{
+    background-image: url("../image/icon_dark/down.svg");
     background-size: contain;
     background-repeat: no-repeat;
     position: absolute;
@@ -362,7 +191,7 @@ li a {
 
     width: 640px;
 }
-.gametag-body-left{
+.screen-dark .gametag-body-left{
     display: inline-block;
     width: 28px;
     height: 24px;
@@ -380,9 +209,9 @@ li a {
     align-items: center;
     letter-spacing: -0.011em;
 
-    /* Light/Light Gray */
+    /* Dark/Light Gray */
 
-    color: rgba(74, 87, 111, 0.7);
+    color: rgba(114, 120, 136, 0.6);
 }
 .gametag-body .gametags{
     /* Auto layout */
@@ -397,11 +226,13 @@ li a {
 
 }
 
-.tag-label{
+.screen-dark .tag-label{
     min-width: 64px;
     max-width: 128px;
     white-space: nowrap;
     text-overflow: ellipsis;
+
+    /* 14/14 - Med */
 
     font-family: 'Inter';
     font-style: normal;
@@ -412,6 +243,11 @@ li a {
 
     letter-spacing: -0.006em;
 
+    /* Dark/Light Gray */
+
+    color: rgba(114, 120, 136, 0.6);
+
+
     /* Light/Light Gray */
     display: flex;
     flex-direction: row;
@@ -419,7 +255,6 @@ li a {
     padding: 1px 6px;
     background: transparent;
     border-radius: 8px;
-    color: rgba(74, 87, 111, 0.7);
 
 
     /* Inside auto layout */
@@ -585,11 +420,11 @@ footer{
     margin: auto;
     font-size: 12px;
     font-weight: 500;
-    color: rgba(74, 87, 111, 0.7);
+    color: rgba(114, 120, 136, 0.6);
 }
 
 .foot-text a:hover{
-    color: rgba(74, 87, 111);
+    color: rgba(114, 120, 136);
 }
 
 .foot-p{
@@ -604,5 +439,5 @@ footer{
 footer p{
     font-size: 12px;
     font-weight: 500;
-    color: rgba(74, 87, 111, 0.7);
+    color: rgba(114, 120, 136, 0.6);
 }

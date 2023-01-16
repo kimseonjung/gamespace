@@ -27,12 +27,14 @@ function searchGameCodeList () {
             $('#item').html("");
 
             data.gameCodeNewsList.forEach(function(item) {
-                let div = "<div class='list'>";
-                            div += "<a th:href=\"@{/news/newsDetail(newsCode=${news.newsCode})}\">";
+                let div = "<div class='item'>";
+                        div += "<div class='list'>";
+                            div += "<a href='/news/newsDetail?newsCode="+item.newsCode+"'>";
                                 div += "<div class='news-head'><p class='news-head-p'>"+item.newsTitle+"</p></div>";
                                 div += "<div class='news-body'><p>"+item.newsContent+"</p></div>";
                                 div += "<div class='news-foot'><p>"+item.newsDate+' '+item.memberName+' '+item.gameName+' '+item.newsView+"</p></div>";
                             div += "</a>"
+                        div += "</div>";
                 div += "</div>";
                 $('#item').append(div);
             });

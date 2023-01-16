@@ -23,8 +23,12 @@
     font-size: 18px;
     font-weight: 400;
 }
-.head img{
-    width: 100%;
+.head .decorativeBar{
+    background-image: url("../../image/_Border/Decorative Bar.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 410px;
+    height: 20px;
     margin: auto;
     margin-top: 12px;
 
@@ -315,6 +319,21 @@
     flex: none;
     order: 0;
     flex-grow: 0;
+
+    /* 15/15 - Med */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 20px;
+    /* identical to box height, or 133% */
+
+    letter-spacing: -0.009em;
+
+    /* Light/Light Gray */
+
+    color: rgba(74, 87, 111, 0.7);
 }
 
 .active input{
@@ -616,7 +635,17 @@
     height: 24px;
     padding: 5px 5px;
 }
-.pagination-wrap i img{
+.pagination-wrap .left-icon{
+    background-image: url("../../image/svg/icon-arrow-left.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 14px;
+    height: 14px;
+}
+.pagination-wrap .right-icon{
+    background-image: url("../../image/svg/icon-arrow-right.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
     width: 14px;
     height: 14px;
 }

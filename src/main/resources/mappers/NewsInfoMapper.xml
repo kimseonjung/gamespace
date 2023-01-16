@@ -73,7 +73,7 @@
             TO_DATE(SYSDATE, 'YYYY-MM-DD HH24:mi:SS'),
             #{newsContent},
             #{gameName},
-            'MEM_1'
+            #{memberName}
             )
     </insert>
 

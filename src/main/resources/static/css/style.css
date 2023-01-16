@@ -21,6 +21,12 @@
 	
 	
 }
+.swiper-slide img{
+    width: 100%;
+    height: 286px;
+
+
+}
 
 .swiper-pagination-bullet{
     width: 40px;
