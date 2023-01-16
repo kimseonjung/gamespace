@@ -58,6 +58,7 @@ public class NewsInfoController {
         return mv;
     }
 
+
     @ResponseBody
     @GetMapping(value = "/gameCodeNews",produces = "application/json")
     public ResponseEntity selectAllGameCodeNews(@RequestBody Map<String,Object> objectMap){
@@ -69,15 +70,6 @@ public class NewsInfoController {
 
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
-//    @ResponseBody
-//    @PostMapping("/gameCodeNews")
-//    public ModelAndView selectAllGameCodeNews(ModelAndView mv){
-//
-//        List<NewsDTO> gameCodeNews = newsInfoService.selectAllGameCodeNews();
-//        mv.addObject("gameCodeNews", gameCodeNews);
-//
-//        return mv;
-//    }
 
     @GetMapping("/newsDetail")
     public  ModelAndView newsDetail(ModelAndView mv, String newsCode){
@@ -128,11 +120,20 @@ public class NewsInfoController {
 
 
     @GetMapping("newsInsert")
-    public void registPage(){}
+    public ModelAndView registPage(ModelAndView mv){
+        List<GameInfoDTO> gameInfoList = gameInfoService.selectAllGameInfo();
+
+
+        mv.addObject("gameInfoList", gameInfoList);
+        mv.setViewName("news/newsInsert");
+
+        return mv;
+    }
 
     @PostMapping("newsInsert")
     public ModelAndView registNewsInfo(ModelAndView mv, NewsDTO newNewsInfo, RedirectAttributes rttr, Locale locale) throws Exception{
         newsInfoService.registNewsInfo(newNewsInfo);
+        System.out.println("@@@@@@@@@@@@@@@@" + newNewsInfo);
         mv.setViewName("redirect:/news/news");
         rttr.addFlashAttribute("successMessage", messageSource.getMessage("registNewsInfo", null, locale));
 

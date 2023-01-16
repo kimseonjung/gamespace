@@ -13,17 +13,17 @@
   </div>
   <div class="gametag-body">
     <div class="gametag-body-left">Tag</div>
-    <form class="gametags">
+    <div class="gametags" id="gametags">
 
-      <table >
-        <tr>
+          <div class="tag-td" th:each="game : ${gameInfoList}">
+            <label th:for="${game.gameCode}" >
+                <input type="checkbox"th:id="${game.gameCode}" th:value="${game.gameCode}" name="gameName" class="gameName" onclick='getCheckboxValue();searchGameCodeList();'>
+                <div class="tag-label" th:text="${game.gameName}"></div>
+            </label>
+          </div>
 
-          <td><label th:for="${game.gameCode}" th:text="${game.gameName}"></label><input type="checkbox"th:id="${game.gameCode}" th:value="${game.gameCode}" name="game-tag" class="gameName" onclick='getCheckboxValue();searchGameCodeList();'></td>
 
-        </tr>
-      </table>
-
-    </form>
+    </div>
     <div class="down"><img src="/image/icon_light/down.svg" alt="down"></div>
   </div>
   <div class="gametag-foot">

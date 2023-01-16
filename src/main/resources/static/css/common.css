@@ -351,7 +351,6 @@ li a {
     gap: 40px;
 
     width: 640px;
-    height: 74px;
 }
 .gametag-body-left{
     display: inline-block;
@@ -383,14 +382,17 @@ li a {
     align-items: center;
     padding: 0px;
     width: 500px;
-    height: 74px;
+    gap: 8px 14px;
+    flex-wrap: wrap
 
 }
-.gametags table{
-    width: 100%;
 
-}
-.gametags td{
+.tag-label{
+    min-width: 64px;
+    max-width: 128px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
     font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
@@ -401,7 +403,12 @@ li a {
     letter-spacing: -0.006em;
 
     /* Light/Light Gray */
-
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1px 6px;
+    background: transparent;
+    border-radius: 8px;
     color: rgba(74, 87, 111, 0.7);
 
 
@@ -410,6 +417,31 @@ li a {
     flex: none;
     order: 0;
     flex-grow: 0;
+
+
+
+}
+input:checked + .tag-label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1px 6px;
+
+    color: #FFFFFF;
+    background: -webkit-linear-gradient(left,#F7BE2B, #F537F9);
+    border-radius: 8px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-size: 14px;
+    line-height: 20px;
+    /* identical to box height, or 143% */
+
+    letter-spacing: -0.006em;
+
+    /* Basic / White */
+
+
 }
 
 .gametag-foot{

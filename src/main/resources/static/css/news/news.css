@@ -54,6 +54,7 @@
     padding: 16px 12px;
     gap: 10px;
     isolation: isolate;
+    margin-top: 10px;
 
     width: 676px;
     height: 142px;
@@ -877,4 +878,8 @@
 }
 .com-btn{
     margin: 6px 0px 0px 576px;
+}
+.gameName{
+    position:absolute;
+    left: -1000%;
 }
