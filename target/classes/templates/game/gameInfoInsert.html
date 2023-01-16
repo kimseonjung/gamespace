@@ -1,83 +1,188 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Title</title>
-
-
-    <!-- jQuery library -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/game/gameMain.css">
+    <link rel="stylesheet" href="/css/news/news.css">
 
     <!-- Popper JS-->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <!-- jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+
+    <title>Title</title>
 
 </head>
 <body>
 
-<form action="/game/gameInfoInsert" method="post">
-    <section>
-        <div>기기
 
-        </div><br>
-        <div>카테고리</div><br>
-        <div>태그</div><br>
+<!--    <section>-->
+<!--        <div>기기-->
+<!--        </div>-->
+<!--        <div>카테고리</div>-->
+<!--        <div>태그</div>-->
+<!--    </section>-->
 
 
+    <!-- 헤더 네비게이션바 -->
+    <div id="news">
+        <th:block th:replace="~{common/header :: header}"/>
+    </div>
+
+
+    <section class="news-insert">
+        <form action="/game/gameInfoInsert" method="post">
+
+            <!-- 카테고리, 태그 -->
+            <th:block th:replace="~{common/categoryTag :: categoryTag}"/>
+
+
+            <!-- 카테고리 추가,태그추가,기기추가 박스 -->
+            <div class="gameInfo-wrap">
+                <!-- 카테고리 추가,태그추가, 기기추가 -->
+                <div class="gameInfoBase">
+                    <div class="gameInfoBase-item">
+                        <!-- 카테고리추가 -->
+                        <div>
+                            <input type="text" placeholder="카테고리추가" class="inputGame">
+                        </div>
+
+                        <!-- 태그추가 -->
+                        <div>
+                            <input type="text" placeholder="태그추가" class="inputGame">
+                        </div>
+
+                        <!-- 기기 추가 -->
+                        <div>
+                            <input type="text" name="devicesCode" id="devicesCode" placeholder="기기" class="inputGame">
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 게임정보박스 -->
+                <div class="gameInfo-wrap">
+                    <!-- 게임정보추가 -->
+                    <div class="gameInfoBase">
+                        <!--  게임명, 등급 추가  -->
+                        <div class="gameInfoBase-item">
+                            <!--  게임명추가  -->
+                            <input type="text" name="gameName" id="gameName" placeholder="게임명" class="inputGame">
+
+                            <!--  등급추가  -->
+                            <input type="text" name="ratingCode" id="ratingCode" placeholder="이용등급" class="inputGame">
+                        </div>
+
+                        <!--  출시날짜, 가격 추가  -->
+                        <div class="gameInfoBase-item">
+                            <!--  출시날짜 추가  -->
+                            <input type="text" name="launchDate" id="launchDate" placeholder="출시날짜" class="inputGame">
+
+                            <!--  가격 추가  -->
+                            <input type="text" name="price" id="price" placeholder="가격" class="inputGame">
+                        </div>
+
+                        <!--  개발자, 플랫폼 추가  -->
+                        <div class="gameInfoBase-item">
+                            <!--  개발자 추가 -->
+                            <input type="text" name="developer" id="developer" placeholder="개발자" class="inputGame">
+
+                            <!--  플랫폼 추가 -->
+                            <input type="text" name="platformCode" id="platformCode" placeholder="플랫폼" class="inputGame">
+                        </div>
+
+                        <!--  배급사, 언어 추가 -->
+                        <div class="gameInfoBase-item">
+                            <!--  배급사 추가 -->
+                            <input type="text" name="distributorCode" id="distributorCode" placeholder="배급사" class="inputGame">
+
+                            <!--  언어 추가 -->
+                            <input type="text" name="languageCode" id="languageCode" placeholder="언어" class="inputGame">
+                        </div>
+
+                        <!--  게임상태 추가 -->
+                        <div class="gameInfoBase-item">
+                            <!--  게임상태 추가 -->
+                            <input type="text" name="gameStatus" id="gameStatus" placeholder="게임상태" class="inputGame">
+                        </div>
+
+                    </div>
+
+                    <!--  게임사양정보추가  -->
+                    <div class="gameInfoBase">
+
+                        <!--  운영체제  -->
+                        <div class="gameInfoBase-item">
+                            <!--  최소운영체제  -->
+                            <div><input type="text" name="minOperatingSystem" id="minOperatingSystem" placeholder="최소운영체제" class="inputGame"></div>
+
+                            <!--  권장운영체제  -->
+                            <div><input type="text" name="recOperatingSystem" id="recOperatingSystem" placeholder="권장운영체제" class="inputGame"></div>
+                        </div>
+
+                        <!--  프로세서  -->
+                        <div class="gameInfoBase-item">
+
+                            <!--  최소프로세서  -->
+                            <div><input type="text" name="minProcessor" id="minProcessor" placeholder="최소프로세서" class="inputGame"></div>
+                            <!--  권장프로세서  -->
+                            <div><input type="text" name="recProcessor" id="recProcessor" placeholder="권장프로세서" class="inputGame"></div>
+                        </div>
+
+                        <!--  메모리  -->
+                        <div class="gameInfoBase-item">
+
+                            <!--  최소메모리  -->
+                            <div><input type="text" name="minMemory" id="minMemory" placeholder="최소메모리" class="inputGame"></div>
+                            <!--  권장메모리  -->
+                            <div><input type="text" name="recMemory" id="recMemory" placeholder="권장메모리" class="inputGame"></div>
+                        </div>
+
+                        <!--  저장공간 -->
+                        <div class="gameInfoBase-item">
+
+                            <!--  최소저장공간 -->
+                            <div><input type="text" name="minStorageSpace" id="minStorageSpace" placeholder="최소저장공간" class="inputGame"></div>
+                            <!--  권장저장공간 -->
+                            <div><input type="text" name="recStorageSpace" id="recStorageSpace" placeholder="권장저장공간" class="inputGame"></div>
+                        </div>
+
+                        <!--  그래픽 -->
+                        <div class="gameInfoBase-item">
+
+                            <!--  최소그래픽 -->
+                            <div><input type="text" name="minGraphic" id="minGraphic" placeholder="최소그래픽" class="inputGame"></div>
+                            <!--  권장그래픽 -->
+                            <div><input type="text" name="recGraphic" id="recGraphic" placeholder="권장그래픽" class="inputGame"></div>
+                        </div>
+                    </div>
+
+                    <!--    게임소개        -->
+                    <div>
+                        <input type="text" name="gameIntro" id="gameIntro" placeholder="게임소개" class="inputGameComment">
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- 작성버튼 -->
+            <div class="btn-wrap">
+                <a href="/game/game"><input type="button" value="취소하기" class="btn"></a>
+                <input type="submit" value="작성하기" class="btn-primary">
+            </div>
+
+        </form>
     </section>
 
-
-
-    <section>
-        <!-- 대분류 -->
-        <label for="categoryCode">카테고리 : </label><input type="text" name="categoryCode" id="categoryCode">
-        <label for="tagCode">태그 : </label><input type="text" name="tagCode" id="tagCode">
-        <label for="devicesCode">기기 : </label><input type="text" name="devicesCode" id="devicesCode">
-
-        <!-- 게임정보 -->
-        <label for="gameName">게임명 : </label><input type="text" name="gameName" id="gameName">
-        <label for="ratingCode">이용등급 : </label><input type="text" name="ratingCode" id="ratingCode">
-        <label for="launchDate">출시날짜 : </label><input type="text" name="launchDate" id="launchDate">
-        <label for="price">가격 : </label><input type="text" name="price" id="price">
-        <label for="developer">개발자 : </label><input type="text" name="developer" id="developer">
-        <label for="platformCode">플랫폼 : </label><input type="text" name="platformCode" id="platformCode">
-        <label for="distributorCode">배급사 : </label><input type="text" name="distributorCode" id="distributorCode">
-        <label for="languageCode">언어 : </label><input type="text" name="languageCode" id="languageCode">
-
-        <label for="gameIntro">게임소개 : </label><input type="text" name="gameIntro" id="gameIntro">
-        <label for="gameStatus">게임상태 : </label><input type="text" name="gameStatus" id="gameStatus">
-
-
-        <!-- 최소사양 시스템  -->
-        <label for="minOperatingSystem">운영체제 : </label><input type="text" name="minOperatingSystem" id="minOperatingSystem">
-        <label for="minProcessor">프로세서 : </label><input type="text" name="minProcessor" id="minProcessor">
-        <label for="minMemory">메모리 : </label><input type="text" name="minMemory" id="minMemory">
-        <label for="minStorageSpace">저장공간 : </label><input type="text" name="minStorageSpace" id="minStorageSpace">
-        <label for="minGraphic">그래픽 : </label><input type="text" name="minGraphic" id="minGraphic">
-
-        <!-- 권장사양 -->
-        <label for="recOperatingSystem">운영체제 : </label><input type="text" name="recOperatingSystem" id="recOperatingSystem">
-        <label for="recProcessor">프로세서 : </label><input type="text" name="recProcessor" id="recProcessor">
-        <label for="recMemory">메모리 : </label><input type="text" name="recMemory" id="recMemory">
-        <label for="recStorageSpace">저장공간 : </label><input type="text" name="recStorageSpace" id="recStorageSpace">
-        <label for="recGraphic">그래픽 : </label><input type="text" name="recGraphic" id="recGraphic">
-
-        <input type="submit" value="전송">
-    </section>
-
-    <script>
-
-
-
-
-
-
-
-
-
-
-    </script>
-</form>
+<!-- 푸터 -->
+<div class="footer">
+    <th:block th:replace="~{common/footer :: footer}"/>
+</div>
 
 </body>
 </html>

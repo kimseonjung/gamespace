@@ -22,6 +22,10 @@
         <result property="specificationCode" column="SPECIFICATION_CODE"/>
         <result property="gameIntro" column="GAME_INTRO"/>
         <result property="gameStatus" column="GAME_STATUS"/>
+<!--        <collection property="com.semi.gamespace.game.model.dto.MinimumSystemDTO" resultMap="minimumSystemResultMap">-->
+<!--        </collection>-->
+<!--        <collection property="com.semi.gamespace.game.model.dto.RecommendedSystemDTO" resultMap="recommendedSystemResultMap">-->
+<!--        </collection>-->
 
     </resultMap>
 
@@ -206,13 +210,45 @@
     </select>
 
 
+    <select id="selectGameDetail" parameterType="string" resultMap="gameInfoResultMap">
+        SELECT
+            A.GAME_CODE
+             , A.GAME_NAME
+             , A.DEVICES_CODE
+             , A.CATEGORY_CODE
+             , A.TAG_CODE
+             , A.REGISTRATION_DATE
+             , A.LAUNCH_DATE
+             , A.DEVELOPER
+             , A.DISTRIBUTOR_CODE
+             , A.RATING_CODE
+             , A.PRICE
+             , A.PLATFORM_CODE
+             , A.LANGUAGE_CODE
+             , A.SPECIFICATION_CODE
+             , A.GAME_INTRO
+             , A.GAME_STATUS
+             , C.MIN_OPERATING_SYSTEM
+             , C.MIN_PROCESSOR
+             , C.MIN_MEMORY
+             , C.MIN_STORAGE_SPACE
+             , C.MIN_GRAPHIC
+             , D.REC_OPERATING_SYSTEM
+             , D.REC_PROCESSOR
+             , D.REC_MEMORY
+             , D.REC_STORAGE_SPACE
+             , D.REC_GRAPHIC
+        FROM GAME_INFO A
+        JOIN SPECIFICATION B ON A.SPECIFICATION_CODE = B.SPECIFICATION_CODE
+        JOIN MINIMUM_SYSTEM C ON B.MIN_SYSTEM_CODE = C.MIN_SYSTEM_CODE
+        JOIN RECOMMENDED_SYSTEM D ON B.REC_SYSTEM_CODE = D.REC_SYSTEM_CODE
+        WHERE A.GAME_CODE = #{gameCode}
 
 
 
 
 
-
-
+    </select>
 
     <select id="selectAllMinimumSystem" resultMap="minimumSystemResultMap">
 
@@ -238,6 +274,33 @@
              , A.REC_GRAPHIC
         FROM RECOMMENDED_SYSTEM A
     </select>
+
+    <select id="getGameCode" parameterType="string" resultMap="gameInfoResultMap">
+        SELECT
+            *
+        FROM GAME_INFO
+        WHERE GAME_CODE = #{game_code}
+    </select>
+
+    <update id="updateGameInfo" parameterType="com.semi.gamespace.game.model.dto.GameInfoDTO">
+        UPDATE GAME_INFO
+        SET
+            GAME_NAME=#{gameName},
+            DEVICES_CODE=#{devicesCode},
+            CATEGORY_CODE=#{categoryCode},
+            TAG_CODE=#tagCode},
+            LAUNCH_DATE=#{launchDate},
+            DEVELOPER=#{developer},
+            DISTRIBUTOR_CODE=#{distributorCode},
+            RATING_CODE=#{ratingCode},
+            PRICE= #{price},
+            PLATFORM_CODE=#{platformCode},
+            LANGUAGE_CODE=#{languageCode},
+            SPECIFICATION_CODE=#{specificationCode},
+            GAME_INTRO=#{gameIntro},
+            GAME_STATUS=#{gameStatus}
+        WHERE GAME_CODE =#{gameCode}
+    </update>
 
     <insert id="registGameInfo">
         INSERT

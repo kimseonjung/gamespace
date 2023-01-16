@@ -100,6 +100,117 @@
 
     letter-spacing: -0.011em;
 }
+/* 작성하기 버튼 */
+.submitA{
+    width: 148px;
+    height: 48px;
+    border-radius: 24px;
+    margin: 26px auto;
+}
+/* 작성하기 버튼 */
+.btn{
+    background:  transparent;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 20px;
+    gap: 4px;
+
+    width: 148px;
+    height: 48px;
+
+    /* Basic/Purple */
+
+    border: 1px solid rgba(77, 62, 255, 0.9);
+    border-radius: 24px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    cursor: pointer;
+
+    /* 18/18 - Med */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    /* identical to box height, or 133% */
+
+    letter-spacing: -0.014em;
+
+    /* Basic/Purple */
+
+    color: rgba(77, 62, 255, 0.9);
+    margin: auto;
+}
+.btn:hover{
+    opacity:0.8;
+}
+.btn:active{
+    opacity:0.9;
+}
+.btn-primary{
+    border: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 20px;
+    gap: 4px;
+
+    width: 148px;
+    height: 48px;
+
+    /* Basic/Purple */
+
+    background: rgba(77, 62, 255, 0.9);
+    border-radius: 24px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+
+    /* 18/18 - Med */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    /* identical to box height, or 133% */
+
+    letter-spacing: -0.014em;
+
+    /* Basic / White */
+
+    color: #FFFFFF;
+}
+.btn-primary:hover{
+    opacity:0.8;
+}
+.btn-primary:active{
+    opacity:0.9;
+}
+.btn-wrap{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 20px;
+
+
+    width: 316px;
+    height: 48px;
+    margin: 0 auto;
+}
 /* 페이지네이션 --------------------------------------------------------------------*/
 .pagination{
     position: relative;
@@ -201,4 +312,254 @@
 .pagination ol li.active a {
     font-weight: bold;
     color: rgba(77, 62, 255, 0.9);
+}
+
+
+/*gameInfoInsert*/
+.inputGame{
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 16px;
+    gap: 4px;
+
+    width: 336px;
+    min-height: 48px;
+
+    /* Basic / White */
+
+    background: #FFFFFF;
+    /* Light/Light Gray */
+
+    border: 0.5px solid rgba(74, 87, 111, 0.7);
+    border-radius: 24px;
+
+
+}
+.active inputGame{
+    border: 1px solid rgba(77, 62, 255, 0.9);
+}
+.inputGameComment{
+    word-break: break-all;
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 4px;
+
+    width: 676px;
+    min-height: 320px;
+
+    /* Basic/Purple */
+
+    border: 0.5px solid rgba(74, 87, 111, 0.7);
+    border-radius: 24px;
+
+    /* 15/15 - Med */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 20px;
+    /* or 133% */
+
+    letter-spacing: -0.009em;
+
+
+
+
+}
+
+
+/* 게임 디테일 -------------------------------------------------------------------------------  */
+
+.gameDetail-wrap{
+    margin: 0 auto;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    gap: 14px;
+
+    width: 708px;
+
+    /* Light/Nav BG */
+
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+}
+.photo-wrap{
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px 16px;
+    gap: 4px;
+
+    width: 708px;
+    height: 301px;
+
+    border-radius: 24px;
+}
+.photo-top{
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 0px;
+    gap: 10px;
+
+    width: 456px;
+    height: 191px;
+}
+.photo-bottom{
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 4px;
+
+    width: 488px;
+    height: 106px;
+}
+
+.gameInfo-wrap{
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    gap: 18px;
+
+    width: 708px;
+
+
+    border-radius: 20px;
+}
+.gameInfoBase{
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 14px;
+
+    width: 676px;
+}
+.gameInfoBase-item{
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 4px;
+
+    width: 676px;
+    height: 48px;
+}
+.detail-form{
+    /* Input */
+
+
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 16px;
+    gap: 4px;
+
+    width: 336px;
+    height: 48px;
+
+    /* Basic/Purple */
+
+    border: 1px solid rgba(77, 62, 255, 0.9);
+    border-radius: 24px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+
+    /* 15/15 - Med */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 20px;
+    /* identical to box height, or 133% */
+
+    letter-spacing: -0.009em;
+
+    /* Light/Primary Text */
+
+    color: #22242C;
+
+}
+.font15{
+    border: none;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 20px;
+    letter-spacing: -0.009em;
+    color: rgba(74, 87, 111, 0.7);
+}
+
+.gameInfoComment{
+
+    word-break: break-all;
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 4px;
+
+    width: 676px;
+    min-height: 320px;
+
+    /* Basic/Purple */
+
+    border: 1px solid rgba(77, 62, 255, 0.9);
+    border-radius: 24px;
+
+    /* 15/15 - Med */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 20px;
+    /* or 133% */
+
+    letter-spacing: -0.009em;
+
+    /* Light/Primary Text */
+
+    color: #22242C;
 }

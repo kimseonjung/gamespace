@@ -38,15 +38,15 @@ public class GameInfoService {
     }
 
 
-    public MinimumSystemDTO selectAllMinimumSystem() {
+    public MinimumSystemDTO selectAllMinimumSystem(String gameCode) {
 
 
-        return gameInfoMapper.selectAllMinimumSystem();
+        return gameInfoMapper.selectAllMinimumSystem(gameCode);
     }
 
-    public RecommendedSystemDTO selectAllRecommendedSystem() {
+    public RecommendedSystemDTO selectAllRecommendedSystem(String gameCode) {
 
-        return gameInfoMapper.selectAllRecommendedSystem();
+        return gameInfoMapper.selectAllRecommendedSystem(gameCode);
 
     }
 
@@ -120,4 +120,17 @@ public class GameInfoService {
     }
 
 
+    public GameInfoDTO selectGameDetail(String gameCode) {
+
+        return gameInfoMapper.selectGameDetail(gameCode);
+    }
+
+    public  GameInfoDTO getGameCode(String gamecode) {
+        return gameInfoMapper.getGameCode(gamecode);
+    }
+
+    public int updateGameInfo(GameInfoDTO gameInfoDetail) {
+        int result = gameInfoMapper.updateGameInfo(gameInfoDetail);
+        return result;
+    }
 }

@@ -32,67 +32,37 @@
 <!--th:field="*{category}"-->
 <!--th:for="${#ids.prev(categoryList)}"-->
 <!--th:value="${category.categoryCode}"-->
-    <section class="gametag-wrap">
-        <div class="gametag-header">
-            <div class="logo"><img src="/image/icon_light/gamespace.svg" alt="gamespace"></div>
-        </div>
 
-<!--                <form action="/game/game"  method="post" onsubmit="return false;" id="category" class="gamecategorytag">-->
-<!--        style="position: absolute;left: -1000%;"-->
-                    <div class="gametag-body">
-                        <div class="gametag-body-left">Category</div>
-                        <table th:each="category : ${categoryList}" id="categoryCode" class="gametags">
-                            <tr>
-                                <td><label th:for="${category.categoryCode}" th:text="${category.categoryName}"></label><input th:id="${category.categoryCode}" th:value="${category.categoryCode}" th:type="checkbox" name="categoryCode" class="categoryCheck" onclick="searchGameMainList()" ></td>
-                            </tr>
-                        </table>
-                    </div>
-
-                    <div class="gametag-body">
-                        <div class="gametag-body-left">Tag</div>
-                        <table th:each="tag : ${tagList}" id="tagCode" class="gametags">
-                            <tr>
-                                <td><label th:for="${tag.tagCode}" th:text="${tag.tagName}"></label><input th:id="${tag.tagCode}" th:value="${tag.tagCode}" th:type="checkbox" name="tagCode" class="tagCheck" onclick="searchGameMainList()"></td>
-                            </tr>
-                        </table>
-                    </div>
+<!-- 카테고리, 태그 -->
+<th:block th:replace="~{common/categoryTag :: categoryTag}"/>
 
 
-<!--                    <div th:each="devices : ${devicesList}">-->
-<!--                        <button th:text="${devices.devicesName}"></button>-->
-<!--                    </div>-->
-
-
-<!--                </form>-->
-        <div class="gametag-foot">
-            <div class="tag" id="tag-result"></div>
-        </div>
-
-    </section>
-
-
-    <section>
-
-
+<!-- 게임리스트 -->
+    <section id="table">
 
         <div th:id="search" class="lists">
-                    <div class='list' th:each="game : ${gameInfoList}"> <!--th:class="t-body"-->
+                <div class="item">
+                    <div class='list' th:each="game : ${gameInfoList}">
+                        <a th:href="@{/game/gameInfoDetail(gameCode=${game.gameCode})}">
                         <div class='game-head' th:text="${game.gameName}"></div>
                         <div th:text="${game.categoryCode}"></div>
                         <div th:text="${game.tagCode}"></div>
                         <div class='news-body' th:text="${game.gameIntro}"></div>
+                        </a>
                     </div>
-
+                </div>
         </div>
 
 
 
     </section>
 
+<!--게임작성버튼-->
+<div class="submitA">
+    <a href="/game/gameInfoInsert"><input type="button" value="작성하기" class="btn"></a>
+</div>
 
-
-
-
+<!-- 페이지 네이션-->
 <div class="pagination">
     <div class="pagination-wrap">
         <i class="left-icon"><img src="/image/svg/icon-arrow-left.svg" alt="left"></i>
@@ -100,16 +70,39 @@
         <i class="right-icon"><img src="/image/svg/icon-arrow-right.svg" alt="right"></i>
     </div>
 </div>
-<script src="/js/pagination.js"></script>
+<script type="application/javascript" src="/js/pagination.js"></script>
 
 
-
+<!--푸터-->
 <div class="footer">
     <th:block th:replace="~{common/footer :: footer}"/>
 </div>
 
 <script>
+    
+    function gameDetailView(gameCode) {
 
+
+
+        let f = document.createElement('form');
+
+        let obj;
+        obj = document.createElement('input');
+        obj.setAttribute('type', 'hidden');
+        obj.setAttribute('name', 'gameCode');
+        obj.setAttribute('value', gameCode);
+
+        f.appendChild(obj);
+        f.setAttribute('method', 'get');
+        f.setAttribute('action', '/gameInfoDetail');
+        document.body.appendChild(f);
+        f.submit();
+    }
+    
+    
+    
+    
+    
    function searchGameMainList() {
 
        const categoryCode = [];
@@ -144,16 +137,24 @@
                console.log(data.categoryTagList[0].gameName);
 
 
-               $('#search').html("");
+               $('#table').html("");
 
                data.categoryTagList.forEach(function(item) {
-                   let table = "<div class='list'>";
-                   table += "<div class='game-head'>"+item.gameName+"</div>";
-                   table += "<div class=''>"+item.categoryCode+"</div>";
-                   table += "<div class=''>"+item.tagCode+"</div>";
-                   table += "<div class='news-body'>"+item.gameIntro+"</div>";
+
+
+                   let table = "<div class='lists'>";
+                        table += "<div class='item'>";
+                            table += "<div class='list'>";
+                            table += "<a href='/game/gameInfoDetail?gameCode="+item.gameCode+"' onclick='gameDetailView()'>";
+                               table += "<div class='game-head'>"+item.gameName+"</div>";
+                               table += "<div class=''>"+item.categoryCode+"</div>";
+                               table += "<div class=''>"+item.tagCode+"</div>";
+                               table += "<div class='news-body'>"+item.gameIntro+"</div>";
+                           table += "</a>";
+                            table += "</div>";
+                        table += "</div>";
                    table += "</div>";
-                   $('#search').append(table);
+                   $('#table').append(table);
                });
 
 

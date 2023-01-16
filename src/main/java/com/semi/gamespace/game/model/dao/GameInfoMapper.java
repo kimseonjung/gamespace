@@ -13,9 +13,9 @@ public interface GameInfoMapper {
 
     int registGameInfo(GameInfoDTO newGameInfo);
 
-    MinimumSystemDTO selectAllMinimumSystem();
+    MinimumSystemDTO selectAllMinimumSystem(String gameCode);
 
-    RecommendedSystemDTO selectAllRecommendedSystem();
+    RecommendedSystemDTO selectAllRecommendedSystem( String gameCode);
 
     int registMinimumSystem(MinimumSystemDTO newMinimumSystem);
 
@@ -35,4 +35,9 @@ public interface GameInfoMapper {
 
     List<GameInfoDTO> selectCategoryOne(String cateNo);
 
+    GameInfoDTO selectGameDetail(String gameCode);
+
+    GameInfoDTO getGameCode(String gamecode);
+
+    int updateGameInfo(GameInfoDTO gameInfoDetail);
 }

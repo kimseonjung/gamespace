@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang="ko">
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/common.css">
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/news/news.css">
+  <link rel="stylesheet" href="/css/game/gameMain.css">
+
+  <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+
+
     <title>gamespace</title>
 </head>
 <body>
@@ -15,48 +21,167 @@
 
 
 
-<section>
+<section class="gameDetail-wrap">
+  <!-- 사진박스 -->
+  <div class="photo-wrap">
+    <!-- 큰이미지 -->
+    <div class="photo-top">
 
-  <div th:each="mini : ${minimumSystem}">
-    <div th:text="${mini.minSystemCode}"></div>
-    <div th:text="${mini.minOperatingSystem}"></div>
-    <div th:text="${mini.minProcessor}"></div>
-    <div th:text="${mini.minMemory}"></div>
-    <div th:text="${mini.minStorageSpace}"></div>
-    <div th:text="${mini.minGraphic}"></div>
-
-
+    </div>
+    <!-- 작은이미지들 -->
+    <div class="photo-bottom">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
   </div>
 
-  <div th:each="rec : ${recommendedSystemList}">
-    <div th:text="${rec.recSystemCode}"></div>
-    <div th:text="${rec.recOperatingSystem}"></div>
-    <div th:text="${rec.recProcessor}"></div>
-    <div th:text="${rec.recMemory}"></div>
-    <div th:text="${rec.recStorageSpace}"></div>
-    <div th:text="${rec.recGraphic}"></div>
+  <!-- 게임정보 박스 -->
+  <div class="gameInfo-wrap">
+    <!--  게임기본정보  -->
+    <div class="gameInfoBase">
 
+      <!--  게임명, 등급  -->
+      <div class="gameInfoBase-item">
+        <!--  게임명  -->
+        <div class="detail-form" th:text="${gameInfoDetail.gameName}"></div>
 
+        <!--  등급  -->
+        <div class="detail-form" th:text="${gameInfoDetail.ratingCode}"></div>
+      </div>
 
+      <!--  출시날짜, 가격  -->
+      <div class="gameInfoBase-item">
+        <!--  출시날짜  -->
+        <div class="detail-form" th:text="${gameInfoDetail.launchDate}"></div>
+        <!--  가격  -->
+        <div class="detail-form" th:text="${gameInfoDetail.price}"></div>
+      </div>
+
+      <!--  개발자, 플랫폼  -->
+      <div class="gameInfoBase-item">
+        <!--  개발자  -->
+        <div class="detail-form" th:text="${gameInfoDetail.developer}"></div>
+        <!--  플랫폼  -->
+        <div class="detail-form" th:text="${gameInfoDetail.platformCode}"></div>
+      </div>
+
+      <!--  카테고리, 태그  -->
+      <div class="gameInfoBase-item">
+        <!--  카테고리  -->
+        <div class="detail-form" th:text="${gameInfoDetail.categoryCode}"></div>
+        <!--  태그  -->
+        <div class="detail-form" th:text="${gameInfoDetail.tagCode}"></div>
+      </div>
+
+      <!--  배급사, 언어  -->
+      <div class="gameInfoBase-item">
+        <!--  배급사  -->
+        <div class="detail-form" th:text="${gameInfoDetail.distributorCode}"></div>
+        <!--  언어  -->
+        <div class="detail-form" th:text="${gameInfoDetail.languageCode}"></div>
+      </div>
+
+    </div>
+
+    <!--  게임사양정보  -->
+    <div class="gameInfoBase">
+
+      <div class="gameInfoBase-item">
+        <!--  최소운영체제  -->
+        <div class="detail-form font15">최소사양</div>
+        <!--  권장운영체제  -->
+        <div class="detail-form font15">권장사양</div>
+      </div>
+      <!--  운영체제  -->
+      <div class="gameInfoBase-item">
+        <!--  최소운영체제  -->
+        <div class="detail-form">Window10 64-bit</div>
+        <!--  권장운영체제  -->
+        <div class="detail-form">Window10 64-bit</div>
+      </div>
+
+      <!--  프로세서  -->
+      <div class="gameInfoBase-item">
+        <!--  최소프로세서  -->
+        <div class="detail-form">Intel Core i5 6600k or AMD Ryzen 5 1600</div>
+        <!--  권장프로세서  -->
+        <div class="detail-form">Intel Core i7 6700 or AMD Ryzen 7 2700X</div>
+      </div>
+
+      <!--  메모리  -->
+      <div class="gameInfoBase-item">
+        <!--  최소메모리  -->
+        <div class="detail-form">8 GB RAM</div>
+        <!--  권장메모리  -->
+        <div class="detail-form">12GB RAM</div>
+      </div>
+
+      <!--  저장공간 -->
+      <div class="gameInfoBase-item">
+        <!--  최소저장공간 -->
+        <div class="detail-form">100GB 사용가능공간</div>
+        <!--  권장저장공간 -->
+        <div class="detail-form">100GB 사용 가능 공간</div>
+      </div>
+
+      <!--  그래픽 -->
+      <div class="gameInfoBase-item">
+        <!--  최소그래픽 -->
+        <div class="detail-form">NVIDIA GeForce GTX 1050Ti or AMD Radeon RX 570</div>
+        <!--  권장그래픽 -->
+        <div class="detail-form">NVIDIA GeForce GTX 1660 or AMD Radeon RX 5600 XT</div>
+      </div>
+    </div>
+
+    <!--  코멘트  -->
+    <div class="gameInfoComment" th:text="${gameInfoDetail.gameIntro}">
+    </div>
   </div>
 
-  <div th:each="game : ${gameInfoList}">
-    <!--            <div th:text="${game.gameCode}"></div>-->
-    <div th:text="${game.gameName}"></div>
-    <!--            <div th:text="${game.devicesCode}"></div>-->
-    <div th:text="${game.categoryCode}"></div>
-    <div th:text="${game.tagCode}"></div>
-    <!--            <div th:text="${game.registrationDate}"></div>-->
-    <!--            <div th:text="${game.launchDate}"></div>-->
-    <!--            <div th:text="${game.developer}"></div>-->
-    <!--            <div th:text="${game.distributorCode}"></div>-->
-    <!--            <div th:text="${game.ratingCode}"></div>-->
-    <!--            <div th:text="${game.price}"></div>-->
-    <!--            <div th:text="${game.platformCode}"></div>-->
-    <!--            <div th:text="${game.languageCode}"></div>-->
-    <!--            <div th:text="${game.specificationCode}"></div>-->
-    <div th:text="${game.gameIntro}"></div>
-    <!--            <div th:text="${game.gameStatus}"></div>-->
+
+<!--  <div class="detail-form" th:text="${gameInfoDetail.gameName}"></div>-->
+<!--  <div class="detail-form" th:text="${gameInfoDetail.launchDate}"></div>-->
+<!--  <div class="detail-form" th:text="${gameInfoDetail.developer}"></div>-->
+<!--  <div class="detail-form" th:text="${gameInfoDetail.categoryCode}"></div>-->
+<!--  <div class="detail-form" th:text="${gameInfoDetail.distributorCode}"></div>-->
+<!--  <div class="detail-form" th:text="${gameInfoDetail.ratingCode}"></div>-->
+<!--  <div class="detail-form" th:text="${gameInfoDetail.price}"></div>-->
+<!--  <div class="detail-form" th:text="${gameInfoDetail.platformCode}"></div>-->
+<!--  <div class="detail-form" th:text="${gameInfoDetail.tagCode}"></div>-->
+<!--  <div class="detail-form" th:text="${gameInfoDetail.languageCode}"></div>-->
+<!--  <div class="detail-form" th:text="${gameInfoDetail.gameIntro}"></div>-->
+
+<!--  <div th:each="mini : ${minimumSystem}">-->
+<!--    <div th:text="${mini.minSystemCode}"></div>-->
+<!--    <div th:text="${mini.minOperatingSystem}"></div>-->
+<!--    <div th:text="${mini.minProcessor}"></div>-->
+<!--    <div th:text="${mini.minMemory}"></div>-->
+<!--    <div th:text="${mini.minStorageSpace}"></div>-->
+<!--    <div th:text="${mini.minGraphic}"></div>-->
+<!--  </div>-->
+
+
+
+<!--  <div th:each="rec : ${recommendedSystemList}">-->
+<!--    <div th:text="${rec.recSystemCode}"></div>-->
+<!--    <div th:text="${rec.recOperatingSystem}"></div>-->
+<!--    <div th:text="${rec.recProcessor}"></div>-->
+<!--    <div th:text="${rec.recMemory}"></div>-->
+<!--    <div th:text="${rec.recStorageSpace}"></div>-->
+<!--    <div th:text="${rec.recGraphic}"></div>-->
+<!--  </div>-->
+
+
+  <div class="btn-wrap">
+    <!-- 수정하기 버튼 -->
+    <form th:action="@{gameInfoUpdate}" method="get">
+      <input type="hidden" name="gameCode" th:value="${gameInfoDetail.gameCode}">
+      <input type="submit" value="수정하기" class="btn-primary">
+    </form>
+
+
+
   </div>
 </section>
 
