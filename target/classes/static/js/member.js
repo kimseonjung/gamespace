@@ -1,6 +1,21 @@
 /* ----- 회원 가입 폼 ----- */
 function registInputCheck(content) {
-    console.log('registInputCheck');
+    const targetList = document.getElementsByClassName('input-text');
+    const textList = document.getElementsByClassName('input-head');
+    // const borderList = document.getElementsByClassName('input-placeholder');
+    for(let i = 0; i <= targetList.length; i++) {
+        const target = targetList[i];
+        const text = textList[i];
+        // const border = borderList[i];
+        if(target.value == "") {
+            text.innerHTML = "";
+        } else {
+            text.innerHTML = `<p class="input-title">${content[i]}</p>`;
+            // border.classList.add('input-filled');
+        }
+    }
+}
+function updateInputCheck(content) {
     const targetList = document.getElementsByClassName('input-text');
     const textList = document.getElementsByClassName('input-head');
     // const borderList = document.getElementsByClassName('input-placeholder');

@@ -17,6 +17,9 @@ public class ErrorHandler implements ErrorController {
             int errorCode = Integer.parseInt(status.toString());
             if(errorCode == HttpStatus.NOT_FOUND.value()) {
                 return "common/error/error404";
+            } else
+            if(errorCode == HttpStatus.METHOD_NOT_ALLOWED.value()) {
+                return "common/error/error405";
             }
         }
         return "common/error/error";

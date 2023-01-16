@@ -1,40 +1,57 @@
 window.addEventListener('DOMContentLoaded', function () {
     genderBtnResponse();
-    registInputCheck(['ID', 'Nickname', 'Name', 'Birthday',
-        'Phone', 'Email', 'Zip code', 'Address', 'Address Detail', 'About Me']);
+    registInputCheck(['ID', 'Password', 'Password Check', 'Nickname', 'Name', 'Birthday', 'Phone',
+        'Email', 'Zip code', 'Address', 'Address Detail', 'About Me']);
 })
 
 /* ----- 회원 가입 전 검증 ----- */
 function registVerify() {
     let pass = true;
     if(!checkIntroduce()) pass = false;
-    if(!checkEmail()) pass = false;
+    if(!checkEmail('regist')) pass = false;
     if(!checkPhone()) pass = false;
     if(!checkBirthday()) pass = false;
     if(!checkName()) pass = false;
-    if(!checkNickname()) pass = false;
+    if(!checkNickname('regist')) pass = false;
     if(!checkPwdCheck()) pass = false;
     if(!checkPwd()) pass = false
-    if(!checkId()) pass = false;
+    if(!checkId('regist')) pass = false;
     if(!checkGooglereCAPTCHA()) pass = false;
 
     return pass;
 }
 function updateVerify() {
-    console.log("updateVerify");
     let pass = true;
     if(!checkIntroduce()) pass = false;
-    if(!checkEmail()) pass = false;
+    if(!checkEmail('regist')) pass = false;
     if(!checkPhone()) pass = false;
     if(!checkBirthday()) pass = false;
-    if(!checkName()) pass = false;
-    if(!checkNickname()) pass = false;
+    if(!checkName('regist')) pass = false;
+    if(!checkNickname('regist')) pass = false;
+
+    return pass;
+}
+
+function findIdVerify() {
+    let pass = true;
+    if(!checkEmail('none')) pass = false;
+    if(!checkName('none')) pass = false;
+    if(pass && !findId()) pass = false;
+
+    return pass;
+}
+
+function findPwdVerify() {
+    let pass = true;
+    if(!checkEmail('none')) pass = false;
+    if(!checkId('none')) pass = false;
+    if(pass && !findPwd()) pass = false;
 
     return pass;
 }
 
 //아이디 체크
-function checkId() {
+function checkId(mode) {
     let problem = '';
     const target = document.getElementsByName("userId")[0];
     const value = target.value+"";
@@ -46,15 +63,48 @@ function checkId() {
         problem = '아이디는 숫자로 시작할 수 없습니다.';
     } else if(!value.match(/^[a-zA-Z]+[a-zA-Z0-9]*$/)) {
         problem = '사용할 수 없는 아이디입니다.';
+    } else if(value == 'userNotFound') {    //예약어
+        problem = '사용할 수 없는 아이디입니다.';
+    }
+    if(mode == 'regist') {
+        if(problem != '') {
+            idinput(problem);
+            return false;
+        }
+
+        $.ajax({
+            url : '/member/regist/idcheck',
+            type : 'post',
+            async : false,
+            data : {
+                userId : value
+            },
+            success: function (data) {
+                if(data.canUse=='false') {
+                    problem = '이미 사용중인 아이디입니다.';
+                    idinput(problem);
+                }
+                return false;
+            },
+            error: function () {
+                console.log('fail');
+                return false;
+            }
+        });
+    } else {
+        idinput(problem);
     }
 
+    return problem=='';
+}
+function idinput(problem) {
     document.getElementById('error-id').innerText = problem;
     if(problem=='') {
         document.getElementById("border-id").classList.remove('input-error');
         return true;
     } else {
         document.getElementById("border-id").classList.add('input-error');
-        target.focus();
+        document.getElementsByName("userId")[0].focus();
         return false;
     }
 }
@@ -108,7 +158,7 @@ function checkPwdCheck() {
 }
 
 //닉네임 체크
-function checkNickname() {
+function checkNickname(mode) {
     let problem = '';
     const target = document.getElementsByName("userNickname")[0];
     const value = target.value+"";
@@ -120,14 +170,45 @@ function checkNickname() {
     } else if(!value.match(/^[a-zA-Z0-9가-힣_]+$/)) {
         problem = '닉네임은 한글, 영어, 숫자, 언더바(_)만 사용 가능합니다.';
     }
+    if(mode == 'regist') {
+        if(problem != '') {
+            nicknameinput(problem);
+            return false;
+        }
 
+        $.ajax({
+            url : '/member/regist/nicknamecheck',
+            type : 'post',
+            async : false,
+            data : {
+                userNickname : value
+            },
+            success: function (data) {
+                if(data.canUse=='false') {
+                    problem = '이미 사용중인 닉네임입니다.';
+                    nicknameinput(problem);
+                }
+                return false;
+            },
+            error: function () {
+                console.log('fail');
+                return false;
+            }
+        });
+    } else {
+        nicknameinput(problem);
+    }
+
+    return problem=='';
+}
+function nicknameinput(problem) {
     document.getElementById('error-nickname').innerText = problem;
     if(problem=='') {
         document.getElementById("border-nickname").classList.remove('input-error');
         return true;
     } else {
         document.getElementById("border-nickname").classList.add('input-error');
-        target.focus();
+        document.getElementsByName("userNickname")[0].focus();
         return false;
     }
 }
@@ -142,7 +223,7 @@ function checkName() {
         problem = '이름을 입력해주세요.';
     } else if(size > 32) {
         problem = '입력할 수 있는 길이를 초과하였습니다. (' + size + '/32)';
-    } else if(!value.match(/^[a-zA-Z가-힣\s]+$/)) {
+    } else if(!value.match(/^[a-zA-Z가-힣0-9\s]+$/)) {
         problem = '이름에 사용할 수 없는 문자가 포함되어있습니다.';
     }
 
@@ -220,7 +301,7 @@ function checkPhone() {
 }
 
 //이메일 체크
-function checkEmail() {
+function checkEmail(mode) {
     let problem = '';
     const target = document.getElementsByName("userEmail")[0];
     const value = target.value+"";
@@ -229,14 +310,45 @@ function checkEmail() {
     } else if(!value.match(/^([A-Z|a-z|0-9](\.|_){0,1})+[A-Z|a-z|0-9]\@([A-Z|a-z|0-9])+((\.){0,1}[A-Z|a-z|0-9]){2}\.[a-z]{2,3}$/)) {
         problem = '이메일 정보를 다시 확인해주세요.';
     }
+    if(mode == 'regist') {
+        if(problem != '') {
+            emailinput(problem);
+            return false;
+        }
 
+        $.ajax({
+            url : '/member/regist/emailcheck',
+            type : 'post',
+            async : false,
+            data : {
+                userEmail : value
+            },
+            success: function (data) {
+                if(data.canUse=='false') {
+                    problem = '이미 사용중인 이메일입니다.';
+                    emailinput(problem);
+                }
+                return false;
+            },
+            error: function () {
+                console.log('fail');
+                return false;
+            }
+        });
+    } else {
+        emailinput(problem);
+    }
+
+    return problem=='';
+}
+function emailinput(problem) {
     document.getElementById('error-email').innerText = problem;
     if(problem=='') {
         document.getElementById("border-email").classList.remove('input-error');
         return true;
     } else {
         document.getElementById("border-email").classList.add('input-error');
-        target.focus();
+        document.getElementsByName("userEmail")[0].focus();
         return false;
     }
 }

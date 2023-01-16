@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-signin-client_id" content="638146553578-6arnfteekhokl91jgsv38j5ah5jmmafn.apps.googleusercontent.com">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/member/common.css">
+  <link rel="stylesheet" href="/css/member/login.css">
+  <link rel="stylesheet" href="/css/screenModeSwapper.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <title>gamespace</title>
+</head>
+<body>
+<script src="/js/init.js"></script> <!-- 초기 세팅 -->
+
+<div class="member-main-bg bg-screen"></div>
+<div class="login-main bg-window" style="height: 330px">
+  <div class="window-title">
+    <a href="/member/userSetting" class="btn-cross btn-response">
+      <div class="icon-cross"></div>
+    </a>
+    <div class="logo-gamespace">
+      <div class="icon-gamespace"></div>
+    </div>
+  </div>
+  <div class="window-input" style="height: auto">
+    <form id="findAccountId" action="/member/leave" method="post">
+      <div class="login-body" style="height: auto">
+        <div class="login-input" style="height: auto; gap: 10px;">
+          <p>비밀번호를 입력하여 탈퇴를 진행합니다.</p>
+          <div class="input-placeholder" id="border-email">
+            <div class="input-head"></div>
+            <input class="input-text" name="userLeave" type="text" placeholder="Password">
+          </div>
+          <p class="error-text" id="error-leave"></p>
+        </div>
+      </div>
+      <div class="login-buttons" style="margin-top: 16px">
+        <input type="submit" value="회원 탈퇴" class="login-btn btn-blue-default btn-response login-btn-text white-text">
+      </div>
+    </form>
+  </div>
+</div>
+<input class="screen-mode-btn" type="checkbox">
+
+<script src="/js/member.js"></script>
+<script src="/js/userValidation.js"></script>
+<script src="/js/screenModeResponse.js"></script>
+</body>
+</html>

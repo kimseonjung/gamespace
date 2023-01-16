@@ -4,6 +4,7 @@ import com.semi.gamespace.member.model.dao.MemberMapper;
 import com.semi.gamespace.member.model.dto.FollowDTO;
 import com.semi.gamespace.member.model.dto.MemberDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +22,6 @@ public class MemberService {
     public MemberService(MemberMapper memberMapper, PasswordEncoder passwordEncoder) {
         this.memberMapper = memberMapper;
         this.passwordEncoder = passwordEncoder;
-
     }
 
     public MemberDTO findMemberById(String userId) {
@@ -93,5 +93,46 @@ public class MemberService {
     }
     public void deleteFollowConnect(Map<String, String> codeData) {
         memberMapper.deleteFollowConnect(codeData);
+    }
+
+    public String findMemberId(Map<String, String> dataId) {
+        return memberMapper.findMemberId(dataId);
+    }
+
+    public String findMemberForEmailSend(Map<String, String> dataPwd) {
+        return memberMapper.findMemberForEmailSend(dataPwd);
+    }
+
+    public boolean registIdCheck(String inputId) {
+        int result = 0;
+        result += memberMapper.registIdCheck(inputId);
+
+        return result==0 ? true : false;
+    }
+
+    public boolean registNicknameCheck(String inputNickname) {
+        int result = 0;
+        result += memberMapper.registNicknameCheck(inputNickname);
+
+        return result==0 ? true : false;
+    }
+
+    public boolean registEmailCheck(String inputEmail) {
+        int result = 0;
+        result += memberMapper.registEmailCheck(inputEmail);
+
+        return result==0 ? true : false;
+    }
+
+    public boolean memberPasswordIsMatch(MemberDTO currUser, String userLeave) {
+        return passwordEncoder.matches(userLeave, currUser.getUserPwd());
+    }
+
+    public void leaveMemberByCode(String memberCode) {
+        memberMapper.leaveMemberByCode(memberCode);
+    }
+
+    public void deleteFollowAll(String memberCode) {
+        memberMapper.deleteFollowAll(memberCode);
     }
 }

@@ -365,6 +365,10 @@
 }
 .user-introduce{
     text-align: center;
+    width: 100%;
+}
+.user-introduce p{
+    word-break: break-all;
 }
 
 .text-name{

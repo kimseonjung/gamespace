@@ -4,6 +4,16 @@
 .window-input{
     height: 410px;
 }
+#border-id .input-title{
+    background-color: #FFFFFF00;
+}
+.error-text{
+    font-weight: 500;
+    font-size: 10px;
+    height: 15px;
+    letter-spacing: -0.014em;
+    color: rgba(255, 62, 77, 0.9);
+}
 
 .member-main-bg{
     height: calc(260px*2 + 100px + 410px);

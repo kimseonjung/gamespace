@@ -8,6 +8,7 @@ function linkIconCheck(i) {
     const targetLink = document.getElementsByClassName("social-btn")[i].href;
     console.log("linkIconCheck(" + i + ") - " + targetLink);
     document.getElementsByClassName('social-icon')[i].src = "/image/icon_light/globe.svg";
+    document.getElementsByClassName('social-icon')[i].style.opacity = 1;
     if(targetLink.match(/^https:\/\/github\.com\/[A-Za-z\d](?:[A-Za-z0-9]|-(?=[A-Za-z0-9])){0,38}$/)) {
         document.getElementsByClassName('social-icon')[i].src = "/image/icon_light/github.svg";
     }
@@ -34,6 +35,9 @@ function linkIconCheck(i) {
     }
     if(targetLink.match(/^https?:\/\/stackoverflow\.com\/users\/\d+\/[A-Za-z0-9-]+$/)) {
         document.getElementsByClassName('social-icon')[i].src = "/image/icon_light/stackoverflow.svg";
+    }
+    if(targetLink.includes('http://localhost:8001/')) {
+        document.getElementsByClassName('social-icon')[i].style.opacity = 0.2;
     }
 }
 

@@ -50,8 +50,9 @@
                M.MEMBER_STATUS,
                M.BAN_DATE,
                M.ADMIN_YN
-        FROM MEMBER M
-        WHERE M.MEMBER_ID = #{ userId }
+          FROM MEMBER M
+         WHERE M.MEMBER_ID = #{ userId }
+           AND M.MEMBER_STATUS = 'Y'
     </select>
 
     <select id="findMemberByEmailForSocialLogin" resultMap="memberResultMap" parameterType="string">
@@ -78,6 +79,7 @@
                M.ADMIN_YN
         FROM MEMBER M
         WHERE M.MEMBER_EMAIL = #{ userEmail }
+          AND M.MEMBER_STATUS = 'Y'
     </select>
 
     <select id="selectAllMember" resultMap="memberResultMap">
@@ -102,14 +104,49 @@
                M.MEMBER_STATUS,
                M.BAN_DATE,
                M.ADMIN_YN
+          FROM MEMBER M
+           AND M.MEMBER_STATUS = 'Y'
+         ORDER BY M.MEMBER_CODE
+    </select>
+
+    <select id="findMemberId" resultType="String" parameterType="java.util.HashMap">
+        SELECT M.MEMBER_ID
+          FROM MEMBER M
+         WHERE M.MEMBER_NAME = #{ memberName }
+           AND M.MEMBER_EMAIL = #{ memberEmail }
+           AND M.MEMBER_STATUS = 'Y'
+    </select>
+
+    <select id="findMemberForEmailSend" resultType="String" parameterType="java.util.HashMap">
+        SELECT M.MEMBER_EMAIL
         FROM MEMBER M
-        ORDER BY M.MEMBER_CODE
+        WHERE M.MEMBER_ID = #{ userId }
+          AND M.MEMBER_EMAIL = #{ userEmail }
+          AND M.MEMBER_STATUS = 'Y'
     </select>
 
     <select id="countFollowFromByCode" resultType="_int" parameterType="string">
         SELECT COUNT(*)
-          FROM FOLLOW F
-         WHERE F.FOLLOW_TAR_CODE = #{ code }
+        FROM FOLLOW F
+        WHERE F.FOLLOW_TAR_CODE = #{ code }
+    </select>
+
+    <select id="registIdCheck" resultType="_int" parameterType="string">
+        SELECT COUNT(*)
+          FROM MEMBER M
+         WHERE M.MEMBER_ID = #{ input }
+    </select>
+
+    <select id="registNicknameCheck" resultType="_int" parameterType="string">
+        SELECT COUNT(*)
+        FROM MEMBER M
+        WHERE M.MEMBER_NICKNAME = #{ input }
+    </select>
+
+    <select id="registEmailCheck" resultType="_int" parameterType="string">
+        SELECT COUNT(*)
+        FROM MEMBER M
+        WHERE M.MEMBER_EMAIL = #{ input }
     </select>
 
     <select id="countFollowToByCode" resultType="_int" parameterType="string">
@@ -235,6 +272,12 @@
          WHERE M.MEMBER_ID = #{ userId }
     </update>
 
+    <update id="leaveMemberByCode" parameterType="String">
+        UPDATE MEMBER M
+           SET M.MEMBER_STATUS = 'N'
+         WHERE M.MEMBER_CODE = #{ input }
+    </update>
+
     <update id="updateMemberSiteLink" parameterType="java.util.HashMap">
         UPDATE MEMBER M
         <set>
@@ -255,5 +298,12 @@
           FROM FOLLOW F
          WHERE F.FOLLOW_REQ_CODE = #{ requestCode }
            AND F.FOLLOW_TAR_CODE = #{ targetCode }
+    </delete>
+
+    <delete id="deleteFollowAll" parameterType="string">
+        DELETE
+          FROM FOLLOW F
+         WHERE F.FOLLOW_REQ_CODE = #{ input }
+            OR F.FOLLOW_TAR_CODE = #{ input }
     </delete>
 </mapper>

@@ -53,13 +53,15 @@ public class SpringSecurityConfig {
         Map<String, List<String>> permitListMap = authenticationService.getPermitListMap();
         List<String> adminPermitList = permitListMap.get("adminPermitList");
         List<String> memberPermitList = permitListMap.get("memberPermitList");
+        List<String> anonymousPermitList = permitListMap.get("anonymousPermitList");
 
         http.csrf().disable()
                 .authorizeHttpRequests()
-                .antMatchers(adminPermitList.toArray(new String[adminPermitList.size()])).hasRole("ADMIN")
-                .antMatchers(memberPermitList.toArray(new String[memberPermitList.size()])).hasAnyRole("MEMBER", "ADMIN")
                 //antMatchers에 해당하는 path 대상
-                //hasRole("ADMIN") : 관리자 접근 허용
+                .antMatchers(adminPermitList.toArray(new String[adminPermitList.size()])).hasRole("ADMIN")
+                //관리자 접근 허용
+                .antMatchers(memberPermitList.toArray(new String[memberPermitList.size()])).hasAnyRole("MEMBER", "ADMIN")
+                //멤버, 관리자 접근 허용
                 .anyRequest().permitAll()
                 //anyRequest() : 그 외의 path는
                 //permitAll() : 모든 유저의 접근을 허용
@@ -105,6 +107,15 @@ public class SpringSecurityConfig {
                 //OAuth2 로그인 성공 후 사용자 정보를 가져오는 설정
                 .userService(oAuth2DetailsService);
                 //로그인 성공 후속 조치를 진행할 UserService 등록
+
+                /* 세션 관리 */
+        http.sessionManagement()
+                .maximumSessions(1)
+                //세션 최대 허용 수
+                .maxSessionsPreventsLogin(false)
+                //중복 로그인 방지 여부 - false : 이전 사용자의 세션 만료
+                .expiredUrl("/common/error/expired");
+                //세션이 만료된 경우 페이지 처리
 
         return http.build();
     }
