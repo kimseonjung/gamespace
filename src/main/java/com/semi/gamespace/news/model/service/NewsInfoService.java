@@ -25,8 +25,11 @@ public class NewsInfoService {
         return newsInfoMapper.getNewsCom(newsCode);
     }
 
-    public List<NewsDTO> selectAllNewsList() {
-        return newsInfoMapper.selectAllNewsList();
+    public List<NewsDTO> selectAllNewsList(Map<String, String> search) {
+        return newsInfoMapper.selectAllNewsList(search);
+    }
+    public int countAllNewsList(Map<String, String> search) {
+        return newsInfoMapper.countAllNewsList(search);
     }
 
     public boolean registNewsInfo(NewsDTO newsDto) throws Exception{

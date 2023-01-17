@@ -51,17 +51,92 @@ public class NewsInfoController {
 
 
 
-    @GetMapping("/news")
-    public ModelAndView selectAllNewsList(ModelAndView mv){
-        List<NewsDTO> newsList = newsInfoService.selectAllNewsList();
-        newsList.stream().forEach(newsDTO -> System.out.println("news = " + newsDTO) );
+//    @GetMapping("/news")
+//    public ModelAndView selectAllNewsList(ModelAndView mv){
+//        List<NewsDTO> newsList = newsInfoService.selectAllNewsList();
+//        newsList.stream().forEach(newsDTO -> System.out.println("news = " + newsDTO) );
+//        List<GameInfoDTO> gameInfoList = gameInfoService.selectAllGameInfo();
+//        gameInfoList.stream().forEach(GameInfoDTO -> System.out.println("games = " + GameInfoDTO) );
+//
+//        mv.addObject("gameInfoList", gameInfoList);
+//        mv.addObject("newsList", newsList);
+//        mv.setViewName("news/news");
+//
+//        return mv;
+//    }
+
+    @GetMapping("/news/{page}")
+    public ModelAndView selectAllNewsList(ModelAndView mv, @PathVariable("page") String page, @RequestParam(required = false) String search){
+        int itemPerList = 10;   //페이지 당 20개 표시
+
+        if(search==null) search = "";
+        Map<String, String> searched = new HashMap<>();
+//        searched.put("status", "Y");
+        searched.put("search", search);
+
+        int amount = newsInfoService.countAllNewsList(searched);
+        int lastPage = (int) Math.ceil((double)amount / itemPerList); //[1]1~20, [2]21~40, [3]41~60, ...
+
+        int idxFirst = itemPerList*(Integer.parseInt(page)-1) + 1;
+        int idxLast = itemPerList*(Integer.parseInt(page));
+        if(idxLast > amount) idxLast = amount;
+
+        int pageIdx = (Integer.parseInt(page)-1)/10*10+1;
+        int pageEnd = (Math.min(lastPage, pageIdx+9));
+        int pagePrev = (Integer.parseInt(page)-1)/10*10;    //[0]1~10, [10]11~20, [20]21~30, ...
+        int pageNext = pagePrev + 11;                       //[11]1~10, [21]11~20, [31]21~30, ...
+
+        Map<String, String> findMap = new HashMap<>();
+        findMap.put("idxFirst", idxFirst+"");
+        findMap.put("idxLast", idxLast+"");
+//        findMap.put("isBlack", "Y");
+        findMap.put("search", search);
+
+
+
+        List<NewsDTO> newsList = newsInfoService.selectAllNewsList(findMap);
+
         List<GameInfoDTO> gameInfoList = gameInfoService.selectAllGameInfo();
-        gameInfoList.stream().forEach(GameInfoDTO -> System.out.println("games = " + GameInfoDTO) );
+
+
+        List<Map<String, String>> dataList = new ArrayList<>();
+        for(int i = 0; i < newsList.size(); i++) {
+            dataList.add(new HashMap<>());
+            String targetNewsCode = newsList.get(i).getNewsCode();
+            dataList.get(i).put("newsCode", targetNewsCode);
+            dataList.get(i).put("newsTitle", newsList.get(i).getNewsTitle());
+            dataList.get(i).put("newsView", newsList.get(i).getNewsView());
+            dataList.get(i).put("newsDate", newsList.get(i).getNewsDate().toString());
+            dataList.get(i).put("newsContent", newsList.get(i).getNewsContent());
+            dataList.get(i).put("gameName", newsList.get(i).getGameName());
+            dataList.get(i).put("memberName", newsList.get(i).getMemberName());
+
+
+//            dataList.get(i).put("historyBoard", newsInfoService.countHistoryOfBoard(targetNewsCode)+"");
+//            dataList.get(i).put("historyComment", newsInfoService.countHistoryOfComment(targetNewsCode)+"");
+            System.out.println(dataList.get(i));
+        }
+        mv.setViewName("news/news");
+        mv.addObject("dataList", dataList);
+        mv.addObject("currPage", page);
+        mv.addObject("lastPage", lastPage);
+        mv.addObject("pageIdx", pageIdx);
+        mv.addObject("pageEnd", pageEnd);
+        mv.addObject("pagePrev", pagePrev);
+        mv.addObject("pageNext", pageNext);
+        mv.addObject("search", search);
 
         mv.addObject("gameInfoList", gameInfoList);
-        mv.addObject("newsList", newsList);
-        mv.setViewName("news/news");
 
+
+//        newsList.stream().forEach(newsDTO -> System.out.println("news = " + newsDTO) );
+//        List<GameInfoDTO> gameInfoList = gameInfoService.selectAllGameInfo();
+//        gameInfoList.stream().forEach(GameInfoDTO -> System.out.println("games = " + GameInfoDTO) );
+
+//        mv.addObject("gameInfoList", gameInfoList);
+//        mv.addObject("newsList", newsList);
+//        mv.setViewName("news/news");
+        System.out.println(mv);
         return mv;
     }
 
@@ -233,7 +308,7 @@ public class NewsInfoController {
 //            "이런 스토리 전개는 스토리의 흐름 속도를 조절하고 서프라이즈를 준비하는 데는 도움이 될 지언정, 그 스토리를 겪는 유저들에게 매력보다는 불쾌감을 선사하게 됩니다. 흔히 이런 스토리 진행 착오는 스토리를 진행하는 작가가 본인만 알고 있는 정보와 독자들이 지닌 정보의 격차를 제대로 이해하지 못할 경우에 발생합니다. 작가 본인이 지닌 정보를 기준으로 해당 캐릭터에 대한 큰 애정을 당연시 하다보니, 정보가 부족한 독자들이 해당 캐릭터에 대해 작가 만큼 애정을 지니지 못하게 된다는 걸 이해하지 못해서 발생하는 감정의 갭인 것이죠. 제 생각에 지금 스마게 스토리 팀이 아만에 대해 가지는 감정과 플레체까지 진행한 유저들이 아만에 대해 가지는 감정에는 큰 격차가 있다고 봅니다. 그리고 이 격차는 단순히 훗날 서프라이즈로 사실이 공개되는 것 만으로는 결코 해소되지 않을 것입니다.\n"
 //    );
 //
-//    for(int i = 12; i <= 1010; i++) {
+//    for(int i = 2; i <= 1010; i++) {
 //        news.setNewsCode("NEW_" + i);
 //        news.setNewsTitle("뉴스제목입니다." + i);
 //        news.setNewsView(i+"");
@@ -242,7 +317,7 @@ public class NewsInfoController {
 //                String.format("%02d",(int)(Math.random()*30) + 1));
 //        news.setNewsContent(newsContent + i);
 //        news.setGameName("GAM_" + i);
-//        news.setMemberName("MEM_1");
+//        news.setMemberName("MEM_2");
 //
 //        System.out.println(news);
 //        try {

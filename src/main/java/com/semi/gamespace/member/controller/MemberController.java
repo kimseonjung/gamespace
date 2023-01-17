@@ -184,9 +184,9 @@ public class MemberController {
 //        String followReq = "";
 //        String followTar = "";
 //
-//        for(int i = 100; i <= 1197; i++) {
+//        for(int i = 3; i <= 993; i++) {
 //            followReq = "MEM_" + i;
-//            for(int j = 298; j <= 1197; j++) {
+//            for(int j = 3; j <= 993; j++) {
 //                if(Math.random()*100 < 33) {
 //                    if(i == j) continue;
 //                    followTar = "MEM_" + j;

@@ -10,7 +10,8 @@ import java.util.Map;
 
 @Mapper
 public interface NewsInfoMapper {
-    List<NewsDTO> selectAllNewsList();
+    List<NewsDTO> selectAllNewsList(Map<String, String> search);
+    int countAllNewsList(Map<String, String> search);
 
     int registNewsInfo(NewsDTO newsDto);
 

@@ -239,7 +239,7 @@ public class GameInfoController {
 //        MinimumSystemDTO minimumSystem = new MinimumSystemDTO();
 //        RecommendedSystemDTO recommendedSystem = new RecommendedSystemDTO();
 //
-//        for(int i = 12; i <= 1010; i++) {
+//        for(int i = 2; i <= 1010; i++) {
 //            gameInfo.setGameName("게임명" + i);
 //            gameInfo.setDevicesCode("DIV_" + (int)(Math.random()*3+1)); //ㅎㅎ
 //

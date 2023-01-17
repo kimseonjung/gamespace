@@ -20,6 +20,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bPopup/0.11.0/jquery.bpopup.min.js"></script>
     <script src='/js/display.js'></script>
 
+  <link href="https://cdn.jsdelivr.net/gh/yesiamrocks/cssanimation.io@1.0.3/cssanimation.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/cssanimation.css">
+  <script type="text/javascript" src="/js/scrolly.js"></script>
+
 
   <!-- 다크모드 -->
   <script src="/js/init.js"></script>
@@ -109,20 +114,51 @@
 <th:block th:replace="~{common/gameTag :: gameTag}"/>
 
 <!-- 뉴스리스트 -->
+<!--<form th:id="|memberBan${iterStat.index}|" method="get" action="/admin/memberBan">-->
+<!--  <input type="hidden" name="currPage" th:value="${page}">-->
   <section id="table">
     <div class="lists">
         <th:block th:replace="~{news/newsList :: newsList}"/>
     </div>
   </section>
+<!--</form>-->
 <!-- 다음 리스트 페이지 -->
-<div class="pagination">
-    <div class="pagination-wrap">
-        <i class="left-icon"></i>
-        <ol id="numbers"></ol>
-        <i class="right-icon"></i>
-    </div>
+<!--<div class="pagination">-->
+<!--    <div class="pagination-wrap">-->
+<!--        <i class="left-icon"></i>-->
+<!--        <ol id="numbers"></ol>-->
+<!--        <i class="right-icon"></i>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<script type="application/javascript" src="/js/pagination.js"></script>-->
+
+<div class="mypage-number-outline pagination">
+  <div class="mypage-number pagination-wrap">
+    <th:block th:if="${pageIdx}!=1">
+      <button type="button" class="number-arrow btn-response">
+        <a class="number-page" th:href="|/news/news/1?search=${search}|"><<</a>
+      </button>
+      <button type="button" class="number-arrow btn-response">
+        <a class="number-page" th:href="|/news/news/${pagePrev}?search=${search}|"><</a>
+      </button>
+    </th:block>
+    <th:block th:each="idx : ${#numbers.sequence(pageIdx, pageEnd)}">
+      <button type="button" class="number-btn btn-response">
+        <a class="number-page number-active" th:if="${#strings.equals(currPage, idx)}" th:text="${idx}"></a>
+        <a class="number-page" th:if="${not #strings.equals(currPage, idx)}" th:text="${idx}" th:href="@{|/news/news/${idx}?search=${search}|}"></a>
+      </button>
+    </th:block>
+    <th:block th:if="${pageEnd < lastPage}">
+      <button type="button" class="number-arrow btn-response">
+        <a class="number-page" th:href="|/news/news/${pageNext}?search=${search}|">></a>
+      </button>
+      <button type="button" class="number-arrow btn-response">
+        <a class="number-page" th:href="|/news/news/${lastPage}?search=${search}|">>></a>
+      </button>
+    </th:block>
+  </div>
 </div>
-<script type="application/javascript" src="/js/pagination.js"></script>
+
 
 <!-- 뉴스작성버튼 -->
 <div class="submitA">
@@ -154,6 +190,10 @@
 
         // 코드로 받은 리스트 출력
     }
+
+    window.onload = function() {
+      scrolly();
+    };
 </script>
 </body>
 </html>

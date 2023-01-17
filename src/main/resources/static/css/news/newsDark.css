@@ -488,7 +488,9 @@
 }
 
 /* 페이지네이션 --------------------------------------------------------------------*/
+
 .screen-dark .pagination{
+    display: flex;
     position: relative;
     left: 0%;
     right: 0%;
@@ -496,13 +498,14 @@
     bottom: 0%;
     margin: 0 auto;
     padding: 8px;
-    /* Light/Hover BG */
+    /* Dark / Hover BG */
 
     background: linear-gradient(90deg, rgba(30, 28, 50, 0.5) 0%, rgba(43, 22, 29, 0.55) 100%);
     border-radius: 24px;
 
-    width: 348px;
+    width: 400px;
     height: 40px;
+    justify-content: center;
 
 
     /* Inside auto layout */
@@ -511,14 +514,14 @@
     order: 1;
     flex-grow: 0;
 }
-.pagination-wrap{
+.screen-dark .pagination-wrap{
     /* Auto layout */
 
     display: flex;
     flex-direction: row;
     align-items: center;
     padding: 0px;
-    gap: 4px;
+    gap: 12px;
 
     position: absolute;
     left: 2.3%;
@@ -527,8 +530,11 @@
     bottom: 20%;
 
     border-radius: 24px;
+
+    max-width: 676px;
+    justify-content: center;
 }
-.pagination ol{
+.screen-dark .pagination .btn-response{
     /* Auto layout */
 
     display: flex;
@@ -536,52 +542,14 @@
     align-items: center;
     padding: 0px;
     gap: 4px;
-    border-radius: 24px;
 }
-.pagination-wrap i{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 24px;
-    height: 24px;
-    padding: 5px 5px;
-}
-.screen-dark .pagination-wrap .left-icon{
-    background-image: url("../../image/svg/icon-arrow-left-w.svg");
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 14px;
-    height: 14px;
+.screen-dark .pagination-wrap button{
+    background: transparent;
+    border: none;
 }
 
-.screen-dark .pagination-wrap .right-icon{
-    background-image: url("../../image/svg/icon-arrow-right-w.svg");
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 14px;
-    height: 14px;
-}
-
-.pagination ol li{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 24px;
-    height: 24px;
-    order: 1;
-    flex-grow: 0;
-}
-.pagination ol li a {
-    /* Auto layout */
-
-    margin: 0 auto;
-
-    align-items: center;
-    padding: 0px;
-    gap: 4px;
-
-
-    border-radius: 24px;
+.screen-dark .pagination-wrap a{
+    text-decoration: none;
 
     /* 14/14 - Med */
 
@@ -590,16 +558,25 @@
     font-weight: 500;
     font-size: 14px;
     line-height: 20px;
+    /* identical to box height, or 143% */
 
-    /* Light/Light Gray */
+    text-align: center;
+    letter-spacing: -0.006em;
 
-    color: rgba(74, 87, 111, 0.7);
+    /* Dark/Light Gray */
+
+    color: rgba(114, 120, 136, 0.6);
 
 }
-.pagination ol li.active a {
-    font-weight: bold;
+.screen-dark .pagination-wrap .number-active{
+    /* Basic/Purple */
+
     color: rgba(77, 62, 255, 0.9);
+
 }
+
+
+
 
 /* 뉴스 디테일 ------------------------------------------------------------------------------------------------------*/
 .detail-title {
