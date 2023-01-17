@@ -71,17 +71,19 @@ public class AdminController {
             case 3: add = 15L; break;
             case 4: add = 30L; break;
             case 5: add = 90L; break;
-            case 6: add = 36500L; break;
+            case 6: add = 0L; break;
         }
         add *= 24L;  //1day = 24hours
         add *= 60L;  //1hour = 60minutes
         add *= 60L;  //1minute = 60seconds
         add *= 1000L;//1second = 1000ms
-        now.setTime(now.getTime()+add);
+        if(add > 0) {
+            now.setTime(now.getTime()+add);
+        }
 
         Map<String, String> banData = new HashMap<>();
         banData.put("targetCode", targetCode);
-        banData.put("banDate", now.toString());
+        banData.put("banDate", add>0 ? now.toString() : "2099-12-31");
         memberService.memberBanByCode(banData);
         return "redirect:/admin/memberList/"+currPage;
     }
