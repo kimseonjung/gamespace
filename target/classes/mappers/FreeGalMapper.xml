@@ -19,7 +19,7 @@
             F.FREE_GAL_CODE,
             F.FREE_GAL_TITLE,
             F.FREE_GAL_VIEW,
-            F.FREE_GAL_DATE,
+            TO_CHAR(TO_DATE(F.FREE_GAL_DATE,'YY-MM-DD'),'RRRR-MM-DD') AS FREE_GAL_DATE,
             F.FREE_GAL_CONTENT,
             F.MEMBER_CODE,
             F.FREE_GAL_NOTICE,
@@ -35,7 +35,7 @@
             F.FREE_GAL_CODE,
             F.FREE_GAL_TITLE,
             F.FREE_GAL_VIEW,
-            F.FREE_GAL_DATE,
+            TO_CHAR(TO_DATE(F.FREE_GAL_DATE,'YY-MM-DD'),'RRRR-MM-DD') AS FREE_GAL_DATE,
             F.FREE_GAL_CONTENT,
             F.MEMBER_CODE,
             F.FREE_GAL_NOTICE,
@@ -51,7 +51,7 @@
             F.FREE_GAL_CODE,
             F.FREE_GAL_TITLE,
             F.FREE_GAL_VIEW,
-            F.FREE_GAL_DATE,
+            TO_CHAR(TO_DATE(F.FREE_GAL_DATE,'YY-MM-DD'),'RRRR-MM-DD') AS FREE_GAL_DATE,
             F.FREE_GAL_CONTENT,
             F.MEMBER_CODE,
             F.FREE_GAL_NOTICE,
@@ -99,7 +99,7 @@
              0,
              TO_DATE(SYSDATE, 'YYYY-MM-DD HH24:mi:SS'),
              #{freeGalContent},
-             'MEM_1',
+             'MEM_2',
              'Y'
             )
     </insert>

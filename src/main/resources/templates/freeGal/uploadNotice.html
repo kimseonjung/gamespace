@@ -42,13 +42,20 @@
         <div class="file-select">
           <div class="file-select-name" id="noFile">첨부파일</div>
           <div class="file-select-button" id="fileName">첨부파일</div>
-          <input type="file" name="chooseFile" id="chooseFile">
+          <input type="file" name="chooseFile" id="chooseFile" style=" z-index: 100;
+                cursor: pointer;
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                top: 0;
+                left: 0;
+                opacity: 0;">
         </div>
       </div>
 
     </div>
     <div class="uploadContentArea">
-      <textarea class="form-control" name="freeGalContent"></textarea>
+      <textarea class="notice-form-control" name="freeGalContent"></textarea>
 
     </div>
 
