@@ -269,16 +269,16 @@ public class MemberController {
 //        }
 //        return "redirect:/";
 //    }
-//
+
 //    @GetMapping("/debug/insertFollow")
 //    public String debugInsertFollow() {
 //        Map<String, String> conn = new HashMap<>();
 //        String followReq = "";
 //        String followTar = "";
 //
-//        for(int i = 100; i <= 1197; i++) {
+//        for(int i = 4; i <= 993; i++) {
 //            followReq = "MEM_" + i;
-//            for(int j = 298; j <= 1197; j++) {
+//            for(int j = 4; j <= 993; j++) {
 //                if(Math.random()*100 < 33) {
 //                    if(i == j) continue;
 //                    followTar = "MEM_" + j;

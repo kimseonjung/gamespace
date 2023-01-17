@@ -96,41 +96,71 @@
       <!--  운영체제  -->
       <div class="gameInfoBase-item">
         <!--  최소운영체제  -->
-        <div class="detail-form">Window10 64-bit</div>
+        <div class="detail-form">
+          Window10 64-bit
+<!--          <div th:text="${minimumSystem.minOperatingSystem}"></div>-->
+        </div>
         <!--  권장운영체제  -->
-        <div class="detail-form">Window10 64-bit</div>
+        <div class="detail-form">
+          Window10 64-bit
+<!--          <div th:text="${recommendedSystem.recOperatingSystem}"></div>-->
+        </div>
       </div>
 
       <!--  프로세서  -->
       <div class="gameInfoBase-item">
         <!--  최소프로세서  -->
-        <div class="detail-form">Intel Core i5 6600k or AMD Ryzen 5 1600</div>
+        <div class="detail-form">
+          Intel Core i5 6600k or AMD Ryzen 5 1600
+<!--          <div th:text="${minimumSystem.minProcessor}"></div>-->
+        </div>
         <!--  권장프로세서  -->
-        <div class="detail-form">Intel Core i7 6700 or AMD Ryzen 7 2700X</div>
+        <div class="detail-form">
+          Intel Core i7 6700 or AMD Ryzen 7 2700X
+<!--          <div th:text="${recommendedSystem.recProcessor}"></div>-->
+        </div>
       </div>
 
       <!--  메모리  -->
       <div class="gameInfoBase-item">
         <!--  최소메모리  -->
-        <div class="detail-form">8 GB RAM</div>
+        <div class="detail-form">
+          8 GB RAM
+<!--          <div th:text="${minimumSystem.minMemory}"></div>-->
+        </div>
         <!--  권장메모리  -->
-        <div class="detail-form">12GB RAM</div>
+        <div class="detail-form">
+          12GB RAM
+<!--          <div th:text="${recommendedSystem.recMemory}"></div>-->
+        </div>
       </div>
 
       <!--  저장공간 -->
       <div class="gameInfoBase-item">
         <!--  최소저장공간 -->
-        <div class="detail-form">100GB 사용가능공간</div>
+        <div class="detail-form">
+          100GB 사용가능공간
+<!--          <div th:text="${minimumSystem.minStorageSpace}"></div>-->
+        </div>
         <!--  권장저장공간 -->
-        <div class="detail-form">100GB 사용 가능 공간</div>
+        <div class="detail-form">
+          100GB 사용 가능 공간
+<!--          <div th:text="${recommendedSystem.recStorageSpace}"></div>-->
+        </div>
       </div>
 
       <!--  그래픽 -->
       <div class="gameInfoBase-item">
         <!--  최소그래픽 -->
-        <div class="detail-form">NVIDIA GeForce GTX 1050Ti or AMD Radeon RX 570</div>
+        <div class="detail-form">
+          NVIDIA GeForce GTX 1050Ti or AMD Radeon RX 570
+<!--          <div th:text="${minimumSystem.minGraphic}"></div>-->
+        </div>
         <!--  권장그래픽 -->
-        <div class="detail-form">NVIDIA GeForce GTX 1660 or AMD Radeon RX 5600 XT</div>
+        <div class="detail-form">
+           NVIDIA GeForce GTX 1660 or AMD Radeon RX 5600 XT
+<!--          <div th:text="${recommendedSystem.recGraphic}"></div>-->
+        </div>
       </div>
     </div>
 
@@ -138,6 +168,7 @@
     <div class="gameInfoComment" th:text="${gameInfoDetail.gameIntro}">
     </div>
   </div>
+
 
 
 <!--  <div class="detail-form" th:text="${gameInfoDetail.gameName}"></div>-->
@@ -153,25 +184,7 @@
 <!--  <div class="detail-form" th:text="${gameInfoDetail.gameIntro}"></div>-->
 
 
-<!--  <div th:each="mini : ${minimumSystem}">-->
-<!--    <div th:text="${minimumSystem.minSystemCode}"></div>-->
-<!--    <div th:text="${minimumSystem.minOperatingSystem}"></div>-->
-<!--    <div th:text="${minimumSystem.minProcessor}"></div>-->
-<!--    <div th:text="${minimumSystem.minMemory}"></div>-->
-<!--    <div th:text="${minimumSystem.minStorageSpace}"></div>-->
-<!--    <div th:text="${minimumSystem.minGraphic}"></div>-->
-<!--  </div>-->
 
-
-
-<!--  <div th:each="rec : ${recommendedSystemList}">-->
-<!--    <div th:text="${recommendedSystem.recSystemCode}"></div>-->
-<!--    <div th:text="${recommendedSystem.recOperatingSystem}"></div>-->
-<!--    <div th:text="${recommendedSystem.recProcessor}"></div>-->
-<!--    <div th:text="${recommendedSystem.recMemory}"></div>-->
-<!--    <div th:text="${recommendedSystem.recStorageSpace}"></div>-->
-<!--    <div th:text="${recommendedSystem.recGraphic}"></div>-->
-<!--  </div>-->
 
 
   <div class="btn-wrap">

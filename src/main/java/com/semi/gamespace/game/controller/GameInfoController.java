@@ -153,13 +153,13 @@ public class GameInfoController {
 
         System.out.println("detail =" + gameInfoDetail);
 
-        MinimumSystemDTO minimumSystem = gameInfoService.selectDetailMinimumSystem(gameCode);
-        RecommendedSystemDTO recommendedSystem = gameInfoService.selectDetailRecommendedSystem(gameCode);
-        System.out.println("mini =" + minimumSystem);
-        System.out.println("rec =" + recommendedSystem);
-
-        mv.addObject("minimumSystem", minimumSystem);
-        mv.addObject("recommendedSystem", recommendedSystem);
+//        MinimumSystemDTO minimumSystem = gameInfoService.selectDetailMinimumSystem(gameCode);
+//        RecommendedSystemDTO recommendedSystem = gameInfoService.selectDetailRecommendedSystem(gameCode);
+//        System.out.println("mini =" + minimumSystem);
+//        System.out.println("rec =" + recommendedSystem);
+//
+//        mv.addObject("minimumSystem", minimumSystem);
+//        mv.addObject("recommendedSystem", recommendedSystem);
         mv.addObject("gameInfoDetail", gameInfoDetail);
         mv.setViewName("game/gameInfoDetail");
 
@@ -239,7 +239,7 @@ public class GameInfoController {
 //        MinimumSystemDTO minimumSystem = new MinimumSystemDTO();
 //        RecommendedSystemDTO recommendedSystem = new RecommendedSystemDTO();
 //
-//        for(int i = 12; i <= 1010; i++) {
+//        for(int i = 2; i <= 1010; i++) {
 //            gameInfo.setGameName("게임명" + i);
 //            gameInfo.setDevicesCode("DIV_" + (int)(Math.random()*3+1)); //ㅎㅎ
 //
