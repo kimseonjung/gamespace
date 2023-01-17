@@ -24,4 +24,6 @@ public class NewsDTO {
 
     private String isAdmin;
 
+    private String memberCode;
+
 }

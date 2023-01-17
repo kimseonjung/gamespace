@@ -9,14 +9,14 @@
 <section class="gametag-wrap" th:fragment="gameTag">
   <div class="gametag-header">
     <div class="logo"></div>
-    <div class="down"></div>
+    <div class="down more"></div>
   </div>
-  <div class="gametag-body">
+  <div class="gametag-body board" style="display: none;">
     <div class="gametag-body-left">Tag</div>
-    <div class="gametags" id="gametags">
+    <div class="gametags tags" id="gametags" style="max-height: 110px;">
 
           <div class="tag-td" th:each="game : ${gameInfoList}">
-            <label th:for="${game.gameCode}" >
+            <label th:for="${game.gameCode}">
                 <input type="checkbox"th:id="${game.gameCode}" th:value="${game.gameCode}" name="gameName" class="gameName" onclick='getCheckboxValue();searchGameCodeList();'>
                 <div class="tag-label" th:text="${game.gameName}"></div>
             </label>
@@ -24,7 +24,7 @@
 
 
     </div>
-    <div class="down"><img src="/image/icon_light/down.svg" alt="down"></div>
+    <div class="down mores"></div>
   </div>
   <div class="gametag-foot">
     <div class="tag" id="tag-result"></div>

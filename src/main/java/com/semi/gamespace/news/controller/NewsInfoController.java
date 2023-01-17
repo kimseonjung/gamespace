@@ -51,17 +51,92 @@ public class NewsInfoController {
 
 
 
-    @GetMapping("/news")
-    public ModelAndView selectAllNewsList(ModelAndView mv){
-        List<NewsDTO> newsList = newsInfoService.selectAllNewsList();
-        newsList.stream().forEach(newsDTO -> System.out.println("news = " + newsDTO) );
+//    @GetMapping("/news")
+//    public ModelAndView selectAllNewsList(ModelAndView mv){
+//        List<NewsDTO> newsList = newsInfoService.selectAllNewsList();
+//        newsList.stream().forEach(newsDTO -> System.out.println("news = " + newsDTO) );
+//        List<GameInfoDTO> gameInfoList = gameInfoService.selectAllGameInfo();
+//        gameInfoList.stream().forEach(GameInfoDTO -> System.out.println("games = " + GameInfoDTO) );
+//
+//        mv.addObject("gameInfoList", gameInfoList);
+//        mv.addObject("newsList", newsList);
+//        mv.setViewName("news/news");
+//
+//        return mv;
+//    }
+
+    @GetMapping("/news/{page}")
+    public ModelAndView selectAllNewsList(ModelAndView mv, @PathVariable("page") String page, @RequestParam(required = false) String search){
+        int itemPerList = 10;   //페이지 당 20개 표시
+
+        if(search==null) search = "";
+        Map<String, String> searched = new HashMap<>();
+//        searched.put("status", "Y");
+        searched.put("search", search);
+
+        int amount = newsInfoService.countAllNewsList(searched);
+        int lastPage = (int) Math.ceil((double)amount / itemPerList); //[1]1~20, [2]21~40, [3]41~60, ...
+
+        int idxFirst = itemPerList*(Integer.parseInt(page)-1) + 1;
+        int idxLast = itemPerList*(Integer.parseInt(page));
+        if(idxLast > amount) idxLast = amount;
+
+        int pageIdx = (Integer.parseInt(page)-1)/10*10+1;
+        int pageEnd = (Math.min(lastPage, pageIdx+9));
+        int pagePrev = (Integer.parseInt(page)-1)/10*10;    //[0]1~10, [10]11~20, [20]21~30, ...
+        int pageNext = pagePrev + 11;                       //[11]1~10, [21]11~20, [31]21~30, ...
+
+        Map<String, String> findMap = new HashMap<>();
+        findMap.put("idxFirst", idxFirst+"");
+        findMap.put("idxLast", idxLast+"");
+//        findMap.put("isBlack", "Y");
+        findMap.put("search", search);
+
+
+
+        List<NewsDTO> newsList = newsInfoService.selectAllNewsList(findMap);
+
         List<GameInfoDTO> gameInfoList = gameInfoService.selectAllGameInfo();
-        gameInfoList.stream().forEach(GameInfoDTO -> System.out.println("games = " + GameInfoDTO) );
+
+
+        List<Map<String, String>> dataList = new ArrayList<>();
+        for(int i = 0; i < newsList.size(); i++) {
+            dataList.add(new HashMap<>());
+            String targetNewsCode = newsList.get(i).getNewsCode();
+            dataList.get(i).put("newsCode", targetNewsCode);
+            dataList.get(i).put("newsTitle", newsList.get(i).getNewsTitle());
+            dataList.get(i).put("newsView", newsList.get(i).getNewsView());
+            dataList.get(i).put("newsDate", newsList.get(i).getNewsDate().toString());
+            dataList.get(i).put("newsContent", newsList.get(i).getNewsContent());
+            dataList.get(i).put("gameName", newsList.get(i).getGameName());
+            dataList.get(i).put("memberName", newsList.get(i).getMemberName());
+
+
+//            dataList.get(i).put("historyBoard", newsInfoService.countHistoryOfBoard(targetNewsCode)+"");
+//            dataList.get(i).put("historyComment", newsInfoService.countHistoryOfComment(targetNewsCode)+"");
+            System.out.println(dataList.get(i));
+        }
+        mv.setViewName("news/news");
+        mv.addObject("dataList", dataList);
+        mv.addObject("currPage", page);
+        mv.addObject("lastPage", lastPage);
+        mv.addObject("pageIdx", pageIdx);
+        mv.addObject("pageEnd", pageEnd);
+        mv.addObject("pagePrev", pagePrev);
+        mv.addObject("pageNext", pageNext);
+        mv.addObject("search", search);
 
         mv.addObject("gameInfoList", gameInfoList);
-        mv.addObject("newsList", newsList);
-        mv.setViewName("news/news");
 
+
+//        newsList.stream().forEach(newsDTO -> System.out.println("news = " + newsDTO) );
+//        List<GameInfoDTO> gameInfoList = gameInfoService.selectAllGameInfo();
+//        gameInfoList.stream().forEach(GameInfoDTO -> System.out.println("games = " + GameInfoDTO) );
+
+//        mv.addObject("gameInfoList", gameInfoList);
+//        mv.addObject("newsList", newsList);
+//        mv.setViewName("news/news");
+        System.out.println(mv);
         return mv;
     }
 
@@ -92,6 +167,7 @@ public class NewsInfoController {
     }
     @PostMapping("/uploadNewsCom")
     public  ModelAndView uploadNewsCom(ModelAndView mv, NewsComDTO newsComDTO,String newsCode){
+
         newsInfoService.uploadNewsCom(newsComDTO);
 
         mv.setViewName("redirect:/news/newsDetail?newsCode="+newsCode);
@@ -100,12 +176,17 @@ public class NewsInfoController {
 
 
     @PostMapping("/newsDetail")
-    public  ModelAndView newsDetail(ModelAndView mv,NewsDTO newsDTO, NewsComDTO newsComDTO,String newsCode){
+    public  ModelAndView newsDetail(ModelAndView mv,NewsDTO newsDTO, NewsComDTO newsComDTO,String newsCode, Principal principal){
+
+        MemberDTO memberInfo = memberService.findMemberById(principal.getName());
+        newsComDTO.setMemberCode(memberInfo.getMemberCode());
+
 
         Map<String, String> newsCom = new HashMap<String, String>();
         newsCom.put("newsComCode",newsComDTO.getNewsComCode());
         newsCom.put("newsCode",newsCode);
         newsCom.put("newsCom",newsComDTO.getNewsCom());
+        newsCom.put("memberCode",newsComDTO.getMemberCode());
 
 
         newsInfoService.updateNewsCom(newsCom);
@@ -147,7 +228,7 @@ public class NewsInfoController {
         newsInfoService.registNewsInfo(newNewsInfo);
 
 
-        mv.setViewName("redirect:/news/news");
+        mv.setViewName("redirect:/news/news/1");
         rttr.addFlashAttribute("successMessage", messageSource.getMessage("registNewsInfo", null, locale));
 
 
@@ -157,6 +238,11 @@ public class NewsInfoController {
     public ModelAndView updateNewsInfoForm(ModelAndView mv, HttpServletRequest request){
         String newsCode = request.getParameter("newsCode");
         NewsDTO newsDTO = newsInfoService.newsDetail(newsCode);
+
+        List<GameInfoDTO> gameInfoList = gameInfoService.selectAllGameInfo();
+
+
+        mv.addObject("gameInfoList", gameInfoList);
         mv.addObject("detail", newsDTO);
         mv.addObject("update", newsInfoService.getNewsCode(newsCode));
         mv.setViewName("news/newsUpdate");
@@ -169,8 +255,9 @@ public class NewsInfoController {
         NewsDTO newsDTO = newsInfoService.newsDetail(request.getParameter("newsCode"));
         newsDTO.setNewsTitle(request.getParameter("newsTitle"));
         newsDTO.setNewsContent(request.getParameter("newsContent"));
+        newsDTO.setGameName(request.getParameter("gameName"));
         newsInfoService.updateNewsInfo(newsDTO);
-        mv.setViewName("redirect:/news/news");
+        mv.setViewName("redirect:/news/news/1");
         rttr.addFlashAttribute("successMessage", messageSource.getMessage("updateNewsInfo", null, locale));
 
         return mv;
@@ -179,7 +266,7 @@ public class NewsInfoController {
     @GetMapping("/newsDelete")
     public ModelAndView deleteNewsInfo(ModelAndView mv, String newsCode){
         newsInfoService.deleteNewsInfo(newsCode);
-        mv.setViewName("redirect:/news/news");
+        mv.setViewName("redirect:/news/news/1");
 
         return mv;
     }
@@ -242,7 +329,7 @@ public class NewsInfoController {
 //                String.format("%02d",(int)(Math.random()*30) + 1));
 //        news.setNewsContent(newsContent + i);
 //        news.setGameName("GAM_" + i);
-//        news.setMemberName("MEM_1");
+//        news.setMemberName("MEM_2");
 //
 //        System.out.println(news);
 //        try {

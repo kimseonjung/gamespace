@@ -349,11 +349,39 @@ li a {
     top: calc(50% - 34px/2);
 }
 
-.gametag-header .down{
+.gametag-header .more{
     background-image: url("../image/icon_light/down.svg");
     background-size: contain;
     background-repeat: no-repeat;
     position: absolute;
+    width: 24px;
+    height: 24px;
+    right: 24px;
+    top: calc(50% - 24px/2);
+}
+.gametag-body .mores{
+    background-image: url("../image/icon_light/down.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    right: 24px;
+    top: calc(50% - 24px/2);
+}
+.gametag-header .close{
+    background-image: url("../image/icon_light/minus.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    right: 24px;
+    top: calc(50% - 24px/2);
+}
+.gametag-body .closes{
+    background-image: url("../image/icon_light/minus.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
     width: 24px;
     height: 24px;
     right: 24px;
@@ -400,9 +428,19 @@ li a {
     align-items: center;
     padding: 0px;
     width: 500px;
-    gap: 8px 14px;
-    flex-wrap: wrap
+    max-height: 110px;
 
+    gap: 8px 14px;
+    flex-wrap: wrap;
+    overflow: auto;
+
+}
+.gametag-body .gametags::-webkit-scrollbar {
+    width: 1vw;
+}
+.gametag-body .gametags::-webkit-scrollbar-thumb {
+    background-color: hsla(0, 0%, 42%, 0.49);
+    border-radius: 100px;
 }
 
 .tag-label{

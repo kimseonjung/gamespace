@@ -13,6 +13,7 @@
         <result property="gameName" column="GAME_NAME"/>
         <result property="memberName" column="MEMBER_NAME"/>
         <result property="isAdmin" column="ADMIN_YN"/>
+        <result property="memberCode" column="MEMBER_CODE"/>
     </resultMap>
 
     <resultMap id="newsInfoResultMap2" type="com.semi.gamespace.news.model.dto.NewsDTO">
@@ -22,7 +23,7 @@
         <result property="newsDate" column="NEWS_DATE"/>
         <result property="newsContent" column="NEWS_CONTENT"/>
         <result property="gameName" column="GAME_CODE"/>
-        <result property="memberName" column="MEMBER_CODE"/>
+        <result property="memberCode" column="MEMBER_CODE"/>
     </resultMap>
 
     <resultMap id="newsComResultMap" type="com.semi.gamespace.news.model.dto.NewsComDTO">
@@ -33,19 +34,19 @@
         <result property="regDate" column="REGDATE"/>
     </resultMap>
     
-    <select id="selectAllNewsList" resultMap="newsInfoResultMap">
-        SELECT
-            A.NEWS_CODE,
-            A.NEWS_TITLE,
-            A.NEWS_VIEW,
-            TO_CHAR(TO_DATE(A.NEWS_DATE,'YY-MM-DD'),'RRRR-MM-DD') AS NEWS_DATE,
-            A.NEWS_CONTENT,
-            B.GAME_NAME,
-            C.MEMBER_NAME
-        FROM NEWS A
-                 JOIN GAME_INFO B ON (A.GAME_CODE = B.GAME_CODE)
-                 JOIN MEMBER C ON (A.MEMBER_CODE = C.MEMBER_CODE)
-    </select>
+<!--    <select id="selectAllNewsList" resultMap="newsInfoResultMap">-->
+<!--        SELECT-->
+<!--            A.NEWS_CODE,-->
+<!--            A.NEWS_TITLE,-->
+<!--            A.NEWS_VIEW,-->
+<!--            TO_CHAR(TO_DATE(A.NEWS_DATE,'YY-MM-DD'),'RRRR-MM-DD') AS NEWS_DATE,-->
+<!--            A.NEWS_CONTENT,-->
+<!--            B.GAME_NAME,-->
+<!--            C.MEMBER_NAME-->
+<!--        FROM NEWS A-->
+<!--                 JOIN GAME_INFO B ON (A.GAME_CODE = B.GAME_CODE)-->
+<!--                 JOIN MEMBER C ON (A.MEMBER_CODE = C.MEMBER_CODE)-->
+<!--    </select>-->
 
     <select id="newsDetail" parameterType="String" resultMap="newsInfoResultMap">
         SELECT
@@ -55,7 +56,7 @@
             TO_CHAR(TO_DATE(A.NEWS_DATE,'YY-MM-DD'),'RRRR-MM-DD') AS NEWS_DATE,
             A.NEWS_CONTENT,
             B.GAME_NAME,
-            C.MEMBER_NAME,
+            A.MEMBER_CODE,
             C.ADMIN_YN
         FROM NEWS A
                  JOIN GAME_INFO B ON (A.GAME_CODE = B.GAME_CODE)
@@ -109,7 +110,8 @@
         UPDATE NEWS
         SET
             NEWS_TITLE=#{newsTitle},
-            NEWS_CONTENT=#{newsContent}
+            NEWS_CONTENT=#{newsContent},
+            GAME_CODE=#{gameName}
             WHERE NEWS_CODE=#{newsCode}
     </update>
 
@@ -155,7 +157,7 @@
             'NEWC_' ||NEWS_COM_CODE_SEQ.nextval,
                #{newsCode},
                #{newsCom},
-               'MEM_1'
+                #{memberCode}
                )
     </insert>
 
@@ -163,7 +165,7 @@
     <update id="updateNewsCom" parameterType="java.util.HashMap">
         UPDATE NEWS_COM
         SET
-            MEMBER_CODE='MEM_1', NEWS_COM_TITLE=#{newsCom}
+            MEMBER_CODE=#{memberCode}, NEWS_COM_TITLE=#{newsCom}
         WHERE NEWS_COM_CODE=#{newsComCode} AND NEWS_CODE=#{newsCode}
     </update>
 
@@ -193,6 +195,41 @@
             </foreach>
         </if>
     </select>
+
+
+
+    <select id="selectAllNewsList" resultMap="newsInfoResultMap" parameterType="java.util.HashMap">
+        SELECT
+            R.NEWS_CODE,
+            R.NEWS_TITLE,
+            R.NEWS_VIEW,
+            TO_CHAR(TO_DATE(R.NEWS_DATE,'YY-MM-DD'),'RRRR-MM-DD') AS NEWS_DATE,
+            R.NEWS_CONTENT,
+            R.GAME_NAME,
+            R.MEMBER_NAME
+        FROM (SELECT ROWNUM RNUM,
+                  A.NEWS_CODE,
+                  A.NEWS_TITLE,
+                  A.NEWS_VIEW,
+                  TO_CHAR(TO_DATE(A.NEWS_DATE,'YY-MM-DD'),'RRRR-MM-DD') AS NEWS_DATE,
+                  A.NEWS_CONTENT,
+                  B.GAME_NAME,
+                  C.MEMBER_NAME
+              FROM NEWS A
+                  JOIN GAME_INFO B ON (A.GAME_CODE = B.GAME_CODE)
+                  JOIN MEMBER C ON (A.MEMBER_CODE = C.MEMBER_CODE)
+
+        ORDER BY A.NEWS_TITLE) R
+        WHERE R.RNUM BETWEEN #{ idxFirst } AND #{ idxLast }
+
+    </select>
+
+    <select id="countAllNewsList" resultType="_int" parameterType="java.util.HashMap">
+        SELECT COUNT(*)
+        FROM NEWS N
+    </select>
+
+
 
 
 </mapper>

@@ -2,14 +2,25 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- 기본링크 -->
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/common.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/news/news.css">
+    <link rel="stylesheet" href="/css/commonDark.css">
 
-    <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <link rel="stylesheet" href="/css/news/news.css">
+    <link rel="stylesheet" href="/css/news/newsDark.css">
+
+    <!--    <script src='/js/display.js'></script>-->
+
+    <!-- 다크모드 -->
+    <script type="text/javascript" src="/js/init.js"></script>
+
     <script type="text/javascript" defer src="/js/fileInput.js"></script>
+    <script src='/js/display.js'></script>
     <title>newsUpdate</title>
 
 </head>
@@ -20,17 +31,17 @@
     <th:block th:replace="~{common/header :: header}"/>
 </div>
 
-<!-- 게임태그 -->
-<div class="gametag-nav">
-    <th:block th:replace="~{common/gameTag :: gameTag}"/>
-</div>
+
+
 
 <!-- 작성창 -->
 <form action="/news/newsUpdate" method="post">
+    <!-- 게임태그 -->
+    <th:block th:replace="~{common/gameTag :: gameTag}"/>
 <section class="news-insert">
 
     <!-- 뉴스제목 -->
-    <input type="text" name="newsTitle" id="title" placeholder="뉴스제목을 입력하세요." class="input-title" th:value="${detail.newsTitle}">
+    <input type="text" name="newsTitle" id="title" placeholder="뉴스제목을 입력하세요." class="input-title input" th:value="${detail.newsTitle}">
 
     <!-- 첨부파일 -->
     <div class="att-btn">
@@ -63,5 +74,32 @@
     <th:block th:replace="~{common/footer :: footer}"/>
 </div>
 
+
+<script>
+    function getCheckboxValue()  {
+        // 선택된 목록 가져오기
+        const query = 'input[name="gameName"]:checked';
+        const selectedEls =
+            document.querySelectorAll(query);
+
+        // 선택된 목록에서 value 찾기
+        let result = '';
+        selectedEls.forEach((el) => {
+            result += `<p class="tag-gameName">${el.value}</p>`;
+        });
+
+        // 출력
+        document.getElementById('tag-result').innerHTML
+            = result;
+
+        // 코드로 받은 리스트 출력
+    }
+
+    // window.onload = function() {
+    //     scrolly();
+    // };
+
+
+</script>
 </body>
 </html>

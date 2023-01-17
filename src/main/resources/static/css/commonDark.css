@@ -180,11 +180,39 @@
     top: calc(50% - 34px/2);
 }
 
-.screen-dark .gametag-header .down{
+.screen-dark .gametag-header .more{
     background-image: url("../image/icon_dark/down.svg");
     background-size: contain;
     background-repeat: no-repeat;
     position: absolute;
+    width: 24px;
+    height: 24px;
+    right: 24px;
+    top: calc(50% - 24px/2);
+}
+.screen-dark .gametag-body .mores{
+    background-image: url("../image/icon_dark/down.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    right: 24px;
+    top: calc(50% - 24px/2);
+}
+.screen-dark .gametag-header .close{
+    background-image: url("../image/icon_dark/minus.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    right: 24px;
+    top: calc(50% - 24px/2);
+}
+.screen-dark .gametag-body .closes{
+    background-image: url("../image/icon_dark/minus.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
     width: 24px;
     height: 24px;
     right: 24px;
@@ -223,7 +251,7 @@
 
     color: rgba(114, 120, 136, 0.6);
 }
-.gametag-body .gametags{
+.screen-dark .gametag-body .gametags{
     /* Auto layout */
 
     display: flex;
@@ -231,9 +259,20 @@
     align-items: center;
     padding: 0px;
     width: 500px;
-    gap: 8px 14px;
-    flex-wrap: wrap
+    max-height: 110px;
 
+    gap: 8px 14px;
+    flex-wrap: wrap;
+    overflow: auto;
+
+
+}
+.screen-dark .gametag-body .gametags::-webkit-scrollbar {
+    width: 1vw;
+}
+.screen-dark .gametag-body .gametags::-webkit-scrollbar-thumb {
+    background-color: hsla(0, 0%, 42%, 0.49);
+    border-radius: 100px;
 }
 
 .screen-dark .tag-label{
