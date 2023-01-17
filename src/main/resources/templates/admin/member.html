@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/member/mypage.css">
     <link rel="stylesheet" href="/css/admin/admin.css">
 
     <title>adminMember</title>
@@ -28,8 +29,10 @@
 
         <!-- 검색버튼 -->
         <div class="searchBar">
-            <input type="text" name="" id="" placeholder="Search" class="searchInput">
-            <button type="submit" class="searchBtn"><img src="/image/svg/search.svg" alt="search"></button>
+            <form method="get" action="/admin/memberList/1">
+                <input type="text" name="search" id="search" class="searchInput" placeholder="Search">
+                <button type="submit" class="searchBtn"><img src="/image/svg/search.svg" alt="search"></button>
+            </form>
         </div>
 
         <!-- 회원리스트 -->
@@ -64,27 +67,28 @@
         </div>
         <div class="mypage-number-outline">
             <div class="mypage-number">
-                <button type="button" class="number-arrow btn-response">
-                    <div class="number-page"><p><</p></div>
-                </button>
-                <button type="button" class="number-btn btn-response">
-                    <div class="number-page number-active"><p>1</p></div>
-                </button>
-                <button type="button" class="number-btn btn-response">
-                    <div class="number-page"><p>2</p></div>
-                </button>
-                <button type="button" class="number-btn btn-response">
-                    <div class="number-page"><p>3</p></div>
-                </button>
-                <button type="button" class="number-btn btn-response">
-                    <div class="number-page"><p>4</p></div>
-                </button>
-                <button type="button" class="number-btn btn-response">
-                    <div class="number-page"><p>5</p></div>
-                </button>
-                <button type="button" class="number-arrow btn-response">
-                    <div class="number-page"><p>></p></div>
-                </button>
+                <th:block th:if="${pageIdx}!=1">
+                    <button type="button" class="number-arrow btn-response">
+                        <a class="number-page" th:href="|/admin/memberList/1?search=${search}|"><<</a>
+                    </button>
+                    <button type="button" class="number-arrow btn-response">
+                        <a class="number-page" th:href="|/admin/memberList/${pagePrev}?search=${search}|"><</a>
+                    </button>
+                </th:block>
+                <th:block th:each="idx : ${#numbers.sequence(pageIdx, pageEnd)}">
+                    <button type="button" class="number-btn btn-response">
+                        <a class="number-page number-active" th:if="${#strings.equals(currPage, idx)}" th:text="${idx}"></a>
+                        <a class="number-page" th:if="${not #strings.equals(currPage, idx)}" th:text="${idx}" th:href="@{|/admin/memberList/${idx}?search=${search}|}"></a>
+                    </button>
+                </th:block>
+                <th:block th:if="${pageEnd < lastPage}">
+                    <button type="button" class="number-arrow btn-response">
+                        <a class="number-page" th:href="|/admin/memberList/${pageNext}?search=${search}|">></a>
+                    </button>
+                    <button type="button" class="number-arrow btn-response">
+                        <a class="number-page" th:href="|/admin/memberList/${lastPage}?search=${search}|">>></a>
+                    </button>
+                </th:block>
             </div>
         </div>
     </section>
