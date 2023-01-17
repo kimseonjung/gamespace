@@ -38,15 +38,15 @@ public class GameInfoService {
     }
 
 
-    public MinimumSystemDTO selectAllMinimumSystem(String gameCode) {
+    public MinimumSystemDTO selectDetailMinimumSystem(String gameCode) {
 
 
-        return gameInfoMapper.selectAllMinimumSystem(gameCode);
+        return gameInfoMapper.selectDetailMinimumSystem(gameCode);
     }
 
-    public RecommendedSystemDTO selectAllRecommendedSystem(String gameCode) {
+    public RecommendedSystemDTO selectDetailRecommendedSystem(String gameCode) {
 
-        return gameInfoMapper.selectAllRecommendedSystem(gameCode);
+        return gameInfoMapper.selectDetailRecommendedSystem(gameCode);
 
     }
 
@@ -132,5 +132,47 @@ public class GameInfoService {
     public int updateGameInfo(GameInfoDTO gameInfoDetail) {
         int result = gameInfoMapper.updateGameInfo(gameInfoDetail);
         return result;
+    }
+
+    public boolean registDebugGameInfo(GameInfoDTO gameInfo) throws Exception{
+        int result = gameInfoMapper.registDebugGameInfo(gameInfo);
+
+        if (result <= 0){
+            throw new Exception("신규게임정보추가등록실패");
+
+        }
+        return result > 0 ? true: false;
+    }
+
+    public boolean registDebugSpecification(SpecificationDTO specification) throws Exception{
+
+        int result = gameInfoMapper.registDebugSpecification(specification);
+
+        if (result <= 0){
+            throw new Exception("신규사양추가등록실패");
+
+        }
+        return result > 0 ? true: false;
+    }
+
+    public boolean registDebugMinimumSystem(MinimumSystemDTO minimumSystem) throws Exception{
+        int result = gameInfoMapper.registDebugMinimumSystem(minimumSystem);
+
+        if (result <= 0){
+            throw new Exception("신규최소시스템추가등록실패");
+
+        }
+        return result > 0 ? true: false;
+    }
+
+    public boolean registDebugRecommendedSystem(RecommendedSystemDTO recommendedSystem) throws Exception{
+
+        int result = gameInfoMapper.registDebugRecommendedSystem(recommendedSystem);
+
+        if (result <= 0){
+            throw new Exception("신규권장시스템추가등록실패");
+
+        }
+        return result > 0 ? true: false;
     }
 }

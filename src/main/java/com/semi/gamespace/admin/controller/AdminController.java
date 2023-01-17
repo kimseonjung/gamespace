@@ -24,20 +24,33 @@ public class AdminController {
     }
 
     @GetMapping("/memberList/{page}")
-    public ModelAndView adminPage(ModelAndView mv, @PathVariable("page") String page){
-        int amount = memberService.countAllUser(true);
-        int lastPage = (int) Math.ceil((double)amount / 20) + 1; //[1]1~20, [2]21~40, [3]41~60, ...
+    public ModelAndView adminPage(ModelAndView mv, @PathVariable("page") String page, @RequestParam(required = false) String search){
+        int itemPerList = 20;   //페이지 당 20개 표시
 
-        int idxFirst = 20*(Integer.parseInt(page)-1) + 1;
-        int idxLast = 20*(Integer.parseInt(page));
+        if(search==null) search = "";
+        Map<String, String> searched = new HashMap<>();
+        searched.put("status", "Y");
+        searched.put("search", search);
+
+        int amount = memberService.countAllSearchedUser(searched);
+        int lastPage = (int) Math.ceil((double)amount / itemPerList); //[1]1~20, [2]21~40, [3]41~60, ...
+
+        int idxFirst = itemPerList*(Integer.parseInt(page)-1) + 1;
+        int idxLast = itemPerList*(Integer.parseInt(page));
         if(idxLast > amount) idxLast = amount;
 
-        Map<String, String> search = new HashMap<>();
-        search.put("idxFirst", idxFirst+"");
-        search.put("idxLast", idxLast+"");
-        search.put("isBlack", "Y");
+        int pageIdx = (Integer.parseInt(page)-1)/10*10+1;
+        int pageEnd = (Math.min(lastPage, pageIdx+9));
+        int pagePrev = (Integer.parseInt(page)-1)/10*10;    //[0]1~10, [10]11~20, [20]21~30, ...
+        int pageNext = pagePrev + 11;                       //[11]1~10, [21]11~20, [31]21~30, ...
 
-        List<SimpleMemberDTO> targetList = memberService.findMemberUsingIndex(search);
+        Map<String, String> findMap = new HashMap<>();
+        findMap.put("idxFirst", idxFirst+"");
+        findMap.put("idxLast", idxLast+"");
+        findMap.put("isBlack", "Y");
+        findMap.put("search", search);
+
+        List<SimpleMemberDTO> targetList = memberService.findMemberUsingIndex(findMap);
         List<Map<String, String>> dataList = new ArrayList<>();
         for(int i = 0; i < targetList.size(); i++) {
             dataList.add(new HashMap<>());
@@ -57,6 +70,12 @@ public class AdminController {
         mv.addObject("dataList", dataList);
         mv.addObject("currPage", page);
         mv.addObject("lastPage", lastPage);
+        mv.addObject("pageIdx", pageIdx);
+        mv.addObject("pageEnd", pageEnd);
+        mv.addObject("pagePrev", pagePrev);
+        mv.addObject("pageNext", pageNext);
+        mv.addObject("search", search);
+        System.out.println(mv);
         return mv;
     }
 

@@ -30,7 +30,7 @@ public interface MemberMapper {
     void leaveMemberByCode(String memberCode);
     void deleteFollowAll(String memberCode);
     void updateMemberPassword(Map<String, String> data);
-    int countAllUser(String status);
+    int countAllSearchedUser(Map<String, String> search);
 
     List<SimpleMemberDTO> findMemberUsingIndex(Map<String, String> search);
     void memberBanByCode(Map<String, String> banData);

@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="/css/news/news.css">
     <link rel="stylesheet" href="/css/freeGal/freeGal.css">
 
+    <!-- 다크모드 -->
+    <script src="/js/init.js"></script>
+
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -44,7 +47,7 @@
             <div class="item">
                 <div th:each="support : ${supportList}" class="gallery list">
                     <div class="gal-list">
-                        <a th:href="@{/support/view(supportCode=${support.supportCode})}" th:if="${halo.memberCode} == ${#authentication.principal.memberCode} or ${#strings.equals(#authentication.principal.isAdmin, 'Y')}" >
+                        <a th:href="@{/support/view(supportCode=${support.supportCode})}" th:if="${support.memberCode} == ${#authentication.principal.memberCode} or ${#strings.equals(#authentication.principal.isAdmin, 'Y')}" >
                             <div class="gal-head"><p th:text="${support.supportTitle}"> </p></div>
                             <div class="gal-body"><p th:text="${support.supportContent}"> </p></div>
                             <div class="gal-foot"><p th:text="|${support.supportDate} ${support.memberNickname} ${support.supportView}|"> </p></div>

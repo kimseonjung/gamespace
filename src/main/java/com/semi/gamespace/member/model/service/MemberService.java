@@ -144,8 +144,8 @@ public class MemberService {
         memberMapper.updateMemberPassword(data);
     }
 
-    public int countAllUser(boolean status) {
-        return memberMapper.countAllUser(status ? "Y" : "N");
+    public int countAllSearchedUser(Map<String, String> search) {
+        return memberMapper.countAllSearchedUser(search);
     }
     public List<SimpleMemberDTO> findMemberUsingIndex(Map<String, String> search) {
         return memberMapper.findMemberUsingIndex(search);

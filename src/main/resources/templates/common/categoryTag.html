@@ -18,7 +18,7 @@
     <div class="gametag-body-left">Category</div>
     <div class="gametags" id="gametags">
 
-        <div th:each="category : ${categoryList}" id="categoryCode" class="gametags">
+        <div th:each="category : ${categoryList}" id="categoryCode" class="gametag">
             <label th:for="${category.categoryCode}">
                 <input th:id="${category.categoryCode}" th:value="${category.categoryCode}" th:type="checkbox" name="categoryCode" class="categoryCheck" onclick="getCheckboxValue();searchGameMainList()" >
                 <div class="tag-label" th:text="${category.categoryName}"></div>
@@ -32,9 +32,9 @@
       <div class="gametag-body-left">Tag</div>
       <div class="gametags" id="gametags2">
 
-        <div th:each="tag : ${tagList}" id="tagCode" class="gametags">
+        <div th:each="tag : ${tagList}" id="tagCode" class="gametag">
             <label th:for="${tag.tagCode}">
-                <input th:id="${tag.tagCode}" th:value="${tag.tagCode}" th:type="checkbox" name="tagCode" class="tagCheck" onclick="getCheckboxValue();searchGameMainList()">
+                <input th:id="${tag.tagCode}" th:value="${tag.tagCode}" th:type="checkbox" name="tagCode" class="tagCheck" onclick="getCheckboxValue2();searchGameMainList()">
                 <div class="tag-label" th:text="${tag.tagName}"></div>
             </label>
         </div>

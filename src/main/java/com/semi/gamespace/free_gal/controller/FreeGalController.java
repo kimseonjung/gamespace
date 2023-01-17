@@ -64,7 +64,7 @@ public class FreeGalController {
         //댓글 데이터를 freeGalComList에 담기
         mv.addObject("freeGalComList", freeGalService.getComment(freeGalCode));
         // 대댓글 데이터를 replyReplyList 모델 객체에 담기
-        mv.addObject("freeGalComComL                                                                                              ist", freeGalService.getCommentComment(freeGalCode));
+        mv.addObject("freeGalComComList", freeGalService.getCommentComment(freeGalCode));
 
         mv.addObject("halo", freeGalView);
 
@@ -206,4 +206,22 @@ public class FreeGalController {
         return mv;
     }
 
+//    @GetMapping("/debug/freeGalList")
+//    public String debugFreeGalList(Model model, Principal principal) {
+//        FreeGalDTO freeGalDTO = new FreeGalDTO();
+//
+//        for(int i = 12; i <= 141; i++) {
+//            freeGalDTO.setFreeGalTitle("FreeGalTitle" + i);
+//            freeGalDTO.setFreeGalContent("자유갤러리 내용 내용 내용 " + i);
+//            freeGalDTO.setMemberCode("MEM_1");
+//            System.out.println(freeGalDTO);
+//            try {
+//                freeGalService.uploadBoard(freeGalDTO);
+//            } catch (Exception e) {
+//                System.out.println("error!! (i = " + i + ")");
+//                break;
+//            }
+//        }
+//        return "redirect:/";
+//    }
 }
