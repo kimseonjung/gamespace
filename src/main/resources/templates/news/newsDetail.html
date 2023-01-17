@@ -49,20 +49,22 @@
                         <p th:text="${newsComItem.newsCom}"></p>
                             <input type="hidden" name="newsComCode" th:value="${newsComItem.newsComCode}">
                             <input type="hidden" name="newsCode" th:value="${detail.newsCode}">
-                            <input type="text" name="newsCom" class="input com-input" placeholder="수정댓글을 입력하세요">
-                            <button type="submit" class="update-btn dis" >수정완료</button>
+                            <input type="hidden" name="memberCode" th:value="${#authentication.principal.memberCode}">
+                            <input type="text" name="newsCom" class="input com-input" placeholder="수정댓글을 입력하세요" th:if="${newsComItem.memberCode} == ${#authentication.principal.memberCode}" >
+                            <button type="submit" class="update-btn dis" th:if="${newsComItem.memberCode} == ${#authentication.principal.memberCode}" >수정완료</button>
                     </form>
 
                     <form th:action="@{deleteNewsCom}" method="post" class="delete-btn">
                         <input type="hidden" name="newsComCode" th:value="${newsComItem.newsComCode}">
                         <input type="hidden" name="newsCode" th:value="${detail.newsCode}">
-                        <button type="submit" class="dis dix">댓글삭제</button>
+                        <button type="submit" class="dis dix" th:if="${newsComItem.memberCode} == ${#authentication.principal.memberCode} or ${#strings.equals(#authentication.principal.isAdmin, 'Y')}">댓글삭제</button>
                     </form>
 
                 </div>
                 <div class="detail-com-input" id="news-Com">
                     <form th:action="@{uploadNewsCom}" method="post">
                         <input type="hidden" name="newsCode" th:value="${detail.newsCode}">
+                        <input type="hidden" name="memberCode" th:value="${#authentication.principal.memberCode}">
                         <input type="text" name="newsCom" id="insertNewsCom" class="input" placeholder="댓글을 입력하세요">
                         <button type="submit" class="com-btn dis dix">댓글 작성</button>
                     </form>

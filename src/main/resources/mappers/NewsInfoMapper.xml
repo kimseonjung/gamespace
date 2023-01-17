@@ -13,6 +13,7 @@
         <result property="gameName" column="GAME_NAME"/>
         <result property="memberName" column="MEMBER_NAME"/>
         <result property="isAdmin" column="ADMIN_YN"/>
+        <result property="memberCode" column="MEMBER_CODE"/>
     </resultMap>
 
     <resultMap id="newsInfoResultMap2" type="com.semi.gamespace.news.model.dto.NewsDTO">
@@ -22,7 +23,7 @@
         <result property="newsDate" column="NEWS_DATE"/>
         <result property="newsContent" column="NEWS_CONTENT"/>
         <result property="gameName" column="GAME_CODE"/>
-        <result property="memberName" column="MEMBER_CODE"/>
+        <result property="memberCode" column="MEMBER_CODE"/>
     </resultMap>
 
     <resultMap id="newsComResultMap" type="com.semi.gamespace.news.model.dto.NewsComDTO">
@@ -55,7 +56,7 @@
             TO_CHAR(TO_DATE(A.NEWS_DATE,'YY-MM-DD'),'RRRR-MM-DD') AS NEWS_DATE,
             A.NEWS_CONTENT,
             B.GAME_NAME,
-            C.MEMBER_NAME,
+            A.MEMBER_CODE,
             C.ADMIN_YN
         FROM NEWS A
                  JOIN GAME_INFO B ON (A.GAME_CODE = B.GAME_CODE)
@@ -109,7 +110,8 @@
         UPDATE NEWS
         SET
             NEWS_TITLE=#{newsTitle},
-            NEWS_CONTENT=#{newsContent}
+            NEWS_CONTENT=#{newsContent},
+            GAME_CODE=#{gameName}
             WHERE NEWS_CODE=#{newsCode}
     </update>
 
@@ -155,7 +157,7 @@
             'NEWC_' ||NEWS_COM_CODE_SEQ.nextval,
                #{newsCode},
                #{newsCom},
-               'MEM_1'
+                #{memberCode}
                )
     </insert>
 
@@ -163,7 +165,7 @@
     <update id="updateNewsCom" parameterType="java.util.HashMap">
         UPDATE NEWS_COM
         SET
-            MEMBER_CODE='MEM_1', NEWS_COM_TITLE=#{newsCom}
+            MEMBER_CODE=#{memberCode}, NEWS_COM_TITLE=#{newsCom}
         WHERE NEWS_COM_CODE=#{newsComCode} AND NEWS_CODE=#{newsCode}
     </update>
 

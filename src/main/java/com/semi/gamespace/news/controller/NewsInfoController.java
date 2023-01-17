@@ -167,6 +167,7 @@ public class NewsInfoController {
     }
     @PostMapping("/uploadNewsCom")
     public  ModelAndView uploadNewsCom(ModelAndView mv, NewsComDTO newsComDTO,String newsCode){
+
         newsInfoService.uploadNewsCom(newsComDTO);
 
         mv.setViewName("redirect:/news/newsDetail?newsCode="+newsCode);
@@ -175,12 +176,17 @@ public class NewsInfoController {
 
 
     @PostMapping("/newsDetail")
-    public  ModelAndView newsDetail(ModelAndView mv,NewsDTO newsDTO, NewsComDTO newsComDTO,String newsCode){
+    public  ModelAndView newsDetail(ModelAndView mv,NewsDTO newsDTO, NewsComDTO newsComDTO,String newsCode, Principal principal){
+
+        MemberDTO memberInfo = memberService.findMemberById(principal.getName());
+        newsComDTO.setMemberCode(memberInfo.getMemberCode());
+
 
         Map<String, String> newsCom = new HashMap<String, String>();
         newsCom.put("newsComCode",newsComDTO.getNewsComCode());
         newsCom.put("newsCode",newsCode);
         newsCom.put("newsCom",newsComDTO.getNewsCom());
+        newsCom.put("memberCode",newsComDTO.getMemberCode());
 
 
         newsInfoService.updateNewsCom(newsCom);
@@ -222,7 +228,7 @@ public class NewsInfoController {
         newsInfoService.registNewsInfo(newNewsInfo);
 
 
-        mv.setViewName("redirect:/news/news");
+        mv.setViewName("redirect:/news/news/1");
         rttr.addFlashAttribute("successMessage", messageSource.getMessage("registNewsInfo", null, locale));
 
 
@@ -232,6 +238,11 @@ public class NewsInfoController {
     public ModelAndView updateNewsInfoForm(ModelAndView mv, HttpServletRequest request){
         String newsCode = request.getParameter("newsCode");
         NewsDTO newsDTO = newsInfoService.newsDetail(newsCode);
+
+        List<GameInfoDTO> gameInfoList = gameInfoService.selectAllGameInfo();
+
+
+        mv.addObject("gameInfoList", gameInfoList);
         mv.addObject("detail", newsDTO);
         mv.addObject("update", newsInfoService.getNewsCode(newsCode));
         mv.setViewName("news/newsUpdate");
@@ -244,8 +255,9 @@ public class NewsInfoController {
         NewsDTO newsDTO = newsInfoService.newsDetail(request.getParameter("newsCode"));
         newsDTO.setNewsTitle(request.getParameter("newsTitle"));
         newsDTO.setNewsContent(request.getParameter("newsContent"));
+        newsDTO.setGameName(request.getParameter("gameName"));
         newsInfoService.updateNewsInfo(newsDTO);
-        mv.setViewName("redirect:/news/news");
+        mv.setViewName("redirect:/news/news/1");
         rttr.addFlashAttribute("successMessage", messageSource.getMessage("updateNewsInfo", null, locale));
 
         return mv;
@@ -254,7 +266,7 @@ public class NewsInfoController {
     @GetMapping("/newsDelete")
     public ModelAndView deleteNewsInfo(ModelAndView mv, String newsCode){
         newsInfoService.deleteNewsInfo(newsCode);
-        mv.setViewName("redirect:/news/news");
+        mv.setViewName("redirect:/news/news/1");
 
         return mv;
     }
