@@ -8,33 +8,37 @@
 
 <section class="gametag-wrap" th:fragment="categoryTag">
   <div class="gametag-header">
-    <div class="logo"><img src="/image/icon_light/gamespace.svg" alt="gamespace"></div>
+      <div class="logo"></div>
+      <div class="down"></div>
   </div>
 
-  <!--                <form action="/game/game"  method="post" onsubmit="return false;" id="category" class="gamecategorytag">-->
-  <!--        style="position: absolute;left: -1000%;"-->
+
+
   <div class="gametag-body">
     <div class="gametag-body-left">Category</div>
+    <div class="gametags" id="gametags">
 
-    <div th:each="category : ${categoryList}" id="categoryCode" class="gametags">
-        <label th:for="${category.categoryCode}">
-            <input th:id="${category.categoryCode}" th:value="${category.categoryCode}" th:type="checkbox" name="categoryCode" class="categoryCheck" onclick="searchGameMainList()" >
-            <div th:text="${category.categoryName}"></div>
-        </label>
+        <div th:each="category : ${categoryList}" id="categoryCode" class="gametags">
+            <label th:for="${category.categoryCode}">
+                <input th:id="${category.categoryCode}" th:value="${category.categoryCode}" th:type="checkbox" name="categoryCode" class="categoryCheck" onclick="getCheckboxValue();searchGameMainList()" >
+                <div class="tag-label" th:text="${category.categoryName}"></div>
+            </label>
+        </div>
     </div>
-
   </div>
 
   <div class="gametag-body">
-    <div class="gametag-body-left">Tag</div>
 
-    <div th:each="tag : ${tagList}" id="tagCode" class="gametags">
-        <label th:for="${tag.tagCode}">
-            <input th:id="${tag.tagCode}" th:value="${tag.tagCode}" th:type="checkbox" name="tagCode" class="tagCheck" onclick="searchGameMainList()">
-            <div th:text="${tag.tagName}"></div>
-        </label>
+      <div class="gametag-body-left">Tag</div>
+      <div class="gametags" id="gametags2">
 
-    </div>
+        <div th:each="tag : ${tagList}" id="tagCode" class="gametags">
+            <label th:for="${tag.tagCode}">
+                <input th:id="${tag.tagCode}" th:value="${tag.tagCode}" th:type="checkbox" name="tagCode" class="tagCheck" onclick="getCheckboxValue();searchGameMainList()">
+                <div class="tag-label" th:text="${tag.tagName}"></div>
+            </label>
+        </div>
+      </div>
   </div>
 
 
@@ -43,7 +47,7 @@
   <!--                    </div>-->
 
 
-  <!--                </form>-->
+
   <div class="gametag-foot">
     <div class="tag" id="tag-result"></div>
   </div>
