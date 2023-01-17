@@ -228,20 +228,31 @@
              , A.SPECIFICATION_CODE
              , A.GAME_INTRO
              , A.GAME_STATUS
+             , B.SPECIFICATION_CODE
+             , B.MIN_SYSTEM_CODE
+             , B.REC_SYSTEM_CODE
+             , C.MIN_SYSTEM_CODE
              , C.MIN_OPERATING_SYSTEM
              , C.MIN_PROCESSOR
              , C.MIN_MEMORY
              , C.MIN_STORAGE_SPACE
              , C.MIN_GRAPHIC
+             , D.REC_SYSTEM_CODE
              , D.REC_OPERATING_SYSTEM
              , D.REC_PROCESSOR
              , D.REC_MEMORY
              , D.REC_STORAGE_SPACE
              , D.REC_GRAPHIC
+             , E.CATEGORY_CODE
+             , E.CATEGORY_NAME
+             , F.TAG_CODE
+             , F.TAG_NAME
         FROM GAME_INFO A
         JOIN SPECIFICATION B ON A.SPECIFICATION_CODE = B.SPECIFICATION_CODE
         JOIN MINIMUM_SYSTEM C ON B.MIN_SYSTEM_CODE = C.MIN_SYSTEM_CODE
         JOIN RECOMMENDED_SYSTEM D ON B.REC_SYSTEM_CODE = D.REC_SYSTEM_CODE
+        JOIN CATEGORY E ON A.CATEGORY_CODE = E.CATEGORY_CODE
+        JOIN TAG F ON A.TAG_CODE = F.TAG_CODE
         WHERE A.GAME_CODE = #{gameCode}
 
 
@@ -259,6 +270,7 @@
              , A.MIN_MEMORY
              , A.MIN_STORAGE_SPACE
              , A.MIN_GRAPHIC
+             , B.GAME_CODE
         FROM MINIMUM_SYSTEM A
         JOIN GAME_INFO B
         WHERE B.GAME_CODE = #{gameCode}
