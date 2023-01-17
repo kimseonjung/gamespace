@@ -176,7 +176,8 @@ public class FreeGalController {
     }
 
     @PostMapping("/uploadCommentComment")
-    public ModelAndView uploadCommentComment(ModelAndView mv, String freeGalCode, FreeGalComDTO freeGalComDTO, Principal principal) {
+    public ModelAndView uploadCommentComment(ModelAndView mv, String freeGalCode,
+                                             FreeGalComDTO freeGalComDTO, Principal principal) {
         MemberDTO memberInfo = memberService.findMemberById(principal.getName());
         freeGalComDTO.setMemberCode(memberInfo.getMemberCode());
         freeGalComDTO.setMemberNickname(memberInfo.getUserNickname());
@@ -205,7 +206,7 @@ public class FreeGalController {
 
         return mv;
     }
-
+//    게시판 더미 데이터 생성 문
 //    @GetMapping("/debug/freeGalList")
 //    public String debugFreeGalList(Model model, Principal principal) {
 //        FreeGalDTO freeGalDTO = new FreeGalDTO();
