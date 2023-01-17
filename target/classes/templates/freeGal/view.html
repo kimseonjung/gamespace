@@ -124,21 +124,8 @@
 
     </div>
 
-
-
   </div>
-  <!-- 댓글 작성 위치-->
-  <div class="uploadComment">
 
-    <form th:action="@{view}" method="post">
-      <input type="hidden" name="freeGalCode" th:value="${halo.freeGalCode}">
-      <div class="uploadCommentArea">
-        <textarea placeholder="댓글을 작성하세요" name="freeGalComTitle" class="uploadCommentArea"></textarea>
-      </div>
-      <button type="submit" class="uploadComment-btn">댓글작성</button>
-    </form>
-  </div>
-<!-- 댓글 끝 -->
 </div>
 <!-- 글 삭제 / 수정 / 목록 버튼-->
 <div class="viewButtonZone">
@@ -160,37 +147,4 @@
 </div>
 </body>
 
-<script>
-  // 수정 버튼
-  const updateCommentBtn = document.getElementsByClassName('updateCommentBtn');
-  const a = (e) => {
-    // e.target 은 수정 버튼을 가리킴
-    $(e.target.parentNode.parentNode.children[0]).hide(); // 원래 댓글 내용 숨기기
-    $(e.target.parentNode.children[0]).show(); // 댓글 수정 칸 나타내기
-    $(e.target.parentNode.children[5]).show(); // 저장 버튼 나타내기
-    $(e.target.parentNode.children[6]).show(); // 취소 버튼 나타내기
-    $(e.target).hide(); // 수정 버튼 숨기기
-    $(e.target.parentNode.parentNode.children[2]).hide(); // 삭제 버튼 숨기기
-    // jquery 로 인식할 수 있도록 $()로 감싸주기
-  }
-  for(i=0;i<$(updateCommentBtn).length;i++){
-    updateCommentBtn[i].addEventListener('click', a);
-  }
-
-  // 취소 버튼
-  const cancelUpdateComment = document.getElementsByClassName('cancelUpdateComment');
-  const b = (e) => {
-    // e.target 은 취소 버튼을 가리킴
-    $(e.target.parentNode.parentNode.children[0]).show(); // 원래 댓글 내용 나타내기
-    $(e.target.parentNode.children[0]).hide(); // 수정 칸 숨기기
-    $(e.target.parentNode.children[5]).hide(); // 저장 버튼 숨기기
-    $(e.target).hide(); // 취소 버튼 숨기기
-    $(e.target.parentNode.children[4]).show(); // 수정 버튼 나타내기
-    $(e.target.parentNode.parentNode.children[2]).show(); // 삭제 버튼 나타내기
-  }
-  for(i=0;i<$(cancelUpdateComment).length;i++){
-    cancelUpdateComment[i].addEventListener('click', b);
-  }
-
-</script>
 </html>

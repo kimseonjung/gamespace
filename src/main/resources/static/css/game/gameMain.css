@@ -563,3 +563,16 @@
 
     color: #22242C;
 }
+
+/*카테고리태그체크-------------------------------------------------------------------------*/
+.categoryCheck{
+    position: absolute;
+    left: -1000%;
+}
+.tagCheck{
+    position: absolute;
+    left: -1000%;
+}
+
+
+

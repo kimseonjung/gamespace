@@ -7,10 +7,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/commonDark.css">
     <link rel="stylesheet" href="/css/game/gameMain.css">
 
     <title>gamespace</title>
 
+    <script src="/js/init.js"></script>
     <!-- jQuery library -->
     <!--    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>-->
 
@@ -79,6 +81,33 @@
 </div>
 
 <script>
+
+    function getCheckboxValue()  {
+        // 선택된 목록 가져오기
+        const query = 'input[name="categoryCode"]:checked';
+        const query2 = 'input[name="tagCode"]:checked';
+        const selectedEls =
+            document.querySelectorAll(query,query2);
+
+        // 선택된 목록에서 value 찾기
+        let result = '';
+        selectedEls.forEach((el) => {
+            result += `<p class="tag-gameName">${el.value}</p>`;
+
+        });
+
+        // 출력
+        document.getElementById('tag-result').innerHTML
+            = result;
+
+        // 코드로 받은 리스트 출력
+    }
+
+
+
+
+
+
     
     function gameDetailView(gameCode) {
 

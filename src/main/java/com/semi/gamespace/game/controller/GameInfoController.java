@@ -118,7 +118,7 @@ public class GameInfoController {
         System.out.println(categoryCode);
 
         Gson gson = new GsonBuilder()
-                .setDateFormat("yyyy-MM-dd hh:mm:FreeGalMapper:SSS")
+                .setDateFormat("yyyy-MM-dd hh:mm:ss:SSS")
                 .setPrettyPrinting()
                 .setFieldNamingPolicy(FieldNamingPolicy.IDENTITY)
                 .serializeNulls()
