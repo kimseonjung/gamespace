@@ -150,41 +150,41 @@ public class MemberController {
         return model;
     }
 
-    @GetMapping("/debug/insertMember")
-    public String debugInsertMember(Model model, Principal principal) {
-        MemberDTO member = new MemberDTO();
-
-        for(int i = 1000; i <= 999; i++) {
-            member.setUserId("user" + i);
-            member.setUserPwd("pass" + i);
-            member.setUserNickname("test" + i);
-            member.setUserName("name" + i);
-            member.setUserPhone("010" + String.format("%08d", (int) (Math.random()*100000000)));
-            member.setUserEmail("test" + i + "@test.com");
-            member.setUserBirthday((int)(Math.random()*50+1973) + "-" +
-                    String.format("%02d",(int)(Math.random()*12) + 1) + "-" +
-                    String.format("%02d",(int)(Math.random()*30) + 1));
-            member.setUserGender(Math.random()*3 < 1 ? "U" : (Math.random()*2 < 1 ? "M" : "F"));
-            member.setUserAddress(String.format("%05d", (int) (Math.random()*100000))+"^my test address " + i + "^멤버의 상세주소 (한글과 괄호) " + i);
-            member.setUserIntroduce((Math.random()*2<1 ? "hello" : "hi") + ", " + i + " world!");
-            System.out.println(member);
-            try {
-                memberService.registMember(member);
-            } catch (Exception e) {
-                System.out.println("error!! (i = " + i + ")");
-                break;
-            }
-        }
-        return "redirect:/";
-    }
-
-    @GetMapping("/debug/insertFollow")
-    public String debugInsertFollow() {
-        Map<String, String> conn = new HashMap<>();
-        String followReq = "";
-        String followTar = "";
-
-//        for(int i = 299; i <= 1197; i++) {
+//    @GetMapping("/debug/insertMember")
+//    public String debugInsertMember(Model model, Principal principal) {
+//        MemberDTO member = new MemberDTO();
+//
+//        for(int i = 10; i <= 999; i++) {
+//            member.setUserId("user" + i);
+//            member.setUserPwd("pass" + i);
+//            member.setUserNickname("test" + i);
+//            member.setUserName("name" + i);
+//            member.setUserPhone("010" + String.format("%08d", (int) (Math.random()*100000000)));
+//            member.setUserEmail("test" + i + "@test.com");
+//            member.setUserBirthday((int)(Math.random()*50+1973) + "-" +
+//                    String.format("%02d",(int)(Math.random()*12) + 1) + "-" +
+//                    String.format("%02d",(int)(Math.random()*30) + 1));
+//            member.setUserGender(Math.random()*3 < 1 ? "U" : (Math.random()*2 < 1 ? "M" : "F"));
+//            member.setUserAddress(String.format("%05d", (int) (Math.random()*100000))+"^my test address " + i + "^멤버의 상세주소 (한글과 괄호) " + i);
+//            member.setUserIntroduce((Math.random()*2<1 ? "hello" : "hi") + ", " + i + " world!");
+//            System.out.println(member);
+//            try {
+//                memberService.registMember(member);
+//            } catch (Exception e) {
+//                System.out.println("error!! (i = " + i + ")");
+//                break;
+//            }
+//        }
+//        return "redirect:/";
+//    }
+//
+//    @GetMapping("/debug/insertFollow")
+//    public String debugInsertFollow() {
+//        Map<String, String> conn = new HashMap<>();
+//        String followReq = "";
+//        String followTar = "";
+//
+//        for(int i = 100; i <= 1197; i++) {
 //            followReq = "MEM_" + i;
 //            for(int j = 298; j <= 1197; j++) {
 //                if(Math.random()*100 < 33) {
@@ -196,8 +196,8 @@ public class MemberController {
 //                }
 //            }
 //        }
-        return "redirect:/";
-    }
+//        return "redirect:/";
+//    }
 
     @ResponseBody
     @PostMapping("/findId")

@@ -53,9 +53,9 @@
                M.SITE_LINK_4,
                M.SITE_LINK_5,
                M.SITE_LINK_6,
-               TO_CHAR(TO_DATE(M.ENROLL_DATE, 'RR/MM/DD'),'YYYY-MM-DD') AS ENROLL_DATE,
+               TO_CHAR(TO_DATE(M.ENROLL_DATE, 'YY/MM/DD'),'YYYY-MM-DD') AS ENROLL_DATE,
                M.MEMBER_STATUS,
-               TO_CHAR(TO_DATE(M.BAN_DATE, 'RR/MM/DD'),'YYYY-MM-DD') AS BAN_DATE,
+               TO_CHAR(TO_DATE(M.BAN_DATE, 'YY/MM/DD'),'YYYY-MM-DD') AS BAN_DATE,
                M.ADMIN_YN
           FROM MEMBER M
          WHERE M.MEMBER_ID = #{ userId }
@@ -80,9 +80,9 @@
                M.SITE_LINK_4,
                M.SITE_LINK_5,
                M.SITE_LINK_6,
-               TO_CHAR(TO_DATE(M.ENROLL_DATE, 'RR/MM/DD'),'YYYY-MM-DD') AS ENROLL_DATE,
+               TO_CHAR(TO_DATE(M.ENROLL_DATE, 'YY/MM/DD'),'YYYY-MM-DD') AS ENROLL_DATE,
                M.MEMBER_STATUS,
-               TO_CHAR(TO_DATE(M.BAN_DATE, 'RR/MM/DD'),'YYYY-MM-DD') AS BAN_DATE,
+               TO_CHAR(TO_DATE(M.BAN_DATE, 'YY/MM/DD'),'YYYY-MM-DD') AS BAN_DATE,
                M.ADMIN_YN
         FROM MEMBER M
         WHERE M.MEMBER_EMAIL = #{ userEmail }
@@ -107,9 +107,9 @@
                M.SITE_LINK_4,
                M.SITE_LINK_5,
                M.SITE_LINK_6,
-               TO_CHAR(TO_DATE(M.ENROLL_DATE, 'RR/MM/DD'),'YYYY-MM-DD') AS ENROLL_DATE,
+               TO_CHAR(TO_DATE(M.ENROLL_DATE, 'YY/MM/DD'),'YYYY-MM-DD') AS ENROLL_DATE,
                M.MEMBER_STATUS,
-               TO_CHAR(TO_DATE(M.BAN_DATE, 'RR/MM/DD'),'YYYY-MM-DD') AS BAN_DATE,
+               TO_CHAR(TO_DATE(M.BAN_DATE, 'YY/MM/DD'),'YYYY-MM-DD') AS BAN_DATE,
                M.ADMIN_YN
           FROM MEMBER M
 --          WHERE M.MEMBER_STATUS = 'Y'

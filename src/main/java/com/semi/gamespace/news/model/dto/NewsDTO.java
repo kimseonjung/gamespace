@@ -17,6 +17,7 @@ public class NewsDTO {
     private String newsTitle;
     private String newsView;
     private Date newsDate;
+//    private String newsDate;
     private String newsContent;
     private String gameName;
     private String memberName;
