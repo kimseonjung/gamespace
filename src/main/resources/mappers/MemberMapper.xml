@@ -27,6 +27,13 @@
         <result property="banDate" column="BAN_DATE"/>
         <result property="isAdmin" column="ADMIN_YN"/>
     </resultMap>
+    <resultMap id="simpleMemberMap" type="com.semi.gamespace.admin.model.dto.SimpleMemberDTO">
+        <id property="memberCode" column="MEMBER_CODE"/>
+        <result property="userNickname" column="MEMBER_NICKNAME"/>
+        <result property="enrollDate" column="ENROLL_DATE"/>
+        <result property="memberStatus" column="MEMBER_STATUS"/>
+        <result property="banDate" column="BAN_DATE"/>
+    </resultMap>
 
     <select id="findMemberById" resultMap="memberResultMap" parameterType="string">
         SELECT M.MEMBER_CODE,
@@ -46,13 +53,13 @@
                M.SITE_LINK_4,
                M.SITE_LINK_5,
                M.SITE_LINK_6,
-               M.ENROLL_DATE,
+               TO_CHAR(TO_DATE(M.ENROLL_DATE, 'YY/MM/DD'),'YYYY-MM-DD') AS ENROLL_DATE,
                M.MEMBER_STATUS,
-               M.BAN_DATE,
+               TO_CHAR(TO_DATE(M.BAN_DATE, 'YY/MM/DD'),'YYYY-MM-DD') AS BAN_DATE,
                M.ADMIN_YN
           FROM MEMBER M
          WHERE M.MEMBER_ID = #{ userId }
-           AND M.MEMBER_STATUS = 'Y'
+--            AND M.MEMBER_STATUS = 'Y'
     </select>
 
     <select id="findMemberByEmailForSocialLogin" resultMap="memberResultMap" parameterType="string">
@@ -73,13 +80,13 @@
                M.SITE_LINK_4,
                M.SITE_LINK_5,
                M.SITE_LINK_6,
-               M.ENROLL_DATE,
+               TO_CHAR(TO_DATE(M.ENROLL_DATE, 'YY/MM/DD'),'YYYY-MM-DD') AS ENROLL_DATE,
                M.MEMBER_STATUS,
-               M.BAN_DATE,
+               TO_CHAR(TO_DATE(M.BAN_DATE, 'YY/MM/DD'),'YYYY-MM-DD') AS BAN_DATE,
                M.ADMIN_YN
         FROM MEMBER M
         WHERE M.MEMBER_EMAIL = #{ userEmail }
-          AND M.MEMBER_STATUS = 'Y'
+--           AND M.MEMBER_STATUS = 'Y'
     </select>
 
     <select id="selectAllMember" resultMap="memberResultMap">
@@ -100,12 +107,25 @@
                M.SITE_LINK_4,
                M.SITE_LINK_5,
                M.SITE_LINK_6,
-               M.ENROLL_DATE,
+               TO_CHAR(TO_DATE(M.ENROLL_DATE, 'YY/MM/DD'),'YYYY-MM-DD') AS ENROLL_DATE,
                M.MEMBER_STATUS,
-               M.BAN_DATE,
+               TO_CHAR(TO_DATE(M.BAN_DATE, 'YY/MM/DD'),'YYYY-MM-DD') AS BAN_DATE,
                M.ADMIN_YN
           FROM MEMBER M
-           AND M.MEMBER_STATUS = 'Y'
+--          WHERE M.MEMBER_STATUS = 'Y'
+         ORDER BY M.MEMBER_CODE
+    </select>
+
+    <select id="findMemberUsingIndex" resultMap="simpleMemberMap" parameterType="java.util.HashMap">
+        SELECT M.MEMBER_CODE,
+               M.MEMBER_NICKNAME,
+               TO_CHAR(TO_DATE(M.ENROLL_DATE, 'RR/MM/DD'),'YYYY-MM-DD') AS ENROLL_DATE,
+               M.MEMBER_STATUS,
+               TO_CHAR(TO_DATE(M.BAN_DATE, 'RR/MM/DD'),'YYYY-MM-DD') AS BAN_DATE
+          FROM MEMBER M
+         WHERE M.MEMBER_STATUS = #{ isBlack }
+           AND ROWNUM >= #{ idxFirst }
+           AND ROWNUM <![CDATA[<=]]> #{ idxLast }
          ORDER BY M.MEMBER_CODE
     </select>
 
@@ -180,6 +200,12 @@
         FROM FOLLOW F
         WHERE F.FOLLOW_REQ_CODE = #{ current }
           AND F.FOLLOW_TAR_CODE = #{ target }
+    </select>
+
+    <select id="countAllUser" resultType="_int" parameterType="string">
+        SELECT COUNT(*)
+        FROM MEMBER M
+        WHERE M.MEMBER_STATUS = #{ status }
     </select>
 
     <insert id="registMember" parameterType="com.semi.gamespace.member.model.dto.MemberDTO">
@@ -312,4 +338,32 @@
          WHERE F.FOLLOW_REQ_CODE = #{ input }
             OR F.FOLLOW_TAR_CODE = #{ input }
     </delete>
+
+
+
+
+    <update id="memberBanByCode" parameterType="java.util.HashMap">
+        UPDATE MEMBER M
+        SET (
+                M.MEMBER_STATUS,
+                M.BAN_DATE
+                ) = (
+                    SELECT 'N',
+                           #{ banDate }
+                      FROM DUAL
+                )
+        WHERE M.MEMBER_CODE = #{ targetCode }
+    </update>
+    <update id="memberUnbanByCode" parameterType="string">
+        UPDATE MEMBER M
+        SET (
+                M.MEMBER_STATUS,
+                M.BAN_DATE
+                ) = (
+                SELECT 'Y',
+                       NULL
+                  FROM DUAL
+            )
+        WHERE M.MEMBER_CODE = #{ memberCode }
+    </update>
 </mapper>

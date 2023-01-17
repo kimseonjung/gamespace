@@ -64,7 +64,7 @@ public class FreeGalController {
         //댓글 데이터를 freeGalComList에 담기
         mv.addObject("freeGalComList", freeGalService.getComment(freeGalCode));
         // 대댓글 데이터를 replyReplyList 모델 객체에 담기
-        mv.addObject("freeGalComComList", freeGalService.getCommentComment(freeGalCode));
+        mv.addObject("freeGalComComL                                                                                              ist", freeGalService.getCommentComment(freeGalCode));
 
         mv.addObject("halo", freeGalView);
 

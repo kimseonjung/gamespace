@@ -11,4 +11,9 @@ public interface SupportMapper {
 
     SupportDTO getBoard(String supportCode);
 
+    void uploadBoard(SupportDTO supportDTO);
+
+    int updateBoard(SupportDTO supportDTO);
+
+    void deleteBoard(String supportCode);
 }

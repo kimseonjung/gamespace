@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
 
@@ -33,8 +33,60 @@
         </div>
 
         <!-- 회원리스트 -->
-        <th:block th:replace="~{admin/memberList :: memberList}"/>
-
+        <div class="member-list">
+<!--            <th:block th:replace="~{admin/memberList :: memberList(data)}"/>-->
+                <div class="member-list-item" th:each="data,iterStat : ${dataList}">
+                    <div class="member-item" th:id="|block-${iterStat.index}|">
+                        <div class="member"></div>
+                        <div class="member-info">
+                            <div class="member-info-upper">
+                                <div class="memberCode member16"><h2 th:text="${data.get('memberCode')}">회원코드</h2></div>
+                                <div class="memberName member16"><h2 th:text="${data.get('memberNickname')}">회원명</h2></div>
+                                <div class="memberDate member14"><p th:text="${data.get('enrollDate')}">가입날짜</p></div>
+                            </div>
+                            <form th:id="|memberBan${iterStat.index}|" method="get" action="/admin/memberBan">
+                                <div class="banDate-wrap">
+                                    <input type="hidden" name="currPage" th:value="${page}">
+                                    <input type="hidden" name="targetCode" class="targetCode" th:value="${data.get('memberCode')}">
+                                    <input type="range" class="banDateBar" name="banDateCode" min="0" max="6" step="1" value="0" th:oninput="|rangeChange(${iterStat.index});|">
+                                    <span class="banDate-val">1일</span>
+                                    <button class="btn-primary submit-btn">정지</button>
+                                </div>
+                                <div class="member-info-lower">
+                                    <div class="memberGallery member14"><p th:text="|게시글 ${data.get('historyBoard')}|">게시글 100</p></div>
+                                    <div class="memberComment member14"><p th:text="|댓글 ${data.get('historyComment')}|">댓글 1,000</p></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mypage-number-outline">
+            <div class="mypage-number">
+                <button type="button" class="number-arrow btn-response">
+                    <div class="number-page"><p><</p></div>
+                </button>
+                <button type="button" class="number-btn btn-response">
+                    <div class="number-page number-active"><p>1</p></div>
+                </button>
+                <button type="button" class="number-btn btn-response">
+                    <div class="number-page"><p>2</p></div>
+                </button>
+                <button type="button" class="number-btn btn-response">
+                    <div class="number-page"><p>3</p></div>
+                </button>
+                <button type="button" class="number-btn btn-response">
+                    <div class="number-page"><p>4</p></div>
+                </button>
+                <button type="button" class="number-btn btn-response">
+                    <div class="number-page"><p>5</p></div>
+                </button>
+                <button type="button" class="number-arrow btn-response">
+                    <div class="number-page"><p>></p></div>
+                </button>
+            </div>
+        </div>
     </section>
 
     <!-- 푸터 -->
@@ -42,4 +94,5 @@
         <th:block th:replace="~{common/footer :: footer}"/>
     </div>
 </body>
+<script src="/js/admin.js"></script>
 </html>

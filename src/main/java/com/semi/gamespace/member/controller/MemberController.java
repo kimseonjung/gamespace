@@ -184,18 +184,18 @@ public class MemberController {
         String followReq = "";
         String followTar = "";
 
-        for(int i = 299; i <= 1197; i++) {
-            followReq = "MEM_" + i;
-            for(int j = 298; j <= 1197; j++) {
-                if(Math.random()*100 < 33) {
-                    if(i == j) continue;
-                    followTar = "MEM_" + j;
-                    conn.put("requestCode", followReq);
-                    conn.put("targetCode", followTar);
-                    memberService.insertFollowConnect(conn);
-                }
-            }
-        }
+//        for(int i = 299; i <= 1197; i++) {
+//            followReq = "MEM_" + i;
+//            for(int j = 298; j <= 1197; j++) {
+//                if(Math.random()*100 < 33) {
+//                    if(i == j) continue;
+//                    followTar = "MEM_" + j;
+//                    conn.put("requestCode", followReq);
+//                    conn.put("targetCode", followTar);
+//                    memberService.insertFollowConnect(conn);
+//                }
+//            }
+//        }
         return "redirect:/";
     }
 

@@ -15,11 +15,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.security.Principal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @Controller
 public class MainController {
+    private final MemberService memberService;
+
+    public MainController(MemberService memberService) {
+        this.memberService = memberService;
+    }
+
     @GetMapping(value={"/", "/main"})
-    public String main() {
-        return "/main/index";
+    public ModelAndView main(ModelAndView mv, Principal principal) {
+        if(principal != null) {
+            MemberDTO currUser = memberService.findMemberById(principal.getName());
+            if(currUser.getMemberStatus().equals("N")) {
+                Date now = new Date(System.currentTimeMillis());
+                Date banned = currUser.getBanDate();
+                if(now.before(banned)) {
+                    mv.addObject("banDuration", currUser.getBanDate());
+                    mv.setViewName("/common/error/banned");
+                    return mv;
+                } else {
+                    memberService.memberUnbanByCode(currUser.getMemberCode());
+                }
+            }
+        }
+        mv.setViewName("/main/index");
+        return mv;
     }
 
     @GetMapping(value={"/common/error/denied"})
