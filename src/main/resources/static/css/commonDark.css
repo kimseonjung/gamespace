@@ -124,6 +124,16 @@
     width: 16px;
     height: 16px;
 }
+.screen-dark .logo{
+    background-image: url("../image/icon_dark/gamespace.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    width: 36px;
+    height: 24px;
+    display: inline-block;
+}
 
 /* gametag ----------------------------------------------------------------------------------------------- */
 .screen-dark .gametag-wrap{

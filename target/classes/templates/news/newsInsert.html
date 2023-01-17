@@ -73,5 +73,26 @@
     <th:block th:replace="~{common/footer :: footer}"/>
 </div>
 
+
+<script>
+    function getCheckboxValue()  {
+        // 선택된 목록 가져오기
+        const query = 'input[name="gameName"]:checked';
+        const selectedEls =
+            document.querySelectorAll(query);
+
+        // 선택된 목록에서 value 찾기
+        let result = '';
+        selectedEls.forEach((el) => {
+            result += `<p class="tag-gameName">${el.value}</p>`;
+        });
+
+        // 출력
+        document.getElementById('tag-result').innerHTML
+            = result;
+
+        // 코드로 받은 리스트 출력
+    }
+</script>
 </body>
 </html>

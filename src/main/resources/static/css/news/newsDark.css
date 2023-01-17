@@ -229,7 +229,7 @@
     color: #fff;
 }
 
-.com-input{
+.screen-dark .com-input{
     width: 636px;
     min-height: 20px;
 }
@@ -622,7 +622,7 @@
     color: #ECEDEE;
 
 }
-.detail-sub{
+.screen-dark .detail-sub{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -634,16 +634,16 @@
     width: 676px;
     height: 36px;
 
-    /* Basic / White */
+    /* Basic/Black */
 
-    background: #FFFFFF;
+    background: #0A0A0D;
     border-radius: 24px;
 
     /* Inside auto layout */
 
 
 }
-.detail-sub p {
+.screen-dark .detail-sub p {
     /* 15/15 - Med */
 
     font-family: 'Inter';
@@ -655,9 +655,9 @@
 
     letter-spacing: -0.009em;
 
-    /* Light/Light Gray */
+    /* Dark/Light Gray */
 
-    color: rgba(74, 87, 111, 0.7);
+    color: rgba(114, 120, 136, 0.6);
 }
 .detail-sub .detail-sub-left{
     display: flex;
@@ -676,7 +676,7 @@
 
 
 
-.detail-body{
+.screen-dark .detail-body{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -686,9 +686,9 @@
     width: 676px;
     min-height: 980px;
 
-    /* Basic / White */
+    /* Basic/Black */
 
-    background: #FFFFFF;
+    background: #0A0A0D;
     border-radius: 24px;
 
     /* Inside auto layout */
@@ -697,7 +697,7 @@
     order: 2;
     flex-grow: 0;
 }
-.detail-body p{
+.screen-dark .detail-body p{
     /* 15/15 - Med */
 
     font-family: 'Inter';
@@ -709,15 +709,15 @@
 
     letter-spacing: -0.009em;
 
-    /* Light/Primary Text */
+    /* Dark/Primary Text */
 
-    color: #22242C;
+    color: #ECEDEE;
 
 }
 
 /* 뉴스 디테일 ------------------------------------------------------------------------------------------------------*/
 
-.detail-comList{
+.screen-dark .detail-comList{
     /* Auto layout */
 
     display: flex;
@@ -736,7 +736,7 @@
     order: 3;
     flex-grow: 0;
 }
-.detail-com{
+.screen-dark .detail-com{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -747,9 +747,9 @@
     width: 676px;
     min-height: 40px;
 
-    /* Basic / White */
+    /* Basic/Black */
 
-    background: #FFFFFF;
+    background: #0A0A0D;
     border-radius: 24px;
 
     /* Inside auto layout */
@@ -760,7 +760,7 @@
     word-break: break-word;
     position: relative;
 }
-.detail-com p{
+.screen-dark .detail-com p{
     min-width: 49px;
     min-height: 20px;
     /* 15/15 - Med */
@@ -774,9 +774,9 @@
 
     letter-spacing: -0.009em;
 
-    /* Light/Primary Text */
+    /* Dark/Primary Text */
 
-    color: #22242C;
+    color: #ECEDEE;
 
 
     /* Inside auto layout */

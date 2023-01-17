@@ -99,12 +99,17 @@ public class NewsInfoController {
 
 
     @PostMapping("/newsDetail")
-    public  ModelAndView newsDetail(ModelAndView mv, NewsComDTO newsComDTO,String newsCode){
+    public  ModelAndView newsDetail(ModelAndView mv,NewsDTO newsDTO, NewsComDTO newsComDTO,String newsCode){
 
         Map<String, String> newsCom = new HashMap<String, String>();
         newsCom.put("newsComCode",newsComDTO.getNewsComCode());
         newsCom.put("newsCode",newsCode);
         newsCom.put("newsCom",newsComDTO.getNewsCom());
+//        if (principal.isAdmin == "null"){
+//            result = newsDTO.setIsAdmin("N");
+//            newsCom.put(result);
+//        }
+
 
         newsInfoService.updateNewsCom(newsCom);
 

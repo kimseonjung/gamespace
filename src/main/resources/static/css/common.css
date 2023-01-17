@@ -225,8 +225,16 @@ li a {
 
 
 .logo{
+    background-image: url("../image/icon_light/gamespace.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    width: 36px;
+    height: 24px;
     display: inline-block;
 }
+
 
 .nav-right{
 

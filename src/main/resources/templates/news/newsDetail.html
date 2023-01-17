@@ -2,14 +2,23 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <!-- 기본링크 -->
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/commonDark.css">
+
     <link rel="stylesheet" href="/css/news/news.css">
+    <link rel="stylesheet" href="/css/news/newsDark.css">
+
+    <!-- 다크모드 -->
+    <script src="/js/init.js"></script>
 
     <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" defer src="/js/fileInput.js"></script>
     <script type="application/javascript" src="/js/display.js"></script>
+
+
 
     <title>newDetail</title>
 </head>
@@ -40,7 +49,7 @@
                         <p th:text="${newsComItem.newsCom}"></p>
                             <input type="hidden" name="newsComCode" th:value="${newsComItem.newsComCode}">
                             <input type="hidden" name="newsCode" th:value="${detail.newsCode}">
-                            <input type="text" name="newsCom" class="input com-input">
+                            <input type="text" name="newsCom" class="input com-input" placeholder="수정댓글을 입력하세요">
                             <button type="submit" class="update-btn dis" >수정완료</button>
                     </form>
 
@@ -54,7 +63,7 @@
                 <div class="detail-com-input" id="news-Com">
                     <form th:action="@{uploadNewsCom}" method="post">
                         <input type="hidden" name="newsCode" th:value="${detail.newsCode}">
-                        <input type="text" name="newsCom" id="insertNewsCom" class="input">
+                        <input type="text" name="newsCom" id="insertNewsCom" class="input" placeholder="댓글을 입력하세요">
                         <button type="submit" class="com-btn dis dix">댓글 작성</button>
                     </form>
                 </div>
@@ -65,12 +74,12 @@
         <div class="btn-wrap">
             <form th:action="@{newsDelete}" method="get">
                 <input type="hidden" name="newsCode" th:value="${detail.newsCode}">
-                <input type="submit" value="삭제하기" class="btn">
+                <input type="submit" value="삭제하기" class="btn" th:if="${#strings.equals(#authentication.principal.isAdmin, 'Y')}">
             </form>
             <!-- 수정하기 버튼 -->
             <form th:action="@{newsUpdate}" method="get">
                 <input type="hidden" name="newsCode" th:value="${detail.newsCode}">
-                <input type="submit" value="수정하기" class="btn-primary">
+                <input type="submit" value="수정하기" class="btn-primary" th:if="${#strings.equals(#authentication.principal.isAdmin, 'Y')}">
             </form>
         </div>
 

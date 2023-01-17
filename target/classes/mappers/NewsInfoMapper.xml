@@ -12,6 +12,7 @@
         <result property="newsContent" column="NEWS_CONTENT"/>
         <result property="gameName" column="GAME_NAME"/>
         <result property="memberName" column="MEMBER_NAME"/>
+        <result property="isAdmin" column="ADMIN_YN"/>
     </resultMap>
 
     <resultMap id="newsInfoResultMap2" type="com.semi.gamespace.news.model.dto.NewsDTO">
@@ -48,8 +49,17 @@
 
     <select id="newsDetail" parameterType="String" resultMap="newsInfoResultMap">
         SELECT
-            *
-        FROM NEWS
+            A.NEWS_CODE,
+            A.NEWS_TITLE,
+            A.NEWS_VIEW,
+            TO_CHAR(TO_DATE(A.NEWS_DATE,'YY-MM-DD'),'RRRR-MM-DD') AS NEWS_DATE,
+            A.NEWS_CONTENT,
+            B.GAME_NAME,
+            C.MEMBER_NAME,
+            C.ADMIN_YN
+        FROM NEWS A
+                 JOIN GAME_INFO B ON (A.GAME_CODE = B.GAME_CODE)
+                 JOIN MEMBER C ON (A.MEMBER_CODE = C.MEMBER_CODE)
         WHERE NEWS_CODE = #{news_code}
     </select>
 
