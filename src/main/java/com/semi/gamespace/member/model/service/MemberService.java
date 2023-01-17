@@ -1,5 +1,6 @@
 package com.semi.gamespace.member.model.service;
 
+import com.semi.gamespace.admin.model.dto.SimpleMemberDTO;
 import com.semi.gamespace.member.model.dao.MemberMapper;
 import com.semi.gamespace.member.model.dto.FollowDTO;
 import com.semi.gamespace.member.model.dto.MemberDTO;
@@ -141,5 +142,20 @@ public class MemberService {
         String encodedPassword = passwordEncoder.encode(data.get("userData"));
         data.put("userData", encodedPassword);
         memberMapper.updateMemberPassword(data);
+    }
+
+    public int countAllUser(boolean status) {
+        return memberMapper.countAllUser(status ? "Y" : "N");
+    }
+    public List<SimpleMemberDTO> findMemberUsingIndex(Map<String, String> search) {
+        return memberMapper.findMemberUsingIndex(search);
+    }
+
+    public void memberBanByCode(Map<String, String> banData) {
+        memberMapper.memberBanByCode(banData);
+    }
+
+    public void memberUnbanByCode(String memberCode) {
+        memberMapper.memberUnbanByCode(memberCode);
     }
 }
