@@ -219,12 +219,12 @@
 
     color: rgba(114, 120, 136, 0.6);
 }
-.screen-dark input:focus{
+.screen-dark .input:focus{
     border: 1px solid rgba(77, 62, 255, 0.9);
     color: #fff;
 }
 
-.screen-dark .active input{
+.screen-dark .active .input{
     border: 1px solid rgba(77, 62, 255, 0.9);
     color: #fff;
 }

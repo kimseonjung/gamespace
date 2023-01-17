@@ -21,7 +21,7 @@
 
     <script type="text/javascript" defer src="/js/fileInput.js"></script>
     <script src='/js/display.js'></script>
-    <title>newsUpdate</title>
+    <title>gamespace</title>
 
 </head>
 <body>
@@ -60,14 +60,16 @@
         <textarea placeholder="본문 내용입니다." class="textarea" id="textarea" name="newsContent" th:text="${detail.newsContent}"></textarea>
     </div>
 
+    <!-- 작성버튼 -->
+    <div class="btn-wrap">
+        <a href="/news/news"><input type="button" value="취소하기" class="btn"></a>
+        <input type="hidden" name="newsCode" th:value="${detail.newsCode}">
+        <input type="submit" value="수정하기" class="btn-primary">
+    </div>
+
 </section>
 
-<!-- 작성버튼 -->
-<div class="btn-wrap">
-    <a href="/news/news"><input type="button" value="취소하기" class="btn"></a>
-    <input type="hidden" name="newsCode" th:value="${detail.newsCode}">
-    <input type="submit" value="수정하기" class="btn-primary">
-</div>
+
 </form>
 <!-- 푸터 -->
 <div class="footer">
