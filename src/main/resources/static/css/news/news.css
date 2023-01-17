@@ -335,12 +335,12 @@
 
     color: rgba(74, 87, 111, 0.7);
 }
-input:focus {
+.input:focus {
     color: #000;
     border: 1px solid rgba(77, 62, 255, 0.9);
 }
 
-.active input{
+.active .input{
     color: #000;
     border: 1px solid rgba(77, 62, 255, 0.9);
 
