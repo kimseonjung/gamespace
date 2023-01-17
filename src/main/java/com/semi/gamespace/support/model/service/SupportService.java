@@ -28,4 +28,19 @@ public class SupportService {
     public SupportDTO getBoard(String supportCode){
         return supportMapper.getBoard(supportCode);
     }
+
+    @Transactional
+    public void uploadBoard(SupportDTO supportDTO){
+        supportMapper.uploadBoard(supportDTO);
+    }
+
+    @Transactional
+    public int updateBoard(SupportDTO supportDTO) {
+        int result = supportMapper.updateBoard(supportDTO);
+
+        return result;
+    }
+
+    @Transactional
+    public void deleteBoard(String supportCode) { supportMapper.deleteBoard(supportCode); }
 }
