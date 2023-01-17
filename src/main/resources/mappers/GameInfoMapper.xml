@@ -250,7 +250,7 @@
 
     </select>
 
-    <select id="selectAllMinimumSystem" resultMap="minimumSystemResultMap">
+    <select id="selectDetailMinimumSystem" resultMap="minimumSystemResultMap">
 
         SELECT
             A.MIN_SYSTEM_CODE
@@ -260,10 +260,12 @@
              , A.MIN_STORAGE_SPACE
              , A.MIN_GRAPHIC
         FROM MINIMUM_SYSTEM A
+        JOIN GAME_INFO B
+        WHERE B.GAME_CODE = #{gameCode}
     </select>
 
 
-    <select id="selectAllRecommendedSystem" resultMap="recommendedSystemResultMap">
+    <select id="selectDetailRecommendedSystem" resultMap="recommendedSystemResultMap">
 
         SELECT
             A.REC_SYSTEM_CODE
@@ -272,7 +274,10 @@
              , A.REC_MEMORY
              , A.REC_STORAGE_SPACE
              , A.REC_GRAPHIC
+             , B.GAME_CODE
         FROM RECOMMENDED_SYSTEM A
+        JOIN GAME_INFO B
+        WHERE B.GAME_CODE = #{gameCode}
     </select>
 
     <select id="getGameCode" parameterType="string" resultMap="gameInfoResultMap">
@@ -419,8 +424,112 @@
 
     </insert>
 
+    <insert id="registDebugGameInfo">
+        INSERT
+        INTO GAME_INFO A
+            (
+                A.GAME_CODE
+                , A.GAME_NAME
+                , A.DEVICES_CODE
+                , A.CATEGORY_CODE
+                , A.TAG_CODE
+                , A.REGISTRATION_DATE
+                , A.LAUNCH_DATE
+                , A.DEVELOPER
+                , A.DISTRIBUTOR_CODE
+                , A.RATING_CODE
+                , A.PRICE
+                , A.PLATFORM_CODE
+                , A.LANGUAGE_CODE
+                , A.SPECIFICATION_CODE
+                , A.GAME_INTRO
+                , A.GAME_STATUS
+        )
+        VALUES
+            (
 
+            'GAM_' || GAME_CODE_SEQ.NEXTVAL
 
+                , #{ gameName }
+                , #{ devicesCode }
+                , #{ categoryCode }
+                , #{ tagCode }
+                , TO_DATE(SYSDATE, 'YYYY-MM-DD HH24:mi:SS')
+                , #{ launchDate }
+                , #{ developer }
+                , #{ distributorCode }
+                , #{ ratingCode }
+                , #{ price }
+                , #{ platformCode }
+                , #{ languageCode }
+                , 'SPE_1'
+                , #{ gameIntro }
+                , #{ gameStatus }
+            )
+    </insert>
+
+    <insert id="registDebugSpecification">
+        INSERT
+        INTO SPECIFICATION A
+            (
+            A.SPECIFICATION_CODE
+            ,A.MIN_SYSTEM_CODE
+            ,A.REC_SYSTEM_CODE
+
+            )
+        VALUES
+            (
+            'SPE_'|| SPECIFICATION_CODE_SEQ.CURRVAL
+                , 'MSYS_'|| MIN_SYSTEM_CODE_SEQ.CURRVAL
+                , 'RSYS_'|| REC_SYSTEM_CODE_SEQ.CURRVAL
+            )
+    </insert>
+
+    <insert id="registDebugMinimumSystem">
+        INSERT
+        INTO MINIMUM_SYSTEM A
+            (
+               A.MIN_SYSTEM_CODE
+               , A.MIN_OPERATING_SYSTEM
+               , A.MIN_PROCESSOR
+               , A.MIN_MEMORY
+               , A.MIN_STORAGE_SPACE
+               , A.MIN_GRAPHIC
+
+            )
+        VALUES
+            (
+            'MSYS_'|| MIN_SYSTEM_CODE_SEQ.NEXTVAL
+                , #{ minOperatingSystem }
+                , #{ minProcessor }
+                , #{ minMemory }
+                , #{ minStorageSpace }
+                , #{ minGraphic }
+            )
+    </insert>
+
+    <insert id="registDebugRecommendedSystem">
+        INSERT
+        INTO RECOMMENDED_SYSTEM A
+            (
+                A.REC_SYSTEM_CODE
+                , A.REC_OPERATING_SYSTEM
+                , A.REC_PROCESSOR
+                , A.REC_MEMORY
+                , A.REC_STORAGE_SPACE
+                , A.REC_GRAPHIC
+
+            )
+        VALUES
+            (
+            'RSYS_'|| REC_SYSTEM_CODE_SEQ.NEXTVAL
+                , #{ recOperatingSystem }
+                , #{ recProcessor }
+                , #{ recMemory }
+                , #{ recStorageSpace }
+                , #{ recGraphic }
+            )
+    </insert>
 
 
 </mapper>

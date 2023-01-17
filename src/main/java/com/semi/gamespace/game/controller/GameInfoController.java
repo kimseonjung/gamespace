@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.semi.gamespace.game.model.dto.*;
 import com.semi.gamespace.game.model.service.GameInfoService;
+import com.semi.gamespace.member.model.dto.MemberDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.scheduling.annotation.Async;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.security.Principal;
 import java.util.*;
 
 @Controller
@@ -145,19 +147,19 @@ public class GameInfoController {
 
 
     @GetMapping("/gameInfoDetail")
-    public ModelAndView selectGameInfoDetailb (ModelAndView mv, String gameCode){
+    public ModelAndView selectGameInfoDetail (ModelAndView mv, String gameCode){
 
         GameInfoDTO gameInfoDetail = gameInfoService.selectGameDetail(gameCode);
 
         System.out.println("detail =" + gameInfoDetail);
 
-//        MinimumSystemDTO minimumSystem = gameInfoService.selectAllMinimumSystem(gameCode);
-//        RecommendedSystemDTO recommendedSystem = gameInfoService.selectAllRecommendedSystem(gameCode);
-//        System.out.println("mini =" + minimumSystem);
-//        System.out.println("rec =" + recommendedSystem);
-//
-//        mv.addObject("minimumSystem", minimumSystem);
-//        mv.addObject("recommendedSystem", recommendedSystem);
+        MinimumSystemDTO minimumSystem = gameInfoService.selectDetailMinimumSystem(gameCode);
+        RecommendedSystemDTO recommendedSystem = gameInfoService.selectDetailRecommendedSystem(gameCode);
+        System.out.println("mini =" + minimumSystem);
+        System.out.println("rec =" + recommendedSystem);
+
+        mv.addObject("minimumSystem", minimumSystem);
+        mv.addObject("recommendedSystem", recommendedSystem);
         mv.addObject("gameInfoDetail", gameInfoDetail);
         mv.setViewName("game/gameInfoDetail");
 
@@ -230,7 +232,64 @@ public class GameInfoController {
         return mv;
     }
 
-
+//    @GetMapping("/debug/insertGameInfo")
+//    public String debugInsertGameInfo(Model model, Principal principal) {
+//        GameInfoDTO gameInfo = new GameInfoDTO();
+//        SpecificationDTO specification = new SpecificationDTO();
+//        MinimumSystemDTO minimumSystem = new MinimumSystemDTO();
+//        RecommendedSystemDTO recommendedSystem = new RecommendedSystemDTO();
+//
+//        for(int i = 12; i <= 1010; i++) {
+//            gameInfo.setGameName("게임명" + i);
+//            gameInfo.setDevicesCode("DIV_" + (int)(Math.random()*3+1)); //ㅎㅎ
+//
+//            gameInfo.setCategoryCode("CAT_" + (int)(Math.random()*10+1)); // ㅎㅎ
+//            gameInfo.setTagCode("TAG_"+ (int)(Math.random()*10+1)); //ㅎㅎ
+//            gameInfo.setLaunchDate("2023/01/20");
+//            gameInfo.setDeveloper("developer"+ i);
+//            gameInfo.setDistributorCode("DIS_" + i);
+//            gameInfo.setRatingCode("RAT_" + (int)(Math.random()*4+1)); //gg
+//            gameInfo.setPrice(String.valueOf((int)(Math.random()*50000+10000)) + "원");
+//            gameInfo.setPlatformCode("PLA_" + (int)(Math.random()*5+1)); //hh
+//            gameInfo.setLanguageCode("LAN_" + (int)(Math.random()*3+1)); //gg
+//
+//            gameInfo.setGameIntro("게임소개입니다" + i);
+//            gameInfo.setGameStatus("Y");
+//
+//
+////            minimumSystem.setMinOperatingSystem("최소더미운영체제" + i); //100개까지만
+////            minimumSystem.setMinProcessor("최소더미프로세서" + i);  //100개까지만
+////            minimumSystem.setMinMemory("최소더미메모리" + i);  //100개까지만
+////            minimumSystem.setMinStorageSpace("최소더미저장공간" + i);  //100개까지만
+////            minimumSystem.setMinGraphic("최소더미그래픽" + i);  //100개까지만
+////
+////
+////            recommendedSystem.setRecOperatingSystem("권장더미운영체제" + i);  //100개까지만
+////            recommendedSystem.setRecProcessor("권장더미프로세서" + i);  //100개까지만
+////            recommendedSystem.setRecMemory("권장더미메모리" + i);  //100개까지만
+////            recommendedSystem.setRecStorageSpace("권장더미저장공간" + i);  //100개까지만
+////            recommendedSystem.setRecGraphic("권장더미그래픽" + i);  //100개까지만
+//
+//
+//            System.out.println(gameInfo);
+////            System.out.println(specification);
+////            System.out.println(minimumSystem);
+////            System.out.println(recommendedSystem);
+//            try {
+//                gameInfoService.registDebugGameInfo(gameInfo);
+////                gameInfoService.registDebugSpecification(specification);
+////                gameInfoService.registDebugMinimumSystem(minimumSystem);
+////                gameInfoService.registDebugRecommendedSystem(recommendedSystem);
+//
+//
+//
+//            } catch (Exception e) {
+//                System.out.println("error!! (i = " + i + ")");
+//                break;
+//            }
+//        }
+//        return "redirect:/";
+//    }
 
 
 }
