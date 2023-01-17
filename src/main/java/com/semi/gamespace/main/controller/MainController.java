@@ -41,6 +41,10 @@ public class MainController {
                 } else {
                     memberService.memberUnbanByCode(currUser.getMemberCode());
                 }
+            } else if(currUser.getMemberStatus().equals("X")) {
+                mv.addObject("leaveDate", currUser.getBanDate());
+                mv.setViewName("/common/error/leave");
+                return mv;
             }
         }
         mv.setViewName("/main/index");

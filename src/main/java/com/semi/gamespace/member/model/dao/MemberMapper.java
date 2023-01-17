@@ -10,6 +10,7 @@ import java.util.Map;
 @Mapper
 public interface MemberMapper {
     MemberDTO findMemberById(String userId);
+    MemberDTO findMemberByCode(String code);
     MemberDTO findMemberByEmailForSocialLogin(String email); // OAuth2DetailsService.java
     int countFollowFromByCode(String userCode);
     int countFollowToByCode(String userCode);
@@ -36,4 +37,12 @@ public interface MemberMapper {
     void memberBanByCode(Map<String, String> banData);
 
     void memberUnbanByCode(String memberCode);
+
+    int countAllFollowUser(Map<String, String> searched);
+
+    List<String> findFollowerUsingIndex(Map<String, String> findMap);
+    List<String> findFollowingUsingIndex(Map<String, String> findMap);
+
+    String getFollowDate(Map<String, String> followMap);
+
 }

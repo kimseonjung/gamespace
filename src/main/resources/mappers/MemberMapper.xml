@@ -27,8 +27,10 @@
         <result property="banDate" column="BAN_DATE"/>
         <result property="isAdmin" column="ADMIN_YN"/>
     </resultMap>
+
     <resultMap id="simpleMemberMap" type="com.semi.gamespace.admin.model.dto.SimpleMemberDTO">
         <id property="memberCode" column="MEMBER_CODE"/>
+        <result property="memberId" column="MEMBER_ID"/>
         <result property="userNickname" column="MEMBER_NICKNAME"/>
         <result property="enrollDate" column="ENROLL_DATE"/>
         <result property="memberStatus" column="MEMBER_STATUS"/>
@@ -59,6 +61,33 @@
                M.ADMIN_YN
           FROM MEMBER M
          WHERE M.MEMBER_ID = #{ userId }
+--            AND M.MEMBER_STATUS = 'Y'
+    </select>
+
+    <select id="findMemberByCode" resultMap="memberResultMap" parameterType="string">
+        SELECT M.MEMBER_CODE,
+               M.MEMBER_ID,
+               M.MEMBER_PWD,
+               M.MEMBER_NICKNAME,
+               M.MEMBER_NAME,
+               M.MEMBER_PHONE,
+               M.MEMBER_EMAIL,
+               TO_CHAR(TO_DATE(M.MEMBER_BIRTH, 'RR/MM/DD'),'YYYY-MM-DD') AS MEMBER_BIRTH,
+               M.MEMBER_GENDER,
+               M.ADDRESS,
+               M.INTRODUCE,
+               M.SITE_LINK_1,
+               M.SITE_LINK_2,
+               M.SITE_LINK_3,
+               M.SITE_LINK_4,
+               M.SITE_LINK_5,
+               M.SITE_LINK_6,
+               TO_CHAR(TO_DATE(M.ENROLL_DATE, 'YY/MM/DD'),'YYYY-MM-DD') AS ENROLL_DATE,
+               M.MEMBER_STATUS,
+               TO_CHAR(TO_DATE(M.BAN_DATE, 'YY/MM/DD'),'YYYY-MM-DD') AS BAN_DATE,
+               M.ADMIN_YN
+        FROM MEMBER M
+        WHERE M.MEMBER_CODE = #{ userCode }
 --            AND M.MEMBER_STATUS = 'Y'
     </select>
 
@@ -118,24 +147,25 @@
 
     <select id="findMemberUsingIndex" resultMap="simpleMemberMap" parameterType="java.util.HashMap">
         SELECT R.MEMBER_CODE,
+               R.MEMBER_ID,
                R.MEMBER_NICKNAME,
-               TO_CHAR(TO_DATE(R.ENROLL_DATE, 'RR/MM/DD'), 'YYYY-MM-DD') AS ENROLL_DATE,
+               TO_CHAR(TO_DATE(R.ENROLL_DATE, 'YY/MM/DD'), 'YYYY-MM-DD') AS ENROLL_DATE,
                R.MEMBER_STATUS,
-               TO_CHAR(TO_DATE(R.BAN_DATE, 'RR/MM/DD'), 'YYYY-MM-DD')    AS BAN_DATE
+               TO_CHAR(TO_DATE(R.BAN_DATE, 'YY/MM/DD'), 'YYYY-MM-DD')    AS BAN_DATE
         FROM (SELECT ROWNUM RNUM,
                      A.MEMBER_CODE,
+                     A.MEMBER_ID,
                      A.MEMBER_NICKNAME,
                      A.ENROLL_DATE,
                      A.BAN_DATE,
                      A.MEMBER_STATUS
               FROM MEMBER A
-              WHERE 1=1
+              WHERE A.MEMBER_STATUS = #{ target }
             <if test="search != ''">
                 AND A.MEMBER_NICKNAME LIKE '%'||#{ search }||'%'
             </if>
               ORDER BY A.MEMBER_NICKNAME) R
-        WHERE R.MEMBER_STATUS = #{ isBlack }
-          AND R.RNUM BETWEEN #{ idxFirst } AND #{ idxLast }
+        WHERE R.RNUM BETWEEN #{ idxFirst } AND #{ idxLast }
     </select>
 
     <select id="findMemberId" resultType="String" parameterType="java.util.HashMap">
@@ -219,6 +249,44 @@
             AND M.MEMBER_NICKNAME LIKE '%'||#{ search }||'%'
         </if>
     </select>
+
+    <select id="countAllFollowUser" resultType="_int" parameterType="java.util.HashMap">
+        SELECT COUNT(*)
+          FROM FOLLOW F
+         WHERE F.FOLLOW_REQ_CODE = #{ fromUserCode }
+            OR F.FOLLOW_TAR_CODE = #{ toUserCode }
+    </select>
+
+    <select id="findFollowerUsingIndex" resultType="string" parameterType="java.util.HashMap">
+        SELECT R.FOLLOW_REQ_CODE
+        FROM (SELECT ROWNUM RNUM,
+                     F.FOLLOW_TAR_CODE,
+                     F.FOLLOW_REQ_CODE
+                FROM FOLLOW F
+               WHERE F.FOLLOW_TAR_CODE = #{ currUserCode }
+               ORDER BY F.FOLLOW_DATE DESC) R
+        WHERE R.RNUM BETWEEN #{ idxFirst } AND #{ idxLast }
+    </select>
+
+    <select id="findFollowingUsingIndex" resultType="string" parameterType="java.util.HashMap">
+        SELECT R.FOLLOW_TAR_CODE
+        FROM (SELECT ROWNUM RNUM,
+                     F.FOLLOW_TAR_CODE,
+                     F.FOLLOW_REQ_CODE
+              FROM FOLLOW F
+              WHERE F.FOLLOW_REQ_CODE = #{ currUserCode }
+              ORDER BY F.FOLLOW_DATE DESC) R
+        WHERE R.RNUM BETWEEN #{ idxFirst } AND #{ idxLast }
+    </select>
+
+
+    <select id="getFollowDate" resultType="string" parameterType="java.util.HashMap">
+        SELECT TO_CHAR(TO_DATE(F.FOLLOW_DATE, 'YY/MM/DD'), 'YYYY-MM-DD')
+        FROM FOLLOW F
+        WHERE F.FOLLOW_REQ_CODE = #{ fromUserCode }
+          AND F.FOLLOW_TAR_CODE = #{ toUserCode }
+    </select>
+
 
     <insert id="registMember" parameterType="com.semi.gamespace.member.model.dto.MemberDTO">
         INSERT
@@ -312,8 +380,16 @@
 
     <update id="leaveMemberByCode" parameterType="String">
         UPDATE MEMBER M
-           SET M.MEMBER_STATUS = 'N'
-         WHERE M.MEMBER_CODE = #{ input }
+        SET (
+                M.MEMBER_STATUS,
+                M.BAN_DATE
+                ) = (
+            SELECT 'X',
+                   TO_DATE(SYSDATE, 'YYYY-MM-DD')
+              FROM DUAL
+                  )
+
+        WHERE M.MEMBER_CODE = #{ input }
     </update>
 
     <update id="updateMemberSiteLink" parameterType="java.util.HashMap">

@@ -23,13 +23,17 @@ public class AdminController {
         this.memberService = memberService;
     }
 
-    @GetMapping("/memberList/{page}")
-    public ModelAndView adminPage(ModelAndView mv, @PathVariable("page") String page, @RequestParam(required = false) String search){
+    @GetMapping("/memberList/{target}/{page}")
+    public ModelAndView adminPage(ModelAndView mv,
+                                  @PathVariable("target") String target,
+                                  @PathVariable("page") String page,
+                                  @RequestParam(required = false) String search){
         int itemPerList = 20;   //페이지 당 20개 표시
 
         if(search==null) search = "";
+        if(target.equals("member")) target = "Y"; else target = "N";
         Map<String, String> searched = new HashMap<>();
-        searched.put("status", "Y");
+        searched.put("status", target);
         searched.put("search", search);
 
         int amount = memberService.countAllSearchedUser(searched);
@@ -47,8 +51,8 @@ public class AdminController {
         Map<String, String> findMap = new HashMap<>();
         findMap.put("idxFirst", idxFirst+"");
         findMap.put("idxLast", idxLast+"");
-        findMap.put("isBlack", "Y");
         findMap.put("search", search);
+        findMap.put("target", target);
 
         List<SimpleMemberDTO> targetList = memberService.findMemberUsingIndex(findMap);
         List<Map<String, String>> dataList = new ArrayList<>();
@@ -56,6 +60,7 @@ public class AdminController {
             dataList.add(new HashMap<>());
             String targetMemberCode = targetList.get(i).getMemberCode();
             dataList.get(i).put("memberCode", targetMemberCode);
+            dataList.get(i).put("memberId", targetList.get(i).getMemberId());
             dataList.get(i).put("memberNickname", targetList.get(i).getUserNickname());
             dataList.get(i).put("enrollDate", targetList.get(i).getEnrollDate().toString());
             dataList.get(i).put("memberStatus", targetList.get(i).getMemberStatus());
@@ -66,8 +71,12 @@ public class AdminController {
             dataList.get(i).put("historyComment", memberService.countHistoryOfComment(targetMemberCode)+"");
             System.out.println(dataList.get(i));
         }
+
+        target = (target.equals("Y")) ? "member" : "black";
         mv.setViewName("/admin/member");
+        mv.addObject("target", target);
         mv.addObject("dataList", dataList);
+        mv.addObject("dataSize", dataList.size());
         mv.addObject("currPage", page);
         mv.addObject("lastPage", lastPage);
         mv.addObject("pageIdx", pageIdx);
@@ -79,8 +88,11 @@ public class AdminController {
         return mv;
     }
 
-    @GetMapping("/memberBan")
-    public String adminMemberBan(String currPage, String targetCode, String banDateCode) {
+    @GetMapping("/memberBan/{target}/{page}")
+    public String adminMemberBan(@PathVariable String target,
+                                 @PathVariable String page,
+                                 @RequestParam(required = false) String search,
+                                 String targetCode, String banDateCode) {
         Date now = new Date(System.currentTimeMillis());
         long add = 0L;
         switch (Integer.parseInt(banDateCode)) {
@@ -104,7 +116,8 @@ public class AdminController {
         banData.put("targetCode", targetCode);
         banData.put("banDate", add>0 ? now.toString() : "2099-12-31");
         memberService.memberBanByCode(banData);
-        return "redirect:/admin/memberList/"+currPage;
+        if(search==null) search = "";
+        return "redirect:/admin/memberList/" + target + "/" + page + "?search=" + search;
     }
 //    @ResponseBody
 //    @PostMapping("/selectMember")
