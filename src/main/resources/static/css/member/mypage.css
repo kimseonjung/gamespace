@@ -103,8 +103,34 @@
     position: relative;
     top: 20%;
 }
+.number-page{
+    display: inline-block;
+    text-decoration: none;
+    color: #0A0A0D;
+}
+.number-btn p{
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
 
-.number-page p{
+    text-align: center;
+    letter-spacing: -0.006em;
+}
+.number-btn a{
+    width: 24px;
+    height: 24px;
+
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+
+    text-align: center;
+    letter-spacing: -0.006em;
+}
+.number-arrow a{
+    width: 24px;
+    height: 24px;
+
     font-weight: 500;
     font-size: 14px;
     line-height: 20px;
@@ -400,6 +426,6 @@
 .history-active{
     border: 1px solid rgba(77, 62, 255, 0.9);
 }
-.number-active p{
+.number-active{
     color: rgba(77, 62, 255, 0.9);
 }

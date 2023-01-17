@@ -117,16 +117,25 @@
     </select>
 
     <select id="findMemberUsingIndex" resultMap="simpleMemberMap" parameterType="java.util.HashMap">
-        SELECT M.MEMBER_CODE,
-               M.MEMBER_NICKNAME,
-               TO_CHAR(TO_DATE(M.ENROLL_DATE, 'RR/MM/DD'),'YYYY-MM-DD') AS ENROLL_DATE,
-               M.MEMBER_STATUS,
-               TO_CHAR(TO_DATE(M.BAN_DATE, 'RR/MM/DD'),'YYYY-MM-DD') AS BAN_DATE
-          FROM MEMBER M
-         WHERE M.MEMBER_STATUS = #{ isBlack }
-           AND ROWNUM >= #{ idxFirst }
-           AND ROWNUM <![CDATA[<=]]> #{ idxLast }
-         ORDER BY M.MEMBER_CODE
+        SELECT R.MEMBER_CODE,
+               R.MEMBER_NICKNAME,
+               TO_CHAR(TO_DATE(R.ENROLL_DATE, 'RR/MM/DD'), 'YYYY-MM-DD') AS ENROLL_DATE,
+               R.MEMBER_STATUS,
+               TO_CHAR(TO_DATE(R.BAN_DATE, 'RR/MM/DD'), 'YYYY-MM-DD')    AS BAN_DATE
+        FROM (SELECT ROWNUM RNUM,
+                     A.MEMBER_CODE,
+                     A.MEMBER_NICKNAME,
+                     A.ENROLL_DATE,
+                     A.BAN_DATE,
+                     A.MEMBER_STATUS
+              FROM MEMBER A
+              WHERE 1=1
+            <if test="search != ''">
+                AND A.MEMBER_NICKNAME LIKE '%'||#{ search }||'%'
+            </if>
+              ORDER BY A.MEMBER_NICKNAME) R
+        WHERE R.MEMBER_STATUS = #{ isBlack }
+          AND R.RNUM BETWEEN #{ idxFirst } AND #{ idxLast }
     </select>
 
     <select id="findMemberId" resultType="String" parameterType="java.util.HashMap">
@@ -202,10 +211,13 @@
           AND F.FOLLOW_TAR_CODE = #{ target }
     </select>
 
-    <select id="countAllUser" resultType="_int" parameterType="string">
+    <select id="countAllSearchedUser" resultType="_int" parameterType="java.util.HashMap">
         SELECT COUNT(*)
         FROM MEMBER M
         WHERE M.MEMBER_STATUS = #{ status }
+        <if test="search != ''">
+            AND M.MEMBER_NICKNAME LIKE '%'||#{ search }||'%'
+        </if>
     </select>
 
     <insert id="registMember" parameterType="com.semi.gamespace.member.model.dto.MemberDTO">
