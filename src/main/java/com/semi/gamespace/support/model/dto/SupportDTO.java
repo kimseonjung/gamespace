@@ -20,5 +20,6 @@ public class SupportDTO {
     private String supportContent;
     private String memberCode;
     private String memberNickname;
+    private String isAdmin;
 
 }
