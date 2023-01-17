@@ -47,6 +47,8 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
             throw new RuntimeException(e);
         }
 
+        System.out.println(userInfo);
+
         String username = "";
         String email = "";
         switch (provider) {
@@ -74,12 +76,13 @@ public class OAuth2DetailsService extends DefaultOAuth2UserService {
             String uuid = UUID.randomUUID().toString().substring(0, 6);
             String pwd = bCryptPasswordEncoder.encode("Spwd"+uuid);
             String name = (String) userInfo.get("name");
+            if(name == null) name = (String) userInfo.get("properites");
 
             MemberDTO socialNewMember = new MemberDTO();
             socialNewMember.setUserId(username);
             socialNewMember.setUserPwd(pwd);
             socialNewMember.setUserNickname(username);
-            socialNewMember.setUserName(name);
+            socialNewMember.setUserName(name==null ? username : name);
             socialNewMember.setUserPhone("00000000000");
             socialNewMember.setUserEmail(email);
             socialNewMember.setUserBirthday("1900-01-01");

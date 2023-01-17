@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class SimpleMemberDTO {
     private String memberCode;
+    private String memberId;
     private String userNickname;
     private Date enrollDate;
     private String memberStatus;
@@ -12,8 +13,9 @@ public class SimpleMemberDTO {
     public SimpleMemberDTO() {
     }
 
-    public SimpleMemberDTO(String memberCode, String userNickname, Date enrollDate, String memberStatus, Date banDate) {
+    public SimpleMemberDTO(String memberCode, String memberId, String userNickname, Date enrollDate, String memberStatus, Date banDate) {
         this.memberCode = memberCode;
+        this.memberId = memberId;
         this.userNickname = userNickname;
         this.enrollDate = enrollDate;
         this.memberStatus = memberStatus;
@@ -26,6 +28,14 @@ public class SimpleMemberDTO {
 
     public void setMemberCode(String memberCode) {
         this.memberCode = memberCode;
+    }
+
+    public String getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
     }
 
     public String getUserNickname() {

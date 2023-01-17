@@ -204,6 +204,7 @@
 
     background: rgba(255, 255, 255, 0.2);
     border-radius: 24px;
+    border: 0;
 
     /* Inside auto layout */
 
@@ -277,6 +278,10 @@
     height: 22px;
 
 
+}
+
+.memberName a{
+    color: #0A0A0D;
 }
 .member16{/* 16/16 - Bold */
 

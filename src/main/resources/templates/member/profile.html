@@ -20,11 +20,11 @@
         </div>
       </div>
       <div class="mypage-follow">
-        <a href="#" class="follow-count btn-response">
+        <a th:href="|/member/user/${member.userId}/follow/from/1|" class="follow-count btn-response">
           <p class="text-follow">팔로워</p>
           <p class="text-follow" id="follow-count" th:text="${followFrom}"></p>
         </a>
-        <a href="#" class="follow-count btn-response">
+        <a th:href="|/member/user/${member.userId}/follow/to/1|" class="follow-count btn-response">
           <p class="text-follow">팔로잉</p>
           <p class="text-follow" th:text="${followTo}"></p>
         </a>

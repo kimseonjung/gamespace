@@ -29,6 +29,10 @@ public class MemberService {
         return memberMapper.findMemberById(userId);
     }
 
+    public MemberDTO findMemberByCode(String code) {
+        return memberMapper.findMemberByCode(code);
+    }
+
     public int countFollowFromByCode(String userCode) {
         return memberMapper.countFollowFromByCode(userCode);
     }
@@ -157,5 +161,20 @@ public class MemberService {
 
     public void memberUnbanByCode(String memberCode) {
         memberMapper.memberUnbanByCode(memberCode);
+    }
+
+    public int countAllFollowUser(Map<String, String> searched) {
+        return memberMapper.countAllFollowUser(searched);
+    }
+    public List<String> findFollowerUsingIndex(Map<String, String> findMap) {
+        return memberMapper.findFollowerUsingIndex(findMap);
+    }
+
+    public String getFollowDate(Map<String, String> followMap) {
+        return memberMapper.getFollowDate(followMap);
+    }
+
+    public List<String> findFollowingUsingIndex(Map<String, String> findMap) {
+        return memberMapper.findFollowingUsingIndex(findMap);
     }
 }

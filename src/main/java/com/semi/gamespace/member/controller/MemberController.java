@@ -1,5 +1,6 @@
 package com.semi.gamespace.member.controller;
 
+import com.semi.gamespace.admin.model.dto.SimpleMemberDTO;
 import com.semi.gamespace.authentication.model.dto.SpaceUser;
 import com.semi.gamespace.common.model.dto.ImageDTO;
 //import com.semi.gamespace.common.model.service.EmailService;
@@ -25,7 +26,10 @@ import java.io.*;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.security.Principal;
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -114,9 +118,9 @@ public class MemberController {
         //팔로우 건 수
         int followTo = memberService.countFollowToByCode(member.getMemberCode());
         //프로필
-        ImageDTO image = imageService.selectProfileByCode(member.getMemberCode());
+//        ImageDTO image = imageService.selectProfileByCode(member.getMemberCode());
 
-        model.addAttribute("image", image);
+//        model.addAttribute("image", image);
         model.addAttribute("member", member);
         model.addAttribute("followFrom", followFrom);
         model.addAttribute("followTo", followTo);
@@ -148,6 +152,94 @@ public class MemberController {
         }
 
         return model;
+    }
+
+    @GetMapping("/user/{id}/follow/{dir}/{page}")
+    public ModelAndView adminPage(ModelAndView mv,
+                                  Principal principal,
+                                  @PathVariable("id") String id,
+                                  @PathVariable("dir") String dir,
+                                  @PathVariable("page") String page,
+                                  @RequestParam(required = false) String items){
+        //조회중인 사용자
+        MemberDTO currUser = memberService.findMemberById(id);
+        MemberDTO loginUser = new MemberDTO();
+        //팔로우 받은 수
+        int followFrom = memberService.countFollowFromByCode(currUser.getMemberCode());
+        //팔로우 건 수
+        int followTo = memberService.countFollowToByCode(currUser.getMemberCode());
+        int followStatus = 0;   //1 : false, 2 : true
+        if(principal.getName() != null) {
+            loginUser = memberService.findMemberById(principal.getName());
+            Map<String, String> followInfo = new HashMap<>();
+            followInfo.put("current", loginUser.getMemberCode());
+            followInfo.put("target", currUser.getMemberCode());
+            followStatus = memberService.checkFollowState(followInfo);//팔로우 상태를 저장
+        }
+
+        if(items==null) items = "10";
+
+        int itemPerList = Integer.parseInt(items);   // 예) 페이지 당 20개 표시
+
+        Map<String, String> searched = new HashMap<>();
+        searched.put("fromUserCode", dir.equals("from") ? "1" : currUser.getMemberCode());
+        searched.put("toUserCode", dir.equals("to") ? "1" : currUser.getMemberCode());    //1 -> 조회 안되게!
+
+        int amount = memberService.countAllFollowUser(searched);
+        int lastPage = (int) Math.ceil((double)amount / itemPerList); //[1]1~20, [2]21~40, [3]41~60, ...
+
+        int idxFirst = itemPerList*(Integer.parseInt(page)-1) + 1;
+        int idxLast = itemPerList*(Integer.parseInt(page));
+        if(idxLast > amount) idxLast = amount;
+
+        int pageIdx = (Integer.parseInt(page)-1)/10*10+1;
+        int pageEnd = (Math.min(lastPage, pageIdx+9));
+        int pagePrev = (Integer.parseInt(page)-1)/10*10;    //[0]1~10, [10]11~20, [20]21~30, ...
+        int pageNext = pagePrev + 11;                       //[11]1~10, [21]11~20, [31]21~30, ...
+
+        Map<String, String> findMap = new HashMap<>();
+        findMap.put("currUserCode", currUser.getMemberCode());
+        findMap.put("idxFirst", idxFirst+"");
+        findMap.put("idxLast", idxLast+"");
+
+        List<String> targetList = new ArrayList<>();
+        if(dir.equals("from")) targetList = memberService.findFollowerUsingIndex(findMap);
+        if(dir.equals("to")) targetList = memberService.findFollowingUsingIndex(findMap);
+        List<Map<String, String>> dataList = new ArrayList<>();
+        for(int i = 0; i < targetList.size(); i++) {
+            dataList.add(new HashMap<>());
+            MemberDTO member = memberService.findMemberByCode(targetList.get(i));
+            Map<String, String> followMap = new HashMap<>();
+            String codeKey1 = dir.equals("from") ? "toUserCode" : "fromUserCode";
+            String codeKey2 = dir.equals("to") ? "toUserCode" : "fromUserCode";
+            followMap.put(codeKey1, currUser.getMemberCode());
+            followMap.put(codeKey2, targetList.get(i));
+            dataList.get(i).put("followDate", memberService.getFollowDate(followMap));
+            dataList.get(i).put("userId", member.getUserId());
+            dataList.get(i).put("userNickname", member.getUserNickname());
+            dataList.get(i).put("enrollDate", member.getEnrollDate().toString());
+            dataList.get(i).put("historyBoard", memberService.countHistoryOfBoard(member.getMemberCode())+"");
+            dataList.get(i).put("historyComment", memberService.countHistoryOfComment(member.getMemberCode())+"");
+            System.out.println(dataList.get(i));
+        }
+
+
+        mv.setViewName("/member/follow");
+        mv.addObject("member", currUser);
+        mv.addObject("dataList", dataList);
+        mv.addObject("dataSize", dataList.size());
+        mv.addObject("followFrom", followFrom);
+        mv.addObject("followTo", followTo);
+        mv.addObject("followStatus", followStatus);
+        mv.addObject("currPage", page);
+        mv.addObject("lastPage", lastPage);
+        mv.addObject("pageIdx", pageIdx);
+        mv.addObject("pageEnd", pageEnd);
+        mv.addObject("pagePrev", pagePrev);
+        mv.addObject("pageNext", pageNext);
+        mv.addObject("dir", dir);
+        System.out.println(mv);
+        return mv;
     }
 
 //    @GetMapping("/debug/insertMember")
