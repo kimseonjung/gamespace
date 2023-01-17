@@ -29,8 +29,12 @@ public class SupportController {
     }
 
     @GetMapping("/supportList")
-    public ModelAndView supportList(ModelAndView mv){
+    public ModelAndView supportList(ModelAndView mv, Principal principal){
+        MemberDTO memberInfo = memberService.findMemberById(principal.getName());
+        SupportDTO supportDTO = new SupportDTO();
 
+        supportDTO.setMemberCode(memberInfo.getMemberCode());
+        supportDTO.setMemberNickname(memberInfo.getUserNickname());
 
         List<SupportDTO> supportList = supportService.getList();
         supportList.stream().forEach(support -> System.out.println("support =" + support));
