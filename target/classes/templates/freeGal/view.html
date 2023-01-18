@@ -63,8 +63,7 @@
       <div class="viewCommentsArea" >
         <!-- 댓글 번호 -->
         <div>[[${freeGalComList.freeGalComCode}]]</div>
-        <!-- 댓글 계정 닉네임-->
-        <div><p>닉네임:[[${freeGalComList.memberNickname}]]</p></div>
+
 
         <form th:action="@{updateComment}" method="post">
           <textarea name="freeGalComTitle" id="freeGalComTitleToUpdate1" class="viewComments-title">
@@ -77,7 +76,7 @@
           <!-- 댓글 수정 후 저장 버튼-->
           <button type="submit" id="saveUpdateComment" style="display:none">저장</button>
           <!-- 수정하기 취소 버튼 -->
-          <button type="button" class="cancelUpdateComment" style="display:none">저장</button>
+          <button type="button" class="cancelUpdateComment" style="display:none">취소</button>
         </form>
         <!-- 댓글 삭제 버튼 -->
         <form th:action="@{deleteComment}" method="get" class="deleteCommentBtn">
@@ -85,7 +84,8 @@
           <input type="hidden" name="freeGalComCode" th:value="${freeGalComList.freeGalComCode}">
           <button type="submit" th:if="${halo.memberCode} == ${#authentication.principal.memberCode} or ${#strings.equals(#authentication.principal.isAdmin, 'Y')}">삭제</button>
         </form>
-
+        <!-- 댓글 계정 닉네임-->
+        <div><p>닉네임:[[${freeGalComList.memberNickname}]]</p></div>
       </div>
 
     </div>
@@ -96,18 +96,26 @@
       <div th:each="freeGalComComList :${freeGalComComList}"
            th:if="${freeGalComComList.freeGalComParent}==${freeGalComList.freeGalComCode}">
         <div>[[${freeGalComComList.freeGalComCode}]]</div>
-        <div><p>작성자: [[${freeGalComComList.memberNickname}]]</p></div>
+
 
         <form th:action="@{updateCommentComment}" method="post">
               <textarea class="viewComments-title" name="freeGalComTitle"
-                        id="freeGalComTitleToUpdate" readonly="readonly">
+                        id="freeGalComTitleToUpdate">
                 [[${freeGalComComList.freeGalComTitle}]]
               </textarea>
           <input type="hidden" name="freeGalCode" th:value="${halo.freeGalCode}">
           <input type="hidden" name="freeGalComCode" th:value="${freeGalComComList.freeGalComCode}">
           <input type="hidden" name="freeGalComParent" th:value="${freeGalComComList.freeGalComParent}">
 
+          <!-- 댓글 수정 버튼-->
+          <button type="button" class="updateCommentBtn" th:if="${halo.memberCode} == ${#authentication.principal.memberCode}">수정</button>
+          <!-- 댓글 수정 후 저장 버튼-->
+          <button type="submit" id="saveUpdateComment2" style="display:none">저장</button>
+          <!-- 수정하기 취소 버튼 -->
+          <button type="button" class="cancelUpdateComment" style="display:none">취소</button>
+
         </form>
+        <div><p>작성자: [[${freeGalComComList.memberNickname}]]</p></div>
         <!-- 댓글 삭제 버튼 -->
         <form th:action="@{deleteCommentComment}" method="get">
           <input type="hidden" name="freeGalCode" th:value="${halo.freeGalCode}">
