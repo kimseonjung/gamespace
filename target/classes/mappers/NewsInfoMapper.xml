@@ -134,6 +134,7 @@
             A.REGDATE
         FROM NEWS_COM A
         WHERE NEWS_CODE = #{newsCode}
+        ORDER BY A.REGDATE
     </select>
 
     <!-- 댓글 boardId 넘기기 -->
@@ -219,9 +220,8 @@
                   JOIN GAME_INFO B ON (A.GAME_CODE = B.GAME_CODE)
                   JOIN MEMBER C ON (A.MEMBER_CODE = C.MEMBER_CODE)
 
-        ORDER BY A.NEWS_TITLE) R
+        ORDER BY A.NEWS_DATE) R
         WHERE R.RNUM BETWEEN #{ idxFirst } AND #{ idxLast }
-
     </select>
 
     <select id="countAllNewsList" resultType="_int" parameterType="java.util.HashMap">
