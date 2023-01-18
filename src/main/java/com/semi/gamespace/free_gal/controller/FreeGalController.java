@@ -7,6 +7,7 @@ import com.semi.gamespace.member.model.dto.MemberDTO;
 import com.semi.gamespace.member.model.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -206,23 +207,23 @@ public class FreeGalController {
 
         return mv;
     }
-//    게시판 더미 데이터 생성 문
-//    @GetMapping("/debug/freeGalList")
-//    public String debugFreeGalList(Model model, Principal principal) {
-//        FreeGalDTO freeGalDTO = new FreeGalDTO();
-//
-//        for(int i = 12; i <= 141; i++) {
-//            freeGalDTO.setFreeGalTitle("FreeGalTitle" + i);
-//            freeGalDTO.setFreeGalContent("자유갤러리 내용 내용 내용 " + i);
-//            freeGalDTO.setMemberCode("MEM_1");
-//            System.out.println(freeGalDTO);
-//            try {
-//                freeGalService.uploadBoard(freeGalDTO);
-//            } catch (Exception e) {
-//                System.out.println("error!! (i = " + i + ")");
-//                break;
-//            }
-//        }
-//        return "redirect:/";
-//    }
+    //게시판 더미 데이터 생성 문
+    @GetMapping("/debug/freeGalList")
+    public String debugFreeGalList(Model model, Principal principal) {
+        FreeGalDTO freeGalDTO = new FreeGalDTO();
+
+        for(int i = 15; i <= 141; i++) {
+            freeGalDTO.setFreeGalTitle("FreeGalTitle" + i);
+            freeGalDTO.setFreeGalContent("자유갤러리 내용 내용 내용 " + i);
+            freeGalDTO.setMemberCode("MEM_1");
+            System.out.println(freeGalDTO);
+            try {
+                freeGalService.uploadBoard(freeGalDTO);
+            } catch (Exception e) {
+                System.out.println("error!! (i = " + i + ")");
+                break;
+            }
+        }
+        return "redirect:/";
+    }
 }

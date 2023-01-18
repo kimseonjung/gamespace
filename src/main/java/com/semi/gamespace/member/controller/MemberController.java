@@ -56,7 +56,7 @@ public class MemberController {
 
     @GetMapping("/login/social/success")
     public String socialLoginProgress(){
-        return "/main/index";
+        return "redirect:/";
     }
 
     @GetMapping("/regist")
