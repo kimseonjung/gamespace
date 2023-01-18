@@ -1535,3 +1535,111 @@ min-width: 86px;
     flex-grow: 0;
 }
 
+ol{
+    display: flex;
+    gap: 6px;
+}
+
+/* 페이지네이션 --------------------------------------------------------------------*/
+.pagination{
+    position: relative;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+    margin: 0 auto;
+    padding: 8px;
+    /* Light/Hover BG */
+
+    background: linear-gradient(90deg, rgba(255, 233, 244, 0.3) 0%, rgba(234, 243, 255, 0.5) 100%);
+    border-radius: 24px;
+
+    width: 348px;
+    height: 40px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+.pagination-wrap{
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 4px;
+
+    position: absolute;
+    left: 2.3%;
+    right: 2.3%;
+    top: 20%;
+    bottom: 20%;
+
+    border-radius: 24px;
+}
+.pagination ol{
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 4px;
+    border-radius: 24px;
+}
+.pagination-wrap i{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    padding: 5px 5px;
+}
+.pagination-wrap i img{
+    width: 14px;
+    height: 14px;
+}
+
+.pagination ol li{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    order: 1;
+    flex-grow: 0;
+}
+.pagination ol li a {
+    /* Auto layout */
+
+    margin: 0 auto;
+
+    align-items: center;
+    padding: 0px;
+    gap: 4px;
+
+
+    border-radius: 24px;
+
+    /* 14/14 - Med */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+
+    /* Light/Light Gray */
+
+    color: rgba(74, 87, 111, 0.7);
+
+}
+.pagination ol li.active a {
+    font-weight: bold;
+    color: rgba(77, 62, 255, 0.9);
+}
+
