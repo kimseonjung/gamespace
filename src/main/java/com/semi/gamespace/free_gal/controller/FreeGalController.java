@@ -208,22 +208,22 @@ public class FreeGalController {
         return mv;
     }
     //게시판 더미 데이터 생성 문
-    @GetMapping("/debug/freeGalList")
-    public String debugFreeGalList(Model model, Principal principal) {
-        FreeGalDTO freeGalDTO = new FreeGalDTO();
-
-        for(int i = 15; i <= 141; i++) {
-            freeGalDTO.setFreeGalTitle("FreeGalTitle" + i);
-            freeGalDTO.setFreeGalContent("자유갤러리 내용 내용 내용 " + i);
-            freeGalDTO.setMemberCode("MEM_1");
-            System.out.println(freeGalDTO);
-            try {
-                freeGalService.uploadBoard(freeGalDTO);
-            } catch (Exception e) {
-                System.out.println("error!! (i = " + i + ")");
-                break;
-            }
-        }
-        return "redirect:/";
-    }
+//    @GetMapping("/debug/freeGalList")
+//    public String debugFreeGalList(Model model, Principal principal) {
+//        FreeGalDTO freeGalDTO = new FreeGalDTO();
+//
+//        for(int i = 15; i <= 141; i++) {
+//            freeGalDTO.setFreeGalTitle("FreeGalTitle" + i);
+//            freeGalDTO.setFreeGalContent("자유갤러리 내용 내용 내용 " + i);
+//            freeGalDTO.setMemberCode("MEM_1");
+//            System.out.println(freeGalDTO);
+//            try {
+//                freeGalService.uploadBoard(freeGalDTO);
+//            } catch (Exception e) {
+//                System.out.println("error!! (i = " + i + ")");
+//                break;
+//            }
+//        }
+//        return "redirect:/";
+//    }
 }
