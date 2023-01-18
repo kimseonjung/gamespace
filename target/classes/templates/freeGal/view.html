@@ -14,7 +14,7 @@
   <!-- 다크모드 -->
   <script src="/js/init.js"></script>
 
-    <title>ViewBoard</title>
+  <title>gamespace</title>
 
   <!-- jQuery library -->
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
@@ -112,7 +112,8 @@
         <form th:action="@{deleteCommentComment}" method="get">
           <input type="hidden" name="freeGalCode" th:value="${halo.freeGalCode}">
           <input type="hidden" name="freeGalComCode" th:value="${freeGalComComList.freeGalComCode}">
-          <button type="submit" th:if="${halo.memberCode} == ${#authentication.principal.memberCode} or ${#strings.equals(#authentication.principal.isAdmin, 'Y')}">삭제</button>
+          <button type="submit" th:if="${halo.memberCode} == ${#authentication.principal.memberCode} or
+          ${#strings.equals(#authentication.principal.isAdmin, 'Y')}">삭제</button>
         </form>
 
       </div>

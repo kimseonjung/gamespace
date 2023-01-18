@@ -31,6 +31,7 @@ public class AuthenticationConfig {
         memberPermitList.add("/member/update/**");
         memberPermitList.add("/freeGal/upload"); //게시글 작성 파트
         memberPermitList.add("/freeGal/view"); //게시글 상세보기 파트
+        memberPermitList.add("/support/supportList"); //고객센터 리스트 파트
         memberPermitList.add("/news/news/**"); //뉴스 파트
         memberPermitList.add("/news/newsDetail"); //뉴스 상세보기 파트
         memberPermitList.add("/game/game");//게임메인
