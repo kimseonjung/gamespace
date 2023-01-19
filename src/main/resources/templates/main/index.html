@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="fragment-user">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Swiper cdn-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <!-- 기본링크 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/commonDark.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/styleDark.css">
+
+    <link href="https://cdn.jsdelivr.net/gh/yesiamrocks/cssanimation.io@1.0.3/cssanimation.min.css" rel="stylesheet">
+    <!-- 다크모드 -->
+    <script src="/js/init.js"></script>
+
+    <title>gamespace</title>
+</head>
+<body>
+<!-- 헤더 네비게이션바 -->
+<th:block th:replace="~{common/header :: header}"/>
+
+<!-- 스크롤배너 -->
+<section class="main-swiper">
+
+    <!-- Slider main container -->
+    <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide"><a href="#"><img src="/image/main-img1.png" alt="main-img1"></a></div>
+            <div class="swiper-slide"><a href="#"><img src="/image/main-img2.jpg" alt="main-img2"></a></div>
+            <div class="swiper-slide"><a href="#"><img src="/image/main-img3.jpg" alt="main-img3"></a></div>
+
+        </div>
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
+
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+    </div>
+        <script src="/js/custom.js"></script>
+
+
+
+</section>
+<!-- 토글버튼 -->
+<section class="toggles">
+    <div class="toggle">
+        <label for="pc"><input type="radio" name="category" id="pc" class="category" checked><div class="togg pc"><img src="/image/icon_dark/pc.svg" alt=""></div></label>
+        <label for="mobile"><input type="radio" name="category" id="mobile" class="category" ><div class="togg mobile"><img src="/image/icon_dark/mobile.svg" alt=""></div></label>
+        <label for="console"><input type="radio" name="category" id="console" class="category" ><div class="togg console"><img src="/image/icon_dark/console.svg" alt=""></div></label>
+    </div>
+</section>
+<!-- 카테고리 -->
+<section class="categorys">
+    <div class="title">
+        <h3>장르</h3>
+    </div>
+</section>
+
+<!-- 장르컨텐츠 -->
+<section class="main2">
+    <section class="items cssanimation moveFromRight">
+        <form action="/game/game"  method="post" onsubmit="return false;" id="category">
+        <a href="/game?cate_no=CAT_2">
+<!--           <label for="CAT_2">-->
+               <div class="item-wrap">
+                   <div class="item-img"><img src="/image/img/Work/image%20792.png" alt="mmo"></div>
+                   <div class="item-text">MMO</div>
+               </div>
+<!--           </label>-->
+<!--            <input type="hidden" value="CAT_2">-->
+<!--            <button type="submit" id="CAT_2" onclick="window.location.href='http://localhost:8001/game/game';"></button>-->
+        </a>
+        </form>
+        <a href="/game?cate_no=CAT_8">
+            <div class="item-wrap">
+                <div class="item-img"><img src="/image/img/Work/3dicons.png" alt="mmo"></div>
+                <div class="item-text">보드</div>
+            </div>
+        </a>
+        <a href="/game?cate_no=CAT_6">
+            <div class="item-wrap">
+                <div class="item-img"><img src="/image/img/Work/V5.png" alt="mmo"></div>
+                <div class="item-text">아케이드</div>
+            </div>
+        </a>
+    </section>
+
+    <section class="items cssanimation moveFromLeft">
+        <a href="/game?cate_no=CAT_3">
+            <div class="item-wrap">
+                <div class="item-img"><img src="/image/img/Work/uiLogos.png" alt="mmo"></div>
+                <div class="item-text">스포츠</div>
+            </div>
+        </a>
+        <a href="/game?cate_no=CAT_7">
+            <div class="item-wrap">
+                <div class="item-img"><img src="/image/img/Work/uihues.png" alt="mmo"></div>
+                <div class="item-text">시뮬레이션</div>
+            </div>
+        </a>
+        <a href="/game?cate_no=CAT_4">
+            <div class="item-wrap">
+                <div class="item-img"><img src="/image/img/Work/croods.png" alt="mmo"></div>
+                <div class="item-text">액션</div>
+            </div>
+        </a>
+    </section>
+
+    <section class="items cssanimation moveFromRight">
+        <a href="/game?cate_no=CAT_5">
+            <div class="item-wrap">
+                <div class="item-img"><img src="/image/img/Work/image%20792.png" alt="mmo"></div>
+                <div class="item-text">어드벤처</div>
+            </div>
+        </a>
+        <a href="/game?cate_no=CAT_1">
+            <div class="item-wrap">
+                <div class="item-img"><img src="/image/img/Work/3dicons.png" alt="mmo"></div>
+                <div class="item-text">롤플레잉</div>
+            </div>
+        </a>
+        <a href="/game?cate_no=CAT_10">
+            <div class="item-wrap">
+                <div class="item-img"><img src="/image/img/Work/V5.png" alt="mmo"></div>
+                <div class="item-text">전략</div>
+            </div>
+        </a>
+    </section>
+
+    <section class="items cssanimation moveFromLeft">
+        <a href="/game?cate_no=CAT_9">
+            <div class="item-wrap">
+                <div class="item-img"><img src="/image/img/Work/uiLogos.png" alt="mmo"></div>
+                <div class="item-text">캐주얼</div>
+            </div>
+        </a>
+<!--        <a href="#">-->
+            <div class="item-wrap" style="visibility: hidden">
+                <div class="item-img"><img src="/image/img/Work/uihues.png" alt="mmo"></div>
+                <div class="item-text">롤플레잉</div>
+            </div>
+<!--        </a>-->
+<!--        <a href="#">-->
+            <div class="item-wrap" style="visibility: hidden">
+                <div class="item-img"><img src="/image/img/Work/croods.png" alt="mmo"></div>
+                <div class="item-text">아케이드</div>
+            </div>
+<!--        </a>-->
+    </section>
+</section>
+
+<!-- 푸터 -->
+<div class="footer">
+    <th:block th:replace="~{common/footer :: footer}"/>
+</div>
+
+<!-- JQuery 불러오기-->
+<!-- <script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/custom.js"></script> -->
+</body>
+</th:block>
+</html>

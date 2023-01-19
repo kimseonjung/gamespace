@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="member-list" th:fragment="memberList(data)">
+    <div class="member-list-item">
+        <div class="member-item">
+            <div class="member"></div>
+            <div class="member-info">
+                <div class="membr-info-left">
+                    <div class="memberCode member16"><h2 th:text="${data}">회원코드</h2></div>
+                    <div class="memberName member16"><h2 th:text="${data}">회원명</h2></div>
+                    <div class="memberDate member14"><p th:text="${data}">가입날짜</p></div>
+                    <div class="memberGallery member14"><p th:text="게시글 ${data}">게시글 100</p></div>
+                    <div class="memberComment member14"><p th:text="댓글 ${data}">댓글 1,000</p></div>
+                </div>
+
+                <div class="banDate-wrap">
+                    <input type="range" class="banDateBar" name="banDate">
+                    <span id="banDate-val">20일</span>
+                    <button type="submit" class="btn-primary submit">정지</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

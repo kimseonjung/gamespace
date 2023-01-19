@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div th:fragment="profile">
+  <script th:inline="javascript" src="/js/member.js"></script>
+  <div class="mypage-container">
+    <div class="mypage-main">
+      <div class="mypage-introduce">
+        <div class="user-profile">
+          <img th:if="${image == null}" src="/image/icon/mypage.svg">
+          <img th:if="${image != null}" th:src="${image.savePath}+${image.saveName}">
+        </div>
+        <div class="user-introduce">
+          <p class="text-name" th:text="${member.userNickname}"></p>
+          <p th:text="${member.userIntroduce}"></p>
+        </div>
+      </div>
+      <div class="mypage-follow">
+        <a th:href="|/member/user/${member.userId}/follow/from/1|" class="follow-count btn-response">
+          <p class="text-follow">팔로워</p>
+          <p class="text-follow" id="follow-count" th:text="${followFrom}"></p>
+        </a>
+        <a th:href="|/member/user/${member.userId}/follow/to/1|" class="follow-count btn-response">
+          <p class="text-follow">팔로잉</p>
+          <p class="text-follow" th:text="${followTo}"></p>
+        </a>
+        <th:block th:if="${followStatus > 0 && member.userId != @authenticationConfig.getAuthenticationUser().getUserId()}">
+          <form method="POST" action="/member/userSetting" onsubmit="return false;">
+            <input type="hidden" name="isFollow" id="isFollow" th:value="${followStatus == 2} ? true : false">
+            <input type="hidden" name="userCode" id="userCode" th:value="${member.memberCode}">
+            <input type="hidden" name="beforeFollow" id="beforeFollow" th:value="${followFrom}">
+            <button type="button" class="follow-btn followable btn-response follow-active">
+              <p class="text-follow text-following">♥</p>
+            </button>
+          </form>
+        </th:block>
+      </div>
+      <div class="mypage-social">
+        <div class="menu-title"><p>SOCIAL MEDIA</p></div>
+        <div class="social-content">
+          <a th:href="${member.userSiteLink1}" target="_blank" class="social-btn btn-response"><img class="social-icon" src="/image/icon_light/globe.svg"></a>
+          <a th:href="${member.userSiteLink2}" target="_blank" class="social-btn btn-response"><img class="social-icon" src="/image/icon_light/globe.svg"></a>
+          <a th:href="${member.userSiteLink3}" target="_blank" class="social-btn btn-response"><img class="social-icon" src="/image/icon_light/globe.svg"></a>
+          <a th:href="${member.userSiteLink4}" target="_blank" class="social-btn btn-response"><img class="social-icon" src="/image/icon_light/globe.svg"></a>
+          <a th:href="${member.userSiteLink5}" target="_blank" class="social-btn btn-response"><img class="social-icon" src="/image/icon_light/globe.svg"></a>
+          <a th:href="${member.userSiteLink6}" target="_blank" class="social-btn btn-response"><img class="social-icon" src="/image/icon_light/globe.svg"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

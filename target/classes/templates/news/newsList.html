@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>gamespace</title>
+</head>
+<body>
+<div th:fragment="newsList" class="item" id="item">
+<!--        <div class="list" th:each="news : ${newsList}">-->
+<!--            <a th:href="@{/news/newsDetail(newsCode=${news.newsCode})}">-->
+<!--            <div class="news-head"><p class="news-head-p" th:text="${news.newsTitle}"></p></div>-->
+<!--            <div class="news-body"><p th:text="${news.newsContent}"></p></div>-->
+<!--            <div class="news-foot"><p th:text="|${news.newsDate} ${news.memberName} ${news.gameName} ${news.newsView}|"></p></div>-->
+<!--            </a>-->
+<!--        </div>-->
+
+    <div class="list" th:each="news : ${dataList}" data-scrolly-down="moveFromBottom" data-scrolly-offset-bottom="100px">
+        <a th:href="@{/news/newsDetail(newsCode=${news.newsCode})}">
+            <div class="news-head"><p class="news-head-p" th:text="${news.newsTitle}"></p></div>
+            <div class="news-body"><p th:text="${news.newsContent}"></p></div>
+            <div class="news-foot"><p th:text="|${news.newsDate} ${news.memberName} ${news.gameName} ${news.newsView}|"></p></div>
+        </a>
+    </div>
+
+
+
+</div>
+</body>
+</html>

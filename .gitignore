@@ -8,3 +8,6 @@ out
 gen
 .gradle
 build
+/target/
+application-oauth.yml
+application-mailsmtp.yml

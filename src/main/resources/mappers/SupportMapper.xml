@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.semi.gamespace.support.model.dao.SupportMapper">
+    <resultMap id="supportResultMap" type="com.semi.gamespace.support.model.dto.SupportDTO">
+        <id property="supportCode" column="SUPPORT_CODE"/>
+        <result property="supportTitle" column="SUPPORT_TITLE"/>
+        <result property="supportView" column="SUPPORT_VIEW"/>
+        <result property="supportDate" column="SUPPORT_DATE"/>
+        <result property="supportContent" column="SUPPORT_CONTENT"/>
+        <result property="memberCode" column="MEMBER_CODE"/>
+        <result property="memberNickname" column="MEMBER_NICKNAME"/>
+        <result property="isAdmin" column="ADMIN_YN"/>
+    </resultMap>
+
+    <select id="getList" resultMap="supportResultMap">
+        SELECT
+            F.SUPPORT_CODE,
+            F.SUPPORT_TITLE,
+            F.SUPPORT_VIEW,
+            TO_CHAR(TO_DATE(F.SUPPORT_DATE,'YY-MM-DD'),'RRRR-MM-DD') AS SUPPORT_DATE,
+            F.SUPPORT_CONTENT,
+            F.MEMBER_CODE,
+            B.MEMBER_NICKNAME,
+            B.ADMIN_YN
+        FROM SUPPORT F
+                 JOIN MEMBER B ON (F.MEMBER_CODE = B.MEMBER_CODE)
+    </select>
+
+    <select id="getBoard" parameterType="String" resultMap="supportResultMap">
+        SELECT
+            F.SUPPORT_CODE,
+            F.SUPPORT_TITLE,
+            F.SUPPORT_VIEW,
+            TO_CHAR(TO_DATE(F.SUPPORT_DATE,'YY-MM-DD'),'RRRR-MM-DD') AS SUPPORT_DATE,
+            F.SUPPORT_CONTENT,
+            F.MEMBER_CODE,
+            B.MEMBER_NICKNAME,
+            B.ADMIN_YN
+        FROM SUPPORT F
+                 JOIN MEMBER B ON (F.MEMBER_CODE = B.MEMBER_CODE)
+        WHERE
+            F.SUPPORT_CODE = #{supportCode}
+
+    </select>
+
+    <insert id="uploadBoard" parameterType="com.semi.gamespace.support.model.dto.SupportDTO">
+        INSERT INTO SUPPORT (
+            SUPPORT_CODE,
+            SUPPORT_TITLE,
+            SUPPORT_VIEW,
+            SUPPORT_DATE,
+            SUPPORT_CONTENT,
+            MEMBER_CODE)
+        VALUES
+            ('SUP_'||SUPPORT_CODE_SEQ.NEXTVAL,
+             #{supportTitle},
+             0,
+             TO_DATE(SYSDATE, 'YYYY-MM-DD HH24:mi:SS'),
+             #{supportContent},
+             #{memberCode}
+            )
+    </insert>
+
+    <update id="updateBoard" parameterType="com.semi.gamespace.support.model.dto.SupportDTO">
+        UPDATE SUPPORT
+        SET SUPPORT_TITLE=#{supportTitle}, SUPPORT_CONTENT=#{supportContent}
+        WHERE SUPPORT_CODE=#{supportCode}
+    </update>
+
+    <delete id="deleteBoard" parameterType="String">
+        DELETE
+        FROM SUPPORT
+        WHERE SUPPORT_CODE=#{supportCode}
+    </delete>
+
+</mapper>

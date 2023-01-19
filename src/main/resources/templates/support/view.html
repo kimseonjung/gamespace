@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns : th="http://www.thymeleaf.org" :sec="http://www.thymeleaf.org/extras/spring-security">
+
+<html lang="ko">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/reset.css">
+
+
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/freeGal/freeGal.css">
+
+    <!-- 다크모드 -->
+    <script src="/js/init.js"></script>
+
+    <meta charset="UTF-8">
+    <title>gamespace</title>
+
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+
+    <!-- Popper JS-->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+</head>
+<body>
+
+<!-- 메뉴바 헤더-->
+<div id="galleryBar">
+    <th:block th:replace="~{common/header :: header}"/>
+</div>
+
+<!-- 글 상세 내용 박스-->
+<div class="view">
+    <!-- 제목 부분-->
+    <div class="titleBar">
+        <p id="viewTitle">[[${halo.supportTitle}]]</p>
+    </div>
+    <!-- 추가정보 (작성자, 날짜, 조회수)-->
+    <div class="infoBar">
+        <div class="viewInfo">
+            <div class="viewNicknameAndDate">
+                <div class="viewNickname"> <p>작성자 : [[${halo.memberNickname}]] </p> </div>
+                <div class="viewDate"><p>[[${halo.supportDate}]]</p></div>
+            </div>
+            <div class="viewView"><p>조회수 : [[${halo.supportView}]]</p></div>
+
+        </div>
+
+    </div>
+    <!-- 작성한 내용 부분-->
+    <div class="viewContentArea">
+    <textarea readonly = "readonly" class="form-control" th:text="${halo.supportContent}">
+
+    </textarea>
+    </div>
+</div>
+
+<!-- 글 삭제 / 수정 / 목록 버튼-->
+<div class="viewButtonZone">
+    <form th:action="@{delete}" method="get" >
+        <input type="hidden" name="supportCode" th:value="${halo.supportCode}">
+        <button type="submit" class="viewDelete"} th:if="${halo.memberCode} == ${#authentication.principal.memberCode} or ${#strings.equals(#authentication.principal.isAdmin, 'Y')}" >삭제하기</button>
+    </form>
+    <form th:action="@{update}" method="get">
+        <input type="hidden" name="supportCode" th:value="${halo.supportCode}">
+        <button type="submit" class="viewUpdate"  th:if="${halo.memberCode} == ${#authentication.principal.memberCode}">수정하기</button>
+    </form>
+    <form th:action="@{supportList}" method="get">
+        <button type="submit" class="viewGoList">목록으로</button>
+    </form>
+</div>
+<!-- 푸터 -->
+<div class="footer">
+    <th:block th:replace="~{common/footer :: footer}"/>
+</div>
+
+</body>
+</html>

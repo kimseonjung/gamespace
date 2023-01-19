@@ -1,0 +1,105 @@
+@charset "UTF-8";
+
+/* light background */
+.screen-light .bg-window{
+    background-color: #FFFFFF;
+    box-shadow: 10px 10px 21px -11px rgba(165, 165, 165, 0.29),
+    1px 4px 8px rgba(0, 0, 0, 0.05);
+}
+.screen-light .bg-screen{
+    background-image: url("../image/login_bg_light.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.screen-light .input-placeholder{
+    border: 0.5px solid rgba(74, 87, 111, 0.7);
+    border-radius: 24px;
+}
+.screen-light .input-title{
+    background-color: #FFFFFF;
+    color: #0A0A0D;
+}
+.screen-light .input-text{
+    background-color: #FFFFFF;
+    color: #0A0A0D;
+}
+.screen-light .icon-cross{
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background-image: url("../image/icon_light/cross.svg");
+    background-size: 24px 24px;
+}
+.screen-light .icon-gamespace{
+    position: absolute;
+    width: 52px;
+    height: 34px;
+    background-image: url("../image/icon_light/gamespace.svg");
+    background-size: 52px 34px;
+}
+.screen-light .icon-plus{
+    background-image: url("../image/icon_light/plus.svg");
+    background-size: 20px 20px;
+}
+.screen-light .number-arrow-left{
+    background-image: url("../image/icon_light/left.svg");
+    background-size: 8px 14px;
+}
+.screen-light .number-page p{
+    color: rgba(74, 87, 111, 0.7);
+}
+.screen-light .number-arrow p{
+    color: rgba(74, 87, 111, 0.7);
+}
+
+/* dark background */
+.screen-dark .bg-window{
+    background-color: #0A0A0D;
+    box-shadow: 10px 10px 21px -11px rgba(8, 4, 2, 0.29),
+    1px 4px 8px rgba(0, 0, 0, 0.05);
+}
+.screen-dark .bg-screen{
+    background-image: url("../image/login_bg_dark.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.screen-dark .input-placeholder{
+    border: 0.5px solid rgba(114, 120, 136, 0.6);
+    border-radius: 24px;
+}
+.screen-dark .input-title{
+    background-color: #0A0A0D;
+    color: #FFFFFF;
+}
+.screen-dark .input-text{
+    background-color: #0A0A0D;
+    color: #FFFFFF;
+}
+.screen-dark .icon-cross{
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background-image: url("../image/icon_dark/cross.svg");
+    background-size: 24px 24px;
+}
+.screen-dark .icon-gamespace{
+    position: absolute;
+    width: 52px;
+    height: 34px;
+    background-image: url("../image/icon_dark/gamespace.svg");
+    background-size: 52px 34px;
+}
+.screen-dark .icon-plus{
+    background-image: url("../image/icon_dark/plus.svg");
+    background-size: 20px 20px;
+}
+.screen-dark .number-arrow-left{
+    background-image: url("../image/icon_dark/left.svg");
+    background-size: 8px 14px;
+}
+.screen-dark .number-page p{
+    color: rgba(114, 120, 136, 0.6);
+}
+.screen-dark .number-arrow p{
+    color: rgba(114, 120, 136, 0.6);
+}

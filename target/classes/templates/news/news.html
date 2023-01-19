@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang='ko'>
+<head>
+  <meta charset='utf-8' />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- 기본링크 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/commonDark.css">
+
+  <link rel="stylesheet" href="/css/news/news.css">
+  <link rel="stylesheet" href="/css/news/newsDark.css">
+
+  <script src='/js/display.js'></script>
+
+  <!-- 캘린더 -->
+  <link href='/css/fullcalendar.main.min.css' rel='stylesheet' />
+  <script src='/js/ko.js'></script>
+  <script src='/js/fullcalendar.main.min.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bPopup/0.11.0/jquery.bpopup.min.js"></script>
+
+
+  <link href="https://cdn.jsdelivr.net/gh/yesiamrocks/cssanimation.io@1.0.3/cssanimation.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/cssanimation.css">
+  <script type="text/javascript" src="/js/scrolly.js"></script>
+
+
+  <!-- 다크모드 -->
+  <script src="/js/init.js"></script>
+
+
+  <title>gamespace</title>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var calendarEl = document.getElementById('calendar');
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        locale: "ko",
+        initialView: 'dayGridMonth',
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+        },
+        googleCalendarApiKey: 'AIzaSyDIEJLoEb_6ET6f4ZghTuSTTEWl9KupycE',
+        events: {
+          googleCalendarId: '52c19e397b1fcd41de071494a9330ac4fcf8801c104815b8531604e9365c27a6@group.calendar.google.com',
+          className: 'gcal-event' // an option!
+        },
+        eventClick: function(info) {
+          let start_year = info.event.start.getUTCFullYear();
+          let start_month = info.event.start.getMonth() + 1;
+          let start_date = info.event.start.getUTCDate();
+          let start_hour = info.event.start.getHours();
+          let start_minute = info.event.start.getMinutes();
+          let start_second = info.event.start.getSeconds();
+          let end_hour = info.event.end.getHours();
+
+          let start = start_year + "-" + start_month + "-" + start_date + " " + start_hour + "시 ~ " + end_hour + "시";
+
+          let attends = "";
+          info.event.extendedProps.attachments.forEach(function(item) {
+            attends += "<div><a href='"+item.fileUrl+"' target='_blank'>[첨부파일]</a></div>"
+          });
+
+          if(!info.event.extendedProps.description) {
+            info.event.extendedProps.description = "";
+          }
+          let contents = `
+						<div style='font-weight:bold; font-size:20px; margin-bottom:30px; text-align:center'>
+							${start}
+						</div>
+						<div style='font-size:18px; margin-bottom:20px'>
+							제목: ${info.event.title}
+						</div>
+						<div style='width:500px'>
+							${info.event.extendedProps.description}
+							${attends}
+						</div>
+					  `;
+
+          $("#popup").html(contents);
+          $("#popup").bPopup({
+            speed: 650,
+            transition: 'slideIn',
+            transitionClose: 'slideBack',
+            position: [($(document).width()-500)/2, 30] //x, y
+          });
+          info.jsEvent.stopPropagation();
+          info.jsEvent.preventDefault();
+        }
+      });
+      calendar.render();
+    });
+  </script>
+</head>
+<body>
+<!-- 헤더 네비게이션바 -->
+<div id="news">
+  <th:block th:replace="~{common/header :: header}"/>
+</div>
+
+<div class="head">
+  <h1>news</h1>
+  <h3>게임에 대한 정보를 전하는 페이지 입니다.</h3>
+  <div class="decorativeBar"></div>
+
+</div>
+
+<div class="calender" id='calendar'></div>
+<div id='popup' style="width:500px; height:600px; display:none; background-color:white; padding:20px; border-radius:14px; border:2px solid #eeeeee"></div>
+
+<!-- 게임태그 -->
+<th:block th:replace="~{common/gameTag :: gameTag}"/>
+
+<!-- 뉴스리스트 -->
+<!--<form th:id="|memberBan${iterStat.index}|" method="get" action="/admin/memberBan">-->
+<!--  <input type="hidden" name="currPage" th:value="${page}">-->
+  <section id="table">
+    <div class="lists">
+        <th:block th:replace="~{news/newsList :: newsList}"/>
+    </div>
+  </section>
+<!--</form>-->
+<!-- 다음 리스트 페이지 -->
+<!--<div class="pagination">-->
+<!--    <div class="pagination-wrap">-->
+<!--        <i class="left-icon"></i>-->
+<!--        <ol id="numbers"></ol>-->
+<!--        <i class="right-icon"></i>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<script type="application/javascript" src="/js/pagination.js"></script>-->
+
+<div class="mypage-number-outline pagination">
+  <div class="mypage-number pagination-wrap">
+    <th:block th:if="${pageIdx}!=1">
+      <button type="button" class="number-arrow btn-response">
+        <a class="number-page" th:href="|/news/news/1?search=${search}|"><<</a>
+      </button>
+      <button type="button" class="number-arrow btn-response">
+        <a class="number-page" th:href="|/news/news/${pagePrev}?search=${search}|"><</a>
+      </button>
+    </th:block>
+    <th:block th:each="idx : ${#numbers.sequence(pageIdx, pageEnd)}">
+      <button type="button" class="number-btn btn-response">
+        <a class="number-page number-active" th:if="${#strings.equals(currPage, idx)}" th:text="${idx}"></a>
+        <a class="number-page" th:if="${not #strings.equals(currPage, idx)}" th:text="${idx}" th:href="@{|/news/news/${idx}?search=${search}|}"></a>
+      </button>
+    </th:block>
+    <th:block th:if="${pageEnd < lastPage}">
+      <button type="button" class="number-arrow btn-response">
+        <a class="number-page" th:href="|/news/news/${pageNext}?search=${search}|">></a>
+      </button>
+      <button type="button" class="number-arrow btn-response">
+        <a class="number-page" th:href="|/news/news/${lastPage}?search=${search}|">>></a>
+      </button>
+    </th:block>
+  </div>
+</div>
+
+
+<!-- 뉴스작성버튼 -->
+<div class="submitA">
+  <a href="/news/newsInsert"><input type="button" value="작성하기" class="btn"  th:if="${#strings.equals(#authentication.principal.isAdmin, 'Y')}"></a>
+</div>
+
+<!-- 푸터 -->
+<div class="footer">
+  <th:block th:replace="~{common/footer :: footer}"/>
+</div>
+
+
+<script>
+    function getCheckboxValue()  {
+        // 선택된 목록 가져오기
+        const query = 'input[name="gameName"]:checked';
+        const selectedEls =
+            document.querySelectorAll(query);
+
+        // 선택된 목록에서 value 찾기
+        let result = '';
+        selectedEls.forEach((el) => {
+            result += `<p class="tag-gameName">${el.value}</p>`;
+        });
+
+        // 출력
+        document.getElementById('tag-result').innerHTML
+            = result;
+
+        // 코드로 받은 리스트 출력
+    }
+
+    window.onload = function() {
+      scrolly();
+    };
+</script>
+</body>
+</html>

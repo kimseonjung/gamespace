@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" :sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="ko">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/reset.css">
+
+    <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">-->
+
+  <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/commonDark.css">
+  <link rel="stylesheet" href="/css/style.css">
+    <!-- link rel="stylesheet" href="/css/news/news.css"-->
+    <link rel="stylesheet" href="/css/freeGal/freeGal.css">
+    <link rel="stylesheet" href="/css/freeGal/freeGalDark.css">
+
+    <!-- 다크모드 -->
+    <script src="/js/init.js"></script>
+
+
+  <title>gamespace</title>
+
+
+<!--  &lt;!&ndash; jQuery library &ndash;&gt;-->
+<!--  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>-->
+<!--  &lt;!&ndash; Popper JS&ndash;&gt;-->
+<!--  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>-->
+
+
+</head>
+<body>
+<!-- 메뉴바 헤더-->
+<div id="galleryBar">
+  <th:block th:replace="~{common/header :: header}"/>
+</div>
+
+<!-- 공지사항 부분 박스-->
+<div class="notices">
+  <div class="notice" th:each="freeGalNotice : ${freeGalListNotice}">
+      <a th:href="@{/freeGal/view(freeGalCode=${freeGalNotice.freeGalCode})}">
+         <div class="notice-title">
+
+            <div class="gal-head"><p th:text="${freeGalNotice.freeGalTitle}"> </p></div>
+
+        </div>
+        <div class="notice-body"><p th:text="${freeGalNotice.freeGalContent}"> </p></div>
+      </a>
+  </div>
+
+</div>
+<!-- 게시판 -->
+<div class="freeBoard">
+  <!-- 검색 및 작성 바-->
+  <div class="searchBar">
+    <div class="searchStick" th:placeholder="Search" id="searchWord" name="searchWord">
+      <div class="searchSticks"><h3>Search</h3></div>
+    </div>
+
+      <a href="/freeGal/upload"><input type="button" value="작성" class="insertB"></a>
+
+  </div>
+
+  <!-- 자유갤러리 메인 글 리스트 -->
+  <section id="table">
+      <div class="freeGalBoard lists">
+
+          <div class="item">
+              <div th:each="freeGal : ${freeGalList}" class="gallery list">
+                  <div class="gal-list">
+                      <a th:href="@{/freeGal/view(freeGalCode=${freeGal.freeGalCode})}">
+                          <div class="gal-head"><p th:text="${freeGal.freeGalTitle}"> </p></div>
+                          <div class="gal-body"><p th:text="${freeGal.freeGalContent}"> </p></div>
+                          <div class="gal-foot"><p th:text="|${freeGal.freeGalDate} ${freeGal.memberNickname} ${freeGal.view}|"> </p></div>
+                      </a>
+                  </div>
+
+              </div>
+          </div>
+
+      </div>
+  </section>
+</div>
+
+<!-- 다음 리스트 페이지 -->
+<div class="pagination">
+    <div class="pagination-wrap">
+        <i class="left-icon"><img src="/image/svg/icon-arrow-left.svg" alt="left"></i>
+        <ol id="numbers"></ol>
+        <i class="right-icon"><img src="/image/svg/icon-arrow-right.svg" alt="right"></i>
+    </div>
+</div>
+<script type="application/javascript" src="/js/pagination.js"></script>
+
+<!-- 푸터 -->
+<div class="footer">
+    <th:block th:replace="~{common/footer :: footer}"/>
+</div>
+</body>
+</html>

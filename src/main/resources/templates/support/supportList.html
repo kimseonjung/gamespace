@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/reset.css">
+
+    <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">-->
+
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/news/news.css">
+    <link rel="stylesheet" href="/css/freeGal/freeGal.css">
+
+    <!-- 다크모드 -->
+    <script src="/js/init.js"></script>
+
+    <meta charset="UTF-8">
+    <title>gamespace</title>
+</head>
+<body>
+<!-- 메뉴바 헤더-->
+<div id="galleryBar">
+    <th:block th:replace="~{common/header :: header}"/>
+</div>
+
+</div>
+<!-- 게시판 -->
+<div class="freeBoard">
+    <!-- 검색 및 작성 바-->
+    <div class="searchBar">
+        <div class="searchStick" th:placeholder="Search">
+            <div class="searchSticks"><h3>Search</h3></div>
+        </div>
+
+        <a href="/support/upload"><input type="button" value="작성" class="insertB"></a>
+
+    </div>
+
+    <!-- 서포트 메인 글 리스트 -->
+    <section id="table">
+        <div class="freeGalBoard lists">
+
+            <div class="item">
+                <div th:each="support : ${supportList}" class="gallery list">
+                    <div class="gal-list">
+                        <a th:href="@{/support/view(supportCode=${support.supportCode})}" th:if="${support.memberCode} == ${#authentication.principal.memberCode} or ${#strings.equals(#authentication.principal.isAdmin, 'Y')}" >
+                            <div class="gal-head"><p th:text="${support.supportTitle}"> </p></div>
+                            <div class="gal-body"><p th:text="${support.supportContent}"> </p></div>
+                            <div class="gal-foot"><p th:text="|${support.supportDate} ${support.memberNickname} ${support.supportView}|"> </p></div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+</div>
+
+<!-- 다음 리스트 페이지 -->
+<div class="pagination">
+    <div class="pagination-wrap">
+        <i class="left-icon"><img src="/image/svg/icon-arrow-left.svg" alt="left"></i>
+        <ol id="numbers"></ol>
+        <i class="right-icon"><img src="/image/svg/icon-arrow-right.svg" alt="right"></i>
+    </div>
+</div>
+<script src="/js/pagination.js"></script>
+
+<!-- 푸터 -->
+<div class="footer">
+    <th:block th:replace="~{common/footer :: footer}"/>
+</div>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    <!-- 기본링크 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/member/common.css">
+    <link rel="stylesheet" href="/css/member/mypage.css">
+    <link rel="stylesheet" href="/css/screenModeSwapper.css">
+
+    <title>gamespace</title>
+  </head>
+<body>
+  <th:block th:replace="~{common/header :: header}"/>
+  <th:block th:replace="~{member/profile :: profile}"/>
+  <div class="mypage-container mypage-board">
+    <div class="mypage-main mypage-board">
+      <div class="mypage-history">
+        <a href="#" class="history-btn btn-response history-active">
+          <p class="text-follow">게시글</p>
+          <p class="text-follow" th:text="${historyBoard}"></p>
+        </a>
+        <a href="#" class="history-btn btn-response">
+          <p class="text-follow">댓글</p>
+          <p class="text-follow" th:text="${historyComment}"></p>
+        </a>
+      </div>
+      <div class="mypage-list">
+        <button type="button" class="history-board-outline btn-response" onclick="location.href='#'">
+          <div class="history-board">
+            <div class="my-board-top">
+              <p>갤러리 제목란입니다ㅋㅋ!</p>
+              <div class="my-board-tag-game white-text"><p>Call of Duty®: Modern Warfare® II | Warzone™ 2.0</p></div>
+              <div class="my-board-tag-cate white-text"><p>카테고리</p></div>
+              <div class="my-board-tag-cate white-text"><p>카테고리</p></div>
+              <div class="my-board-tag-cate white-text"><p>카테고리</p></div>
+              <div class="my-board-tag-cate white-text"><p>카테고리</p></div>
+              <div class="my-board-tag-cate white-text"><p>카테고리</p></div>
+            </div>
+            <div class="my-board-content">
+              <p>이거를 이렇게 수작업으로 쓸 줄은 또 몰랐네 이거 길게 써야 테스트 할 때 자동으로 줄은 바뀌는지, 넘친 글자는 알아서 가려지는지, ★막 🎈🎄🎁🎀😀😁😂🤣이런 이모지도 들어가는지★, 줄바꿈은 나중에... 어쨌든 그런거 막 테스트해볼 수 있단 말이지 또</p>
+            </div>
+          </div>
+        </button>
+        <button type="button" class="history-board-outline btn-response" onclick="location.href='#'">
+          <div class="history-board">
+            <div class="my-board-top">
+              <p>방가 하이루^^ 킹왕짱 즐드셈~ 대략 캐안습 OTL 알았어요 틀니빼고 관짝짜러 갈게요</p>
+              <div class="my-board-tag-game white-text">게임이름</div>
+              <div class="my-board-tag-cate white-text">카테고리</div>
+            </div>
+            <div class="my-board-content">
+              <p>이거를 이렇게 수작업으로 쓸 줄은 또 몰랐네 이거 길게 써야 테스트 할 때 자동으로 줄은 바뀌는지, 넘친 글자는 알아서 가려지는지, ★막 🎈🎄🎁🎀😀😁😂🤣이런 이모지도 들어가는지★, 줄바꿈은 나중에... 어쨌든 그런거 막 테스트해볼 수 있단 말이지 또</p>
+            </div>
+          </div>
+        </button>
+      </div>
+      <div class="mypage-number-outline">
+        <div class="mypage-number">
+          <button type="button" class="number-arrow btn-response">
+            <div class="number-page"><p><</p></div>
+          </button>
+          <button type="button" class="number-btn btn-response">
+            <div class="number-page number-active"><p>1</p></div>
+          </button>
+          <button type="button" class="number-btn btn-response">
+            <div class="number-page"><p>2</p></div>
+          </button>
+          <button type="button" class="number-btn btn-response">
+            <div class="number-page"><p>3</p></div>
+          </button>
+          <button type="button" class="number-btn btn-response">
+            <div class="number-page"><p>4</p></div>
+          </button>
+          <button type="button" class="number-btn btn-response">
+            <div class="number-page"><p>5</p></div>
+          </button>
+          <button type="button" class="number-arrow btn-response">
+            <div class="number-page"><p>></p></div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 푸터 -->
+  <div class="footer">
+    <th:block th:replace="~{common/footer :: footer}"/>
+  </div>
+  <script src="/js/member.js"></script>
+  <script src="/js/memberMypage.js"></script>
+  <script src="/js/screenModeResponse.js"></script>
+  <!-- 팔로우 버튼 상태 초기 갱신 -->
+  <script th:inline="javascript">
+    /* <![CDATA[ */
+    const initFollow = [[${followStatus}]]==2;
+    followRefresh(initFollow);
+    document.getElementById('isFollow').value = initFollow;
+    /* ]]> */
+  </script>
+</body>
+</html>

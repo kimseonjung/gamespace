@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns xmlns:th="http://www.w3.org/1999/xhtml" : th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/reset.css">
+
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/news/news.css">
+    <link rel="stylesheet" href="/css/freeGal/freeGal.css">
+
+    <!-- 다크모드 -->
+    <script src="/js/init.js"></script>
+
+  <meta charset="UTF-8">
+    <title>gamespace</title>
+</head>
+<body>
+<div id="galleryBar">
+    <th:block th:replace="~{common/header :: header}"/>
+</div>
+
+<!-- 수정 글 박스 -->
+<div class="upload">
+    <!-- 제목 부분 -->
+  <form id="form" th:action="@{update}" method="post">
+    <div  class="uploadTitleBar">
+        <p class="uploadTitle">
+            <textarea class="uploadTitle-control" name="freeGalTitle">
+              [[${update.freeGalTitle}]]
+            </textarea>
+        </p>
+    </div>
+      <!-- 첨부 파일 부분-->
+      <div class="att-btn">
+
+          <div class="file-upload">
+              <div class="file-select">
+                  <div class="file-select-name" id="noFile">첨부파일</div>
+                  <div class="file-select-button" id="fileName">첨부파일</div>
+                  <input type="file" name="chooseFile" id="chooseFile" style=" z-index: 100;
+                cursor: pointer;
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                top: 0;
+                left: 0;
+                opacity: 0;">
+              </div>
+          </div>
+
+      </div>
+
+    <div id="uploadContentArea">
+        <textarea class="update-form-control"name="freeGalContent">
+              [[${update.freeGalContent}]]
+        </textarea>
+    </div>
+
+</div>
+<div class="uploadButtonZone">
+    <input type="hidden" name="freeGalCode" th:value="${update.freeGalCode}">
+    <button type="submit" class="uploadUpload">수정 완료</button>
+    </form>
+
+    <form th:action="@{freeGalList}" method="get">
+        <button type="submit" class="uploadGoList">취소하기</button>
+    </form>
+</div>
+<!-- 푸터 -->
+<div class="footer">
+    <th:block th:replace="~{common/footer :: footer}"/>
+</div>
+</body>
+</html>

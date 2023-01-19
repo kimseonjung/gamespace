@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/member/common.css">
+  <link rel="stylesheet" href="/css/member/mypage.css">
+  <link rel="stylesheet" href="/css/screenModeSwapper.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <title>gamespace - 마이페이지</title>
+</head>
+<body>
+<script src="/js/init.js"></script> <!-- 초기 세팅 -->
+
+<div>
+  <th:block th:replace="~{common/header :: header}"/>
+</div>
+<div>
+  <th:block th:replace="~{member/profile :: profile}"/>
+</div>
+
+<div class="mypage-container">
+  <div class="mypage-main">
+    <!-- Profile 란은 타인에게 보이지 않게 설정 -->
+    <div class="mypage-content">
+      <div class="menu-title"><p>MODIFY</p></div>
+      <div class="profile-content">
+        <a href="/member/update/info" class="menu-btn btn-response">
+          <div class="img-icon"><img src="/image/icon_light/box.svg"></div>
+          <p>회원정보수정</p>
+          <img src="/image/icon_light/angle-arrow.svg">
+        </a>
+        <a href="/member/update/modifyPwd" class="menu-btn btn-response">
+          <div class="img-icon"><img src="/image/icon_light/lock.svg"></div>
+          <p>비밀번호수정</p>
+          <img src="/image/icon_light/angle-arrow.svg">
+        </a>
+        <a href="/support/supportList" class="menu-btn btn-response">
+          <div class="img-icon"><img src="/image/icon_light/plus.svg"></div>
+          <p>고객지원</p>
+          <img src="/image/icon_light/angle-arrow.svg">
+        </a>
+      </div>
+    </div>
+
+    <div class="mypage-content">
+      <div class="menu-title"><p>LINK MODIFY</p></div>
+      <div class="profile-content">
+        <div class="list-1 list-show btn-response"><div th:block th:replace="~{member/update/linkUnchecked :: linkUnchecked('1')}"></div></div>
+        <div class="list-1 list-hide"><div th:block th:replace="~{member/update/linkChecked :: linkChecked('1')}"></div></div>
+        <div class="list-2 list-show btn-response"><div th:block th:replace="~{member/update/linkUnchecked :: linkUnchecked('2')}"></div></div>
+        <div class="list-2 list-hide"><div th:block th:replace="~{member/update/linkChecked :: linkChecked('2')}"></div></div>
+        <div class="list-3 list-show btn-response"><div th:block th:replace="~{member/update/linkUnchecked :: linkUnchecked('3')}"></div></div>
+        <div class="list-3 list-hide"><div th:block th:replace="~{member/update/linkChecked :: linkChecked('3')}"></div></div>
+      </div>
+    </div>
+    <div class="mypage-content">
+      <div class="menu-title"><p>SITE MODIFY</p></div>
+      <div class="profile-content">
+        <div class="list-4 list-show btn-response"><div th:block th:replace="~{member/update/linkUnchecked :: linkUnchecked('4')}"></div></div>
+        <div class="list-4 list-hide"><div th:block th:replace="~{member/update/linkChecked :: linkChecked('4')}"></div></div>
+        <div class="list-5 list-show btn-response"><div th:block th:replace="~{member/update/linkUnchecked :: linkUnchecked('5')}"></div></div>
+        <div class="list-5 list-hide"><div th:block th:replace="~{member/update/linkChecked :: linkChecked('5')}"></div></div>
+        <div class="list-6 list-show btn-response"><div th:block th:replace="~{member/update/linkUnchecked :: linkUnchecked('6')}"></div></div>
+        <div class="list-6 list-hide"><div th:block th:replace="~{member/update/linkChecked :: linkChecked('6')}"></div></div>
+      </div>
+    </div>
+    <div class="mypage-content">
+      <div class="menu-title"><p>LEAVE</p></div>
+      <div class="profile-content">
+        <a href="/member/leave" class="menu-btn btn-response">
+          <div class="img-icon"><img src="/image/icon_light/lock.svg"></div>
+          <p>회원탈퇴</p>
+          <img src="/image/icon_light/cross.svg">
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div>
+  <th:block th:replace="~{common/footer :: footer}"/>
+</div>
+<script src="/js/member.js"></script>
+<script src="/js/memberMypage.js"></script>
+<script src="/js/memberLinkModify.js"></script>
+<script src="/js/screenModeResponse.js"></script>
+<!-- 팔로우 버튼 상태 초기 갱신 -->
+<script th:inline="javascript">
+  /* <![CDATA[ */
+  const initFollow = [[${followStatus}]]==2;
+  followRefresh(initFollow);
+  document.getElementById('isFollow').value = initFollow;
+  /* ]]> */
+</script>
+</body>
+</html>
