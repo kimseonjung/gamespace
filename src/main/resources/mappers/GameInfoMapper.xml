@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.semi.gamespace.game.model.dao.GameInfoMapper"><!-- 메퍼위치하고  동일하게 네임스페이스 작성-->
+
+    <resultMap type="com.semi.gamespace.game.model.dto.GameInfoDTO" id="gameInfoResultMap">
+        <id property="gameCode" column="GAME_CODE"/>
+        <result property="gameName" column="GAME_NAME"/>
+        <result property="devicesCode" column="DEVICES_CODE"/>
+        <result property="categoryCode" column="CATEGORY_CODE"/>
+        <result property="tagCode" column="TAG_CODE"/>
+        <result property="registrationDate" column="REGISTRATION_DATE"/>
+        <result property="launchDate" column="LAUNCH_DATE"/>
+        <result property="developer" column="DEVELOPER"/>
+        <result property="distributorCode" column="DISTRIBUTOR_CODE"/>
+        <result property="ratingCode" column="RATING_CODE"/>
+        <result property="price" column="PRICE"/>
+        <result property="platformCode" column="PLATFORM_CODE"/>
+        <result property="languageCode" column="LANGUAGE_CODE"/>
+        <result property="specificationCode" column="SPECIFICATION_CODE"/>
+        <result property="gameIntro" column="GAME_INTRO"/>
+        <result property="gameStatus" column="GAME_STATUS"/>
+<!--        <collection property="com.semi.gamespace.game.model.dto.MinimumSystemDTO" resultMap="minimumSystemResultMap">-->
+<!--        </collection>-->
+<!--        <collection property="com.semi.gamespace.game.model.dto.RecommendedSystemDTO" resultMap="recommendedSystemResultMap">-->
+<!--        </collection>-->
+
+    </resultMap>
+
+    <resultMap type="com.semi.gamespace.game.model.dto.MinimumSystemDTO" id="minimumSystemResultMap">
+        <id property="minSystemCode" column="MIN_SYSTEM_CODE"/>
+        <result property="minOperatingSystem" column="MIN_OPERATING_SYSTEM"/>
+        <result property="minProcessor" column="MIN_PROCESSOR"/>
+        <result property="minMemory" column="MIN_MEMORY"/>
+        <result property="minStorageSpace" column="MIN_STORAGE_SPACE"/>
+        <result property="minGraphic" column="MIN_GRAPHIC"/>
+    </resultMap>
+
+    <resultMap type="com.semi.gamespace.game.model.dto.RecommendedSystemDTO" id="recommendedSystemResultMap">
+        <id property="recSystemCode" column="REC_SYSTEM_CODE"/>
+        <result property="recOperatingSystem" column="REC_OPERATING_SYSTEM"/>
+        <result property="recProcessor" column="REC_PROCESSOR"/>
+        <result property="recMemory" column="REC_MEMORY"/>
+        <result property="recStorageSpace" column="REC_STORAGE_SPACE"/>
+        <result property="recGraphic" column="REC_GRAPHIC"/>
+    </resultMap>
+
+
+
+
+
+    <resultMap type="com.semi.gamespace.game.model.dto.CategoryDTO" id="categoryResultMap">
+        <id property="categoryCode" column="CATEGORY_CODE"/>
+        <result property="categoryName" column="CATEGORY_NAME"/>
+    </resultMap>
+
+
+    <resultMap type="com.semi.gamespace.game.model.dto.TagDTO" id="tagResultMap">
+        <id property="tagCode" column="TAG_CODE"/>
+        <result property="tagName" column="TAG_NAME"/>
+    </resultMap>
+
+
+    <resultMap type="com.semi.gamespace.game.model.dto.DevicesDTO" id="devicesResultMap">
+        <id property="devicesCode" column="DEVICES_CODE"/>
+        <result property="devicesName" column="DEVICES_NAME"/>
+    </resultMap>
+
+
+
+    <select id="selectAllGameInfo" resultMap="gameInfoResultMap">
+        SELECT
+            A.GAME_CODE
+             , A.GAME_NAME
+             , A.DEVICES_CODE
+             , A.CATEGORY_CODE
+             , A.TAG_CODE
+             , A.REGISTRATION_DATE
+             , A.LAUNCH_DATE
+             , A.DEVELOPER
+             , A.DISTRIBUTOR_CODE
+             , A.RATING_CODE
+             , A.PRICE
+             , A.PLATFORM_CODE
+             , A.LANGUAGE_CODE
+             , A.SPECIFICATION_CODE
+             , A.GAME_INTRO
+             , A.GAME_STATUS
+        FROM GAME_INFO A
+        WHERE A.GAME_STATUS = 'Y'
+        ORDER BY A.GAME_CODE
+    </select>
+
+    <select id="selectCategoryOne" resultMap="gameInfoResultMap">
+        SELECT
+            A.GAME_CODE
+             , A.GAME_NAME
+             , A.DEVICES_CODE
+             , A.CATEGORY_CODE
+             , A.TAG_CODE
+             , A.REGISTRATION_DATE
+             , A.LAUNCH_DATE
+             , A.DEVELOPER
+             , A.DISTRIBUTOR_CODE
+             , A.RATING_CODE
+             , A.PRICE
+             , A.PLATFORM_CODE
+             , A.LANGUAGE_CODE
+             , A.SPECIFICATION_CODE
+             , A.GAME_INTRO
+             , A.GAME_STATUS
+        FROM GAME_INFO A
+        WHERE A.CATEGORY_CODE = #{cate_no}
+        ORDER BY A.GAME_CODE
+    </select>
+
+
+    <select id="selectCheckCategoryTag" parameterType="java.util.HashMap" resultMap="gameInfoResultMap">
+
+        SELECT
+        A.GAME_CODE
+        , A.GAME_NAME
+        , A.DEVICES_CODE
+        , A.CATEGORY_CODE
+        , A.TAG_CODE
+        , A.REGISTRATION_DATE
+        , A.LAUNCH_DATE
+        , A.DEVELOPER
+        , A.DISTRIBUTOR_CODE
+        , A.RATING_CODE
+        , A.PRICE
+        , A.PLATFORM_CODE
+        , A.LANGUAGE_CODE
+        , A.SPECIFICATION_CODE
+        , A.GAME_INTRO
+        , A.GAME_STATUS
+        , B.CATEGORY_NAME
+        FROM GAME_INFO A
+        JOIN CATEGORY B ON A.CATEGORY_CODE = B.CATEGORY_CODE
+        WHERE 1=0
+        <if test="categoryCode != null">
+            OR A.CATEGORY_CODE IN
+            <foreach item="item" index="index" collection="categoryCode" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="tagCode != null">
+            OR A.TAG_CODE IN
+            <foreach item="item" index="index" collection="tagCode" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+
+
+    <select id="selectOneGameInfoName" resultMap="gameInfoResultMap">
+        SELECT
+            A.GAME_CODE
+             , A.GAME_NAME
+             , A.DEVICES_CODE
+             , A.CATEGORY_CODE
+             , A.TAG_CODE
+             , A.REGISTRATION_DATE
+             , A.LAUNCH_DATE
+             , A.DEVELOPER
+             , A.DISTRIBUTOR_CODE
+             , A.RATING_CODE
+             , A.PRICE
+             , A.PLATFORM_CODE
+             , A.LANGUAGE_CODE
+             , A.SPECIFICATION_CODE
+             , A.GAME_INTRO
+             , A.GAME_STATUS
+        FROM GAME_INFO A
+        WHERE A.GAME_NAME = #{gameName}
+
+
+    </select>
+
+
+    <select id="selectAllCategory" resultMap="categoryResultMap">
+        SELECT
+            A.CATEGORY_CODE
+             , A.CATEGORY_NAME
+        FROM CATEGORY A
+        ORDER BY A.CATEGORY_CODE
+
+    </select>
+
+
+    <select id="selectAllTag" resultMap="tagResultMap">
+        SELECT
+            A.TAG_CODE
+             , A.TAG_NAME
+        FROM TAG A
+        ORDER BY A.TAG_CODE
+
+    </select>
+
+
+    <select id="selectAllDevices" resultMap="devicesResultMap">
+        SELECT
+            A.DEVICES_CODE
+             , A.DEVICES_NAME
+        FROM DEVICES A
+        ORDER BY A.DEVICES_CODE
+
+    </select>
+
+
+    <select id="selectGameDetail" parameterType="string" resultMap="gameInfoResultMap">
+        SELECT
+            A.GAME_CODE
+             , A.GAME_NAME
+             , A.DEVICES_CODE
+             , A.CATEGORY_CODE
+             , A.TAG_CODE
+             , A.REGISTRATION_DATE
+             , A.LAUNCH_DATE
+             , A.DEVELOPER
+             , A.DISTRIBUTOR_CODE
+             , A.RATING_CODE
+             , A.PRICE
+             , A.PLATFORM_CODE
+             , A.LANGUAGE_CODE
+             , A.SPECIFICATION_CODE
+             , A.GAME_INTRO
+             , A.GAME_STATUS
+             , B.SPECIFICATION_CODE
+             , B.MIN_SYSTEM_CODE
+             , B.REC_SYSTEM_CODE
+             , C.MIN_SYSTEM_CODE
+             , C.MIN_OPERATING_SYSTEM
+             , C.MIN_PROCESSOR
+             , C.MIN_MEMORY
+             , C.MIN_STORAGE_SPACE
+             , C.MIN_GRAPHIC
+             , D.REC_SYSTEM_CODE
+             , D.REC_OPERATING_SYSTEM
+             , D.REC_PROCESSOR
+             , D.REC_MEMORY
+             , D.REC_STORAGE_SPACE
+             , D.REC_GRAPHIC
+             , E.CATEGORY_CODE
+             , E.CATEGORY_NAME
+             , F.TAG_CODE
+             , F.TAG_NAME
+        FROM GAME_INFO A
+        JOIN SPECIFICATION B ON A.SPECIFICATION_CODE = B.SPECIFICATION_CODE
+        JOIN MINIMUM_SYSTEM C ON B.MIN_SYSTEM_CODE = C.MIN_SYSTEM_CODE
+        JOIN RECOMMENDED_SYSTEM D ON B.REC_SYSTEM_CODE = D.REC_SYSTEM_CODE
+        JOIN CATEGORY E ON A.CATEGORY_CODE = E.CATEGORY_CODE
+        JOIN TAG F ON A.TAG_CODE = F.TAG_CODE
+        WHERE A.GAME_CODE = #{gameCode}
+
+
+
+
+
+    </select>
+
+    <select id="selectDetailMinimumSystem" resultMap="minimumSystemResultMap">
+
+        SELECT
+            A.MIN_SYSTEM_CODE
+             , A.MIN_OPERATING_SYSTEM
+             , A.MIN_PROCESSOR
+             , A.MIN_MEMORY
+             , A.MIN_STORAGE_SPACE
+             , A.MIN_GRAPHIC
+             , B.GAME_CODE
+        FROM MINIMUM_SYSTEM A
+        JOIN GAME_INFO B
+        WHERE B.GAME_CODE = #{gameCode}
+    </select>
+
+
+    <select id="selectDetailRecommendedSystem" resultMap="recommendedSystemResultMap">
+
+        SELECT
+            A.REC_SYSTEM_CODE
+             , A.REC_OPERATING_SYSTEM
+             , A.REC_PROCESSOR
+             , A.REC_MEMORY
+             , A.REC_STORAGE_SPACE
+             , A.REC_GRAPHIC
+             , B.GAME_CODE
+        FROM RECOMMENDED_SYSTEM A
+        JOIN GAME_INFO B
+        WHERE B.GAME_CODE = #{gameCode}
+    </select>
+
+    <select id="getGameCode" parameterType="string" resultMap="gameInfoResultMap">
+        SELECT
+            *
+        FROM GAME_INFO
+        WHERE GAME_CODE = #{game_code}
+    </select>
+
+    <update id="updateGameInfo" parameterType="com.semi.gamespace.game.model.dto.GameInfoDTO">
+        UPDATE GAME_INFO
+        SET
+            GAME_NAME=#{gameName},
+            DEVICES_CODE=#{devicesCode},
+            CATEGORY_CODE=#{categoryCode},
+            TAG_CODE=#tagCode},
+            LAUNCH_DATE=#{launchDate},
+            DEVELOPER=#{developer},
+            DISTRIBUTOR_CODE=#{distributorCode},
+            RATING_CODE=#{ratingCode},
+            PRICE= #{price},
+            PLATFORM_CODE=#{platformCode},
+            LANGUAGE_CODE=#{languageCode},
+            SPECIFICATION_CODE=#{specificationCode},
+            GAME_INTRO=#{gameIntro},
+            GAME_STATUS=#{gameStatus}
+        WHERE GAME_CODE =#{gameCode}
+    </update>
+
+    <insert id="registGameInfo">
+        INSERT
+        INTO GAME_INFO A
+            (
+                A.GAME_CODE
+                , A.GAME_NAME
+                , A.DEVICES_CODE
+                , A.CATEGORY_CODE
+                , A.TAG_CODE
+                , A.REGISTRATION_DATE
+                , A.LAUNCH_DATE
+                , A.DEVELOPER
+                , A.DISTRIBUTOR_CODE
+                , A.RATING_CODE
+                , A.PRICE
+                , A.PLATFORM_CODE
+                , A.LANGUAGE_CODE
+                , A.SPECIFICATION_CODE
+                , A.GAME_INTRO
+                , A.GAME_STATUS
+        )
+        VALUES
+            (
+
+             'GAM_' || GAME_CODE_SEQ.NEXTVAL
+
+                , #{ gameName }
+                , #{ devicesCode }
+                , #{ categoryCode }
+                , #{ tagCode }
+                , TO_DATE(SYSDATE, 'YYYY-MM-DD HH24:mi:SS')
+                , #{ launchDate }
+                , #{ developer }
+                , #{ distributorCode }
+                , #{ ratingCode }
+                , #{ price }
+                , #{ platformCode }
+                , #{ languageCode }
+                , 'SPE_'|| SPECIFICATION_CODE_SEQ.NEXTVAL
+                , #{ gameIntro }
+                , #{ gameStatus }
+            )
+
+
+
+    </insert>
+
+    <insert id="registMinimumSystem">
+        INSERT
+        INTO MINIMUM_SYSTEM A
+            (
+               A.MIN_SYSTEM_CODE
+               , A.MIN_OPERATING_SYSTEM
+               , A.MIN_PROCESSOR
+               , A.MIN_MEMORY
+               , A.MIN_STORAGE_SPACE
+               , A.MIN_GRAPHIC
+
+            )
+        VALUES
+            (
+            'MSYS_'|| MIN_SYSTEM_CODE_SEQ.NEXTVAL
+                , #{ minOperatingSystem }
+                , #{ minProcessor }
+                , #{ minMemory }
+                , #{ minStorageSpace }
+                , #{ minGraphic }
+            )
+
+
+    </insert>
+
+    <insert id="registRecommendedSystem">
+        INSERT
+        INTO RECOMMENDED_SYSTEM A
+            (
+                A.REC_SYSTEM_CODE
+                , A.REC_OPERATING_SYSTEM
+                , A.REC_PROCESSOR
+                , A.REC_MEMORY
+                , A.REC_STORAGE_SPACE
+                , A.REC_GRAPHIC
+
+            )
+        VALUES
+            (
+            'RSYS_'|| REC_SYSTEM_CODE_SEQ.NEXTVAL
+                , #{ recOperatingSystem }
+                , #{ recProcessor }
+                , #{ recMemory }
+                , #{ recStorageSpace }
+                , #{ recGraphic }
+            )
+
+
+    </insert>
+
+    <insert id="registSpecification">
+        INSERT
+        INTO SPECIFICATION A
+            (
+            A.SPECIFICATION_CODE
+            ,A.MIN_SYSTEM_CODE
+            ,A.REC_SYSTEM_CODE
+
+            )
+        VALUES
+            (
+            'SPE_'|| SPECIFICATION_CODE_SEQ.CURRVAL
+                , 'MSYS_'|| MIN_SYSTEM_CODE_SEQ.CURRVAL
+                , 'RSYS_'|| REC_SYSTEM_CODE_SEQ.CURRVAL
+            )
+
+
+
+    </insert>
+
+    <insert id="registDebugGameInfo">
+        INSERT
+        INTO GAME_INFO A
+            (
+                A.GAME_CODE
+                , A.GAME_NAME
+                , A.DEVICES_CODE
+                , A.CATEGORY_CODE
+                , A.TAG_CODE
+                , A.REGISTRATION_DATE
+                , A.LAUNCH_DATE
+                , A.DEVELOPER
+                , A.DISTRIBUTOR_CODE
+                , A.RATING_CODE
+                , A.PRICE
+                , A.PLATFORM_CODE
+                , A.LANGUAGE_CODE
+                , A.SPECIFICATION_CODE
+                , A.GAME_INTRO
+                , A.GAME_STATUS
+        )
+        VALUES
+            (
+
+            'GAM_' || GAME_CODE_SEQ.NEXTVAL
+
+                , #{ gameName }
+                , #{ devicesCode }
+                , #{ categoryCode }
+                , #{ tagCode }
+                , TO_DATE(SYSDATE, 'YYYY-MM-DD HH24:mi:SS')
+                , #{ launchDate }
+                , #{ developer }
+                , #{ distributorCode }
+                , #{ ratingCode }
+                , #{ price }
+                , #{ platformCode }
+                , #{ languageCode }
+                , 'SPE_1'
+                , #{ gameIntro }
+                , #{ gameStatus }
+            )
+    </insert>
+
+    <insert id="registDebugSpecification">
+        INSERT
+        INTO SPECIFICATION A
+            (
+            A.SPECIFICATION_CODE
+            ,A.MIN_SYSTEM_CODE
+            ,A.REC_SYSTEM_CODE
+
+            )
+        VALUES
+            (
+            'SPE_'|| SPECIFICATION_CODE_SEQ.CURRVAL
+                , 'MSYS_'|| MIN_SYSTEM_CODE_SEQ.CURRVAL
+                , 'RSYS_'|| REC_SYSTEM_CODE_SEQ.CURRVAL
+            )
+    </insert>
+
+    <insert id="registDebugMinimumSystem">
+        INSERT
+        INTO MINIMUM_SYSTEM A
+            (
+               A.MIN_SYSTEM_CODE
+               , A.MIN_OPERATING_SYSTEM
+               , A.MIN_PROCESSOR
+               , A.MIN_MEMORY
+               , A.MIN_STORAGE_SPACE
+               , A.MIN_GRAPHIC
+
+            )
+        VALUES
+            (
+            'MSYS_'|| MIN_SYSTEM_CODE_SEQ.NEXTVAL
+                , #{ minOperatingSystem }
+                , #{ minProcessor }
+                , #{ minMemory }
+                , #{ minStorageSpace }
+                , #{ minGraphic }
+            )
+    </insert>
+
+    <insert id="registDebugRecommendedSystem">
+        INSERT
+        INTO RECOMMENDED_SYSTEM A
+            (
+                A.REC_SYSTEM_CODE
+                , A.REC_OPERATING_SYSTEM
+                , A.REC_PROCESSOR
+                , A.REC_MEMORY
+                , A.REC_STORAGE_SPACE
+                , A.REC_GRAPHIC
+
+            )
+        VALUES
+            (
+            'RSYS_'|| REC_SYSTEM_CODE_SEQ.NEXTVAL
+                , #{ recOperatingSystem }
+                , #{ recProcessor }
+                , #{ recMemory }
+                , #{ recStorageSpace }
+                , #{ recGraphic }
+            )
+    </insert>
+
+
+</mapper>

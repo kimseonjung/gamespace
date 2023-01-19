@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/reset.css">
+  <!--  <link rel="stylesheet" href="/css/common.css">-->
+  <link rel="stylesheet" href="/css/screenModeSwapper.css">
+  <link rel="stylesheet" href="/css/member/common.css">
+  <link rel="stylesheet" href="/css/member/update.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <title>gamespace</title>
+</head>
+<body>
+<script src="/js/init.js"></script> <!-- 초기 세팅 -->
+<div class="member-main-bg bg-screen"></div>
+<div class="update-main bg-window">
+  <div class="window-title">
+    <form id="updateProfileForm" action="/member/update/profile" method="post" enctype="multipart/form-data" onsubmit="return false;">
+      <a href="/member/userSetting" class="btn-cross btn-response">
+        <div class="icon-cross"></div>
+      </a>
+      <div class="logo-member">
+<!--        <label for="userProfile">-->
+          <img class="profile-change btn-response" th:if="${image == null}" src="/image/icon/mypage.svg">
+          <img class="profile-change btn-response" th:if="${image != null}" th:src="${image.savePath}+${image.saveName}">
+<!--        </label>-->
+<!--        <input type="file" name="userProfile" id="userProfile" onchange="loadProfile(this)">-->
+        <div class="icon-cross profile-cross btn-response" onclick="removeProfile()"></div>
+      </div>
+    </form>
+  </div>
+  <div class="window-input">
+    <form id="updateForm" action="/member/update/info" method="post" onsubmit="return updateVerify();">
+      <div class="update-body">
+        <div class="update-input update-step-1">
+          <div class="input-placeholder disabled-placeholder input-required" id="border-id">
+            <div class="input-head"></div>
+            <input class="disabled-text disabled-placeholder" name="userIdDisabled" type="text" th:value="${member.userId}" placeholder="* ID" disabled>
+            <input type="hidden" name="userId" th:value="${member.userId}">
+          </div>
+          <p class="error-text" id="error-id"></p>
+          <div class="input-placeholder input-required" id="border-nickname">
+            <div class="input-head"></div>
+            <input class="input-text" name="userNickname" type="text" th:value="${member.userNickname}" placeholder="* Nickname">
+          </div>
+          <p class="error-text" id="error-nickname"></p>
+          <div class="input-placeholder input-required" id="border-name">
+            <div class="input-head"></div>
+            <input class="input-text" name="userName" type="text" th:value="${member.userName}" placeholder="* Name">
+          </div>
+          <p class="error-text" id="error-name"></p>
+          <div class="input-placeholder input-required" id="border-birthday">
+            <div class="input-head"></div>
+            <input class="input-text" name="userBirthday" type="text" th:value="${member.userBirthday}" placeholder="* Birthday(YYYYMMDD)">
+          </div>
+          <p class="error-text" id="error-birthday"></p>
+          <div class="gender-area">
+            <input type="radio" name="userGender" value="M" id="male" class="gender-radio" th:checked="${(member.userGender == 'M')}">
+            <label for="male">
+              <div class="btn-white-default gender-btn btn-response"><p>남</p></div>
+            </label>
+            <input type="radio" name="userGender" value="F" id="female" class="gender-radio" th:checked="${(member.userGender == 'F')}">
+            <label for="female">
+              <div class="btn-white-default gender-btn btn-response"><p>여</p></div>
+            </label>
+            <input type="radio" name="userGender" value="U" id="unknown" class="gender-radio" th:checked="${(member.userGender == 'U')}">
+            <label for="unknown">
+              <div class="btn-white-default gender-btn btn-response"><p>비공개</p></div>
+            </label>
+          </div>
+          <p class="error-text"></p>
+          <div class="input-placeholder input-required" id="border-phone">
+            <div class="input-head"></div>
+            <input class="input-text" name="userPhone" type="text" th:value="${member.userPhone}" placeholder="Phone">
+          </div>
+          <p class="error-text" id="error-phone"></p>
+          <div class="input-placeholder input-required" id="border-email">
+            <div class="input-head"></div>
+            <input class="input-text" name="userEmail" type="text" th:value="${member.userEmail}" placeholder="* Email">
+          </div>
+          <p class="error-text" id="error-email"></p>
+        </div>
+        <div class="update-input update-step-2">
+          <div class="update-zipcode">
+            <div class="input-placeholder modify-zipcode input-required">
+              <div class="input-head"></div>
+              <input class="input-text" name="update-zipcode" type="text" th:value="${address0}" placeholder="Zip code">
+            </div>
+            <a href="#" class="zipcode-search-btn btn-response btn-white-default">
+              <p class="zipcode-search-text">&gt;</p>
+            </a>
+          </div>
+          <p class="error-text"></p>
+          <div class="input-placeholder input-required">
+            <div class="input-head"></div>
+            <input class="input-text" name="update-address1" type="text" th:value="${address1}" placeholder="Address">
+          </div>
+          <p class="error-text"></p>
+          <div class="input-placeholder input-required">
+            <div class="input-head"></div>
+            <input class="input-text" name="update-address2" type="text" th:value="${address2}" placeholder="Address detail">
+          </div>
+          <p class="error-text"></p>
+          <div class="input-placeholder input-required" id="border-introduce">
+            <div class="input-head"></div>
+            <input class="input-text" name="userIntroduce" type="text" th:value="${member.userIntroduce}" placeholder="About Me">
+          </div>
+          <p class="error-text" id="error-introduce"></p>
+        </div>
+        <div class="update-input update-step-3">
+          <input type="submit" value="수정" class="btn-blue-default update-btn btn-response update-btn-text white-text">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<input class="screen-mode-btn" type="checkbox">
+
+</body>
+<script src="/js/member.js"></script>
+<script src="/js/userValidation.js"></script>
+<script src="/js/memberUpdate.js"></script>
+<script src="/js/screenModeResponse.js"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    genderBtnResponse();
+    updateInputCheck(['ID', 'Nickname', 'Name', 'Birthday', 'Phone',
+      'Email', 'Zip code', 'Address', 'Address Detail', 'About Me']);
+  });
+</script>
+</html>

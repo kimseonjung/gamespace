@@ -1,0 +1,57 @@
+
+
+
+
+/* 토글버튼 -----------------------------------------------------------------*/
+
+.screen-dark .toggle{
+    display: inline-block;
+    position: absolute;
+    right: 16px;    
+    width: 112px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 40px;
+    align-items: center;
+}
+
+
+/* 카테고리 -----------------------------------------------------------------*/
+
+.screen-dark .categorys h3{
+    font-size: 14px;
+    font-weight: bold;
+    color: #CEC8CC;
+    opacity: 0.6;
+}
+
+
+/* 장르컨텐츠 */
+
+.screen-dark .item-wrap:hover{
+    background: -webkit-linear-gradient(90deg, rgba(30, 28, 50, 0.7) 0%, rgba(43, 22, 29, 0.7) 100%);
+	background:    -moz-linear-gradient(90deg, rgba(30, 28, 50, 0.7) 0%, rgba(43, 22, 29, 0.7) 100%);
+    background:      -o-linear-gradient(90deg, rgba(30, 28, 50, 0.7) 0%, rgba(43, 22, 29, 0.7) 100%);
+    background:         linear-gradient(90deg, rgba(30, 28, 50, 0.7) 0%, rgba(43, 22, 29, 0.7) 100%);
+}
+
+
+
+.screen-dark .item-text{
+    margin-top: 8px;
+    color: #ECEDEE;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+
+/* 미디어쿼리 ----------------------------------------------------------------------*/
+@media screen and (max-width: 768px){
+
+}
+
+@media screen and (max-width: 480px){
+    
+}
+

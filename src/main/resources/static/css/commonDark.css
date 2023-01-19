@@ -1,0 +1,492 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+}
+
+.screen-dark {
+    background: rgba(10, 10, 13, 0.98);
+    height: 100%;
+    background-image: url("../image/icon/Property 1=header-gradient.svg"), url("../image/icon/Property 1=footer-gradient.png") ;
+    background-repeat: no-repeat;
+    background-position: top, bottom;
+    background-position-x: center;
+}
+.screen-dark a {
+    color: #fff;
+}
+
+
+
+
+
+
+.screen-dark .nav{
+    /* navbar */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding:16px;
+    gap: 36px;
+
+    margin: auto;
+    width: 708px;
+    height: 56px;
+
+
+    /* Light/Nav BG */
+
+    background: rgba(28, 22, 47, 0.2);
+    backdrop-filter: blur(12px);
+    /* Note: backdrop-filter has minimal browser support */
+
+    border-radius: 12px;
+
+}
+.screen-dark .nav-left a:hover {
+
+    background: -webkit-linear-gradient(left,#4AB1F1, #566CEC, #D749AF, #FF7C51);
+    background:    -moz-linear-gradient(left,#4AB1F1, #566CEC, #D749AF, #FF7C51);
+    background:      -o-linear-gradient(left,#4AB1F1, #566CEC, #D749AF, #FF7C51);
+    background:         linear-gradient(left,#4AB1F1, #566CEC, #D749AF, #FF7C51);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+
+}
+
+.screen-dark .main-navigation a {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+
+}
+
+
+
+.screen-dark li a {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.screen-dark .dropdown-menu {
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+
+}
+.screen-dark .dropdown-menu:hover{
+    background: -webkit-linear-gradient(left,#4AB1F1, #566CEC, #D749AF, #FF7C51);
+    background:    -moz-linear-gradient(left,#4AB1F1, #566CEC, #D749AF, #FF7C51);
+    background:      -o-linear-gradient(left,#4AB1F1, #566CEC, #D749AF, #FF7C51);
+    background:         linear-gradient(left,#4AB1F1, #566CEC, #D749AF, #FF7C51);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.screen-dark .dropdown-content {
+    position: absolute;
+    background-color: #000;
+    min-width: 160px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    padding: 8px 0;
+}
+.screen-dark .dropdown-content a, .screen-dark .dropdown-content p {
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+    padding: 8px 16px;
+    text-decoration: none;
+    display: block;
+    font-weight: 500;
+}
+
+.screen-dark .light-Mode{
+    background-image: url("../image/icon_dark/moon.svg");
+}
+.screen-dark .dropdown-menu .menuImg{
+    display: inline-block;
+    background-image: url("../image/icon_dark/down.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    width: 16px;
+    height: 16px;
+}
+.screen-dark .logo{
+    background-image: url("../image/icon_dark/gamespace.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    width: 36px;
+    height: 24px;
+    display: inline-block;
+}
+
+/* gametag ----------------------------------------------------------------------------------------------- */
+.screen-dark .gametag-wrap{
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    gap: 14px;
+    margin: auto;
+
+    width: 708px;
+    left: 366px;
+    top: 1062px;
+
+    /* Dark / Nav BG */
+
+    background: rgba(28, 22, 47, 0.2);
+    border-radius: 20px;
+}
+
+
+.screen-dark .gametag-header{
+
+    width: 676px;
+    height: 52px;
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    position: relative;
+    margin-bottom: 8px;
+}
+.screen-dark .gametag-header .logo{
+    background-image: url("../image/icon_dark/gamespace.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 52px;
+    height: 34px;
+    left: calc(50% - 52px/2);
+    top: calc(50% - 34px/2);
+}
+
+.screen-dark .gametag-header .more{
+    background-image: url("../image/icon_dark/down.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    right: 24px;
+    top: calc(50% - 24px/2);
+}
+.screen-dark .gametag-body .mores{
+    background-image: url("../image/icon_dark/down.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    right: 24px;
+    top: calc(50% - 24px/2);
+}
+.screen-dark .gametag-header .close{
+    background-image: url("../image/icon_dark/minus.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    right: 24px;
+    top: calc(50% - 24px/2);
+}
+.screen-dark .gametag-body .closes{
+    background-image: url("../image/icon_dark/minus.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    right: 24px;
+    top: calc(50% - 24px/2);
+}
+
+.gametag-body{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 6px;
+    gap: 40px;
+
+    width: 640px;
+}
+.screen-dark .gametag-body-left{
+    display: inline-block;
+    width: 28px;
+    height: 24px;
+
+    /* 16/16 - Med */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.011em;
+
+    /* Dark/Light Gray */
+
+    color: rgba(114, 120, 136, 0.6);
+}
+.screen-dark .gametag-body .gametags{
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    width: 500px;
+    max-height: 110px;
+
+    gap: 8px 14px;
+    flex-wrap: wrap;
+    overflow: auto;
+
+
+}
+.screen-dark .gametag-body .gametags::-webkit-scrollbar {
+    width: 1vw;
+}
+.screen-dark .gametag-body .gametags::-webkit-scrollbar-thumb {
+    background-color: hsla(0, 0%, 42%, 0.49);
+    border-radius: 100px;
+}
+
+.screen-dark .tag-label{
+    min-width: 64px;
+    max-width: 128px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    /* 14/14 - Med */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    /* identical to box height, or 143% */
+
+    letter-spacing: -0.006em;
+
+    /* Dark/Light Gray */
+
+    color: rgba(114, 120, 136, 0.6);
+
+
+    /* Light/Light Gray */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1px 6px;
+    background: transparent;
+    border-radius: 8px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+
+
+
+}
+input:checked + .tag-label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1px 6px;
+
+    color: #FFFFFF;
+    background: -webkit-linear-gradient(left,#F7BE2B, #F537F9);
+    border-radius: 8px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-size: 14px;
+    line-height: 20px;
+    /* identical to box height, or 143% */
+
+    letter-spacing: -0.006em;
+
+    /* Basic / White */
+
+
+}
+
+.gametag-foot{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    gap: 10px;
+
+    width: 676px;
+    height: 42px;
+
+    border-radius: 24px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+}
+.tag{
+    /* Auto layout */
+
+    display: flex;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 6px;
+
+    width: 650px;
+    height: 22px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+.tag p{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 1px 6px;
+
+    min-width: 64px;
+    height: 22px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 3;
+    flex-grow: 0;
+
+    /* 14/14 - Bold */
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    /* identical to box height, or 143% */
+
+    letter-spacing: -0.006em;
+
+    /* Basic / White */
+
+    color: #FFFFFF;
+
+    /* Gradients/sunset-3 */
+
+    background: linear-gradient(90deg, #F7BE2B 0%, #F537F9 100%);
+    border-radius: 8px;
+}
+
+
+/* button */
+.btn-response{
+    cursor: pointer;
+    opacity: 1;
+}
+.btn-response:hover{
+    opacity: 0.8;
+}
+.btn-response:active{
+    opacity: 1;
+}
+
+
+/* 푸터 ----------------------------------------------------------------------*/
+footer{
+    position: relative;
+    width: 708px;
+    margin: auto;
+    padding-bottom: 60px;
+
+}
+
+.foot-logo{
+    width: 60px;
+    height: 40px;
+    margin: auto;
+    margin-top: 100px;
+    margin-bottom: 16px;
+
+}
+.foot-logo img{
+    width: 60px;
+    height: 40px;
+
+
+}
+
+.foot-text{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
+    isolation: isolate;
+    width: 196px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+
+    margin: auto;
+}
+.foot-text a{
+    margin: auto;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(114, 120, 136, 0.6);
+}
+
+.foot-text a:hover{
+    color: rgba(114, 120, 136);
+}
+
+.foot-p{
+    width: 248px;
+    margin: auto;
+    margin-top:20px;
+
+}
+.foot-p p{
+    text-align: center;
+}
+footer p{
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(114, 120, 136, 0.6);
+}

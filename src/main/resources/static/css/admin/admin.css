@@ -1,0 +1,383 @@
+*{
+    box-sizing: border-box;
+}
+.member-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 16px;
+    gap: 20px;
+
+
+    width: 708px;
+    margin: 0 auto;
+
+    /* Light/Nav BG */
+
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+}
+.member-btns{
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 20px;
+
+    width: 676px;
+    height: 48px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+.btn-primary{
+    border: none;
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 20px;
+    gap: 4px;
+
+    width: 328px;
+    height: 48px;
+
+    /* Basic/Purple */
+
+    background: rgba(77, 62, 255, 0.9);
+    border-radius: 24px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+
+    /* 18/18 - Med */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    /* identical to box height, or 133% */
+
+    letter-spacing: -0.014em;
+
+    /* Basic / White */
+
+    color: #FFFFFF;
+
+}
+.btn-primary:hover{
+    opacity: 0.8;
+}
+.btn-primary:active{
+    opacity: 0.9;
+}
+
+.btn{
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 20px;
+    gap: 4px;
+
+    width: 328px;
+    height: 48px;
+
+    /* Basic/Purple */
+    background:transparent;
+    border: 1px solid rgba(77, 62, 255, 0.9);
+    border-radius: 24px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+
+    /* 18/18 - Med */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    /* identical to box height, or 133% */
+
+    letter-spacing: -0.014em;
+
+    /* Basic/Purple */
+
+    color: rgba(77, 62, 255, 0.9);
+}
+.btn:hover{
+    opacity: 0.8;
+}
+.btn:active{
+    opacity: 0.9;
+}
+
+/* 검색버튼 */
+.searchBar{
+    position: relative;
+    width: 676px;
+    height: 40px;
+
+}
+.searchInput{
+    background: transparent;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 16px;
+    gap: 4px;
+
+    position: absolute;
+    width: 676px;
+    height: 40px;
+
+
+    /* Light/Light Gray */
+
+    border: 0.5px solid rgba(74, 87, 111, 0.7);
+    border-radius: 24px;
+}
+.searchBtn{
+    cursor: pointer;
+
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 20px;
+    padding: 0;
+    top: 10px;
+    background: transparent;
+    border: none;
+}
+.searchBtn:hover{
+    opacity: 0.8;
+}
+.searchBtn:active{
+    opacity: 0.9;
+}
+.member-list{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 10px;
+
+    width: 676px;
+}
+
+.member-list-item{
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px;
+    gap: 16px;
+    isolation: isolate;
+
+    width: 676px;
+    height: 64px;
+
+    /* Light/Nav BG */
+
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    border: 0;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+.member-list-item:hover{
+    background: rgba(255, 255, 255, 0.2);
+}
+.member-item{
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 16px;
+
+    width: 652px;
+    height: 40px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 1;
+    z-index: 1;
+}
+
+.member{
+    background-image: url("../../image/icon/mypage.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    width: 40px;
+    height: 40px;
+}
+
+.member-info{
+    position: relative;
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    padding: 0px;
+    gap: 5px;
+
+    width: 596px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 1;
+}
+.member-info-upper, .member-info-lower{
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 12px;
+
+    height: 22px;
+
+
+}
+
+.memberName a{
+    color: #0A0A0D;
+}
+.member16{/* 16/16 - Bold */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22px;
+    /* identical to box height, or 138% */
+
+    letter-spacing: -0.011em;
+
+    /* Light/Primary Text */
+
+    color: #22242C;
+}
+.member14{
+    /* 14/14 - SemiB */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    /* identical to box height, or 143% */
+
+    letter-spacing: -0.006em;
+
+    /* Light/Light Gray */
+
+    color: rgba(74, 87, 111, 0.7);
+}
+.memberName{}
+.memberDate{}
+.memberGallery{}
+.memberComment{}
+
+.banDate-wrap{
+    position: absolute;
+    top: 14px;
+    right: 0;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0px;
+    gap: 8px;
+
+    height: 22px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+.submit-btn{
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 12px;
+    gap: 2px;
+
+    width: 55px;
+    height: 22px;
+
+    /* Basic/Purple */
+
+    background: rgba(77, 62, 255, 0.9);
+    border-radius: 18px;
+
+    /* 14/14 - Med */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    /* identical to box height, or 143% */
+
+    text-align: center;
+    letter-spacing: -0.006em;
+
+    /* Basic / White */
+
+    color: #FFFFFF;
+}
+
+.banDate-val{
+    width: 34px;
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- 기본링크 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/member/mypage.css">
+    <link rel="stylesheet" href="/css/admin/admin.css">
+
+    <title>adminMember</title>
+</head>
+<body>
+    <!-- 헤더 네비게이션바 -->
+    <div id="admin">
+        <th:block th:replace="~{common/header :: header}"/>
+    </div>
+
+    <!-- 멤버관리 -->
+    <section class="member-container">
+
+        <!-- 멤버조회버튼 -->
+        <div class="member-btns">
+            <form method="get" action="/admin/memberList/member/1">
+                <button th:class="|btn${target == 'member' ? '-primary' : ''}|">회원</button>
+            </form>
+            <form method="get" action="/admin/memberList/black/1">
+                <button th:class="|btn${target == 'black' ? '-primary' : ''}|">블랙리스트</button>
+            </form>
+        </div>
+
+        <!-- 검색버튼 -->
+        <div class="searchBar">
+            <form method="get" action="/admin/memberList/member/1">
+                <input type="text" name="search" id="search" class="searchInput" placeholder="Search">
+                <button type="submit" class="searchBtn"><img src="/image/svg/search.svg" alt="search"></button>
+            </form>
+        </div>
+
+        <!-- 회원리스트 -->
+        <div class="member-list">
+<!--            <th:block th:replace="~{admin/memberList :: memberList(data)}"/>-->
+                <div class="member-list-item" th:each="data,iterStat : ${dataList}">
+                    <div class="member-item" th:id="|block-${iterStat.index}|">
+                        <div class="member"></div>
+                        <div class="member-info">
+                            <div class="member-info-upper">
+                                <div class="memberCode member16"><h2 th:text="${data.get('memberCode')}">회원코드</h2></div>
+                                <div class="memberName member16"><a th:text="${data.get('memberNickname')}" th:href="|/member/user/${data.get('memberId')}|">회원명</a></div>
+                                <div class="memberDate member14"><p th:text="${data.get('enrollDate')}">가입날짜</p></div>
+                            </div>
+                            <form th:id="|memberBan${iterStat.index}|" method="get" th:action="|/admin/memberBan/member/${currPage}|" th:if="${target}=='member'">
+                                <div class="banDate-wrap" >
+                                    <input type="hidden" name="targetCode" class="targetCode" th:value="${data.get('memberCode')}">
+                                    <input type="hidden" name="search" class="search" th:value="${search}">
+                                    <input type="range" class="banDateBar" name="banDateCode" min="0" max="6" step="1" value="0" th:oninput="|rangeChange(${iterStat.index});|">
+                                    <span class="banDate-val">1일</span>
+                                    <button class="btn-primary submit-btn">정지</button>
+                                </div>
+                            </form>
+                            <div class="banDate-wrap" th:if="${target}=='black'">
+                                <p th:text="|정지 : ${data.get('banDate')}까지|"></p>
+                            </div>
+                            <div class="member-info-lower">
+                                <div class="memberGallery member14"><p th:text="|게시글 ${data.get('historyBoard')}|">게시글 100</p></div>
+                                <div class="memberComment member14"><p th:text="|댓글 ${data.get('historyComment')}|">댓글 1,000</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mypage-number-outline">
+            <div class="mypage-number">
+                <th:block th:if="${pageIdx} > 1">
+                    <button type="button" class="number-arrow btn-response">
+                        <a class="number-page" th:href="|/admin/memberList/${target}/1?search=${search}|"><<</a>
+                    </button>
+                    <button type="button" class="number-arrow btn-response">
+                        <a class="number-page" th:href="|/admin/memberList/${target}/${pagePrev}?search=${search}|"><</a>
+                    </button>
+                </th:block>
+                <th:block th:if="${dataSize > 0}" th:each="idx : ${#numbers.sequence(pageIdx, pageEnd)}">
+                    <button type="button" class="number-btn btn-response">
+                        <a class="number-page number-active" th:if="${#strings.equals(currPage, idx)}" th:text="${idx}"></a>
+                        <a class="number-page" th:if="${not #strings.equals(currPage, idx)}" th:text="${idx}" th:href="@{|/admin/memberList/${target}/${idx}?search=${search}|}"></a>
+                    </button>
+                </th:block>
+                <th:block th:if="${pageEnd < lastPage}">
+                    <button type="button" class="number-arrow btn-response">
+                        <a class="number-page" th:href="|/admin/memberList/${target}/${pageNext}?search=${search}|">></a>
+                    </button>
+                    <button type="button" class="number-arrow btn-response">
+                        <a class="number-page" th:href="|/admin/memberList/${target}/${lastPage}?search=${search}|">>></a>
+                    </button>
+                </th:block>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <div class="footer">
+        <th:block th:replace="~{common/footer :: footer}"/>
+    </div>
+</body>
+<script src="/js/admin.js"></script>
+</html>
