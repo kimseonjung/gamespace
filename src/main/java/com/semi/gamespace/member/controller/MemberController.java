@@ -84,6 +84,14 @@ public class MemberController {
             mv.setViewName("/common/error/memberNotFound");
             return mv;
         }
+        //개인 링크 불러오기
+        List<Map<String, String>> getLinkList = memberService.findMemberSiteLinkList(member.getMemberCode());
+        List<String> linkList = new ArrayList<>();
+        for(int i = 0; i < 6; i++) linkList.add("");
+        for(int i = 0; i < getLinkList.size(); i++) {
+            linkList.set(Integer.parseInt(getLinkList.get(i).get("SITEPOS"))-1, getLinkList.get(i).get("SITELINK"));
+        }
+
         int historyBoard = memberService.countHistoryOfBoard(member.getMemberCode());
         int followFrom = memberService.countFollowFromByCode(member.getMemberCode());
         int followTo = memberService.countFollowToByCode(member.getMemberCode());
@@ -101,6 +109,7 @@ public class MemberController {
         mv.setViewName("/member/myPage");
         mv.addObject("image", image);
         mv.addObject("member", member);
+        mv.addObject("link", linkList);
         mv.addObject("followFrom", followFrom);
         mv.addObject("followTo", followTo);
         mv.addObject("followStatus", followStatus);
@@ -113,6 +122,14 @@ public class MemberController {
     public Model memberProfilePage(Model model, Principal principal) {
         //인증된 사용자 정보를 통해 member정보 불러오기
         MemberDTO member = memberService.findMemberById(principal.getName());
+
+        //개인 링크 불러오기
+        List<Map<String, String>> getLinkList = memberService.findMemberSiteLinkList(member.getMemberCode());
+        List<String> linkList = new ArrayList<>();
+        for(int i = 0; i < 6; i++) linkList.add("");
+        for(int i = 0; i < getLinkList.size(); i++) {
+            linkList.set(Integer.parseInt(getLinkList.get(i).get("SITEPOS"))-1, getLinkList.get(i).get("SITELINK"));
+        }
         //팔로우 받은 수
         int followFrom = memberService.countFollowFromByCode(member.getMemberCode());
         //팔로우 건 수
@@ -122,6 +139,7 @@ public class MemberController {
 
 //        model.addAttribute("image", image);
         model.addAttribute("member", member);
+        model.addAttribute("link", linkList);
         model.addAttribute("followFrom", followFrom);
         model.addAttribute("followTo", followTo);
         return model;
@@ -164,6 +182,14 @@ public class MemberController {
         //조회중인 사용자
         MemberDTO currUser = memberService.findMemberById(id);
         MemberDTO loginUser = new MemberDTO();
+
+        //개인 링크 불러오기
+        List<Map<String, String>> getLinkList = memberService.findMemberSiteLinkList(currUser.getMemberCode());
+        List<String> linkList = new ArrayList<>();
+        for(int i = 0; i < 6; i++) linkList.add("");
+        for(int i = 0; i < getLinkList.size(); i++) {
+            linkList.set(Integer.parseInt(getLinkList.get(i).get("SITEPOS"))-1, getLinkList.get(i).get("SITELINK"));
+        }
         //팔로우 받은 수
         int followFrom = memberService.countFollowFromByCode(currUser.getMemberCode());
         //팔로우 건 수
@@ -226,6 +252,7 @@ public class MemberController {
 
         mv.setViewName("/member/follow");
         mv.addObject("member", currUser);
+        mv.addObject("link", linkList);
         mv.addObject("dataList", dataList);
         mv.addObject("dataSize", dataList.size());
         mv.addObject("followFrom", followFrom);
@@ -241,14 +268,15 @@ public class MemberController {
         System.out.println(mv);
         return mv;
     }
-
+//
 //    @GetMapping("/debug/insertMember")
 //    public String debugInsertMember(Model model, Principal principal) {
 //        MemberDTO member = new MemberDTO();
 //
-//        for(int i = 10; i <= 999; i++) {
+//        for(int i = 15000; i <= 15000; i++) {
 //            member.setUserId("user" + i);
-//            member.setUserPwd("pass" + i);
+//            //member.setUserPwd("pass" + i);
+//            member.setUserPwd("pass");
 //            member.setUserNickname("test" + i);
 //            member.setUserName("name" + i);
 //            member.setUserPhone("010" + String.format("%08d", (int) (Math.random()*100000000)));
@@ -269,18 +297,18 @@ public class MemberController {
 //        }
 //        return "redirect:/";
 //    }
-
+//
 //    @GetMapping("/debug/insertFollow")
 //    public String debugInsertFollow() {
 //        Map<String, String> conn = new HashMap<>();
 //        String followReq = "";
 //        String followTar = "";
 //
-//        for(int i = 4; i <= 993; i++) {
+//        for(int i = 298; i <= 1197; i++) {
 //            followReq = "MEM_" + i;
-//            for(int j = 4; j <= 993; j++) {
+//            for(int j = 1198; j <= 2199; j++) {
 //                if(Math.random()*100 < 33) {
-//                    if(i == j) continue;
+////                    if(i == j) continue;
 //                    followTar = "MEM_" + j;
 //                    conn.put("requestCode", followReq);
 //                    conn.put("targetCode", followTar);
@@ -476,12 +504,6 @@ public class MemberController {
                 "^" + request.getParameter("regist-address1") +
                 "^" + request.getParameter("regist-address2");
         newMember.setUserAddress(newAddress);
-        newMember.setUserSiteLink1("");
-        newMember.setUserSiteLink2("");
-        newMember.setUserSiteLink3("");
-        newMember.setUserSiteLink4("");
-        newMember.setUserSiteLink5("");
-        newMember.setUserSiteLink6("");
 
         //reCAPTCHA
         String gRecaptchaResponse = request.getParameter("g-recaptcha-response");

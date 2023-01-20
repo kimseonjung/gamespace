@@ -108,6 +108,10 @@ public class MemberService {
         return memberMapper.findMemberForEmailSend(dataPwd);
     }
 
+    public List<Map<String, String>> findMemberSiteLinkList(String refCode) {
+        return memberMapper.findMemberSiteLinkList(refCode);
+    }
+
     public boolean registIdCheck(String inputId) {
         int result = 0;
         result += memberMapper.registIdCheck(inputId);

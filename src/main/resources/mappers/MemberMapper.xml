@@ -16,12 +16,6 @@
         <result property="userGender" column="MEMBER_GENDER"/>
         <result property="userAddress" column="ADDRESS"/>
         <result property="userIntroduce" column="INTRODUCE"/>
-        <result property="userSiteLink1" column="SITE_LINK_1"/>
-        <result property="userSiteLink2" column="SITE_LINK_2"/>
-        <result property="userSiteLink3" column="SITE_LINK_3"/>
-        <result property="userSiteLink4" column="SITE_LINK_4"/>
-        <result property="userSiteLink5" column="SITE_LINK_5"/>
-        <result property="userSiteLink6" column="SITE_LINK_6"/>
         <result property="enrollDate" column="ENROLL_DATE"/>
         <result property="memberStatus" column="MEMBER_STATUS"/>
         <result property="banDate" column="BAN_DATE"/>
@@ -49,12 +43,6 @@
                M.MEMBER_GENDER,
                M.ADDRESS,
                M.INTRODUCE,
-               M.SITE_LINK_1,
-               M.SITE_LINK_2,
-               M.SITE_LINK_3,
-               M.SITE_LINK_4,
-               M.SITE_LINK_5,
-               M.SITE_LINK_6,
                TO_CHAR(TO_DATE(M.ENROLL_DATE, 'YY/MM/DD'),'YYYY-MM-DD') AS ENROLL_DATE,
                M.MEMBER_STATUS,
                TO_CHAR(TO_DATE(M.BAN_DATE, 'YY/MM/DD'),'YYYY-MM-DD') AS BAN_DATE,
@@ -76,12 +64,6 @@
                M.MEMBER_GENDER,
                M.ADDRESS,
                M.INTRODUCE,
-               M.SITE_LINK_1,
-               M.SITE_LINK_2,
-               M.SITE_LINK_3,
-               M.SITE_LINK_4,
-               M.SITE_LINK_5,
-               M.SITE_LINK_6,
                TO_CHAR(TO_DATE(M.ENROLL_DATE, 'YY/MM/DD'),'YYYY-MM-DD') AS ENROLL_DATE,
                M.MEMBER_STATUS,
                TO_CHAR(TO_DATE(M.BAN_DATE, 'YY/MM/DD'),'YYYY-MM-DD') AS BAN_DATE,
@@ -103,12 +85,6 @@
                M.MEMBER_GENDER,
                M.ADDRESS,
                M.INTRODUCE,
-               M.SITE_LINK_1,
-               M.SITE_LINK_2,
-               M.SITE_LINK_3,
-               M.SITE_LINK_4,
-               M.SITE_LINK_5,
-               M.SITE_LINK_6,
                TO_CHAR(TO_DATE(M.ENROLL_DATE, 'YY/MM/DD'),'YYYY-MM-DD') AS ENROLL_DATE,
                M.MEMBER_STATUS,
                TO_CHAR(TO_DATE(M.BAN_DATE, 'YY/MM/DD'),'YYYY-MM-DD') AS BAN_DATE,
@@ -130,12 +106,6 @@
                M.MEMBER_GENDER,
                M.ADDRESS,
                M.INTRODUCE,
-               M.SITE_LINK_1,
-               M.SITE_LINK_2,
-               M.SITE_LINK_3,
-               M.SITE_LINK_4,
-               M.SITE_LINK_5,
-               M.SITE_LINK_6,
                TO_CHAR(TO_DATE(M.ENROLL_DATE, 'YY/MM/DD'),'YYYY-MM-DD') AS ENROLL_DATE,
                M.MEMBER_STATUS,
                TO_CHAR(TO_DATE(M.BAN_DATE, 'YY/MM/DD'),'YYYY-MM-DD') AS BAN_DATE,
@@ -234,6 +204,13 @@
         WHERE M.MEMBER_EMAIL = #{ userEmail }
     </select>
 
+    <select id="findMemberSiteLinkList" resultType="java.util.HashMap" parameterType="string">
+        SELECT L.SITE_LINK SITELINK,
+               L.LINK_POS SITEPOS
+        FROM LINK L
+        WHERE L.REF_CODE = #{ refCode }
+    </select>
+
     <select id="checkFollowState" resultType="_int" parameterType="java.util.HashMap">
         SELECT COUNT(*)
         FROM FOLLOW F
@@ -302,12 +279,6 @@
                M.MEMBER_GENDER,
                M.ADDRESS,
                M.INTRODUCE,
-               M.SITE_LINK_1,
-               M.SITE_LINK_2,
-               M.SITE_LINK_3,
-               M.SITE_LINK_4,
-               M.SITE_LINK_5,
-               M.SITE_LINK_6,
                M.ENROLL_DATE,
                M.MEMBER_STATUS,
                M.BAN_DATE,
@@ -325,12 +296,6 @@
             #{ userGender },
             #{ userAddress },
             #{ userIntroduce },
-            NULL,
-            NULL,
-            NULL,
-            NULL,
-            NULL,
-            NULL,
             TO_DATE(SYSDATE, 'YYYY-MM-DD'),
             'Y',
             NULL,
@@ -393,18 +358,20 @@
     </update>
 
     <update id="updateMemberSiteLink" parameterType="java.util.HashMap">
-        UPDATE MEMBER M
-        <set>
-        <choose>
-            <when test="linkCode == 1">M.SITE_LINK_1 = #{ modifyLink }</when>
-            <when test="linkCode == 2">M.SITE_LINK_2 = #{ modifyLink }</when>
-            <when test="linkCode == 3">M.SITE_LINK_3 = #{ modifyLink }</when>
-            <when test="linkCode == 4">M.SITE_LINK_4 = #{ modifyLink }</when>
-            <when test="linkCode == 5">M.SITE_LINK_5 = #{ modifyLink }</when>
-            <when test="linkCode == 6">M.SITE_LINK_6 = #{ modifyLink }</when>
-        </choose>
-        </set>
-        WHERE M.MEMBER_CODE = #{ memberCode }
+        UPDATE LINK L
+<!--        <set>-->
+<!--        <choose>-->
+<!--            <when test="linkCode == 1">M.SITE_LINK_1 = #{ modifyLink }</when>-->
+<!--            <when test="linkCode == 2">M.SITE_LINK_2 = #{ modifyLink }</when>-->
+<!--            <when test="linkCode == 3">M.SITE_LINK_3 = #{ modifyLink }</when>-->
+<!--            <when test="linkCode == 4">M.SITE_LINK_4 = #{ modifyLink }</when>-->
+<!--            <when test="linkCode == 5">M.SITE_LINK_5 = #{ modifyLink }</when>-->
+<!--            <when test="linkCode == 6">M.SITE_LINK_6 = #{ modifyLink }</when>-->
+<!--        </choose>-->
+<!--        </set>-->
+          SET SITE_LINK = #{ modifyLink }
+        WHERE L.REF_CODE = #{ memberCode }
+          AND L.LINK_POS = #{ linkCode }
     </update>
 
     <update id="updateMemberPassword" parameterType="java.util.HashMap">
