@@ -10,12 +10,12 @@
     <div class="img-icon"><img src="/image/icon_light/globe.svg"></div>
     <input type="hidden" name="memberCode" class="memberCode" th:value="${member.memberCode}">
     <input type="hidden" name="linkCode" class="linkCode" th:value="${num}">
-    <input th:if="${num == '1'}" th:value="${member.userSiteLink1}" type="text" name="modifyLink" class="input-text modifyLink">
-    <input th:if="${num == '2'}" th:value="${member.userSiteLink2}" type="text" name="modifyLink" class="input-text modifyLink">
-    <input th:if="${num == '3'}" th:value="${member.userSiteLink3}" type="text" name="modifyLink" class="input-text modifyLink">
-    <input th:if="${num == '4'}" th:value="${member.userSiteLink4}" type="text" name="modifyLink" class="input-text modifyLink">
-    <input th:if="${num == '5'}" th:value="${member.userSiteLink5}" type="text" name="modifyLink" class="input-text modifyLink">
-    <input th:if="${num == '6'}" th:value="${member.userSiteLink6}" type="text" name="modifyLink" class="input-text modifyLink">
+    <input th:if="${num == '1'}" th:value="${link.get(0)}" type="text" name="modifyLink" class="input-text modifyLink">
+    <input th:if="${num == '2'}" th:value="${link.get(1)}" type="text" name="modifyLink" class="input-text modifyLink">
+    <input th:if="${num == '3'}" th:value="${link.get(2)}" type="text" name="modifyLink" class="input-text modifyLink">
+    <input th:if="${num == '4'}" th:value="${link.get(3)}" type="text" name="modifyLink" class="input-text modifyLink">
+    <input th:if="${num == '5'}" th:value="${link.get(4)}" type="text" name="modifyLink" class="input-text modifyLink">
+    <input th:if="${num == '6'}" th:value="${link.get(5)}" type="text" name="modifyLink" class="input-text modifyLink">
     <label>
       <button type="button" class="link-modify-submit"></button>
       <img src="/image/icon_light/right.svg">

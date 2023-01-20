@@ -25,6 +25,7 @@ public interface MemberMapper {
     void deleteFollowConnect(Map<String, String> codeData);
     String findMemberId(Map<String, String> dataId);
     String findMemberForEmailSend(Map<String, String> dataPwd);
+    List<Map<String, String>> findMemberSiteLinkList(String refCode);
     int registIdCheck(String inputId);
     int registNicknameCheck(String inputNickname);
     int registEmailCheck(String inputEmail);

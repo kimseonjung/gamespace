@@ -10,12 +10,12 @@
     <input type="hidden" name="linkCode" class="linkCode" th:value="${num}">
     <button type="button" class="menu-btn link-unchecked">
       <div class="img-icon"><img src="/image/icon_light/globe.svg"></div>
-        <p th:if="${num == '1'}" class="text-link" th:text="${#strings.defaultString(member.userSiteLink1, '링크를 입력해주세요.')}"></p>
-        <p th:if="${num == '2'}" class="text-link" th:text="${#strings.defaultString(member.userSiteLink2, '링크를 입력해주세요.')}"></p>
-        <p th:if="${num == '3'}" class="text-link" th:text="${#strings.defaultString(member.userSiteLink3, '링크를 입력해주세요.')}"></p>
-        <p th:if="${num == '4'}" class="text-link" th:text="${#strings.defaultString(member.userSiteLink4, '링크를 입력해주세요.')}"></p>
-        <p th:if="${num == '5'}" class="text-link" th:text="${#strings.defaultString(member.userSiteLink5, '링크를 입력해주세요.')}"></p>
-        <p th:if="${num == '6'}" class="text-link" th:text="${#strings.defaultString(member.userSiteLink6, '링크를 입력해주세요.')}"></p>
+        <p th:if="${num == '1'}" class="text-link" th:text="${#strings.defaultString(link.get(0), '링크를 입력해주세요.')}"></p>
+        <p th:if="${num == '2'}" class="text-link" th:text="${#strings.defaultString(link.get(1), '링크를 입력해주세요.')}"></p>
+        <p th:if="${num == '3'}" class="text-link" th:text="${#strings.defaultString(link.get(2), '링크를 입력해주세요.')}"></p>
+        <p th:if="${num == '4'}" class="text-link" th:text="${#strings.defaultString(link.get(3), '링크를 입력해주세요.')}"></p>
+        <p th:if="${num == '5'}" class="text-link" th:text="${#strings.defaultString(link.get(4), '링크를 입력해주세요.')}"></p>
+        <p th:if="${num == '6'}" class="text-link" th:text="${#strings.defaultString(link.get(5), '링크를 입력해주세요.')}"></p>
       <img src="/image/icon_light/more-horizontal.svg">
     </button>
   </form>
