@@ -80,5 +80,13 @@
     </div>
     <script src="/js/member.js"></script>
     <script src="/js/memberMypage.js"></script>
+    <!-- 팔로우 버튼 상태 초기 갱신 -->
+    <script th:inline="javascript">
+        /* <![CDATA[ */
+        const initFollow = [[${followStatus}]]==2;
+        followRefresh(initFollow);
+        document.getElementById('isFollow').value = initFollow;
+        /* ]]> */
+    </script>
 </body>
 </html>
