@@ -105,7 +105,8 @@ public class SpringSecurityConfig {
                 //성공 시 넘어갈 페이지 Handler
                 .userInfoEndpoint()
                 //OAuth2 로그인 성공 후 사용자 정보를 가져오는 설정
-                .userService(oAuth2DetailsService);
+                .userService(oAuth2DetailsService)
+                .and();
                 //로그인 성공 후속 조치를 진행할 UserService 등록
 
                 /* 세션 관리 */
