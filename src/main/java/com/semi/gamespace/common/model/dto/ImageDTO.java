@@ -26,7 +26,7 @@ public class ImageDTO {
     /**
      * test
      * @param attachCode
-     * @return
+     * @return 결과값
      */
     public ImageDTO setAttachCode(String attachCode) {
         this.attachCode = attachCode;
